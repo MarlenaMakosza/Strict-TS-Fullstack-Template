@@ -19,6 +19,7 @@ jobs:
       - run: npm ci
       - run: npm run format:check
       - run: npm run validate
+      - run: npm run docs:build
 
   mutation:
     runs-on: ubuntu-latest

@@ -116,7 +116,7 @@ Picked from `tools.md`. Items marked `*` are not on that list.
 | `start`                                              | `node dist/index.js`                                                                                         |
 | `prepare`                                            | husky (installs hooks after `npm install`)                                                                   |
 | `validate`                                           | lint + ts-check + spellcheck + knip + test:coverage + quality:crap + quality:duplication + check:adrs        |
-| `validate:full`                                      | validate + test:mutation (`--force`) + test:e2e                                                              |
+| `validate:full`                                      | validate + test:mutation (`--force`) + test:e2e + docs:build                                                 |
 | `lint` / `lint:fix`                                  | ESLint (`--max-warnings 0`)                                                                                  |
 | `format` / `format:check`                            | Prettier (`--write` / `--check` for CI)                                                                      |
 | `autofix`                                            | lint:fix + format                                                                                            |
