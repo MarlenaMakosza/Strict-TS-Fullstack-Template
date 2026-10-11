@@ -8,8 +8,15 @@ export default defineConfig({
     coverage: {
       provider: 'v8',
       include: ['src/**/*.ts'],
-      exclude: ['src/**/*.{test,spec}.ts', 'src/index.ts'],
+      // src/db needs a real database: cover it with integration tests (Testcontainers), not unit tests.
+      exclude: ['src/**/*.{test,spec}.ts', 'src/index.ts', 'src/db/**'],
       reporter: ['text', 'html', 'lcov'],
+      thresholds: {
+        branches: 90,
+        functions: 90,
+        lines: 90,
+        statements: 90,
+      },
     },
   },
 });
