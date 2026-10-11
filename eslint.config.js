@@ -797,6 +797,8 @@ export default [
       }),
       ...(vitestFlag && {
         ...vitest.configs.recommended.rules,
+        // Booleans are asserted with toBe(true) / toBe(false): toBeTruthy() also passes for 1 or 'x',
+        // so it lets more mutants survive. prefer-to-be-truthy/-falsy contradict this rule and stay off.
         'vitest/prefer-strict-boolean-matchers': 'error',
         'vitest/no-conditional-in-test': 'error',
         'vitest/consistent-test-filename': [
@@ -835,9 +837,7 @@ export default [
         'vitest/prefer-spy-on': 'error',
         'vitest/prefer-strict-equal': 'error',
         'vitest/prefer-to-be': 'error',
-        'vitest/prefer-to-be-falsy': 'error',
         'vitest/prefer-to-be-object': 'error',
-        'vitest/prefer-to-be-truthy': 'error',
         'vitest/prefer-to-contain': 'error',
         'vitest/prefer-to-have-length': 'error',
         'vitest/prefer-todo': 'error',
