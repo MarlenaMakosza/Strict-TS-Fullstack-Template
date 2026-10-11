@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "allow": [
+      "Bash(npm run validate)",
+      "Bash(npm run validate:full)",
+      "Bash(npm run format:check)",
+      "Bash(npm run autofix)",
+      "Bash(npm run lint:*)",
+      "Bash(npm run ts-check)",
+      "Bash(npm run spellcheck)",
+      "Bash(npm run knip)",
+      "Bash(npm run test:*)",
+      "Bash(npm run quality:*)",
+      "Bash(npm run check:adrs)",
+      "Bash(npx vitest run:*)",
+      "Bash(npx eslint:*)"
+    ],
+    "ask": ["Edit(cypress/e2e/**/*.feature)"],
+    "deny": [
+      "Edit(eslint.config.js)",
+      "Edit(tsconfig*.json)",
+      "Edit(vitest.config.ts)",
+      "Edit(stryker.config.json)",
+      "Edit(cypress.config.ts)",
+      "Edit(knip.json)",
+      "Edit(cspell.json)",
+      "Edit(commitlint.config.js)",
+      "Edit(.husky/**)",
+      "Edit(.github/**)",
+      "Edit(.archgate/adrs/**)",
+      "Edit(.jscpd.json)",
+      "Edit(dev/quality/**)",
+      "Edit(.agents/**)",
+      "Edit(AGENTS.md)",
+      "Edit(CLAUDE.md)",
+      "Edit(.claude/**)",
+      "Bash(git commit --no-verify:*)",
+      "Bash(git commit -n:*)",
+      "Bash(git push --no-verify:*)",
+      "Bash(HUSKY=0:*)"
+    ]
+  },
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/stop-validate.sh",
+            "timeout": 600
+          }
+        ]
+      }
+    ]
+  }
+}
