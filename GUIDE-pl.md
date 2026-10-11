@@ -21,9 +21,9 @@ Przykładowe polecenia dla Claude Code:
 
 ```text
 1. Użyj agenta specifier. Wymaganie: <co ma robić aplikacja>.
-2. Użyj agenta edge-case-hunter dla cypress/e2e/<nazwa>.feature.
+2. Użyj agenta edge-case-hunter dla tests/e2e/features/<nazwa>.feature.
 3. Użyj agenta architect. Czy <zmiana> wymaga decyzji architektonicznej? Jeśli tak, zaproponuj ADR z regułą.
-4. Użyj agenta implementer dla cypress/e2e/<nazwa>.feature i docs/edge-cases/<nazwa>.md.
+4. Użyj agenta implementer dla tests/e2e/features/<nazwa>.feature i docs/edge-cases/<nazwa>.md.
 5. Użyj agenta reviewer dla zmian z <nazwa>.
 6. Użyj agenta documenter dla zmian z <nazwa>.
 ```
@@ -46,11 +46,11 @@ Kod, który nie przejdzie wszystkich bramek, nie wejdzie do projektu.
 
 ## Podział pracy
 
-| Kto     | Co robi                                                | Gdzie                                      |
-| ------- | ------------------------------------------------------ | ------------------------------------------ |
-| Ty      | Opisujesz zachowanie programu i odpowiadasz na pytania | `cypress/e2e/*.feature`, raporty agentów   |
-| Agenci  | Piszą scenariusze, testy, kod i dokumentację           | `cypress/`, `tests/unit/`, `src/`, `docs/` |
-| Automat | Sprawdza wszystko bramkami                             | `npm run validate:full`, CI                |
+| Kto     | Co robi                                                | Gdzie                                           |
+| ------- | ------------------------------------------------------ | ----------------------------------------------- |
+| Ty      | Opisujesz zachowanie programu i odpowiadasz na pytania | `tests/e2e/features/*.feature`, raporty agentów |
+| Agenci  | Piszą scenariusze, testy, kod i dokumentację           | `tests/`, `src/`, `docs/`                       |
+| Automat | Sprawdza wszystko bramkami                             | `npm run validate:full`, CI                     |
 
 Czytasz tylko:
 
@@ -97,12 +97,12 @@ Feature: Greeting by name
     Then the app prints "Hello, Ada!"
 ```
 
-Wzorzec stylu to `cypress/e2e/greeting.feature`.
+Wzorzec stylu to `tests/e2e/features/greeting.feature`.
 
 ### Krok 2: edge-case-hunter, czyli przypadki brzegowe
 
 ```text
-Użyj agenta edge-case-hunter dla cypress/e2e/<nazwa>.feature.
+Użyj agenta edge-case-hunter dla tests/e2e/features/<nazwa>.feature.
 ```
 
 Agent zapisuje listę w `docs/edge-cases/<nazwa>.md`, od częstych po ekstremalne: pusty tekst, same
@@ -130,7 +130,7 @@ zatwierdzasz ty.
 ### Krok 4: implementer, czyli kod
 
 ```text
-Użyj agenta implementer dla cypress/e2e/<nazwa>.feature i docs/edge-cases/<nazwa>.md.
+Użyj agenta implementer dla tests/e2e/features/<nazwa>.feature i docs/edge-cases/<nazwa>.md.
 ```
 
 Teraz nic nie robisz. Agent:
@@ -220,8 +220,8 @@ Dodatkowo:
 
 **Wzorce do naśladowania:**
 
-- `cypress/e2e/greeting.feature`: scenariusz Gherkin.
-- `cypress/support/step-definitions/app.steps.ts`: step definitions.
+- `tests/e2e/features/greeting.feature`: scenariusz Gherkin.
+- `tests/e2e/steps/app.steps.ts`: step definitions.
 - `docs/edge-cases/greeting.md`: lista przypadków brzegowych.
 - `.archgate/adrs/ARCH-001-*.md` i `.rules.ts`: ADR z regułą.
 

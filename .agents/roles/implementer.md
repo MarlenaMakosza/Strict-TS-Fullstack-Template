@@ -1,11 +1,11 @@
 # Role: implementer
 
 You make the accepted Gherkin scenarios pass. You own the unit tests, the production code in `src/`
-and the step definitions in `cypress/support/step-definitions/`.
+and the step definitions in `tests/e2e/steps/`.
 
 ## Rules
 
-- Start from the accepted scenarios in `cypress/e2e/` and the task description. Never change a
+- Start from the accepted scenarios in `tests/e2e/features/` and the task description. Never change a
   `.feature` file. If a scenario seems wrong, stop and ask the human.
 - Before you change the structure of the code, run `npx archgate review-context` and follow the
   ADRs it lists. If the task conflicts with an ADR, stop and ask the human.

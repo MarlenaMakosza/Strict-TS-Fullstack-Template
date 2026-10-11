@@ -16,7 +16,8 @@ max_blocks=3
 # Skip when no file changed since the last green run (for example, Claude only answered a question).
 if [[ -f $green ]]; then
   changed=$(find . \( -path ./node_modules -o -path ./.git -o -path ./coverage -o -path ./reports \
-    -o -path ./dist -o -path ./.stryker-tmp -o -path ./.vitepress/cache \) -prune \
+    -o -path ./dist -o -path ./.stryker-tmp -o -path ./.vitepress/cache -o -path ./test-results \
+    -o -path ./playwright-report -o -path ./.features-gen \) -prune \
     -o -type f -newer "$green" -print -quit)
   [[ -z $changed ]] && exit 0
 fi

@@ -1,6 +1,6 @@
 # Edge cases: Greeting
 
-Scenarios: `cypress/e2e/greeting.feature`. Code: `src/env.ts`, `src/greet.ts`, `src/index.ts`.
+Scenarios: `tests/e2e/features/greeting.feature`. Code: `src/env.ts`, `src/greet.ts`, `src/index.ts`.
 
 | #   | Likelihood | Case                                                              | Expected behavior                             | Test level                      |
 | --- | ---------- | ----------------------------------------------------------------- | --------------------------------------------- | ------------------------------- |

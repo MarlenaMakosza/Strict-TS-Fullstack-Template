@@ -18,17 +18,13 @@
       "Bash(npx vitest run:*)",
       "Bash(npx eslint:*)"
     ],
-    "ask": [
-      "Edit(cypress/e2e/**/*.feature)",
-      "Edit(docs/edge-cases/**)",
-      "Edit(.archgate/adrs/**)"
-    ],
+    "ask": ["Edit(tests/e2e/features/**)", "Edit(docs/edge-cases/**)", "Edit(.archgate/adrs/**)"],
     "deny": [
       "Edit(eslint.config.js)",
       "Edit(tsconfig*.json)",
       "Edit(vitest.config.ts)",
       "Edit(stryker.config.json)",
-      "Edit(cypress.config.ts)",
+      "Edit(playwright.config.ts)",
       "Edit(knip.json)",
       "Edit(cspell.json)",
       "Edit(commitlint.config.js)",
