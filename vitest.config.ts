@@ -10,7 +10,7 @@ export default defineConfig({
       include: ['src/**/*.ts'],
       // src/db needs a real database: cover it with integration tests (Testcontainers), not unit tests.
       exclude: ['src/**/*.{test,spec}.ts', 'src/index.ts', 'src/db/**'],
-      reporter: ['text', 'html', 'lcov'],
+      reporter: ['text', 'html', 'lcov', 'json'],
       thresholds: {
         branches: 90,
         functions: 90,

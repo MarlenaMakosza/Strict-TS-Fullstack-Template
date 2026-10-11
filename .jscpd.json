@@ -1,0 +1,7 @@
+{
+  "path": ["src", "dev", "cypress"],
+  "format": ["typescript", "javascript"],
+  "minTokens": 50,
+  "exitCode": 1,
+  "reporters": ["console"]
+}
