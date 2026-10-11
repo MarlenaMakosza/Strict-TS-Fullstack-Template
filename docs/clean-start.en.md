@@ -61,11 +61,11 @@ Picked from `tools.md`. Items marked `*` are not on that list.
 
 ### Optional linters
 
-| Tool                         | When                                                                                                        |
-| ---------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| `eslint-plugin-functional`   | When the team wants to enforce immutability; very strict                                                    |
-| `eslint-plugin-import-alias` | When the project uses path aliases                                                                          |
-| `eslint-plugin-boundaries`   | When the project has layers (e.g. domain / application / infrastructure); controls who may import from whom |
+| Tool                                       | When                                                                                                        |
+| ------------------------------------------ | ----------------------------------------------------------------------------------------------------------- |
+| `eslint-plugin-functional`                 | When the team wants to enforce immutability; very strict                                                    |
+| `@dword-design/eslint-plugin-import-alias` | When the project uses path aliases                                                                          |
+| `eslint-plugin-boundaries`                 | When the project has layers (e.g. domain / application / infrastructure); controls who may import from whom |
 
 ## Tests
 

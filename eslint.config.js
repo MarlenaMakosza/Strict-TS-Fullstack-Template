@@ -1,3 +1,4 @@
+import importAlias from '@dword-design/eslint-plugin-import-alias';
 import eslintComments from '@eslint-community/eslint-plugin-eslint-comments';
 import css from '@eslint/css';
 import js from '@eslint/js';
@@ -10,7 +11,6 @@ import tailwind from 'eslint-plugin-better-tailwindcss';
 import boundaries from 'eslint-plugin-boundaries';
 import drizzle from 'eslint-plugin-drizzle';
 import functional from 'eslint-plugin-functional';
-import alias from 'eslint-plugin-import-alias';
 import esImport from 'eslint-plugin-import-x';
 import node from 'eslint-plugin-n';
 import perfectionist from 'eslint-plugin-perfectionist';
@@ -28,7 +28,7 @@ import tseslint from 'typescript-eslint';
 // For most plugins you can check their human_docs via this tool
 
 // Toggles for enabling/disabling rule groups
-// Enable when the project uses path aliases (and configure `aliases` below)
+// Enable when the project uses path aliases (tsconfig `paths` are read automatically, or set `alias` below)
 const aliasFlag = false;
 // Enable when the project has layers (and adjust `boundaries/elements` and policies below)
 const boundariesFlag = false;
@@ -113,7 +113,8 @@ export default [
       'eslint-comments': eslintComments,
       'import-x': esImport,
       security: security,
-      alias: alias,
+      '@dword-design/import-alias':
+        importAlias.configs.recommended.plugins['@dword-design/import-alias'],
       boundaries: boundaries,
       'better-tailwindcss': tailwind,
       node: node,
@@ -213,15 +214,14 @@ export default [
 
       /* alias rules */
       ...(aliasFlag && {
-        'alias/import-alias': [
+        '@dword-design/import-alias/prefer-alias': [
           'error',
           {
-            relativeDepth: 1,
-            rootDir: import.meta.dirname,
-            aliases: [
-              { alias: '@src', matcher: '^src' }, // src/modules/app -> @src/modules/app
-              { alias: '@test', matcher: '^tests' }, // tests/unit/app -> @test/unit/app
-            ],
+            aliasForSubpaths: false, // keep ./sibling imports relative, alias only ../parent paths
+            alias: {
+              '@src': './src', // src/modules/app -> @src/modules/app
+              '@test': './tests', // tests/unit/app -> @test/unit/app
+            },
           },
         ],
       }),

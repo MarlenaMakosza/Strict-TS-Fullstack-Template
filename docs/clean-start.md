@@ -64,7 +64,7 @@ Wybrany z `tools.md`. Pozycje oznaczone `*` są spoza tej listy.
 | Narzędzie | Kiedy |
 |---|---|
 | `eslint-plugin-functional` | Gdy zespół chce wymusić niemutowalność; bardzo restrykcyjny |
-| `eslint-plugin-import-alias` | Gdy projekt używa aliasów ścieżek |
+| `@dword-design/eslint-plugin-import-alias` | Gdy projekt używa aliasów ścieżek |
 | `eslint-plugin-boundaries` | Gdy projekt ma warstwy (np. domain / application / infrastructure); pilnuje, kto może importować z kogo |
 
 ## Testy
