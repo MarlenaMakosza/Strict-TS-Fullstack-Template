@@ -1,0 +1,21 @@
+# The specification and the quality gates belong to the human.
+# With branch protection ("Require review from Code Owners"), any change here needs an approval.
+/cypress/e2e/**/*.feature @MarlenaMakosza
+/eslint.config.js @MarlenaMakosza
+/tsconfig*.json @MarlenaMakosza
+/vitest.config.ts @MarlenaMakosza
+/cypress.config.ts @MarlenaMakosza
+/stryker.config.json @MarlenaMakosza
+/knip.json @MarlenaMakosza
+/cspell.json @MarlenaMakosza
+/commitlint.config.js @MarlenaMakosza
+/package.json @MarlenaMakosza
+/.husky/ @MarlenaMakosza
+/.github/ @MarlenaMakosza
+/.archgate/adrs/ @MarlenaMakosza
+/AGENTS.md @MarlenaMakosza
+/CLAUDE.md @MarlenaMakosza
+/.claude/ @MarlenaMakosza
+/.agents/ @MarlenaMakosza
+/.jscpd.json @MarlenaMakosza
+/dev/quality/ @MarlenaMakosza
