@@ -1,5 +1,5 @@
 {
-  "path": ["src", "dev", "cypress"],
+  "path": ["src", "dev", "tests/e2e"],
   "format": ["typescript", "javascript"],
   "minTokens": 50,
   "exitCode": 1,

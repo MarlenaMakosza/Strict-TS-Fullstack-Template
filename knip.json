@@ -1,6 +1,6 @@
 {
   "$schema": "https://unpkg.com/knip@6/schema.json",
-  "entry": ["dev/**/*.ts", "cypress/support/step-definitions/**/*.ts"],
-  "project": ["src/**/*.ts", "src/**/*.css", "dev/**/*.ts", "tests/**/*.ts", "cypress/**/*.ts"],
+  "entry": ["dev/**/*.ts", "tests/e2e/steps/**/*.ts"],
+  "project": ["src/**/*.ts", "src/**/*.css", "dev/**/*.ts", "tests/**/*.ts"],
   "ignoreDependencies": ["@testcontainers/postgresql", "@stryker-mutator/command-runner"]
 }
