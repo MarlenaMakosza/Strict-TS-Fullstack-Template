@@ -79,15 +79,17 @@ Picked from `tools.md`. Items marked `*` are not on that list.
 | `@badeball/cypress-cucumber-preprocessor` | Runs Gherkin scenarios (`.feature`) in Cypress, maps steps to TS definitions                                                                              |
 | Stryker (`@stryker-mutator/core`)         | Mutation testing: deliberately breaks the code and checks that tests catch it (mutation score instead of plain coverage)                                  |
 | Stryker command runner (built into core)  | Runs `vitest run` for every mutant. `@stryker-mutator/vitest-runner` is faster but does not work with Vitest 5 (stryker-js #6210); switch back once fixed |
+| jscpd `*`                                 | Duplicated code (`.jscpd.json`), a gate in `validate`: no clone allowed                                                                                   |
+| CRAP (`dev/quality/crap.ts`) `*`          | Complexity (ESLint `complexity`) × missing coverage (Vitest coverage); a gate in `validate`, limit 30 per function                                        |
 
 ## Git and CI
 
-| Tool                                           | Role                                         |
-| ---------------------------------------------- | -------------------------------------------- |
-| Husky                                          | Git hooks                                    |
-| lint-staged                                    | Lint and format only changed files on commit |
-| commitlint + `@commitlint/config-conventional` | Conventional Commits                         |
-| GitHub Actions                                 | CI: lint, types, tests on every PR           |
+| Tool                                           | Role                                                                                                                          |
+| ---------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| Husky                                          | Git hooks                                                                                                                     |
+| lint-staged                                    | Lint and format only changed files on commit                                                                                  |
+| commitlint + `@commitlint/config-conventional` | Conventional Commits                                                                                                          |
+| GitHub Actions                                 | CI: `validate`, mutation testing and e2e on every PR; optional AI review by a different model (`ai-review` label, OpenRouter) |
 
 ## Maintenance
 
@@ -113,7 +115,8 @@ Picked from `tools.md`. Items marked `*` are not on that list.
 | `css:build` / `css:watch`                            | Tailwind CLI: `src/styles/app.css` → `dist/app.css`                                                          |
 | `start`                                              | `node dist/index.js`                                                                                         |
 | `prepare`                                            | husky (installs hooks after `npm install`)                                                                   |
-| `validate`                                           | lint + ts-check + spellcheck + knip + test + check:adrs                                                      |
+| `validate`                                           | lint + ts-check + spellcheck + knip + test:coverage + quality:crap + quality:duplication + check:adrs        |
+| `validate:full`                                      | validate + test:mutation (`--force`) + test:e2e                                                              |
 | `lint` / `lint:fix`                                  | ESLint (`--max-warnings 0`)                                                                                  |
 | `format` / `format:check`                            | Prettier (`--write` / `--check` for CI)                                                                      |
 | `autofix`                                            | lint:fix + format                                                                                            |
@@ -125,6 +128,8 @@ Picked from `tools.md`. Items marked `*` are not on that list.
 | `test:coverage`                                      | `vitest run --coverage`                                                                                      |
 | `test:mutation`                                      | `stryker run`                                                                                                |
 | `test:e2e` / `test:e2e:open`                         | `cypress run` / `cypress open`                                                                               |
+| `quality:crap`                                       | CRAP from `coverage/coverage-final.json`                                                                     |
+| `quality:duplication`                                | jscpd                                                                                                        |
 | `commitlint`                                         | `commitlint --edit` (`commit-msg` hook)                                                                      |
 | `check:adrs`                                         | archgate check                                                                                               |
 | `docs:api`                                           | TypeDoc                                                                                                      |

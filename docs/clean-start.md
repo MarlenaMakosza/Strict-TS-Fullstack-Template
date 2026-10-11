@@ -79,6 +79,8 @@ Wybrany z `tools.md`. Pozycje oznaczone `*` są spoza tej listy.
 | `@badeball/cypress-cucumber-preprocessor` | Uruchamia scenariusze Gherkin (`.feature`) w Cypress, mapuje kroki na definicje w TS |
 | Stryker (`@stryker-mutator/core`) | Mutation testing: celowo psuje kod i sprawdza, czy testy to wykryją (mutation score zamiast samego coverage) |
 | Stryker command runner (wbudowany w core) | Odpala `vitest run` dla każdego mutanta. `@stryker-mutator/vitest-runner` jest szybszy, ale nie działa z Vitest 5 (stryker-js #6210); wróć do niego po poprawce |
+| jscpd `*` | Duplikacja kodu (`.jscpd.json`), bramka w `validate`: żaden klon niedozwolony |
+| CRAP (`dev/quality/crap.ts`) `*` | Złożoność (ESLint `complexity`) × brak pokrycia (Vitest coverage); bramka w `validate`, próg 30 na funkcję |
 
 ## Git i CI
 
@@ -87,7 +89,7 @@ Wybrany z `tools.md`. Pozycje oznaczone `*` są spoza tej listy.
 | Husky | Hooki gita |
 | lint-staged | Lint i format tylko zmienionych plików przy commicie |
 | commitlint + `@commitlint/config-conventional` | Conventional Commits |
-| GitHub Actions | CI: lint, typy, testy na każdym PR |
+| GitHub Actions | CI: `validate`, mutation testing i e2e na każdym PR; opcjonalne AI review innym modelem (etykieta `ai-review`, OpenRouter) |
 
 ## Utrzymanie
 
@@ -113,7 +115,8 @@ Wybrany z `tools.md`. Pozycje oznaczone `*` są spoza tej listy.
 | `css:build` / `css:watch` | Tailwind CLI: `src/styles/app.css` → `dist/app.css` |
 | `start` | `node dist/index.js` |
 | `prepare` | husky (instaluje hooki po `npm install`) |
-| `validate` | lint + ts-check + spellcheck + knip + test + check:adrs |
+| `validate` | lint + ts-check + spellcheck + knip + test:coverage + quality:crap + quality:duplication + check:adrs |
+| `validate:full` | validate + test:mutation (`--force`) + test:e2e |
 | `lint` / `lint:fix` | ESLint (`--max-warnings 0`) |
 | `format` / `format:check` | Prettier (`--write` / `--check` do CI) |
 | `autofix` | lint:fix + format |
@@ -125,6 +128,8 @@ Wybrany z `tools.md`. Pozycje oznaczone `*` są spoza tej listy.
 | `test:coverage` | `vitest run --coverage` |
 | `test:mutation` | `stryker run` |
 | `test:e2e` / `test:e2e:open` | `cypress run` / `cypress open` |
+| `quality:crap` | CRAP na podstawie `coverage/coverage-final.json` |
+| `quality:duplication` | jscpd |
 | `commitlint` | `commitlint --edit` (hook `commit-msg`) |
 | `check:adrs` | archgate check |
 | `docs:api` | TypeDoc |
