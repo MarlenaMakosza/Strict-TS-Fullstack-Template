@@ -81,8 +81,12 @@ tools read this file directly. Claude Code reads `CLAUDE.md`, which only imports
   An agent makes them pass with TDD. See `cypress/e2e/greeting.feature` for an example.
 - **What you review.** You do not review the implementation. You review the scenarios, and the
   changes to existing test assertions that each agent lists in its final report.
-- **Roles.** `.agents/roles/` defines a `specifier` (drafts scenarios), an `implementer` (tests and
-  code) and a `reviewer` (checks the tests against the scenarios and cleans the code).
+- **Roles.** `.agents/roles/` defines four roles that work in this order:
+  1. `specifier`: drafts the scenarios.
+  2. `edge-case-hunter`: lists edge cases from common to extreme in `docs/edge-cases/`, and asks
+     you about the cases the specification does not cover.
+  3. `implementer`: writes the tests, including one for each edge case, and the code.
+  4. `reviewer`: checks the tests against the scenarios and the edge cases, and cleans the code.
 - **Protected files.** Agents must not change the scenarios, the gate configs, the hooks, CI or
   the agent rules.
 

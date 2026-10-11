@@ -78,11 +78,16 @@ Follow this order for every change in behavior:
 A task can be split between agents with separate roles. Each role has its own instructions in
 `.agents/roles/`. When you are given a role, read its file and follow it in addition to this file.
 
-| Role          | File                           | Owns                                         |
-| ------------- | ------------------------------ | -------------------------------------------- |
-| `specifier`   | `.agents/roles/specifier.md`   | Draft Gherkin scenarios for the human        |
-| `implementer` | `.agents/roles/implementer.md` | Unit tests, code and step definitions        |
-| `reviewer`    | `.agents/roles/reviewer.md`    | Check tests against the spec, clean the code |
+| Role               | File                                | Owns                                         |
+| ------------------ | ----------------------------------- | -------------------------------------------- |
+| `specifier`        | `.agents/roles/specifier.md`        | Draft Gherkin scenarios for the human        |
+| `edge-case-hunter` | `.agents/roles/edge-case-hunter.md` | List edge cases, from common to extreme      |
+| `implementer`      | `.agents/roles/implementer.md`      | Unit tests, code and step definitions        |
+| `reviewer`         | `.agents/roles/reviewer.md`         | Check tests against the spec, clean the code |
+
+The roles work in this order: specifier, edge-case hunter, implementer, reviewer. They hand work
+to each other through files: the scenarios in `cypress/e2e/` and the edge case lists in
+`docs/edge-cases/`.
 
 Without a role, do the work of the implementer.
 
