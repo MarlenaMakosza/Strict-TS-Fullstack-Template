@@ -1,8 +1,10 @@
 # Przewodnik: praca z agentami AI
 
+[English](GUIDE.md) | Polski
+
 Jak dodać nową funkcjonalność do projektu, gdy kod piszą agenci AI, a ty pilnujesz specyfikacji.
 Szczegółowe reguły dla agentów są w [`AGENTS.md`](AGENTS.md), a opis projektu w
-[`README.md`](README.md).
+[`README-pl.md`](README-pl.md).
 
 ## Ściągawka: agenci po kolei
 
@@ -67,7 +69,7 @@ Przykład: aplikacja ma witać po imieniu podanym jako argument.
 ### Krok 0: przygotowanie
 
 ```sh
-cd /mnt/games/source/public/Ultimate-TS-AI-project
+cd <katalog projektu>
 nvm use
 git switch main && git pull
 git switch -c feat/<nazwa>
@@ -85,7 +87,7 @@ Użyj agenta specifier. Wymaganie: gdy uruchomię aplikację z imieniem jako arg
 - Odpowiadasz na pytania agenta, np. czy przy imieniu wyświetlać środowisko albo co zrobić przy
   kilku argumentach.
 - Claude pyta o zgodę na zapis pliku `.feature`. Przeczytaj scenariusz i zatwierdź.
-- Plik `.feature` możesz też napisać sama. Musi zaczynać się od linii `Feature:`, np.:
+- Plik `.feature` możesz też napisać samodzielnie. Musi zaczynać się od linii `Feature:`, np.:
 
 ```gherkin
 Feature: Greeting by name
@@ -234,7 +236,7 @@ Dodatkowo:
 
 - `.github/workflows/ci.yml`: bramki na każdym push i PR.
 - `.github/workflows/ai-review.yml`: opcjonalne review innym modelem.
-- `.github/CODEOWNERS`: zmiany w ważnych plikach wymagają akceptacji właścicielki.
+- `.github/CODEOWNERS`: zmiany w ważnych plikach wymagają akceptacji osoby z `CODEOWNERS`.
 
 ## Jednorazowe ustawienia
 

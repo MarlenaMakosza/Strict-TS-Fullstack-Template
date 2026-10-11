@@ -1,5 +1,7 @@
 # Ultimate TS project
 
+English | [Polski](README-pl.md)
+
 A template for a plain TypeScript project on Node.js, with no framework. It has strict quality
 gates, so AI coding agents can write the code and the gates check it.
 
@@ -69,11 +71,12 @@ Run the gates at three levels:
 
 - `npm run validate`: all fast gates. The Claude Code Stop hook runs this command.
 - `npm run validate:full`: `validate`, then mutation testing, the Gherkin scenarios and the
-  documentation build. This is the
-  definition of done.
+  documentation build. This is the definition of done.
 - CI: the same gates on every push to `main` and on every pull request.
 
 ## Working with AI agents
+
+For a step-by-step walkthrough with example prompts, see [`GUIDE.md`](GUIDE.md).
 
 The rules for every agent live in [`AGENTS.md`](AGENTS.md). Codex, Cursor, Copilot and most other
 tools read this file directly. Claude Code reads `CLAUDE.md`, which only imports `AGENTS.md`.
@@ -82,7 +85,7 @@ tools read this file directly. Claude Code reads `CLAUDE.md`, which only imports
   An agent makes them pass with TDD. See `cypress/e2e/greeting.feature` for an example.
 - **What you review.** You do not review the implementation. You review the scenarios, and the
   changes to existing test assertions that each agent lists in its final report.
-- **Roles.** `.agents/roles/` defines four roles that work in this order:
+- **Roles.** `.agents/roles/` defines four main roles that work in this order:
   1. `specifier`: drafts the scenarios.
   2. `edge-case-hunter`: lists edge cases from common to extreme in `docs/edge-cases/`, and asks
      you about the cases the specification does not cover.
