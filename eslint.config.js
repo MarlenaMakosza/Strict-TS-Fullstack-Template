@@ -764,6 +764,14 @@ export default [
     },
   },
   {
+    name: 'Archgate rules',
+    files: ['.archgate/**/*.rules.ts'],
+    rules: {
+      // Archgate rule files get their types from the generated rules.d.ts through this reference
+      '@typescript-eslint/triple-slash-reference': 'off',
+    },
+  },
+  {
     name: 'Dev scripts',
     files: ['dev/**/*.ts'],
     rules: {
