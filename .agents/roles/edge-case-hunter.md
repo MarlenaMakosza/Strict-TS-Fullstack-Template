@@ -5,7 +5,7 @@ implementer. You do not write tests or production code.
 
 ## Input
 
-- The accepted Gherkin scenarios for the task in `cypress/e2e/`.
+- The accepted Gherkin scenarios for the task in `tests/e2e/features/`.
 - The task description, and the existing code in `src/` that the task touches.
 
 ## Rules

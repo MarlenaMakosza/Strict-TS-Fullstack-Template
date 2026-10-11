@@ -69,18 +69,18 @@ Picked from `tools.md`. Items marked `*` are not on that list.
 
 ## Tests
 
-| Tool                                      | Role                                                                                                                                                      |
-| ----------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Vitest                                    | Test runner                                                                                                                                               |
-| `@testcontainers/postgresql`              | PostgreSQL in a container for tests                                                                                                                       |
-| `@vitest/coverage-v8` `*`                 | Test coverage                                                                                                                                             |
-| Cypress                                   | End-to-end tests (`cypress.config.ts`)                                                                                                                    |
-| Gherkin                                   | BDD scenarios from the user's point of view (`.feature`, Given/When/Then), run in Cypress                                                                 |
-| `@badeball/cypress-cucumber-preprocessor` | Runs Gherkin scenarios (`.feature`) in Cypress, maps steps to TS definitions                                                                              |
-| Stryker (`@stryker-mutator/core`)         | Mutation testing: deliberately breaks the code and checks that tests catch it (mutation score instead of plain coverage)                                  |
-| Stryker command runner (built into core)  | Runs `vitest run` for every mutant. `@stryker-mutator/vitest-runner` is faster but does not work with Vitest 5 (stryker-js #6210); switch back once fixed |
-| jscpd `*`                                 | Duplicated code (`.jscpd.json`), a gate in `validate`: no clone allowed                                                                                   |
-| CRAP (`dev/quality/crap.ts`) `*`          | Complexity (ESLint `complexity`) × missing coverage (Vitest coverage); a gate in `validate`, limit 30 per function                                        |
+| Tool                                     | Role                                                                                                                                                      |
+| ---------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Vitest                                   | Test runner                                                                                                                                               |
+| `@testcontainers/postgresql`             | PostgreSQL in a container for tests                                                                                                                       |
+| `@vitest/coverage-v8` `*`                | Test coverage                                                                                                                                             |
+| Playwright (`@playwright/test`)          | End-to-end tests (`playwright.config.ts`)                                                                                                                 |
+| Gherkin                                  | BDD scenarios from the user's point of view (`.feature`, Given/When/Then), run in Playwright                                                              |
+| `playwright-bdd`                         | Turns Gherkin scenarios (`.feature`) into Playwright tests, maps steps to TS definitions                                                                  |
+| Stryker (`@stryker-mutator/core`)        | Mutation testing: deliberately breaks the code and checks that tests catch it (mutation score instead of plain coverage)                                  |
+| Stryker command runner (built into core) | Runs `vitest run` for every mutant. `@stryker-mutator/vitest-runner` is faster but does not work with Vitest 5 (stryker-js #6210); switch back once fixed |
+| jscpd `*`                                | Duplicated code (`.jscpd.json`), a gate in `validate`: no clone allowed                                                                                   |
+| CRAP (`dev/quality/crap.ts`) `*`         | Complexity (ESLint `complexity`) × missing coverage (Vitest coverage); a gate in `validate`, limit 30 per function                                        |
 
 ## Git and CI
 
@@ -127,7 +127,7 @@ Picked from `tools.md`. Items marked `*` are not on that list.
 | `test:unit` / `test:unit:watch`                      | Vitest for `tests/unit` only                                                                                 |
 | `test:coverage`                                      | `vitest run --coverage`                                                                                      |
 | `test:mutation`                                      | `stryker run`                                                                                                |
-| `test:e2e` / `test:e2e:open`                         | `cypress run` / `cypress open`                                                                               |
+| `test:e2e` / `test:e2e:open`                         | `bddgen` + `playwright test` / with `--ui`                                                                   |
 | `quality:crap`                                       | CRAP from `coverage/coverage-final.json`                                                                     |
 | `quality:duplication`                                | jscpd                                                                                                        |
 | `commitlint`                                         | `commitlint --edit` (`commit-msg` hook)                                                                      |

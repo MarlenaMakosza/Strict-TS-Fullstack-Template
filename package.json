@@ -29,8 +29,8 @@
     "test:unit:watch": "vitest tests/unit",
     "test:coverage": "vitest run --coverage",
     "test:mutation": "stryker run",
-    "test:e2e": "cypress run",
-    "test:e2e:open": "cypress open",
+    "test:e2e": "bddgen && playwright test",
+    "test:e2e:open": "bddgen && playwright test --ui",
     "quality:crap": "node dev/quality/crap.ts",
     "quality:duplication": "jscpd --no-tips",
     "commitlint": "commitlint --edit",
@@ -59,8 +59,6 @@
     "zod": "^4.6.5"
   },
   "devDependencies": {
-    "@badeball/cypress-cucumber-preprocessor": "^28.0.1",
-    "@bahmutov/cypress-esbuild-preprocessor": "^2.2.8",
     "@commitlint/cli": "^21.2.3",
     "@commitlint/config-conventional": "^21.2.3",
     "@cspell/dict-pl_pl": "^3.0.7",
@@ -71,6 +69,7 @@
     "@eslint/json": "^2.1.1",
     "@eslint/markdown": "^8.0.3",
     "@faker-js/faker": "^10.6.0",
+    "@playwright/test": "^1.64.0",
     "@stryker-mutator/core": "^10.0.0",
     "@tailwindcss/cli": "^4.3.3",
     "@testcontainers/postgresql": "^12.2.0",
@@ -79,9 +78,7 @@
     "@vitest/eslint-plugin": "^1.6.27",
     "archgate": "^0.59.0",
     "cspell": "^10.3.6",
-    "cypress": "^16.1.1",
     "drizzle-kit": "^0.31.11",
-    "esbuild": "^0.28.2",
     "eslint": "^10.12.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-import-resolver-typescript": "^4.4.5",
@@ -104,6 +101,7 @@
     "knip": "^6.41.0",
     "lint-staged": "^17.6.0",
     "npm-check-updates": "^23.1.1",
+    "playwright-bdd": "^9.2.1",
     "prettier": "^3.9.10",
     "rimraf": "^6.1.3",
     "tailwind-csstree": "^0.4.1",
@@ -129,8 +127,5 @@
       "prettier --write",
       "cspell --no-progress --no-must-find-files"
     ]
-  },
-  "cypress-cucumber-preprocessor": {
-    "stepDefinitions": "cypress/support/step-definitions/**/*.ts"
   }
 }

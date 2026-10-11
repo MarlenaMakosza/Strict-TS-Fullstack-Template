@@ -18,8 +18,8 @@ and the gates. The agents own the implementation.
   Faker seed script.
 - **Strict lint.** ESLint with type-aware rules and about 20 plugins, Prettier, cspell (English and
   Polish) and knip for unused code.
-- **Tests at three levels.** Vitest for unit tests, Cypress with Gherkin scenarios for end-to-end
-  tests, and Stryker for mutation testing.
+- **Tests at three levels.** Vitest for unit tests, Playwright with Gherkin scenarios
+  (playwright-bdd) for end-to-end tests, and Stryker for mutation testing.
 - **Quality metrics.** A coverage threshold, a CRAP score per function and duplicated-code
   detection.
 - **Architecture rules.** ADRs in `.archgate/adrs/`, checked by Archgate.
@@ -60,7 +60,7 @@ npm run validate   # run the quality gates
 | Duplicated code  | jscpd                 | any clone of 50 tokens or more           |
 | Architecture     | Archgate              | an ADR rule is broken                    |
 | Mutation testing | Stryker               | the mutation score is below 80%          |
-| Acceptance tests | Cypress + Gherkin     | a scenario fails                         |
+| Acceptance tests | Playwright + Gherkin  | a scenario fails                         |
 | Commit message   | commitlint            | the message is not a Conventional Commit |
 
 The CRAP (Change Risk Anti-Patterns) score combines cyclomatic complexity with coverage:
@@ -81,8 +81,8 @@ For a step-by-step walkthrough with example prompts, see [`GUIDE.md`](GUIDE.md).
 The rules for every agent live in [`AGENTS.md`](AGENTS.md). Codex, Cursor, Copilot and most other
 tools read this file directly. Claude Code reads `CLAUDE.md`, which only imports `AGENTS.md`.
 
-- **Specification first.** You write the behavior as Gherkin scenarios in `cypress/e2e/*.feature`.
-  An agent makes them pass with TDD. See `cypress/e2e/greeting.feature` for an example.
+- **Specification first.** You write the behavior as Gherkin scenarios in `tests/e2e/features/*.feature`.
+  An agent makes them pass with TDD. See `tests/e2e/features/greeting.feature` for an example.
 - **What you review.** You do not review the implementation. You review the scenarios, and the
   changes to existing test assertions that each agent lists in its final report.
 - **Roles.** `.agents/roles/` defines four main roles that work in this order:
@@ -130,8 +130,8 @@ no scenario describes. To enable it, add the `OPENROUTER_API_KEY` secret and the
 src/                  application code
   db/                 Drizzle schema and client
 tests/unit/           Vitest unit tests
-cypress/e2e/          Gherkin scenarios (the specification)
-cypress/support/      Cypress setup and step definitions
+tests/e2e/features/   Gherkin scenarios (the specification)
+tests/e2e/steps/      step definitions and fixtures
 dev/db/               migration and seed scripts
 dev/quality/          CRAP gate
 docs/                 VitePress documentation (arc42, ADRs)
@@ -143,19 +143,19 @@ docs/                 VitePress documentation (arc42, ADRs)
 
 ## Scripts
 
-| Script                                 | What it does                                         |
-| -------------------------------------- | ---------------------------------------------------- |
-| `dev` / `start`                        | run in watch mode / run the build                    |
-| `build`                                | compile TypeScript and Tailwind CSS to `dist/`       |
-| `validate` / `validate:full`           | fast gates / all gates                               |
-| `autofix`                              | fix lint and formatting                              |
-| `test` / `test:coverage`               | unit tests / with coverage                           |
-| `test:mutation`                        | Stryker mutation testing                             |
-| `test:e2e` / `test:e2e:open`           | Gherkin scenarios in Cypress, headless / interactive |
-| `quality:crap` / `quality:duplication` | CRAP score / duplicated code                         |
-| `db:start` / `db:sync` / `seed:dev`    | start PostgreSQL / generate and migrate / seed       |
-| `docs:dev` / `docs:api`                | documentation site / API docs from TSDoc             |
-| `update-dependencies`                  | update all dependencies to the latest versions       |
+| Script                                 | What it does                                   |
+| -------------------------------------- | ---------------------------------------------- |
+| `dev` / `start`                        | run in watch mode / run the build              |
+| `build`                                | compile TypeScript and Tailwind CSS to `dist/` |
+| `validate` / `validate:full`           | fast gates / all gates                         |
+| `autofix`                              | fix lint and formatting                        |
+| `test` / `test:coverage`               | unit tests / with coverage                     |
+| `test:mutation`                        | Stryker mutation testing                       |
+| `test:e2e` / `test:e2e:open`           | Gherkin scenarios in Playwright, run / UI mode |
+| `quality:crap` / `quality:duplication` | CRAP score / duplicated code                   |
+| `db:start` / `db:sync` / `seed:dev`    | start PostgreSQL / generate and migrate / seed |
+| `docs:dev` / `docs:api`                | documentation site / API docs from TSDoc       |
+| `update-dependencies`                  | update all dependencies to the latest versions |
 
 The full list of tools, with the reason for each one, is in
 [docs/clean-start.en.md](docs/clean-start.en.md) ([Polish version](docs/clean-start.md)).

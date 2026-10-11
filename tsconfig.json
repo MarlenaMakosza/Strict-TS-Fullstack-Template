@@ -26,5 +26,5 @@
     "sourceMap": true
   },
   "include": ["src/**/*", "tests/**/*", "dev/**/*", "*.config.ts"],
-  "exclude": ["node_modules", "dist", "cypress"]
+  "exclude": ["node_modules", "dist"]
 }

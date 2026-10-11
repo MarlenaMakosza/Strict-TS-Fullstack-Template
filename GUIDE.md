@@ -21,9 +21,9 @@ Example prompts for Claude Code:
 
 ```text
 1. Use the specifier agent. Requirement: <what the app should do>.
-2. Use the edge-case-hunter agent for cypress/e2e/<name>.feature.
+2. Use the edge-case-hunter agent for tests/e2e/features/<name>.feature.
 3. Use the architect agent. Does <change> need an architecture decision? If it does, propose an ADR with a rule.
-4. Use the implementer agent for cypress/e2e/<name>.feature and docs/edge-cases/<name>.md.
+4. Use the implementer agent for tests/e2e/features/<name>.feature and docs/edge-cases/<name>.md.
 5. Use the reviewer agent for the changes from <name>.
 6. Use the documenter agent for the changes from <name>.
 ```
@@ -47,11 +47,11 @@ it for you. Code that does not pass every gate does not get into the project.
 
 ## Who does what
 
-| Who        | What they do                                   | Where                                      |
-| ---------- | ---------------------------------------------- | ------------------------------------------ |
-| You        | Describe the behavior and answer questions     | `cypress/e2e/*.feature`, agent reports     |
-| Agents     | Write scenarios, tests, code and documentation | `cypress/`, `tests/unit/`, `src/`, `docs/` |
-| Automation | Checks everything with the gates               | `npm run validate:full`, CI                |
+| Who        | What they do                                   | Where                                         |
+| ---------- | ---------------------------------------------- | --------------------------------------------- |
+| You        | Describe the behavior and answer questions     | `tests/e2e/features/*.feature`, agent reports |
+| Agents     | Write scenarios, tests, code and documentation | `tests/`, `src/`, `docs/`                     |
+| Automation | Checks everything with the gates               | `npm run validate:full`, CI                   |
 
 You read only:
 
@@ -99,12 +99,12 @@ Feature: Greeting by name
     Then the app prints "Hello, Ada!"
 ```
 
-Use `cypress/e2e/greeting.feature` as the style reference.
+Use `tests/e2e/features/greeting.feature` as the style reference.
 
 ### Step 2: edge-case hunter, the edge cases
 
 ```text
-Use the edge-case-hunter agent for cypress/e2e/<name>.feature.
+Use the edge-case-hunter agent for tests/e2e/features/<name>.feature.
 ```
 
 The agent writes the list to `docs/edge-cases/<name>.md`, from common to extreme cases: empty text,
@@ -132,7 +132,7 @@ approve every change to the ADRs.
 ### Step 4: implementer, the code
 
 ```text
-Use the implementer agent for cypress/e2e/<name>.feature and docs/edge-cases/<name>.md.
+Use the implementer agent for tests/e2e/features/<name>.feature and docs/edge-cases/<name>.md.
 ```
 
 You do nothing now. The agent:
@@ -222,8 +222,8 @@ Also:
 
 **Examples to follow:**
 
-- `cypress/e2e/greeting.feature`: a Gherkin scenario.
-- `cypress/support/step-definitions/app.steps.ts`: step definitions.
+- `tests/e2e/features/greeting.feature`: a Gherkin scenario.
+- `tests/e2e/steps/app.steps.ts`: step definitions.
 - `docs/edge-cases/greeting.md`: an edge case list.
 - `.archgate/adrs/ARCH-001-*.md` and `.rules.ts`: an ADR with a rule.
 

@@ -74,9 +74,9 @@ Wybrany z `tools.md`. Pozycje oznaczone `*` są spoza tej listy.
 | Vitest | Test runner |
 |`@testcontainers/postgresql` | PostgreSQL w kontenerze dla testów |
 | `@vitest/coverage-v8` `*` | Pokrycie testami |
-| Cypress | Testy end-to-end (`cypress.config.ts`) |
-| Gherkin | Scenariusze BDD z perspektywy użytkownika (`.feature`, Given/When/Then), uruchamiane w Cypress |
-| `@badeball/cypress-cucumber-preprocessor` | Uruchamia scenariusze Gherkin (`.feature`) w Cypress, mapuje kroki na definicje w TS |
+| Playwright (`@playwright/test`) | Testy end-to-end (`playwright.config.ts`) |
+| Gherkin | Scenariusze BDD z perspektywy użytkownika (`.feature`, Given/When/Then), uruchamiane w Playwright |
+| `playwright-bdd` | Zamienia scenariusze Gherkin (`.feature`) w testy Playwright, mapuje kroki na definicje w TS |
 | Stryker (`@stryker-mutator/core`) | Mutation testing: celowo psuje kod i sprawdza, czy testy to wykryją (mutation score zamiast samego coverage) |
 | Stryker command runner (wbudowany w core) | Odpala `vitest run` dla każdego mutanta. `@stryker-mutator/vitest-runner` jest szybszy, ale nie działa z Vitest 5 (stryker-js #6210); wróć do niego po poprawce |
 | jscpd `*` | Duplikacja kodu (`.jscpd.json`), bramka w `validate`: żaden klon niedozwolony |
@@ -127,7 +127,7 @@ Wybrany z `tools.md`. Pozycje oznaczone `*` są spoza tej listy.
 | `test:unit` / `test:unit:watch` | Vitest tylko dla `tests/unit` |
 | `test:coverage` | `vitest run --coverage` |
 | `test:mutation` | `stryker run` |
-| `test:e2e` / `test:e2e:open` | `cypress run` / `cypress open` |
+| `test:e2e` / `test:e2e:open` | `bddgen` + `playwright test` / z `--ui` |
 | `quality:crap` | CRAP na podstawie `coverage/coverage-final.json` |
 | `quality:duplication` | jscpd |
 | `commitlint` | `commitlint --edit` (hook `commit-msg`) |

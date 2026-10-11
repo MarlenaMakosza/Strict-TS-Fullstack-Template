@@ -18,7 +18,7 @@ odpowiada za specyfikację i bramki. Agenci odpowiadają za implementację.
   testowymi (Faker).
 - **Surowy lint.** ESLint z regułami opartymi na typach i około 20 wtyczkami, Prettier, cspell
   (angielski i polski) oraz knip do wykrywania nieużywanego kodu.
-- **Testy na trzech poziomach.** Vitest do testów jednostkowych, Cypress ze scenariuszami Gherkin
+- **Testy na trzech poziomach.** Vitest do testów jednostkowych, Playwright ze scenariuszami Gherkin (playwright-bdd)
   do testów end-to-end i Stryker do mutation testing.
 - **Metryki jakości.** Próg pokrycia testami, wynik CRAP dla każdej funkcji i wykrywanie
   skopiowanego kodu.
@@ -59,7 +59,7 @@ npm run validate   # odpala bramki jakości
 | Skopiowany kod       | jscpd                 | jest kopia długości 50 tokenów lub więcej          |
 | Architektura         | Archgate              | reguła z ADR-a jest złamana                        |
 | Mutation testing     | Stryker               | wynik mutacji spada poniżej 80%                    |
-| Testy akceptacyjne   | Cypress + Gherkin     | scenariusz nie przechodzi                          |
+| Testy akceptacyjne   | Playwright + Gherkin  | scenariusz nie przechodzi                          |
 | Wiadomość w commicie | commitlint            | wiadomość nie jest w formacie Conventional Commits |
 
 Wynik CRAP (Change Risk Anti-Patterns) łączy złożoność (cyclomatic complexity) z pokryciem testami:
@@ -82,8 +82,8 @@ narzędzi czyta ten plik bezpośrednio. Claude Code czyta `CLAUDE.md`, który ty
 `AGENTS.md`.
 
 - **Najpierw specyfikacja.** Opisujesz zachowanie jako scenariusze Gherkin w
-  `cypress/e2e/*.feature`. Agent sprawia, że przechodzą, pracując w TDD. Przykład:
-  `cypress/e2e/greeting.feature`.
+  `tests/e2e/features/*.feature`. Agent sprawia, że przechodzą, pracując w TDD. Przykład:
+  `tests/e2e/features/greeting.feature`.
 - **Co przeglądasz.** Nie przeglądasz implementacji. Przeglądasz scenariusze i zmiany w
   istniejących asercjach, które każdy agent wypisuje w końcowym raporcie.
 - **Role.** `.agents/roles/` definiuje cztery główne role, które pracują w tej kolejności:
@@ -131,8 +131,8 @@ nie widzą: testów niezgodnych ze scenariuszami i zachowania, którego nie opis
 src/                  kod aplikacji
   db/                 schemat i klient Drizzle
 tests/unit/           testy jednostkowe Vitest
-cypress/e2e/          scenariusze Gherkin (specyfikacja)
-cypress/support/      konfiguracja Cypress i step definitions
+tests/e2e/features/   scenariusze Gherkin (specyfikacja)
+tests/e2e/steps/      step definitions i fixtures
 dev/db/               skrypty migracji i danych testowych
 dev/quality/          bramka CRAP
 docs/                 dokumentacja VitePress (arc42, ADR-y)
@@ -152,7 +152,7 @@ docs/                 dokumentacja VitePress (arc42, ADR-y)
 | `autofix`                              | poprawia lint i formatowanie                                   |
 | `test` / `test:coverage`               | testy jednostkowe / z pokryciem                                |
 | `test:mutation`                        | mutation testing (Stryker)                                     |
-| `test:e2e` / `test:e2e:open`           | scenariusze Gherkin w Cypress, bez okna / interaktywnie        |
+| `test:e2e` / `test:e2e:open`           | scenariusze Gherkin w Playwright, w terminalu / w trybie UI    |
 | `quality:crap` / `quality:duplication` | wynik CRAP / skopiowany kod                                    |
 | `db:start` / `db:sync` / `seed:dev`    | uruchamia PostgreSQL / generuje i wykonuje migracje / dane     |
 | `docs:dev` / `docs:api`                | strona z dokumentacją / dokumentacja API z TSDoc               |

@@ -38,7 +38,7 @@ jobs:
       - name: Collect context
         run: |
           git diff "origin/$BASE_REF...HEAD" -- . ':(exclude)package-lock.json' | head -c 200000 > diff.txt
-          find cypress/e2e -name '*.feature' -exec sh -c 'printf "\n### %s\n" "$1"; cat "$1"' _ {} \; > features.txt
+          find tests/e2e/features -name '*.feature' -exec sh -c 'printf "\n### %s\n" "$1"; cat "$1"' _ {} \; > features.txt
 
       - name: Ask the reviewer model
         run: |

@@ -30,10 +30,10 @@ Thumbs.db
 .vitepress/dist
 .vitepress/cache
 
-# Cypress
-cypress/screenshots
-cypress/videos
-cypress/downloads
+# Playwright
+test-results
+playwright-report
+.features-gen
 
 # Claude Code (personal settings)
 .claude/settings.local.json

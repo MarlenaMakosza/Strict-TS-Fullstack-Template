@@ -2,6 +2,7 @@ adrs
 archgate
 badeball
 bahmutov
+bddgen
 commicie
 commitlint
 commonmark

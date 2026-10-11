@@ -13,7 +13,7 @@ easy to review (see [Final report](#final-report)).
 ## Project
 
 - TypeScript on Node.js, no framework. Node runs `.ts` files directly.
-- Source code in `src/`, unit tests in `tests/unit/`, end-to-end scenarios in `cypress/e2e/`.
+- Source code in `src/`, unit tests in `tests/unit/`, end-to-end scenarios in `tests/e2e/features/`.
 - PostgreSQL through Drizzle (`src/db/`). Start the database with `npm run db:start`.
 - Architecture decisions (ADRs) live in `.archgate/adrs/`. Read the relevant ones before you change
   the structure of the code.
@@ -28,7 +28,7 @@ A task is done only when all of these are true:
    per function), duplicated code (none allowed) and ADRs.
 2. `npm run format:check` exits with code 0. Run `npm run autofix` to fix formatting.
 3. Every new or changed behavior has a unit test in `tests/unit/`.
-4. If the change is visible to a user, a Gherkin scenario in `cypress/e2e/` describes it.
+4. If the change is visible to a user, a Gherkin scenario in `tests/e2e/features/` describes it.
 
 Never report a task as done without running these commands yourself.
 
@@ -50,7 +50,7 @@ one only to make your code pass.
 
 Follow this order for every change in behavior:
 
-1. Read the Gherkin scenario (`cypress/e2e/**/*.feature`) or the task description. If the expected
+1. Read the Gherkin scenario (`tests/e2e/features/**/*.feature`) or the task description. If the expected
    behavior is unclear, ask before you write code.
 2. Write a failing unit test in `tests/unit/`.
 3. Write the smallest code in `src/` that makes the test pass.
@@ -89,32 +89,33 @@ A task can be split between agents with separate roles. Each role has its own in
 
 The roles work in this order: specifier, edge-case hunter, architect (only when the task needs an
 architecture decision), implementer, reviewer, documenter. They hand work to each other through
-files: the scenarios in `cypress/e2e/`, the edge case lists in `docs/edge-cases/` and the ADRs in
+files: the scenarios in `tests/e2e/features/`, the edge case lists in `docs/edge-cases/` and the ADRs in
 `.archgate/adrs/`.
 
 Without a role, do the work of the implementer.
 
 ## Gherkin scenarios
 
-The human owns the scenarios in `cypress/e2e/**/*.feature`. The specifier may draft them, but only
+The human owns the scenarios in `tests/e2e/features/**/*.feature`. The specifier may draft them, but only
 the human accepts them. The implementer writes the step definitions in
-`cypress/support/step-definitions/` and the code that makes the scenarios pass.
+`tests/e2e/steps/` and the code that makes the scenarios pass.
 
-- `cypress/e2e/greeting.feature` with `cypress/support/step-definitions/app.steps.ts` is the
-  reference example. Follow its style.
+- `tests/e2e/features/greeting.feature` with `tests/e2e/steps/app.steps.ts` is the reference
+  example. Follow its style. Import `Given`, `When` and `Then` from `tests/e2e/steps/fixtures.ts`.
 - Reuse existing steps before you add new ones. One step text maps to exactly one definition.
 - Steps describe behavior, not implementation: "When I start the app", not "When I call main()".
-- The app is a CLI for now: steps start it through the `runApp` task in `cypress.config.ts`. When
-  the app gets an HTTP server, set `E2E_BASE_URL` and use `cy.visit` and `cy.request`.
+- The app is a CLI for now: steps start it through the `app` fixture in
+  `tests/e2e/steps/fixtures.ts`. When the app gets an HTTP server, add `webServer` and
+  `use.baseURL` to `playwright.config.ts`, and use the `page` and `request` fixtures.
 - If a scenario seems wrong or incomplete, do not change it. Ask the human.
 
 ## Protected files
 
 The human owns these files. Do not edit, rename or delete them:
 
-- `cypress/e2e/**/*.feature`: the specification
+- `tests/e2e/features/**/*.feature`: the specification
 - `eslint.config.js`, `tsconfig*.json`, `vitest.config.ts`, `stryker.config.json`, `knip.json`,
-  `cypress.config.ts`, `cspell.json`, `commitlint.config.js`, `.jscpd.json`, `dev/quality/**` and
+  `playwright.config.ts`, `cspell.json`, `commitlint.config.js`, `.jscpd.json`, `dev/quality/**` and
   the `scripts` in `package.json`: the gates and their thresholds
 - `.husky/**`, `.github/**`: the hooks and CI
 - `.archgate/adrs/**`: architecture decisions. The architect may draft them, but only the human
