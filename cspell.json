@@ -1,13 +1,31 @@
 {
   "version": "0.2",
-  "words": ["autofix"],
-  "ignorePaths": ["package.json", "package-lock.json"],
+  "import": ["@cspell/dict-pl_pl/cspell-ext.json"],
+  "language": "en,pl",
+  "ignorePaths": [
+    "package.json",
+    "package-lock.json",
+    "dist",
+    "coverage",
+    "reports",
+    ".stryker-tmp",
+    "drizzle",
+    "docs/api",
+    ".vitepress/dist",
+    ".vitepress/cache"
+  ],
   "useGitignore": true,
   "validateDirectives": true,
   "cache": {
     "useCache": true,
     "cacheLocation": "./node_modules/.cache/cspell/.cspell"
   },
-  "language": "en",
-  "dictionaries": ["html", "typescript", "css", "en-gb", "fonts", "npm"]
+  "dictionaries": ["css", "typescript", "node", "npm", "softwareTerms", "en-gb", "custom-words"],
+  "dictionaryDefinitions": [
+    {
+      "name": "custom-words",
+      "path": "./.cspell/custom-words.txt",
+      "addWords": true
+    }
+  ]
 }

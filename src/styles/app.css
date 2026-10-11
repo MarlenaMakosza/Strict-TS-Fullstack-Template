@@ -1,0 +1,13 @@
+/* Tailwind CSS v4 — the config lives here, not in tailwind.config.js */
+@import 'tailwindcss';
+
+/* Where Tailwind looks for class names (relative to this file) */
+@source '../';
+
+/* Design tokens — every --color-*, --font-*, --spacing-* becomes a utility class */
+@theme {
+  --color-brand-50: oklch(97% 0.02 260);
+  --color-brand-500: oklch(55% 0.2 260);
+  --color-brand-900: oklch(28% 0.09 260);
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+}

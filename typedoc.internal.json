@@ -1,0 +1,7 @@
+{
+  "entryPointStrategy": "expand",
+  "entryPoints": ["src"],
+  "exclude": ["**/*.{test,spec}.ts"],
+  "excludeInternal": false,
+  "out": "docs/api/internal"
+}

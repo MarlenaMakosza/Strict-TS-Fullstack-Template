@@ -1,0 +1,15 @@
+import { defineConfig } from 'vitest/config';
+
+export default defineConfig({
+  test: {
+    environment: 'node',
+    include: ['src/**/*.{test,spec}.ts', 'tests/**/*.{test,spec}.ts'],
+    clearMocks: true,
+    coverage: {
+      provider: 'v8',
+      include: ['src/**/*.ts'],
+      exclude: ['src/**/*.{test,spec}.ts', 'src/index.ts'],
+      reporter: ['text', 'html', 'lcov'],
+    },
+  },
+});
