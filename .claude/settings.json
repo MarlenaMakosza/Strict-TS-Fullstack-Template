@@ -13,10 +13,16 @@
       "Bash(npm run test:*)",
       "Bash(npm run quality:*)",
       "Bash(npm run check:adrs)",
+      "Bash(npx archgate:*)",
+      "Bash(npm run docs:*)",
       "Bash(npx vitest run:*)",
       "Bash(npx eslint:*)"
     ],
-    "ask": ["Edit(cypress/e2e/**/*.feature)", "Edit(docs/edge-cases/**)"],
+    "ask": [
+      "Edit(cypress/e2e/**/*.feature)",
+      "Edit(docs/edge-cases/**)",
+      "Edit(.archgate/adrs/**)"
+    ],
     "deny": [
       "Edit(eslint.config.js)",
       "Edit(tsconfig*.json)",
@@ -28,7 +34,6 @@
       "Edit(commitlint.config.js)",
       "Edit(.husky/**)",
       "Edit(.github/**)",
-      "Edit(.archgate/adrs/**)",
       "Edit(.jscpd.json)",
       "Edit(dev/quality/**)",
       "Edit(.agents/**)",

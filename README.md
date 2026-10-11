@@ -68,7 +68,8 @@ tested. A simple function or a fully tested one always passes.
 Run the gates at three levels:
 
 - `npm run validate`: all fast gates. The Claude Code Stop hook runs this command.
-- `npm run validate:full`: `validate`, then mutation testing and the Gherkin scenarios. This is the
+- `npm run validate:full`: `validate`, then mutation testing, the Gherkin scenarios and the
+  documentation build. This is the
   definition of done.
 - CI: the same gates on every push to `main` and on every pull request.
 
@@ -87,6 +88,11 @@ tools read this file directly. Claude Code reads `CLAUDE.md`, which only imports
      you about the cases the specification does not cover.
   3. `implementer`: writes the tests, including one for each edge case, and the code.
   4. `reviewer`: checks the tests against the scenarios and the edge cases, and cleans the code.
+
+  Two more roles work when needed: the `architect` records decisions as ADRs and enforces them
+  with Archgate rules, and the `documenter` keeps the VitePress docs, the arc42 pages, the ADR
+  index and the TSDoc comments up to date.
+
 - **Protected files.** Agents must not change the scenarios, the gate configs, the hooks, CI or
   the agent rules.
 

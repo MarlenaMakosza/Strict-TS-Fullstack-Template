@@ -23,7 +23,7 @@ easy to review (see [Final report](#final-report)).
 A task is done only when all of these are true:
 
 1. `npm run validate:full` exits with code 0. It runs `npm run validate`, then mutation testing
-   (score of 80% or more), then the Gherkin end-to-end scenarios. `npm run validate` checks lint,
+   (score of 80% or more), then the Gherkin end-to-end scenarios, then the documentation build. `npm run validate` checks lint,
    types, spelling, unused code, unit tests with a 90% coverage threshold, CRAP score (30 or less
    per function), duplicated code (none allowed) and ADRs.
 2. `npm run format:check` exits with code 0. Run `npm run autofix` to fix formatting.
@@ -82,12 +82,15 @@ A task can be split between agents with separate roles. Each role has its own in
 | ------------------ | ----------------------------------- | -------------------------------------------- |
 | `specifier`        | `.agents/roles/specifier.md`        | Draft Gherkin scenarios for the human        |
 | `edge-case-hunter` | `.agents/roles/edge-case-hunter.md` | List edge cases, from common to extreme      |
+| `architect`        | `.agents/roles/architect.md`        | ADRs and Archgate rules                      |
 | `implementer`      | `.agents/roles/implementer.md`      | Unit tests, code and step definitions        |
 | `reviewer`         | `.agents/roles/reviewer.md`         | Check tests against the spec, clean the code |
+| `documenter`       | `.agents/roles/documenter.md`       | VitePress docs, arc42, ADR index, TSDoc      |
 
-The roles work in this order: specifier, edge-case hunter, implementer, reviewer. They hand work
-to each other through files: the scenarios in `cypress/e2e/` and the edge case lists in
-`docs/edge-cases/`.
+The roles work in this order: specifier, edge-case hunter, architect (only when the task needs an
+architecture decision), implementer, reviewer, documenter. They hand work to each other through
+files: the scenarios in `cypress/e2e/`, the edge case lists in `docs/edge-cases/` and the ADRs in
+`.archgate/adrs/`.
 
 Without a role, do the work of the implementer.
 
@@ -114,7 +117,8 @@ The human owns these files. Do not edit, rename or delete them:
   `cypress.config.ts`, `cspell.json`, `commitlint.config.js`, `.jscpd.json`, `dev/quality/**` and
   the `scripts` in `package.json`: the gates and their thresholds
 - `.husky/**`, `.github/**`: the hooks and CI
-- `.archgate/adrs/**`: architecture decisions
+- `.archgate/adrs/**`: architecture decisions. The architect may draft them, but only the human
+  accepts them
 - `AGENTS.md`, `CLAUDE.md`, `.agents/**`, `.claude/**`: the agent rules
 
 If you think one of them must change, stop. Explain what should change and why, and wait for the
