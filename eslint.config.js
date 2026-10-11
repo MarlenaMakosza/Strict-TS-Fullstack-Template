@@ -846,6 +846,18 @@ export default [
     },
   },
   {
+    name: 'Cypress',
+    files: ['cypress/**/*.ts'],
+    rules: {
+      // Assertions compare against literal expected values, same as in unit tests
+      '@typescript-eslint/no-magic-numbers': 'off',
+      // Cucumber step functions are capitalized by convention, they are not constructors
+      'new-cap': ['error', { capIsNewExceptions: ['Given', 'When', 'Then', 'Before', 'After'] }],
+      // Cypress command chains are not promises, `.then()` callbacks need not return
+      'promise/always-return': 'off',
+    },
+  },
+  {
     name: 'JSON',
     files: ['**/*.json'],
     ignores: ['package-lock.json', '**/tsconfig*.json'],

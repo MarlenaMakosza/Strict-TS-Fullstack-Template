@@ -126,5 +126,8 @@
       "prettier --write",
       "cspell --no-progress --no-must-find-files"
     ]
+  },
+  "cypress-cucumber-preprocessor": {
+    "stepDefinitions": "cypress/support/step-definitions/**/*.ts"
   }
 }
