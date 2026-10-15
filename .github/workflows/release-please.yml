@@ -1,0 +1,20 @@
+name: Release Please
+
+# Keeps a release pull request open with the next version and the CHANGELOG, computed from the
+# Conventional Commits merged into main. Merging that pull request tags the version and creates a
+# GitHub Release. Config: release-please-config.json, current version: .release-please-manifest.json.
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: googleapis/release-please-action@v5

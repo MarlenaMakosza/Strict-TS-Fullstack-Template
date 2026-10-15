@@ -19,6 +19,12 @@ npm run firstrun:dev
 `firstrun:dev` instaluje zależności i sprawdza typy. Potem uruchamia PostgreSQL, wykonuje migracje
 i wypełnia bazę danymi.
 
+## Własny projekt na bazie szablonu
+
+`CHANGELOG.md` i wersja w `package.json` opisują wydania tego szablonu. W projekcie utworzonym z
+szablonu usuń `CHANGELOG.md`, ustaw `version` w `package.json` i w `.release-please-manifest.json`
+na `0.0.0` i zmień `name` w `package.json`.
+
 ## Na co dzień
 
 ```sh
@@ -29,6 +35,55 @@ npm run validate:full   # wszystkie bramki: odpal przed uznaniem zadania za sko�
 
 Pozostałe komendy są w [Skryptach](./scripts.md), a to, co sprawdza każda bramka, w
 [Bramkach jakości](./quality-gates.md).
+
+## Wydania
+
+Wersje są zgodne z [SemVer](https://semver.org/) i wynikają z wiadomości w historii gita, które
+`commitlint` już pilnuje w formacie Conventional Commits: `fix:` podbija wersję patch, `feat:`
+wersję minor, a zmiana łamiąca (`feat!:` albo `BREAKING CHANGE:`) wersję major. Przed 1.0.0 zmiana
+łamiąca podbija wersję minor.
+
+Po każdym merge'u na `main` release-please aktualizuje otwarty release PR z następną wersją i
+nowymi wpisami w `CHANGELOG.md`. Merge tego PR taguje wersję i tworzy GitHub Release. Nigdy nie
+edytuj `CHANGELOG.md` ani wersji ręcznie.
+
+release-please potrzebuje kilku ustawień repo: zobacz [Ustawienia GitHuba](#ustawienia-githuba).
+
+## Ustawienia GitHuba
+
+Jeśli projekt jest na GitHubie, ustaw to raz w ustawieniach repo.
+
+**Settings → General → Pull Requests**
+
+- Wyłącz **Allow merge commits** i **Allow rebase merging**, zostaw **Allow squash merging**.
+- Przy squash merging ustaw **Default commit message** na **Pull request title**.
+- Włącz **Automatically delete head branches**.
+
+Dzięki temu każdy PR trafia na `main` jako jeden commit z tytułem PR jako wiadomością i dostaje
+jeden wpis w `CHANGELOG.md`. Dlatego **tytuł PR musi być w formacie Conventional Commits**
+(`feat: …`, `fix: …`, `docs: …`): to on decyduje o następnej wersji. Merge commit dodałby każdą
+zmianę do CHANGELOG dwa razy: raz za commit i raz za merge commit, który powtarza tytuł PR.
+
+**Settings → Actions → General → Workflow permissions**
+
+- Włącz **Allow GitHub Actions to create and approve pull requests**. Bez tego release-please nie
+  otworzy release PR.
+
+**Settings → Rules → Rulesets** (albo **Settings → Branches**), dla `main`
+
+- Wymagaj PR przed merge i przechodzących sprawdzeń CI: `validate`, `mutation` i `e2e`.
+- Na release PR nie uruchamia się CI, bo GitHub nie startuje workflow dla zmian zrobionych
+  domyślnym `GITHUB_TOKEN`. Przy wymaganych sprawdzeniach dodaj siebie do listy obejść (bypass) albo daj
+  release-please osobisty token (pole `token` w akcji).
+
+Po merge GitHub usuwa gałąź zdalną, ale twoja lokalna kopia zostaje. Usuń ją też, bo inaczej
+następny `git push --all` ją przywróci:
+
+```sh
+git switch main && git pull
+git fetch --prune
+git branch -D <gałąź>   # -D: po squash merge git nie uznaje gałęzi za scaloną
+```
 
 ## Struktura projektu
 

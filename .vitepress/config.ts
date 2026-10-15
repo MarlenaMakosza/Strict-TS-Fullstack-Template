@@ -21,6 +21,7 @@ export default defineConfig({
               { text: 'Quality gates', link: '/quality-gates' },
               { text: 'Scripts', link: '/scripts' },
               { text: 'Tools', link: '/tools' },
+              { text: 'Code review', link: '/code-review' },
             ],
           },
           {
@@ -47,6 +48,7 @@ export default defineConfig({
               { text: 'Bramki jakości', link: '/pl/quality-gates' },
               { text: 'Skrypty', link: '/pl/scripts' },
               { text: 'Narzędzia', link: '/pl/tools' },
+              { text: 'Code review', link: '/pl/code-review' },
             ],
           },
           {

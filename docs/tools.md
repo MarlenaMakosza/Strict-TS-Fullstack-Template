@@ -85,12 +85,13 @@ the checks work together, see [Quality gates](./quality-gates.md).
 
 ## Git and CI
 
-| Tool                                           | Role                                                                                                                          |
-| ---------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| Husky                                          | Git hooks                                                                                                                     |
-| lint-staged                                    | Lint and format only changed files on commit                                                                                  |
-| commitlint + `@commitlint/config-conventional` | Conventional Commits                                                                                                          |
-| GitHub Actions                                 | CI: `validate`, mutation testing and e2e on every PR; optional AI review by a different model (`ai-review` label, OpenRouter) |
+| Tool                                           | Role                                                                                                                                         |
+| ---------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| Husky                                          | Git hooks                                                                                                                                    |
+| lint-staged                                    | Lint and format only changed files on commit                                                                                                 |
+| commitlint + `@commitlint/config-conventional` | Conventional Commits                                                                                                                         |
+| GitHub Actions                                 | CI: `validate`, mutation testing and e2e on every PR; optional AI review by a different model (`ai-review` label, OpenRouter)                |
+| release-please `*`                             | Versions and `CHANGELOG.md` from Conventional Commits: keeps a release PR open, and merging it tags the version and creates a GitHub Release |
 
 ## Maintenance
 

@@ -29,7 +29,9 @@ który przejdzie wszystkie ograniczenia. Inspiracją dla pracy z agentami był
 - **Reguły architektury.** ADR-y w `.archgate/adrs/`, sprawdzane przez Archgate.
 - **Konfiguracja agentów AI, która działa z każdym narzędziem.** `AGENTS.md` zawiera reguły, są
   osobne role dla agentów, a opcjonalny adapter podłącza Claude Code.
-- **CI na GitHub Actions.** Hooki gita, Conventional Commits i opcjonalne review drugim modelem AI.
+- **CI na GitHub Actions.** Hooki gita,
+  [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) i opcjonalne review drugim
+  modelem AI.
 
 ## Instalacja
 

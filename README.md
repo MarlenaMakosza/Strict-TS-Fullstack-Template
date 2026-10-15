@@ -29,8 +29,9 @@ stays. The agent workflow was inspired by a
 - **Architecture rules.** ADRs in `.archgate/adrs/`, checked by Archgate.
 - **An AI agent setup that works with any tool.** `AGENTS.md` holds the rules, there are roles for
   separate agents, and an optional adapter connects Claude Code.
-- **CI on GitHub Actions.** Git hooks, Conventional Commits and an optional review by a second AI
-  model.
+- **CI on GitHub Actions.** Git hooks,
+  [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) and an optional review by a
+  second AI model.
 
 ## How to install
 

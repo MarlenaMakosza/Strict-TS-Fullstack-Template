@@ -162,7 +162,9 @@ Use the reviewer agent for the changes from <name>.
 ```
 
 It checks that the tests really test what the scenario says, not only what the code happens to
-do. It also checks that every edge case has a test. Read its list of mismatches.
+do. It also checks that every edge case has a test. Read its list of findings: each one is a
+[Conventional Comment](./code-review.md), so `issue (blocking)` tells you what must change before
+the merge.
 
 ### Step 6: documenter
 
@@ -181,7 +183,9 @@ git log main..
 git push -u origin feat/<name>
 ```
 
-Open a pull request on GitHub and wait for green CI. You do the merge.
+Open a pull request on GitHub and wait for green CI. You do the merge, with **Squash and merge**.
+The pull request title becomes the commit on `main`, so write it as a Conventional Commit. See
+[GitHub settings](./getting-started.md#github-settings).
 
 ## What the gates check
 
@@ -273,10 +277,9 @@ Then remove the references that are left:
 
 1. Node 24: run `nvm use` in the project directory. With an older Node, `npm install` refuses to
    install.
-2. GitHub, Settings → Branches → `main`:
-   - require CI to pass,
-   - "Require review from Code Owners" makes sense only when agents push from a different account
-     than yours.
+2. GitHub: the repository settings in [GitHub settings](./getting-started.md#github-settings). On
+   top of them, "Require review from Code Owners" makes sense only when agents push from a
+   different account than yours.
 3. AI review (optional): add the `OPENROUTER_API_KEY` secret and the `AI_REVIEW_MODEL` variable.
    Without them the workflow does not run and costs nothing.
 
@@ -284,3 +287,6 @@ Then remove the references that are left:
 
 The simplest start: one small feature, a scenario in a `.feature` file, and a prompt for the
 implementer. Then read its report. Add the other roles once this basic cycle feels natural.
+
+Give every pull request a Conventional Commits title and merge it with **Squash and merge**: the
+title becomes the commit on `main` and the CHANGELOG entry.

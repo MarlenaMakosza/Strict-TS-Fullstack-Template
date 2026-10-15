@@ -118,6 +118,8 @@ The human owns these files. Do not edit, rename or delete them:
   `playwright.config.ts`, `cspell.json`, `commitlint.config.js`, `.jscpd.json`, `dev/quality/**` and
   the `scripts` in `package.json`: the gates and their thresholds
 - `.husky/**`, `.github/**`: the hooks and CI
+- `CHANGELOG.md`, `release-please-config.json`, `.release-please-manifest.json` and the `version`
+  in `package.json`: release-please writes them
 - `.archgate/adrs/**`: architecture decisions. The architect may draft them, but only the human
   accepts them
 - `AGENTS.md`, `CLAUDE.md`, `.agents/**`, `.claude/**`: the agent rules
@@ -139,7 +141,8 @@ Fix the cause of the failure instead.
 ## Commits
 
 - Conventional Commits (`feat:`, `fix:`, `test:`, `refactor:`, `docs:`, `chore:`). `commitlint`
-  checks the message.
+  checks the message. The type sets the next version: `fix:` patch, `feat:` minor, `!` or
+  `BREAKING CHANGE:` major. Pick it by what changed for the user, not by the size of the diff.
 - The pre-commit hook runs `lint-staged`. CI runs `npm run format:check`, `npm run validate`,
   mutation testing and the end-to-end scenarios. A pull request with the `ai-review` label also
   gets a review from a second AI model.

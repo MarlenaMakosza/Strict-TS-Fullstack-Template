@@ -19,3 +19,5 @@
 /.agents/ @MarlenaMakosza
 /.jscpd.json @MarlenaMakosza
 /dev/quality/ @MarlenaMakosza
+/release-please-config.json @MarlenaMakosza
+/.release-please-manifest.json @MarlenaMakosza

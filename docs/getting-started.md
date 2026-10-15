@@ -19,6 +19,12 @@ npm run firstrun:dev
 `firstrun:dev` installs the dependencies and checks the types. It then starts PostgreSQL, runs the
 migrations and seeds the database.
 
+## Starting your own project
+
+`CHANGELOG.md` and the version in `package.json` describe releases of this template. In a project
+created from it, delete `CHANGELOG.md`, set `version` in `package.json` and in
+`.release-please-manifest.json` to `0.0.0`, and change `name` in `package.json`.
+
 ## Every day
 
 ```sh
@@ -29,6 +35,57 @@ npm run validate:full   # every gate: run it before you call a task done
 
 The other commands are in [Scripts](./scripts.md), and what each gate checks is in
 [Quality gates](./quality-gates.md).
+
+## Releases
+
+Versions follow [SemVer](https://semver.org/) and come from the commit messages, which
+`commitlint` already keeps in the Conventional Commits format: `fix:` bumps the patch version,
+`feat:` the minor one, and a breaking change (`feat!:` or `BREAKING CHANGE:`) the major one. Before
+1.0.0 a breaking change bumps the minor version.
+
+After every merge into `main`, release-please updates an open release pull request with the next
+version and the new `CHANGELOG.md` entries. Merging that pull request tags the version and creates a
+GitHub Release. Never edit `CHANGELOG.md` or the version by hand.
+
+release-please needs a few repository settings: see [GitHub settings](#github-settings).
+
+## GitHub settings
+
+If you host the project on GitHub, set these once in the repository settings.
+
+**Settings → General → Pull Requests**
+
+- Turn off **Allow merge commits** and **Allow rebase merging**, and keep **Allow squash merging**.
+- Under squash merging, set **Default commit message** to **Pull request title**.
+- Turn on **Automatically delete head branches**.
+
+With these settings, every pull request lands on `main` as one commit whose message is the pull
+request title, and gets one entry in `CHANGELOG.md`. So **the pull request title must be a
+Conventional Commit** (`feat: …`, `fix: …`, `docs: …`): it decides the next version. A merge
+commit would put every change in the CHANGELOG twice: once for the commit, and once for the merge
+commit, which repeats the pull request title.
+
+**Settings → Actions → General → Workflow permissions**
+
+- Turn on **Allow GitHub Actions to create and approve pull requests**. Without it, release-please
+  cannot open the release pull request.
+
+**Settings → Rules → Rulesets** (or **Settings → Branches**), for `main`
+
+- Require a pull request before merging, and require the CI checks `validate`, `mutation` and `e2e`
+  to pass.
+- CI does not run on the release pull request, because GitHub does not start workflows for changes
+  made with the default `GITHUB_TOKEN`. With required checks, add yourself to the bypass list, or
+  give release-please a personal access token (the `token` input of the action).
+
+After a merge, GitHub deletes the remote branch, but your local copy stays. Delete it too, or the
+next `git push --all` brings it back:
+
+```sh
+git switch main && git pull
+git fetch --prune
+git branch -D <branch>   # -D: after a squash merge, git does not see the branch as merged
+```
 
 ## Project structure
 
