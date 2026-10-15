@@ -10,11 +10,9 @@ template gives you a large set of them, configured strictly and ready to use, so
 professional-quality code from the first commit.
 
 The same gates work whether people or AI agents write the code. For people, they catch mistakes
-before code review. For AI agents, they go further. The agent workflow was inspired by a
-[post by Robert C. Martin (Uncle Bob)](https://x.com/unclebobmartin/status/2080257779395154409):
-do not read every line the agents write. Surround them with constraints instead (unit tests,
-Gherkin scenarios, coverage, mutation testing, quality metrics), and accept only code that passes
-all of them. The human owns the specification and the gates. The agents own the implementation.
+before code review. For AI agents, they go further: only the code that passes every constraint
+stays. The agent workflow was inspired by a
+[post by Robert C. Martin (Uncle Bob)](https://x.com/unclebobmartin/status/2080257779395154409).
 
 ## What you get
 

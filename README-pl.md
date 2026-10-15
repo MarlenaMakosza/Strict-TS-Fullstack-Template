@@ -10,13 +10,9 @@ są tak ważne. Ten szablon zawiera duży zestaw takich narzędzi, surowo skonfi
 do użycia, żeby od samego początku pisać kod profesjonalnej jakości.
 
 Te same bramki działają, niezależnie od tego, czy kod piszą ludzie, czy agenci AI. Ludziom
-wyłapują błędy, zanim kod trafi do review. W pracy z agentami AI idą dalej. Inspiracją dla pracy
-z agentami był
-[post Roberta C. Martina (Uncle Bob)](https://x.com/unclebobmartin/status/2080257779395154409):
-nie czytaj każdej linii, którą piszą agenci. Zamiast tego otocz ich ograniczeniami (testy
-jednostkowe, scenariusze Gherkin, pokrycie testami, mutation testing, metryki jakości) i przyjmuj
-tylko kod, który przejdzie je wszystkie. Człowiek odpowiada za specyfikację i bramki. Agenci
-odpowiadają za implementację.
+wyłapują błędy, zanim kod trafi do review. W pracy z agentami AI idą dalej: zostaje tylko kod,
+który przejdzie wszystkie ograniczenia. Inspiracją dla pracy z agentami był
+[post Roberta C. Martina (Uncle Bob)](https://x.com/unclebobmartin/status/2080257779395154409).
 
 ## Co dostajesz
 
