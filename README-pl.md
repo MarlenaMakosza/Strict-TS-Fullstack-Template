@@ -2,13 +2,19 @@
 
 [English](README.md) | Polski
 
-Szablon projektu w czystym TypeScript na Node.js, bez frameworka. Ma surowe bramki jakości, więc
-kod mogą pisać agenci AI, a bramki go sprawdzają.
+Gotowy do użycia produkcyjnego szablon projektu w czystym TypeScript na Node.js, bez frameworka.
 
-Pomysł pochodzi od Roberta C. Martina (Uncle Bob): nie czytaj każdej linii, którą piszą agenci.
-Zamiast tego otocz ich ograniczeniami (testy jednostkowe, scenariusze Gherkin, pokrycie testami,
-mutation testing, metryki jakości) i przyjmuj tylko kod, który przejdzie je wszystkie. Człowiek
-odpowiada za specyfikację i bramki. Agenci odpowiadają za implementację.
+Pisanie nietrywialnego kodu w TypeScript jest trudne. Język ma mnóstwo drobnych pułapek, które w
+pewnych okolicznościach sprawiają poważne problemy, dlatego lintery i inne narzędzia jakości kodu
+są tak ważne. Ten szablon zawiera duży zestaw takich narzędzi, surowo skonfigurowanych i gotowych
+do użycia, żeby od samego początku pisać kod profesjonalnej jakości.
+
+Te same bramki działają, niezależnie od tego, czy kod piszą ludzie, czy agenci AI. Ludziom
+wyłapują błędy, zanim kod trafi do review. W pracy z agentami AI idą dalej. Pomysł pochodzi od
+Roberta C. Martina (Uncle Bob): nie czytaj każdej linii, którą piszą agenci. Zamiast tego otocz
+ich ograniczeniami (testy jednostkowe, scenariusze Gherkin, pokrycie testami, mutation testing,
+metryki jakości) i przyjmuj tylko kod, który przejdzie je wszystkie. Człowiek odpowiada za
+specyfikację i bramki. Agenci odpowiadają za implementację.
 
 ## Co dostajesz
 
@@ -74,6 +80,8 @@ Bramki działają na trzech poziomach:
 - CI: te same bramki przy każdym wypchnięciu na `main` i w każdym PR.
 
 ## Praca z agentami AI
+
+Nie korzystasz z agentów AI? Pomiń tę sekcję. Bramki, hooki gita i CI działają tak samo bez niej.
 
 Opis krok po kroku z przykładowymi poleceniami jest w [`GUIDE-pl.md`](GUIDE-pl.md).
 

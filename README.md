@@ -2,13 +2,18 @@
 
 English | [Polski](README-pl.md)
 
-A template for a plain TypeScript project on Node.js, with no framework. It has strict quality
-gates, so AI coding agents can write the code and the gates check it.
+A production-ready template for a plain TypeScript project on Node.js, with no framework.
 
-The idea comes from Robert C. Martin (Uncle Bob): do not read every line the agents write.
-Surround them with constraints instead (unit tests, Gherkin scenarios, coverage, mutation testing,
-quality metrics), and accept only code that passes all of them. The human owns the specification
-and the gates. The agents own the implementation.
+Writing non-trivial TypeScript well is hard. The language has many small gotchas that cause real
+problems in the right circumstances, so linters and other code quality tools matter a lot. This
+template gives you a large set of them, configured strictly and ready to use, so you can write
+professional-quality code from the first commit.
+
+The same gates work whether people or AI agents write the code. For people, they catch mistakes
+before code review. For AI agents, they go further. The idea comes from Robert C. Martin (Uncle
+Bob): do not read every line the agents write. Surround them with constraints instead (unit tests,
+Gherkin scenarios, coverage, mutation testing, quality metrics), and accept only code that passes
+all of them. The human owns the specification and the gates. The agents own the implementation.
 
 ## What you get
 
@@ -75,6 +80,8 @@ Run the gates at three levels:
 - CI: the same gates on every push to `main` and on every pull request.
 
 ## Working with AI agents
+
+Not using AI agents? Skip this section. The gates, git hooks and CI work the same without it.
 
 For a step-by-step walkthrough with example prompts, see [`GUIDE.md`](GUIDE.md).
 
