@@ -12,7 +12,8 @@
     "drizzle",
     "docs/api",
     ".vitepress/dist",
-    ".vitepress/cache"
+    ".vitepress/cache",
+    "CHANGELOG.md"
   ],
   "useGitignore": true,
   "validateDirectives": true,
