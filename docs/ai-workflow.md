@@ -243,6 +243,35 @@ Codex, Cursor, Copilot and most other tools read `AGENTS.md` directly. Claude Co
 `CLAUDE.md`, which only imports `AGENTS.md`. The Claude Code adapter is optional: the git hooks and
 CI enforce the same rules without it.
 
+## AI attribution and statistics
+
+Every commit an agent creates, and every pull request it opens, ends with a trailer that names the
+tool and the exact model (see the Commits rules in `AGENTS.md`):
+
+```text
+Assisted-by: Claude Code:claude-opus-5-5
+```
+
+This follows the convention of the Linux kernel: it names the tool as a tool, not as an author.
+The pull request template ends with an "AI assistance" section for these lines, and a squash merge
+with the title and description turns them into trailers of the commit on `main` (see
+[GitHub settings](./getting-started.md#github-settings)). The Claude Code adapter turns off Claude
+Code's own byline (`attribution` in `.claude/settings.json`), so the agent writes only this line.
+
+Statistics from the history of `main`:
+
+```sh
+# commits per tool and model
+git log --format='%(trailers:key=Assisted-by,valueonly)' | sort | uniq -c | sort -rn
+
+# AI-assisted commits out of all commits
+git log --oneline --grep='^Assisted-by:' | wc -l
+git rev-list --count HEAD
+```
+
+To stop recording it, delete the AI attribution rule in `AGENTS.md` and the "AI assistance"
+section of `.github/PULL_REQUEST_TEMPLATE.md`.
+
 ## Optional AI review
 
 Pull requests with the `ai-review` label get a review comment from a second model through
@@ -272,6 +301,7 @@ Then remove the references that are left:
 - `docs/tools.md` and `docs/pl/tools.md`: the AI review part of the GitHub Actions row.
 - `.github/CODEOWNERS`: the lines for `AGENTS.md`, `CLAUDE.md`, `.claude/` and `.agents/`.
 - `.gitignore`: the `.claude/settings.local.json` line.
+- `.github/PULL_REQUEST_TEMPLATE.md`: the "AI assistance" section.
 
 ## One-time setup
 

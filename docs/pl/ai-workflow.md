@@ -243,6 +243,35 @@ Codex, Cursor, Copilot i większość innych narzędzi czyta `AGENTS.md` bezpoś
 czyta `CLAUDE.md`, który tylko importuje `AGENTS.md`. Adapter dla Claude Code jest opcjonalny:
 hooki gita i CI egzekwują te same reguły bez niego.
 
+## Podpisy AI i statystyki
+
+Każdy commit utworzony przez agenta i każdy otwarty przez niego PR kończy się trailerem z nazwą
+narzędzia i dokładnym modelem (zobacz reguły w sekcji Commits w `AGENTS.md`):
+
+```text
+Assisted-by: Claude Code:claude-opus-5-5
+```
+
+To konwencja jądra Linuksa: nazywa narzędzie narzędziem, a nie autorem. Szablon PR kończy się
+sekcją „AI assistance” na te wiersze, a squash merge z tytułem i opisem zamienia je w trailery
+wpisu w historii `main` (zobacz [Ustawienia GitHuba](./getting-started.md#ustawienia-githuba)). Adapter
+dla Claude Code wyłącza własny podpis Claude Code (`attribution` w `.claude/settings.json`), więc
+agent pisze tylko ten wiersz.
+
+Statystyki z historii `main`:
+
+```sh
+# wpisy według narzędzia i modelu
+git log --format='%(trailers:key=Assisted-by,valueonly)' | sort | uniq -c | sort -rn
+
+# wpisy z pomocą AI na tle wszystkich
+git log --oneline --grep='^Assisted-by:' | wc -l
+git rev-list --count HEAD
+```
+
+Żeby przestać to zapisywać, usuń regułę o podpisach AI w `AGENTS.md` i sekcję „AI assistance” w
+`.github/PULL_REQUEST_TEMPLATE.md`.
+
 ## Opcjonalne review przez AI
 
 PR z etykietą `ai-review` dostaje komentarz z review od drugiego modelu przez OpenRouter.
@@ -271,6 +300,7 @@ Potem usuń pozostałe odwołania:
 - `docs/tools.md` i `docs/pl/tools.md`: część o AI review w wierszu GitHub Actions.
 - `.github/CODEOWNERS`: wiersze dla `AGENTS.md`, `CLAUDE.md`, `.claude/` i `.agents/`.
 - `.gitignore`: wiersz `.claude/settings.local.json`.
+- `.github/PULL_REQUEST_TEMPLATE.md`: sekcję „AI assistance”.
 
 ## Jednorazowe ustawienia
 

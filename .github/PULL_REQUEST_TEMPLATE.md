@@ -17,3 +17,11 @@
 ## Breaking changes
 
 <!-- Optional: anything that breaks existing behaviour -->
+
+## AI assistance
+
+<!-- One "Assisted-by: <tool>:<model>" line for each tool and model that wrote part of this pull
+request, for example "Assisted-by: Claude Code:claude-opus-5-5". Delete this section when no AI was
+used. The lines must stay the last paragraph: a squash merge turns them into commit trailers. -->
+
+Assisted-by:
