@@ -56,13 +56,19 @@ Jeśli projekt jest na GitHubie, ustaw to raz w ustawieniach repo.
 **Settings → General → Pull Requests**
 
 - Wyłącz **Allow merge commits** i **Allow rebase merging**, zostaw **Allow squash merging**.
-- Przy squash merging ustaw **Default commit message** na **Pull request title**.
+- Przy squash merging ustaw **Default commit message** na **Pull request title and description**.
 - Włącz **Automatically delete head branches**.
 
-Dzięki temu każdy PR trafia na `main` jako jeden commit z tytułem PR jako wiadomością i dostaje
-jeden wpis w `CHANGELOG.md`. Dlatego **tytuł PR musi być w formacie Conventional Commits**
-(`feat: …`, `fix: …`, `docs: …`): to on decyduje o następnej wersji. Merge commit dodałby każdą
-zmianę do CHANGELOG dwa razy: raz za commit i raz za merge commit, który powtarza tytuł PR.
+Dzięki temu każdy PR trafia na `main` jako jeden commit: tytuł PR to jego pierwsza linia, a opis to
+jego treść. Dostaje jeden wpis w `CHANGELOG.md`. Dlatego:
+
+- **Tytuł PR musi być w formacie Conventional Commits** (`feat: …`, `fix: …`, `docs: …`): to on
+  decyduje o następnej wersji.
+- Wiersze `Assisted-by` na końcu opisu stają się trailerami tej
+  zmiany, więc
+  [statystyki AI](./ai-workflow.md#podpisy-ai-i-statystyki) mogą je policzyć.
+- Pisz `BREAKING CHANGE:` w opisie tylko przy prawdziwej zmianie łamiącej: podbija wersję major. Merge commit dodałby każdą
+  zmianę do CHANGELOG dwa razy: raz za commit i raz za merge commit, który powtarza tytuł PR.
 
 **Settings → Actions → General → Workflow permissions**
 

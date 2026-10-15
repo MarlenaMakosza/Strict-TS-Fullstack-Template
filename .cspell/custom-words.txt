@@ -18,6 +18,7 @@ Lintowanie
 lintowanych
 mysecretpassword
 niemutowalność
+oneline
 onnotice
 openrouter
 pgdata
@@ -28,4 +29,5 @@ sonarjs
 stryker
 tsdoc
 unstub
+valueonly
 vitepress

@@ -56,14 +56,20 @@ If you host the project on GitHub, set these once in the repository settings.
 **Settings → General → Pull Requests**
 
 - Turn off **Allow merge commits** and **Allow rebase merging**, and keep **Allow squash merging**.
-- Under squash merging, set **Default commit message** to **Pull request title**.
+- Under squash merging, set **Default commit message** to **Pull request title and description**.
 - Turn on **Automatically delete head branches**.
 
-With these settings, every pull request lands on `main` as one commit whose message is the pull
-request title, and gets one entry in `CHANGELOG.md`. So **the pull request title must be a
-Conventional Commit** (`feat: …`, `fix: …`, `docs: …`): it decides the next version. A merge
-commit would put every change in the CHANGELOG twice: once for the commit, and once for the merge
-commit, which repeats the pull request title.
+With these settings, every pull request lands on `main` as one commit: the pull request title is
+its first line and the description is its body. It gets one entry in `CHANGELOG.md`. So:
+
+- **The pull request title must be a Conventional Commit** (`feat: …`, `fix: …`, `docs: …`): it
+  decides the next version.
+- The `Assisted-by` lines at the end of the description become trailers of that commit, so the
+  [AI statistics](./ai-workflow.md#ai-attribution-and-statistics) can count them.
+- Write `BREAKING CHANGE:` in the description only for a real breaking change: it bumps the major
+  version. A merge
+  commit would put every change in the CHANGELOG twice: once for the commit, and once for the merge
+  commit, which repeats the pull request title.
 
 **Settings → Actions → General → Workflow permissions**
 

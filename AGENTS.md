@@ -143,6 +143,24 @@ Fix the cause of the failure instead.
 - Conventional Commits (`feat:`, `fix:`, `test:`, `refactor:`, `docs:`, `chore:`). `commitlint`
   checks the message. The type sets the next version: `fix:` patch, `feat:` minor, `!` or
   `BREAKING CHANGE:` major. Pick it by what changed for the user, not by the size of the diff.
+- **AI attribution.** End every commit you create with a trailer that names your tool and your
+  exact model, after a blank line:
+
+  ```text
+  Assisted-by: <tool>:<model>
+  ```
+
+  For example `Assisted-by: Claude Code:claude-opus-5-5` or `Assisted-by: Codex:gpt-5`. This is
+  the convention of the Linux kernel: it names the tool as a tool, not as an author. Do not add
+  `Co-authored-by` for yourself, and never add `Signed-off-by`: only a human signs off.
+
+- **Pull requests.** Fill in `.github/PULL_REQUEST_TEMPLATE.md` and delete its placeholder
+  comments. A squash merge turns the title and the description into the commit on `main`, so:
+  - the title is a Conventional Commit,
+  - the description ends with the "AI assistance" section, with one `Assisted-by` line for each
+    tool and model that wrote part of the pull request,
+  - `BREAKING CHANGE:` appears in the description only when the change really breaks something,
+    because it bumps the major version.
 - The pre-commit hook runs `lint-staged`. CI runs `npm run format:check`, `npm run validate`,
   mutation testing and the end-to-end scenarios. A pull request with the `ai-review` label also
   gets a review from a second AI model.
