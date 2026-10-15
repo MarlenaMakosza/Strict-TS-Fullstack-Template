@@ -70,6 +70,11 @@ jego treść. Dostaje jeden wpis w `CHANGELOG.md`. Dlatego:
 - Pisz `BREAKING CHANGE:` w opisie tylko przy prawdziwej zmianie łamiącej: podbija wersję major. Merge commit dodałby każdą
   zmianę do CHANGELOG dwa razy: raz za commit i raz za merge commit, który powtarza tytuł PR.
 
+**Settings → Pages → Build and deployment**
+
+- Ustaw **Source** na **GitHub Actions**. Workflow Docs (`.github/workflows/pages.yml`)
+  publikuje wtedy tę dokumentację przy każdym wypchnięciu na `main`.
+
 **Settings → Actions → General → Workflow permissions**
 
 - Włącz **Allow GitHub Actions to create and approve pull requests**. Bez tego release-please nie
