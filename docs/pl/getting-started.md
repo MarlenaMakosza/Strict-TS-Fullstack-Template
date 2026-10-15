@@ -47,6 +47,11 @@ Po każdym merge'u na `main` release-please aktualizuje otwarty release PR z nas
 nowymi wpisami w `CHANGELOG.md`. Merge tego PR taguje wersję i tworzy GitHub Release. Nigdy nie
 edytuj `CHANGELOG.md` ani wersji ręcznie.
 
+Jednorazowe ustawienie na GitHubie: Settings → Actions → General → Workflow permissions → włącz
+**Allow GitHub Actions to create and approve pull requests**. Bez tego release-please nie otworzy
+release PR. Na tym PR nie uruchamia się CI, bo GitHub nie startuje workflow dla zmian zrobionych
+domyślnym `GITHUB_TOKEN`; ten PR zmienia tylko wersję i `CHANGELOG.md`.
+
 ## Struktura projektu
 
 ```text

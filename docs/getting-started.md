@@ -47,6 +47,11 @@ After every merge into `main`, release-please updates an open release pull reque
 version and the new `CHANGELOG.md` entries. Merging that pull request tags the version and creates a
 GitHub Release. Never edit `CHANGELOG.md` or the version by hand.
 
+One-time setup on GitHub: Settings → Actions → General → Workflow permissions → enable **Allow
+GitHub Actions to create and approve pull requests**. Without it, release-please cannot open the
+release pull request. CI does not run on that pull request, because GitHub does not start workflows
+for changes made with the default `GITHUB_TOKEN`; it only changes the version and `CHANGELOG.md`.
+
 ## Project structure
 
 ```text
