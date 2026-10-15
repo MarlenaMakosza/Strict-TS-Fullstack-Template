@@ -24,11 +24,10 @@ when the human asks for documentation. You do not change behavior.
 - Do not copy what the code already says. Explain why, what for, and how the parts fit together.
 - After each task, find the pages that the change made wrong or incomplete, and fix them.
 - Each topic lives on one page. Link to it instead of repeating it.
-- Every page in `docs/` appears in the sidebar of both locales in `.vitepress/config.ts`. Links
+- Every page in `docs/` appears in the sidebar in `.vitepress/config.ts`. Links
   between pages are relative and must work: the build fails on a dead link. Files outside `docs/`
   (for example `AGENTS.md`) are not part of the site: name them as code, do not link them.
-- Write in English. Every page in `docs/` has a Polish version with the same name in `docs/pl/`.
-  Update both in the same change.
+- Write in English.
 - Do not edit ADRs, Gherkin scenarios, edge case lists or `AGENTS.md`. Report what should change in
   them.
 
