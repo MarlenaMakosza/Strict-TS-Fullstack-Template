@@ -60,6 +60,8 @@ konfigurację AI, jest na stronie [Praca z agentami AI](./ai-workflow.md).
 
 ## Dokumentacja
 
+Online: **[marlenamakosza.github.io/Ultimate-TS-AI-project/pl](https://marlenamakosza.github.io/Ultimate-TS-AI-project/pl/)**.
+
 - [Pierwsze kroki](./getting-started.md): wymagania, instalacja, struktura projektu
 - [Bramki jakości](./quality-gates.md): co sprawdza każda bramka i kiedy się uruchamia
 - [Skrypty](./scripts.md): wszystkie skrypty npm

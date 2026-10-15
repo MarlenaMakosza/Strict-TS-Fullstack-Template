@@ -16,6 +16,7 @@ isready
 knip
 Lintowanie
 lintowanych
+marlenamakosza
 mysecretpassword
 niemutowalność
 oneline

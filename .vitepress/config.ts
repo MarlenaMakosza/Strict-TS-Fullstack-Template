@@ -3,6 +3,8 @@ import { defineConfig } from 'vitepress';
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   srcDir: 'docs',
+  // GitHub Pages serves the site under /<repository>/; the Docs workflow sets DOCS_BASE.
+  base: process.env['DOCS_BASE'] ?? '/',
   srcExclude: ['api/**'],
   title: 'Ultimate TS',
   description: 'Production-ready TypeScript template with strict quality gates',

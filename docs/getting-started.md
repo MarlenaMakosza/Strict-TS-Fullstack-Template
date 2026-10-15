@@ -71,6 +71,11 @@ its first line and the description is its body. It gets one entry in `CHANGELOG.
   commit would put every change in the CHANGELOG twice: once for the commit, and once for the merge
   commit, which repeats the pull request title.
 
+**Settings → Pages → Build and deployment**
+
+- Set **Source** to **GitHub Actions**. The Docs workflow (`.github/workflows/pages.yml`) then
+  publishes this documentation on every push to `main`.
+
 **Settings → Actions → General → Workflow permissions**
 
 - Turn on **Allow GitHub Actions to create and approve pull requests**. Without it, release-please

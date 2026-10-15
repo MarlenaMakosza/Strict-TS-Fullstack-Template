@@ -60,6 +60,8 @@ Not using AI agents? Everything else works the same without them. See
 
 ## Documentation
 
+Read it online at **[marlenamakosza.github.io/Ultimate-TS-AI-project](https://marlenamakosza.github.io/Ultimate-TS-AI-project/)**, or in `docs/`:
+
 - [Getting started](docs/getting-started.md): requirements, install, project structure
 - [Quality gates](docs/quality-gates.md): what each gate checks, and when it runs
 - [Scripts](docs/scripts.md): every npm script
