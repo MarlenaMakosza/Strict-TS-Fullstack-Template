@@ -257,8 +257,9 @@ rm -rf AGENTS.md CLAUDE.md .agents .claude docs/ai-workflow.md docs/pl/ai-workfl
 
 Potem usuń pozostałe odwołania:
 
-- `README.md`, `docs/index.md` i `docs/pl/index.md`: sekcję o pracy z agentami AI i wiersz o
-  agentach w „Co dostajesz”.
+- `README.md`, `docs/index.md` i `docs/pl/index.md`: sekcję o pracy z agentami AI, wiersz o
+  agentach w „Co dostajesz” i link do pracy z agentami w „Dokumentacji”.
+- `docs/quality-gates.md` i `docs/pl/quality-gates.md`: ostatni akapit, o Stop hooku w Claude Code.
 - `.vitepress/config.ts`: wpisy „AI workflow” / „Praca z agentami AI” i „Edge cases” w obu panelach bocznych.
 - `docs/getting-started.md` i `docs/pl/getting-started.md`: wiersze `.agents/` i `.claude/` w
   strukturze projektu.

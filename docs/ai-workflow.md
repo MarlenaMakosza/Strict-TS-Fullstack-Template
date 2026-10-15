@@ -258,8 +258,10 @@ rm -rf AGENTS.md CLAUDE.md .agents .claude docs/ai-workflow.md docs/pl/ai-workfl
 
 Then remove the references that are left:
 
-- `README.md`, `docs/index.md` and `docs/pl/index.md`: the "Working with AI agents" section and the
-  AI agent line in "What you get".
+- `README.md`, `docs/index.md` and `docs/pl/index.md`: the "Working with AI agents" section, the
+  AI agent line in "What you get", and the AI workflow link in "Documentation".
+- `docs/quality-gates.md` and `docs/pl/quality-gates.md`: the last paragraph, about the Claude
+  Code Stop hook.
 - `.vitepress/config.ts`: the "AI workflow" and "Edge cases" entries in both sidebars.
 - `docs/getting-started.md` and `docs/pl/getting-started.md`: the `.agents/` and `.claude/` lines
   in the project structure.
