@@ -1,10 +1,11 @@
-# Przewodnik: praca z agentami AI
-
-[English](GUIDE.md) | Polski
+# Praca z agentami AI
 
 Jak dodać nową funkcjonalność do projektu, gdy kod piszą agenci AI, a ty pilnujesz specyfikacji.
-Szczegółowe reguły dla agentów są w [`AGENTS.md`](AGENTS.md), a opis projektu w
-[`README-pl.md`](README-pl.md).
+Szczegółowe reguły dla agentów są w `AGENTS.md` w katalogu głównym repo.
+
+Nie korzystasz z agentów AI? Ta strona nie jest ci potrzebna: [bramki jakości](./quality-gates.md),
+hooki gita i CI działają tak samo bez niej. Żeby całkiem usunąć konfigurację AI, zobacz
+[Usunięcie konfiguracji AI](#usunięcie-konfiguracji-ai).
 
 ## Ściągawka: agenci po kolei
 
@@ -182,25 +183,9 @@ Otwórz pull request na GitHubie i poczekaj na zielone CI. Merge robisz ty.
 
 ## Co sprawdzają bramki
 
-`npm run validate:full` sprawdza kolejno:
-
-- czy kod jest poprawnie napisany: lint, typy, pisownia,
-- czy nie ma nieużywanego kodu (knip),
-- czy testy przechodzą i pokrywają co najmniej 90% kodu,
-- czy żadna funkcja nie jest jednocześnie skomplikowana i słabo przetestowana (CRAP, próg 30),
-- czy nie ma skopiowanego kodu (jscpd),
-- czy kod przestrzega ADR-ów (Archgate),
-- czy testy naprawdę coś łapią: mutation testing celowo psuje kod, a testy muszą to wykryć (próg
-  80%),
-- czy scenariusze Gherkin przechodzą,
-- czy dokumentacja się buduje.
-
-Dodatkowo:
-
-- przy commicie git hook sprawdza formatowanie i format wiadomości (Conventional Commits),
-- na GitHubie CI odpala bramki jeszcze raz,
-- pull request z etykietą `ai-review` dostaje komentarz od innego modelu AI (wymaga konfiguracji,
-  patrz niżej).
+`npm run validate:full` uruchamia wszystkie bramki, a Stop hook odpala `npm run validate`, zanim
+Claude może skończyć. Co sprawdza każda bramka i jaki ma próg, opisują
+[Bramki jakości](./quality-gates.md).
 
 ## Pliki: po co jest każdy
 
@@ -238,6 +223,50 @@ Dodatkowo:
 - `.github/workflows/ai-review.yml`: opcjonalne review innym modelem.
 - `.github/CODEOWNERS`: zmiany w ważnych plikach wymagają akceptacji osoby z `CODEOWNERS`.
 
+## Jak egzekwowane są reguły
+
+Każda część konfiguracji pilnuje reguł na innym poziomie:
+
+| Warstwa                 | Gdzie                         | Działa z                            |
+| ----------------------- | ----------------------------- | ----------------------------------- |
+| Instrukcje              | `AGENTS.md`, `.agents/roles/` | każdym agentem                      |
+| Hooki gita              | `.husky/`                     | każdym agentem i każdym człowiekiem |
+| CI i właściciele kodu   | `.github/`                    | wszystkim, co trafia na `main`      |
+| Adapter dla Claude Code | `.claude/`                    | tylko z Claude Code                 |
+
+Codex, Cursor, Copilot i większość innych narzędzi czyta `AGENTS.md` bezpośrednio. Claude Code
+czyta `CLAUDE.md`, który tylko importuje `AGENTS.md`. Adapter dla Claude Code jest opcjonalny:
+hooki gita i CI egzekwują te same reguły bez niego.
+
+## Opcjonalne review przez AI
+
+PR z etykietą `ai-review` dostaje komentarz z review od drugiego modelu przez OpenRouter.
+Powinien to być inny model niż ten, który pisał kod. Szuka problemów, których bramki nie widzą:
+testów niezgodnych ze scenariuszami i zachowania, którego nie opisuje żaden scenariusz. Żeby to
+włączyć, dodaj w ustawieniach repo na GitHubie secret `OPENROUTER_API_KEY` i zmienną
+`AI_REVIEW_MODEL` (identyfikator modelu w OpenRouter).
+
+## Usunięcie konfiguracji AI
+
+Usuń te pliki i katalogi. Wszystkie bramki dalej przechodzą bez nich:
+
+```sh
+rm -rf AGENTS.md CLAUDE.md .agents .claude docs/ai-workflow.md docs/pl/ai-workflow.md \
+  docs/edge-cases .github/workflows/ai-review.yml
+```
+
+Potem usuń pozostałe odwołania:
+
+- `README.md`, `docs/index.md` i `docs/pl/index.md`: sekcję o pracy z agentami AI, wiersz o
+  agentach w „Co dostajesz” i link do pracy z agentami w „Dokumentacji”.
+- `docs/quality-gates.md` i `docs/pl/quality-gates.md`: ostatni akapit, o Stop hooku w Claude Code.
+- `.vitepress/config.ts`: wpisy „AI workflow” / „Praca z agentami AI” i „Edge cases” w obu panelach bocznych.
+- `docs/getting-started.md` i `docs/pl/getting-started.md`: wiersze `.agents/` i `.claude/` w
+  strukturze projektu.
+- `docs/tools.md` i `docs/pl/tools.md`: część o AI review w wierszu GitHub Actions.
+- `.github/CODEOWNERS`: wiersze dla `AGENTS.md`, `CLAUDE.md`, `.claude/` i `.agents/`.
+- `.gitignore`: wiersz `.claude/settings.local.json`.
+
 ## Jednorazowe ustawienia
 
 1. Node 24: `nvm use` w katalogu projektu. Przy starszym Node `npm install` odmówi instalacji.
@@ -247,8 +276,6 @@ Dodatkowo:
      konta niż twoje.
 3. AI review (opcjonalnie): dodaj secret `OPENROUTER_API_KEY` i zmienną `AI_REVIEW_MODEL`. Bez
    nich workflow się nie uruchamia i nic nie kosztuje.
-4. GitLab: repo jest tam kopią, ale CI na GitLabie nie działa, bo GitLab nie czyta
-   `.github/workflows/`. Wypychasz osobno: `git push gitlab main`.
 
 ## Jak zacząć
 

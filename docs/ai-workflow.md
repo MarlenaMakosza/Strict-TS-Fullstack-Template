@@ -1,10 +1,11 @@
-# Guide: working with AI agents
-
-English | [Polski](GUIDE-pl.md)
+# AI workflow
 
 How to add a feature to the project when AI agents write the code and you own the specification.
-The detailed rules for the agents are in [`AGENTS.md`](AGENTS.md), and the project description is
-in [`README.md`](README.md).
+The detailed rules for the agents are in `AGENTS.md` in the repository root.
+
+Not using AI agents? You do not need this page: the [quality gates](./quality-gates.md), git hooks
+and CI work the same without it. To remove the AI setup completely, see
+[Removing the AI setup](#removing-the-ai-setup).
 
 ## Cheat sheet: the agents in order
 
@@ -184,25 +185,8 @@ Open a pull request on GitHub and wait for green CI. You do the merge.
 
 ## What the gates check
 
-`npm run validate:full` checks, in order:
-
-- that the code is well written: lint, types, spelling,
-- that there is no unused code (knip),
-- that the tests pass and cover at least 90% of the code,
-- that no function is both complex and poorly tested (CRAP, limit 30),
-- that there is no copied code (jscpd),
-- that the code follows the ADRs (Archgate),
-- that the tests really catch bugs: mutation testing breaks the code on purpose, and the tests must
-  notice (limit 80%),
-- that the Gherkin scenarios pass,
-- that the documentation builds.
-
-Also:
-
-- on commit, a git hook checks the formatting and the message format (Conventional Commits),
-- on GitHub, CI runs the gates again,
-- a pull request with the `ai-review` label gets a comment from a different AI model (needs setup,
-  see below).
+`npm run validate:full` runs every gate, and the Stop hook runs `npm run validate` before Claude
+may finish. What each gate checks, and its limit, is in [Quality gates](./quality-gates.md).
 
 ## Files: what each one is for
 
@@ -240,6 +224,51 @@ Also:
 - `.github/workflows/ai-review.yml`: an optional review by a different model.
 - `.github/CODEOWNERS`: changes to important files need approval from a code owner.
 
+## How the rules are enforced
+
+Each part of the setup enforces the rules at a different level:
+
+| Layer               | Where                         | Works with                     |
+| ------------------- | ----------------------------- | ------------------------------ |
+| Instructions        | `AGENTS.md`, `.agents/roles/` | any agent                      |
+| Git hooks           | `.husky/`                     | any agent and any human        |
+| CI and code owners  | `.github/`                    | everything that reaches `main` |
+| Claude Code adapter | `.claude/`                    | Claude Code only               |
+
+Codex, Cursor, Copilot and most other tools read `AGENTS.md` directly. Claude Code reads
+`CLAUDE.md`, which only imports `AGENTS.md`. The Claude Code adapter is optional: the git hooks and
+CI enforce the same rules without it.
+
+## Optional AI review
+
+Pull requests with the `ai-review` label get a review comment from a second model through
+OpenRouter. This model should be a different one from the model that wrote the code. Its review
+looks for problems the gates cannot see: tests that do not match the scenarios, and behavior that
+no scenario describes. To enable it, add the `OPENROUTER_API_KEY` secret and the
+`AI_REVIEW_MODEL` variable (an OpenRouter model id) in the GitHub repository settings.
+
+## Removing the AI setup
+
+Delete these files and folders. Every gate still passes without them:
+
+```sh
+rm -rf AGENTS.md CLAUDE.md .agents .claude docs/ai-workflow.md docs/pl/ai-workflow.md \
+  docs/edge-cases .github/workflows/ai-review.yml
+```
+
+Then remove the references that are left:
+
+- `README.md`, `docs/index.md` and `docs/pl/index.md`: the "Working with AI agents" section, the
+  AI agent line in "What you get", and the AI workflow link in "Documentation".
+- `docs/quality-gates.md` and `docs/pl/quality-gates.md`: the last paragraph, about the Claude
+  Code Stop hook.
+- `.vitepress/config.ts`: the "AI workflow" and "Edge cases" entries in both sidebars.
+- `docs/getting-started.md` and `docs/pl/getting-started.md`: the `.agents/` and `.claude/` lines
+  in the project structure.
+- `docs/tools.md` and `docs/pl/tools.md`: the AI review part of the GitHub Actions row.
+- `.github/CODEOWNERS`: the lines for `AGENTS.md`, `CLAUDE.md`, `.claude/` and `.agents/`.
+- `.gitignore`: the `.claude/settings.local.json` line.
+
 ## One-time setup
 
 1. Node 24: run `nvm use` in the project directory. With an older Node, `npm install` refuses to
@@ -250,8 +279,6 @@ Also:
      than yours.
 3. AI review (optional): add the `OPENROUTER_API_KEY` secret and the `AI_REVIEW_MODEL` variable.
    Without them the workflow does not run and costs nothing.
-4. GitLab: the repository is mirrored there, but CI does not run on GitLab, because GitLab does not
-   read `.github/workflows/`. Push to it separately: `git push gitlab main`.
 
 ## How to start
 

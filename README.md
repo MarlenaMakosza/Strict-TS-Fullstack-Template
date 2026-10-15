@@ -1,6 +1,6 @@
 # Ultimate TS project
 
-English | [Polski](README-pl.md)
+English | [Polski](docs/pl/index.md)
 
 A production-ready template for a plain TypeScript project on Node.js, with no framework.
 
@@ -47,149 +47,23 @@ You need Node.js 24 (see `.nvmrc`) and Docker.
 nvm use
 cp .env.example .env
 npm run firstrun:dev
+npm run validate
 ```
-
-`firstrun:dev` installs the dependencies and checks the types. It then starts PostgreSQL, runs the
-migrations and seeds the database. After that:
-
-```sh
-npm run dev        # run src/index.ts in watch mode
-npm run validate   # run the quality gates
-```
-
-## Quality gates
-
-| Gate             | Tool                  | Fails when                               |
-| ---------------- | --------------------- | ---------------------------------------- |
-| Lint             | ESLint                | any error or warning                     |
-| Types            | `tsc --noEmit`        | any type error                           |
-| Formatting       | Prettier              | a file is not formatted                  |
-| Spelling         | cspell                | an unknown word                          |
-| Unused code      | knip                  | an unused file, export or dependency     |
-| Unit tests       | Vitest                | a failing test, or coverage below 90%    |
-| CRAP score       | `dev/quality/crap.ts` | a function scores above 30               |
-| Duplicated code  | jscpd                 | any clone of 50 tokens or more           |
-| Architecture     | Archgate              | an ADR rule is broken                    |
-| Mutation testing | Stryker               | the mutation score is below 80%          |
-| Acceptance tests | Playwright + Gherkin  | a scenario fails                         |
-| Commit message   | commitlint            | the message is not a Conventional Commit |
-
-The CRAP (Change Risk Anti-Patterns) score combines cyclomatic complexity with coverage:
-complexity² × (1 − coverage)³ + complexity. A function fails when it is both complex and poorly
-tested. A simple function or a fully tested one always passes.
-
-Run the gates at three levels:
-
-- `npm run validate`: all fast gates. The Claude Code Stop hook runs this command.
-- `npm run validate:full`: `validate`, then mutation testing, the Gherkin scenarios and the
-  documentation build. This is the definition of done.
-- CI: the same gates on every push to `main` and on every pull request.
 
 ## Working with AI agents
 
-Not using AI agents? Skip this section. The gates, git hooks and CI work the same without it. To
-remove the AI setup completely, see [Removing the AI setup](#removing-the-ai-setup).
+The rules for every agent are in `AGENTS.md`, and six roles in `.agents/roles/` split a task from
+the specification to the documentation. An optional adapter in `.claude/` connects Claude Code.
+Not using AI agents? Everything else works the same without them. See
+[AI workflow](docs/ai-workflow.md) for the step-by-step guide and for how to remove the AI setup.
 
-For a step-by-step walkthrough with example prompts, see [`GUIDE.md`](GUIDE.md).
+## Documentation
 
-The rules for every agent live in [`AGENTS.md`](AGENTS.md). Codex, Cursor, Copilot and most other
-tools read this file directly. Claude Code reads `CLAUDE.md`, which only imports `AGENTS.md`.
-
-- **Specification first.** You write the behavior as Gherkin scenarios in `tests/e2e/features/*.feature`.
-  An agent makes them pass with TDD. See `tests/e2e/features/greeting.feature` for an example.
-- **What you review.** You do not review the implementation. You review the scenarios, and the
-  changes to existing test assertions that each agent lists in its final report.
-- **Roles.** `.agents/roles/` defines four main roles that work in this order:
-  1. `specifier`: drafts the scenarios.
-  2. `edge-case-hunter`: lists edge cases from common to extreme in `docs/edge-cases/`, and asks
-     you about the cases the specification does not cover.
-  3. `implementer`: writes the tests, including one for each edge case, and the code.
-  4. `reviewer`: checks the tests against the scenarios and the edge cases, and cleans the code.
-
-  Two more roles work when needed: the `architect` records decisions as ADRs and enforces them
-  with Archgate rules, and the `documenter` keeps the VitePress docs, the arc42 pages, the ADR
-  index and the TSDoc comments up to date.
-
-- **Protected files.** Agents must not change the scenarios, the gate configs, the hooks, CI or
-  the agent rules.
-
-Each part of the setup enforces the rules at a different level:
-
-| Layer               | Where                         | Works with                     |
-| ------------------- | ----------------------------- | ------------------------------ |
-| Instructions        | `AGENTS.md`, `.agents/roles/` | any agent                      |
-| Git hooks           | `.husky/`                     | any agent and any human        |
-| CI and code owners  | `.github/`                    | everything that reaches `main` |
-| Claude Code adapter | `.claude/`                    | Claude Code only               |
-
-The Claude Code adapter adds three things:
-
-- A Stop hook. Claude cannot finish while `validate` fails.
-- Permission rules that block edits to protected files.
-- One subagent for each role.
-
-The adapter is optional: the git hooks and CI enforce the same rules without it.
-
-### Optional AI review
-
-Pull requests with the `ai-review` label get a review comment from a second model through
-OpenRouter. This model should be a different one from the model that wrote the code. Its review
-looks for problems the gates cannot see: tests that do not match the scenarios, and behavior that
-no scenario describes. To enable it, add the `OPENROUTER_API_KEY` secret and the
-`AI_REVIEW_MODEL` variable (an OpenRouter model id) in the GitHub repository settings.
-
-### Removing the AI setup
-
-Delete these files and folders. Every gate still passes without them:
-
-```sh
-rm -rf AGENTS.md CLAUDE.md GUIDE.md GUIDE-pl.md .agents .claude docs/edge-cases \
-  .github/workflows/ai-review.yml
-```
-
-Then remove the references that are left:
-
-- `README.md` and `README-pl.md`: the "Working with AI agents" section, the AI agent line in
-  "What you get", and the `.agents/` and `.claude/` lines in the project structure.
-- `.github/CODEOWNERS`: the lines for `AGENTS.md`, `CLAUDE.md`, `.claude/` and `.agents/`.
-- `.gitignore`: the `.claude/settings.local.json` line.
-- `docs/clean-start.md` and `docs/clean-start-pl.md`: the AI review part of the GitHub Actions row.
-
-## Project structure
-
-```text
-src/                  application code
-  db/                 Drizzle schema and client
-tests/unit/           Vitest unit tests
-tests/e2e/features/   Gherkin scenarios (the specification)
-tests/e2e/steps/      step definitions and fixtures
-dev/db/               migration and seed scripts
-dev/quality/          CRAP gate
-docs/                 VitePress documentation (arc42, ADRs)
-.archgate/adrs/       architecture decision records
-.agents/roles/        role instructions for AI agents
-.claude/              Claude Code adapter (hooks, permissions, subagents)
-.github/              CI workflows, code owners, pull request template
-```
-
-## Scripts
-
-| Script                                 | What it does                                   |
-| -------------------------------------- | ---------------------------------------------- |
-| `dev` / `start`                        | run in watch mode / run the build              |
-| `build`                                | compile TypeScript and Tailwind CSS to `dist/` |
-| `validate` / `validate:full`           | fast gates / all gates                         |
-| `autofix`                              | fix lint and formatting                        |
-| `test` / `test:coverage`               | unit tests / with coverage                     |
-| `test:mutation`                        | Stryker mutation testing                       |
-| `test:e2e` / `test:e2e:open`           | Gherkin scenarios in Playwright, run / UI mode |
-| `quality:crap` / `quality:duplication` | CRAP score / duplicated code                   |
-| `db:start` / `db:sync` / `seed:dev`    | start PostgreSQL / generate and migrate / seed |
-| `docs:dev` / `docs:api`                | documentation site / API docs from TSDoc       |
-| `update-dependencies`                  | update all dependencies to the latest versions |
-
-The full list of tools, with the reason for each one, is in
-[docs/clean-start.md](docs/clean-start.md) ([Polish version](docs/clean-start-pl.md)).
+- [Getting started](docs/getting-started.md): requirements, install, project structure
+- [Quality gates](docs/quality-gates.md): what each gate checks, and when it runs
+- [Scripts](docs/scripts.md): every npm script
+- [Tools](docs/tools.md): every tool, and why it is here
+- [AI workflow](docs/ai-workflow.md): working with AI agents, step by step
 
 ## License
 
