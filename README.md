@@ -10,8 +10,9 @@ template gives you a large set of them, configured strictly and ready to use, so
 professional-quality code from the first commit.
 
 The same gates work whether people or AI agents write the code. For people, they catch mistakes
-before code review. For AI agents, they go further. The idea comes from Robert C. Martin (Uncle
-Bob): do not read every line the agents write. Surround them with constraints instead (unit tests,
+before code review. For AI agents, they go further. The agent workflow was inspired by a
+[post by Robert C. Martin (Uncle Bob)](https://x.com/unclebobmartin/status/2080257779395154409):
+do not read every line the agents write. Surround them with constraints instead (unit tests,
 Gherkin scenarios, coverage, mutation testing, quality metrics), and accept only code that passes
 all of them. The human owns the specification and the gates. The agents own the implementation.
 
@@ -32,6 +33,13 @@ all of them. The human owns the specification and the gates. The agents own the 
   separate agents, and an optional adapter connects Claude Code.
 - **CI on GitHub Actions.** Git hooks, Conventional Commits and an optional review by a second AI
   model.
+
+## How to install
+
+```sh
+git clone https://github.com/MarlenaMakosza/Ultimate-TS-AI-project.git
+cd Ultimate-TS-AI-project
+```
 
 ## Quick start
 
@@ -81,7 +89,8 @@ Run the gates at three levels:
 
 ## Working with AI agents
 
-Not using AI agents? Skip this section. The gates, git hooks and CI work the same without it.
+Not using AI agents? Skip this section. The gates, git hooks and CI work the same without it. To
+remove the AI setup completely, see [Removing the AI setup](#removing-the-ai-setup).
 
 For a step-by-step walkthrough with example prompts, see [`GUIDE.md`](GUIDE.md).
 
@@ -131,6 +140,23 @@ looks for problems the gates cannot see: tests that do not match the scenarios, 
 no scenario describes. To enable it, add the `OPENROUTER_API_KEY` secret and the
 `AI_REVIEW_MODEL` variable (an OpenRouter model id) in the GitHub repository settings.
 
+### Removing the AI setup
+
+Delete these files and folders. Every gate still passes without them:
+
+```sh
+rm -rf AGENTS.md CLAUDE.md GUIDE.md GUIDE-pl.md .agents .claude docs/edge-cases \
+  .github/workflows/ai-review.yml
+```
+
+Then remove the references that are left:
+
+- `README.md` and `README-pl.md`: the "Working with AI agents" section, the AI agent line in
+  "What you get", and the `.agents/` and `.claude/` lines in the project structure.
+- `.github/CODEOWNERS`: the lines for `AGENTS.md`, `CLAUDE.md`, `.claude/` and `.agents/`.
+- `.gitignore`: the `.claude/settings.local.json` line.
+- `docs/clean-start.md` and `docs/clean-start-pl.md`: the AI review part of the GitHub Actions row.
+
 ## Project structure
 
 ```text
@@ -165,7 +191,7 @@ docs/                 VitePress documentation (arc42, ADRs)
 | `update-dependencies`                  | update all dependencies to the latest versions |
 
 The full list of tools, with the reason for each one, is in
-[docs/clean-start.en.md](docs/clean-start.en.md) ([Polish version](docs/clean-start.md)).
+[docs/clean-start.md](docs/clean-start.md) ([Polish version](docs/clean-start-pl.md)).
 
 ## License
 
