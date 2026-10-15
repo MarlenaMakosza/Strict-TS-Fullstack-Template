@@ -2,13 +2,17 @@
 
 [English](README.md) | Polski
 
-Szablon projektu w czystym TypeScript na Node.js, bez frameworka. Ma surowe bramki jakości, więc
-kod mogą pisać agenci AI, a bramki go sprawdzają.
+Gotowy do użycia produkcyjnego szablon projektu w czystym TypeScript na Node.js, bez frameworka.
 
-Pomysł pochodzi od Roberta C. Martina (Uncle Bob): nie czytaj każdej linii, którą piszą agenci.
-Zamiast tego otocz ich ograniczeniami (testy jednostkowe, scenariusze Gherkin, pokrycie testami,
-mutation testing, metryki jakości) i przyjmuj tylko kod, który przejdzie je wszystkie. Człowiek
-odpowiada za specyfikację i bramki. Agenci odpowiadają za implementację.
+Pisanie nietrywialnego kodu w TypeScript jest trudne. Język ma mnóstwo drobnych pułapek, które w
+pewnych okolicznościach sprawiają poważne problemy, dlatego lintery i inne narzędzia jakości kodu
+są tak ważne. Ten szablon zawiera duży zestaw takich narzędzi, surowo skonfigurowanych i gotowych
+do użycia, żeby od samego początku pisać kod profesjonalnej jakości.
+
+Te same bramki działają, niezależnie od tego, czy kod piszą ludzie, czy agenci AI. Ludziom
+wyłapują błędy, zanim kod trafi do review. W pracy z agentami AI idą dalej: zostaje tylko kod,
+który przejdzie wszystkie ograniczenia. Inspiracją dla pracy z agentami był
+[post Roberta C. Martina (Uncle Bob)](https://x.com/unclebobmartin/status/2080257779395154409).
 
 ## Co dostajesz
 
@@ -26,6 +30,13 @@ odpowiada za specyfikację i bramki. Agenci odpowiadają za implementację.
 - **Konfiguracja agentów AI, która działa z każdym narzędziem.** `AGENTS.md` zawiera reguły, są
   osobne role dla agentów, a opcjonalny adapter podłącza Claude Code.
 - **CI na GitHub Actions.** Hooki gita, Conventional Commits i opcjonalne review drugim modelem AI.
+
+## Instalacja
+
+```sh
+git clone https://github.com/MarlenaMakosza/Ultimate-TS-AI-project.git
+cd Ultimate-TS-AI-project
+```
 
 ## Szybki start
 
@@ -74,6 +85,9 @@ Bramki działają na trzech poziomach:
 - CI: te same bramki przy każdym wypchnięciu na `main` i w każdym PR.
 
 ## Praca z agentami AI
+
+Nie korzystasz z agentów AI? Pomiń tę sekcję. Bramki, hooki gita i CI działają tak samo bez niej.
+Żeby całkiem usunąć konfigurację AI, zobacz [Usunięcie konfiguracji AI](#usunięcie-konfiguracji-ai).
 
 Opis krok po kroku z przykładowymi poleceniami jest w [`GUIDE-pl.md`](GUIDE-pl.md).
 
@@ -125,6 +139,23 @@ nie widzą: testów niezgodnych ze scenariuszami i zachowania, którego nie opis
 Żeby to włączyć, dodaj w ustawieniach repo na GitHubie secret `OPENROUTER_API_KEY` i zmienną
 `AI_REVIEW_MODEL` (identyfikator modelu w OpenRouter).
 
+### Usunięcie konfiguracji AI
+
+Usuń te pliki i katalogi. Wszystkie bramki dalej przechodzą bez nich:
+
+```sh
+rm -rf AGENTS.md CLAUDE.md GUIDE.md GUIDE-pl.md .agents .claude docs/edge-cases \
+  .github/workflows/ai-review.yml
+```
+
+Potem usuń pozostałe odwołania:
+
+- `README.md` i `README-pl.md`: sekcję „Praca z agentami AI”, wiersz o agentach AI w „Co
+  dostajesz” oraz wiersze `.agents/` i `.claude/` w strukturze projektu.
+- `.github/CODEOWNERS`: wiersze dla `AGENTS.md`, `CLAUDE.md`, `.claude/` i `.agents/`.
+- `.gitignore`: wiersz `.claude/settings.local.json`.
+- `docs/clean-start.md` i `docs/clean-start-pl.md`: część o AI review w wierszu GitHub Actions.
+
 ## Struktura projektu
 
 ```text
@@ -158,8 +189,8 @@ docs/                 dokumentacja VitePress (arc42, ADR-y)
 | `docs:dev` / `docs:api`                | strona z dokumentacją / dokumentacja API z TSDoc               |
 | `update-dependencies`                  | aktualizuje wszystkie zależności do najnowszych wersji         |
 
-Pełna lista narzędzi z uzasadnieniem każdego jest w [docs/clean-start.md](docs/clean-start.md)
-([wersja angielska](docs/clean-start.en.md)).
+Pełna lista narzędzi z uzasadnieniem każdego jest w [docs/clean-start-pl.md](docs/clean-start-pl.md)
+([wersja angielska](docs/clean-start.md)).
 
 ## Licencja
 

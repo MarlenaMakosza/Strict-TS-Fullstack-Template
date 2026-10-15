@@ -1,155 +1,155 @@
-# Czysty start projektu (TypeScript)
+# Clean project start (TypeScript)
 
-Uniwersalny zestaw narzędzi dla projektu w czystym TypeScript, bez frameworka.
-Wybrany z `tools.md`. Pozycje oznaczone `*` są spoza tej listy.
+Universal toolset for a plain TypeScript project, no framework.
+Picked from `tools.md`. Items marked `*` are not on that list.
 
-## Język i runtime
+## Language and runtime
 
-| Narzędzie | Rola |
-|---|---|
-| TypeScript | Język, `tsc` jako sprawdzanie typów i build |
-| Node.js | Runtime, uruchamia `.ts` bezpośrednio (type stripping) |
-| Zod | Walidacja danych na granicach (API, pliki, env) |
-| dotenv | Ładowanie zmiennych z `.env` |
+| Tool       | Role                                            |
+| ---------- | ----------------------------------------------- |
+| TypeScript | Language, `tsc` for type checking and build     |
+| Node.js    | Runtime, runs `.ts` directly (type stripping)   |
+| Zod        | Data validation at boundaries (API, files, env) |
+| dotenv     | Loads variables from `.env`                     |
 
-## Baza danych
+## Database
 
-| Narzędzie | Rola |
-|---|---|
-| PostgreSQL (Docker) | Baza (`docker-compose.yml`) |
-| Docker Compose | Uruchamianie bazy (`npm run db:start`) |
-| `drizzle-orm` | ORM |
-| `drizzle-kit` | Migracje, studio (`drizzle.config.ts`) |
-| `postgres` | Sterownik PostgreSQL |
-| `@faker-js/faker` | Dane seedujące (`dev/db/seed*.ts`) |
+| Tool                | Role                                     |
+| ------------------- | ---------------------------------------- |
+| PostgreSQL (Docker) | Database (`docker-compose.yml`)          |
+| Docker Compose      | Starts the database (`npm run db:start`) |
+| `drizzle-orm`       | ORM                                      |
+| `drizzle-kit`       | Migrations, studio (`drizzle.config.ts`) |
+| `postgres`          | PostgreSQL driver                        |
+| `@faker-js/faker`   | Seed data (`dev/db/seed*.ts`)            |
 
-## Style
+## Styles
 
-| Narzędzie | Rola |
-|---|---|
-| Tailwind CSS v4 (`tailwindcss`) | Klasy utility; konfiguracja w CSS (`src/styles/app.css`, `@theme`), bez `tailwind.config.js` |
-| `@tailwindcss/cli` | Buduje `dist/app.css` (`css:build`, `css:watch`) |
+| Tool                            | Role                                                                                           |
+| ------------------------------- | ---------------------------------------------------------------------------------------------- |
+| Tailwind CSS v4 (`tailwindcss`) | Utility classes; config lives in CSS (`src/styles/app.css`, `@theme`), no `tailwind.config.js` |
+| `@tailwindcss/cli`              | Builds `dist/app.css` (`css:build`, `css:watch`)                                               |
 
-## Lintery i formatowanie
+## Linters and formatting
 
-| Narzędzie | Rola |
-|---|---|
-| ESLint | Linter |
-| `@eslint/js` | Reguły bazowe JS |
-| `typescript-eslint` | Reguły TS, type-aware (`strictTypeChecked`) |
-| `@eslint/json` | Pliki JSON |
-| `@eslint/markdown` | Pliki Markdown |
-| `eslint-plugin-unicorn` | Dobre praktyki, nowoczesne API |
-| `eslint-plugin-sonarjs` | Code smells, złożoność, duplikaty |
-| `eslint-plugin-import-x` + `eslint-import-resolver-typescript` | Cykle, błędne i zbędne importy |
-| `eslint-plugin-perfectionist` | Sortowanie importów, kluczy, unii |
-| `eslint-plugin-promise` | Błędy z Promise |
-| `eslint-plugin-drizzle`, Drizzle, PostgreSQL, Testcontainers, Faker | Zależne od projektu (baza danych) |
-| `eslint-plugin-n` | Reguły Node.js |
-| `eslint-plugin-security` | Wzorce bezpieczeństwa |
-| `eslint-plugin-regexp` `*` | Błędne i wolne wyrażenia regularne |
-| `eslint-plugin-tsdoc` | Składnia komentarzy TSDoc |
-| `@eslint-community/eslint-plugin-eslint-comments` | Pilnuje `eslint-disable` (rozwijana wersja `eslint-plugin-eslint-comments`) |
-| `@vitest/eslint-plugin` | Reguły dla testów |
-| `globals` | Definicje globali |
-| Prettier | Formatowanie |
-| `eslint-config-prettier` | Wyłącza reguły ESLint kolidujące z Prettier |
-| cspell | Spellcheck wszystkich plików (nie tylko lintowanych) |
-| knip `*` | Nieużywane pliki, eksporty i zależności |
-| `eslint-plugin-better-tailwindcss` `*` | Klasy Tailwind w TS i `@apply`: nieznane, zdublowane, konfliktowe, kolejność |
-| `@eslint/css` + `tailwind-csstree` `*` | Lintowanie plików CSS (ze składnią Tailwind v4) |
+| Tool                                                                | Role                                                                         |
+| ------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| ESLint                                                              | Linter                                                                       |
+| `@eslint/js`                                                        | Base JS rules                                                                |
+| `typescript-eslint`                                                 | TS rules, type-aware (`strictTypeChecked`)                                   |
+| `@eslint/json`                                                      | JSON files                                                                   |
+| `@eslint/markdown`                                                  | Markdown files                                                               |
+| `eslint-plugin-unicorn`                                             | Best practices, modern APIs                                                  |
+| `eslint-plugin-sonarjs`                                             | Code smells, complexity, duplicates                                          |
+| `eslint-plugin-import-x` + `eslint-import-resolver-typescript`      | Cycles, broken and redundant imports                                         |
+| `eslint-plugin-perfectionist`                                       | Sorting of imports, keys, unions                                             |
+| `eslint-plugin-promise`                                             | Promise mistakes                                                             |
+| `eslint-plugin-drizzle`, Drizzle, PostgreSQL, Testcontainers, Faker | Project-dependent (database)                                                 |
+| `eslint-plugin-n`                                                   | Node.js rules                                                                |
+| `eslint-plugin-security`                                            | Security patterns                                                            |
+| `eslint-plugin-regexp` `*`                                          | Broken and slow regular expressions                                          |
+| `eslint-plugin-tsdoc`                                               | TSDoc comment syntax                                                         |
+| `@eslint-community/eslint-plugin-eslint-comments`                   | Guards `eslint-disable` (maintained fork of `eslint-plugin-eslint-comments`) |
+| `@vitest/eslint-plugin`                                             | Test rules                                                                   |
+| `globals`                                                           | Global variable definitions                                                  |
+| Prettier                                                            | Formatting                                                                   |
+| `eslint-config-prettier`                                            | Turns off ESLint rules that clash with Prettier                              |
+| cspell                                                              | Spellcheck of all files (not only linted ones)                               |
+| knip `*`                                                            | Unused files, exports and dependencies                                       |
+| `eslint-plugin-better-tailwindcss` `*`                              | Tailwind classes in TS and `@apply`: unknown, duplicate, conflicting, order  |
+| `@eslint/css` + `tailwind-csstree` `*`                              | Linting CSS files (with Tailwind v4 syntax)                                  |
 
-### Opcjonalne lintery
+### Optional linters
 
-| Narzędzie | Kiedy |
-|---|---|
-| `eslint-plugin-functional` | Gdy zespół chce wymusić niemutowalność; bardzo restrykcyjny |
-| `@dword-design/eslint-plugin-import-alias` | Gdy projekt używa aliasów ścieżek |
-| `eslint-plugin-boundaries` | Gdy projekt ma warstwy (np. domain / application / infrastructure); pilnuje, kto może importować z kogo |
+| Tool                                       | When                                                                                                        |
+| ------------------------------------------ | ----------------------------------------------------------------------------------------------------------- |
+| `eslint-plugin-functional`                 | When the team wants to enforce immutability; very strict                                                    |
+| `@dword-design/eslint-plugin-import-alias` | When the project uses path aliases                                                                          |
+| `eslint-plugin-boundaries`                 | When the project has layers (e.g. domain / application / infrastructure); controls who may import from whom |
 
-## Testy
+## Tests
 
-| Narzędzie | Rola |
-|---|---|
-| Vitest | Test runner |
-|`@testcontainers/postgresql` | PostgreSQL w kontenerze dla testów |
-| `@vitest/coverage-v8` `*` | Pokrycie testami |
-| Playwright (`@playwright/test`) | Testy end-to-end (`playwright.config.ts`) |
-| Gherkin | Scenariusze BDD z perspektywy użytkownika (`.feature`, Given/When/Then), uruchamiane w Playwright |
-| `playwright-bdd` | Zamienia scenariusze Gherkin (`.feature`) w testy Playwright, mapuje kroki na definicje w TS |
-| Stryker (`@stryker-mutator/core`) | Mutation testing: celowo psuje kod i sprawdza, czy testy to wykryją (mutation score zamiast samego coverage) |
-| Stryker command runner (wbudowany w core) | Odpala `vitest run` dla każdego mutanta. `@stryker-mutator/vitest-runner` jest szybszy, ale nie działa z Vitest 5 (stryker-js #6210); wróć do niego po poprawce |
-| jscpd `*` | Duplikacja kodu (`.jscpd.json`), bramka w `validate`: żaden klon niedozwolony |
-| CRAP (`dev/quality/crap.ts`) `*` | Złożoność (ESLint `complexity`) × brak pokrycia (Vitest coverage); bramka w `validate`, próg 30 na funkcję |
+| Tool                                     | Role                                                                                                                                                      |
+| ---------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Vitest                                   | Test runner                                                                                                                                               |
+| `@testcontainers/postgresql`             | PostgreSQL in a container for tests                                                                                                                       |
+| `@vitest/coverage-v8` `*`                | Test coverage                                                                                                                                             |
+| Playwright (`@playwright/test`)          | End-to-end tests (`playwright.config.ts`)                                                                                                                 |
+| Gherkin                                  | BDD scenarios from the user's point of view (`.feature`, Given/When/Then), run in Playwright                                                              |
+| `playwright-bdd`                         | Turns Gherkin scenarios (`.feature`) into Playwright tests, maps steps to TS definitions                                                                  |
+| Stryker (`@stryker-mutator/core`)        | Mutation testing: deliberately breaks the code and checks that tests catch it (mutation score instead of plain coverage)                                  |
+| Stryker command runner (built into core) | Runs `vitest run` for every mutant. `@stryker-mutator/vitest-runner` is faster but does not work with Vitest 5 (stryker-js #6210); switch back once fixed |
+| jscpd `*`                                | Duplicated code (`.jscpd.json`), a gate in `validate`: no clone allowed                                                                                   |
+| CRAP (`dev/quality/crap.ts`) `*`         | Complexity (ESLint `complexity`) × missing coverage (Vitest coverage); a gate in `validate`, limit 30 per function                                        |
 
-## Git i CI
+## Git and CI
 
-| Narzędzie | Rola |
-|---|---|
-| Husky | Hooki gita |
-| lint-staged | Lint i format tylko zmienionych plików przy commicie |
-| commitlint + `@commitlint/config-conventional` | Conventional Commits |
-| GitHub Actions | CI: `validate`, mutation testing i e2e na każdym PR; opcjonalne AI review innym modelem (etykieta `ai-review`, OpenRouter) |
+| Tool                                           | Role                                                                                                                          |
+| ---------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| Husky                                          | Git hooks                                                                                                                     |
+| lint-staged                                    | Lint and format only changed files on commit                                                                                  |
+| commitlint + `@commitlint/config-conventional` | Conventional Commits                                                                                                          |
+| GitHub Actions                                 | CI: `validate`, mutation testing and e2e on every PR; optional AI review by a different model (`ai-review` label, OpenRouter) |
 
-## Utrzymanie
+## Maintenance
 
-| Narzędzie | Rola |
-|---|---|
-| Renovate `*` lub npm-check-updates | Aktualizacja zależności |
-| rimraf | `npm run clean` działający też na Windowsie |
+| Tool                              | Role                                       |
+| --------------------------------- | ------------------------------------------ |
+| Renovate `*` or npm-check-updates | Dependency updates                         |
+| rimraf                            | `npm run clean` that also works on Windows |
 
-## Dokumentacja i architektura
+## Documentation and architecture
 
-| Narzędzie | Rola |
-|---|---|
-| TypeDoc | API docs z komentarzy TSDoc |
-| VitePress | Strona z dokumentacją (arc42, ADR) |
-| Archgate | Egzekwowanie ADR w kodzie |
+| Tool      | Role                            |
+| --------- | ------------------------------- |
+| TypeDoc   | API docs from TSDoc comments    |
+| VitePress | Documentation site (arc42, ADR) |
+| Archgate  | Enforces ADRs in code           |
 
-## Skrypty npm
+## npm scripts
 
-| Skrypt | Polecenie |
-|---|---|
-| `dev` | `node --watch src/index.ts` |
-| `build` | `tsc --project tsconfig.build.json` + `css:build` (do `dist/`) |
-| `css:build` / `css:watch` | Tailwind CLI: `src/styles/app.css` → `dist/app.css` |
-| `start` | `node dist/index.js` |
-| `prepare` | husky (instaluje hooki po `npm install`) |
-| `validate` | lint + ts-check + spellcheck + knip + test:coverage + quality:crap + quality:duplication + check:adrs |
-| `validate:full` | validate + test:mutation (`--force`) + test:e2e + docs:build |
-| `lint` / `lint:fix` | ESLint (`--max-warnings 0`) |
-| `format` / `format:check` | Prettier (`--write` / `--check` do CI) |
-| `autofix` | lint:fix + format |
-| `ts-check` | `tsc --noEmit` |
-| `spellcheck` | cspell |
-| `knip` | knip |
-| `test` / `test:watch` | `vitest run` / `vitest` |
-| `test:unit` / `test:unit:watch` | Vitest tylko dla `tests/unit` |
-| `test:coverage` | `vitest run --coverage` |
-| `test:mutation` | `stryker run` |
-| `test:e2e` / `test:e2e:open` | `bddgen` + `playwright test` / z `--ui` |
-| `quality:crap` | CRAP na podstawie `coverage/coverage-final.json` |
-| `quality:duplication` | jscpd |
-| `commitlint` | `commitlint --edit` (hook `commit-msg`) |
-| `check:adrs` | archgate check |
-| `docs:api` | TypeDoc |
-| `docs:dev` / `docs:build` / `docs:preview` | VitePress |
-| `db:start` | docker compose up |
-| `db:generate` / `db:migrate` / `db:sync` | drizzle-kit generate (nazwy z datą przez `migrations.prefix`) / `dev/db/migrate.ts` / generate + migrate |
-| `db:studio` / `db:push` / `db:check` | drizzle-kit studio / push / check |
-| `seed:dev` | `dev/db/seed.ts` |
-| `firstrun:dev` | install + ts-check + docker + db:sync + seed |
-| `list-outdated-dependencies` / `update-dependencies` | npm-check-updates |
-| `clean` | `rimraf node_modules dist coverage reports .stryker-tmp` |
+| Script                                               | Command                                                                                                      |
+| ---------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| `dev`                                                | `node --watch src/index.ts`                                                                                  |
+| `build`                                              | `tsc --project tsconfig.build.json` + `css:build` (into `dist/`)                                             |
+| `css:build` / `css:watch`                            | Tailwind CLI: `src/styles/app.css` → `dist/app.css`                                                          |
+| `start`                                              | `node dist/index.js`                                                                                         |
+| `prepare`                                            | husky (installs hooks after `npm install`)                                                                   |
+| `validate`                                           | lint + ts-check + spellcheck + knip + test:coverage + quality:crap + quality:duplication + check:adrs        |
+| `validate:full`                                      | validate + test:mutation (`--force`) + test:e2e + docs:build                                                 |
+| `lint` / `lint:fix`                                  | ESLint (`--max-warnings 0`)                                                                                  |
+| `format` / `format:check`                            | Prettier (`--write` / `--check` for CI)                                                                      |
+| `autofix`                                            | lint:fix + format                                                                                            |
+| `ts-check`                                           | `tsc --noEmit`                                                                                               |
+| `spellcheck`                                         | cspell                                                                                                       |
+| `knip`                                               | knip                                                                                                         |
+| `test` / `test:watch`                                | `vitest run` / `vitest`                                                                                      |
+| `test:unit` / `test:unit:watch`                      | Vitest for `tests/unit` only                                                                                 |
+| `test:coverage`                                      | `vitest run --coverage`                                                                                      |
+| `test:mutation`                                      | `stryker run`                                                                                                |
+| `test:e2e` / `test:e2e:open`                         | `bddgen` + `playwright test` / with `--ui`                                                                   |
+| `quality:crap`                                       | CRAP from `coverage/coverage-final.json`                                                                     |
+| `quality:duplication`                                | jscpd                                                                                                        |
+| `commitlint`                                         | `commitlint --edit` (`commit-msg` hook)                                                                      |
+| `check:adrs`                                         | archgate check                                                                                               |
+| `docs:api`                                           | TypeDoc                                                                                                      |
+| `docs:dev` / `docs:build` / `docs:preview`           | VitePress                                                                                                    |
+| `db:start`                                           | docker compose up                                                                                            |
+| `db:generate` / `db:migrate` / `db:sync`             | drizzle-kit generate (date-stamped names via `migrations.prefix`) / `dev/db/migrate.ts` / generate + migrate |
+| `db:studio` / `db:push` / `db:check`                 | drizzle-kit studio / push / check                                                                            |
+| `seed:dev`                                           | `dev/db/seed.ts`                                                                                             |
+| `firstrun:dev`                                       | install + ts-check + docker + db:sync + seed                                                                 |
+| `list-outdated-dependencies` / `update-dependencies` | npm-check-updates                                                                                            |
+| `clean`                                              | `rimraf node_modules dist coverage reports .stryker-tmp`                                                     |
 
-## Pomiń/opcjonalne
+## Skip/optional
 
-| Narzędzie | Powód |
-|---|---|
-| Svelte, SvelteKit, `svelte-check`, `eslint-plugin-svelte`, `prettier-plugin-svelte`, `@testing-library/*` | Specyficzne dla frameworka |
-| `@html-eslint/*` | Brak plików HTML w czystym TS |
-| `@stylistic/eslint-plugin` | Dubluje Prettier |
-| `prettier-plugin-organize-imports` | Dubluje perfectionist |
-| `@cspell/eslint-plugin` | Dubluje cspell CLI |
-| `eslint-plugin-eslint-plugin` | Tylko do pisania własnych reguł ESLint |
-| skott | knip + import-x pokrywają większość, ale do wglądu do grafów|
+| Tool                                                                                                      | Reason                                                                        |
+| --------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| Svelte, SvelteKit, `svelte-check`, `eslint-plugin-svelte`, `prettier-plugin-svelte`, `@testing-library/*` | Framework-specific                                                            |
+| `@html-eslint/*`                                                                                          | No HTML files in plain TS                                                     |
+| `@stylistic/eslint-plugin`                                                                                | Duplicates Prettier                                                           |
+| `prettier-plugin-organize-imports`                                                                        | Duplicates perfectionist                                                      |
+| `@cspell/eslint-plugin`                                                                                   | Duplicates cspell CLI                                                         |
+| `eslint-plugin-eslint-plugin`                                                                             | Only for writing custom ESLint rules                                          |
+| skott                                                                                                     | knip + import-x cover most of it, but useful for viewing the dependency graph |
