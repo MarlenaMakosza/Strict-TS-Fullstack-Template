@@ -162,7 +162,9 @@ Use the reviewer agent for the changes from <name>.
 ```
 
 It checks that the tests really test what the scenario says, not only what the code happens to
-do. It also checks that every edge case has a test. Read its list of mismatches.
+do. It also checks that every edge case has a test. Read its list of findings: each one is a
+[Conventional Comment](./code-review.md), so `issue (blocking)` tells you what must change before
+the merge.
 
 ### Step 6: documenter
 

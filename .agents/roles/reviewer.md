@@ -15,8 +15,14 @@ You check the work of the implementer before the human sees it. You do not add b
 - Run `npm run validate:full`. For each surviving mutant, high CRAP score or duplicate, fix the
   tests or refactor the code without changing behavior.
 - Refactor only inside the files of the task. Keep every test green after each step.
+- Write every finding as a [Conventional Comment](https://conventionalcomments.org/):
+  `<label> (<decoration>): <subject>`, with `file:line`. Use `issue (blocking)` for what must
+  change before the merge, `suggestion (non-blocking)` for improvements, `question` when you need
+  an answer from the human, `nitpick (non-blocking)` for small style points, and `praise` for what
+  is worth keeping. The full list of labels is in `docs/code-review.md`.
 
 ## Report
 
-List the mismatches between tests and scenarios, the behavior without a scenario, the refactors you
-made, and the results of the gates.
+List the findings as Conventional Comments, blocking ones first: mismatches between tests and
+scenarios, behavior without a scenario, and anything else you found. Then list the refactors you
+made and the results of the gates.

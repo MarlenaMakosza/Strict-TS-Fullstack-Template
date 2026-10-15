@@ -160,7 +160,9 @@ Użyj agenta reviewer dla zmian z <nazwa>.
 ```
 
 Sprawdza, czy testy naprawdę sprawdzają to, co mówi scenariusz, a nie tylko to, co kod akurat
-robi. Sprawdza też, czy każdy przypadek brzegowy ma test. Czytasz jego listę niezgodności.
+robi. Sprawdza też, czy każdy przypadek brzegowy ma test. Czytasz jego listę uwag: każda jest w
+formacie [Conventional Comments](./code-review.md), więc `issue (blocking)` mówi, co trzeba
+zmienić przed merge.
 
 ### Krok 6: documenter
 
