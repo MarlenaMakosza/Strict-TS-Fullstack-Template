@@ -24,13 +24,18 @@ has to guess the tone or the priority.
 | ------------ | ----------------------------------------------------------------------- |
 | `praise`     | something that is done well and worth keeping                           |
 | `nitpick`    | a small, personal-preference point; always non-blocking                 |
+| `quibble`    | the same as a nitpick, with a friendlier name                           |
 | `suggestion` | a concrete improvement; say whether it is blocking                      |
+| `polish`     | nothing is wrong, but the content could be better right away            |
 | `issue`      | a problem that needs a fix; pair it with a suggestion when you have one |
 | `todo`       | a small, necessary change, such as a missing test                       |
+| `typo`       | like a todo, when the problem is a misspelling                          |
 | `question`   | something you do not understand or want to confirm                      |
 | `thought`    | an idea for later, not a request for this pull request                  |
 | `chore`      | a step that must happen before the merge, such as updating docs         |
 | `note`       | information for the reader, with nothing to do                          |
+
+The list is a starting point: use another label when none of these fits.
 
 ## Examples
 

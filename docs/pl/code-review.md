@@ -24,9 +24,12 @@ musi zgadywać tonu ani priorytetu.
 | ------------ | -------------------------------------------------------- |
 | `praise`     | coś zrobionego dobrze, warto to zachować                 |
 | `nitpick`    | drobna uwaga, kwestia gustu; zawsze non-blocking         |
+| `quibble`    | to samo co nitpick, tylko z łagodniejszą nazwą           |
 | `suggestion` | konkretne ulepszenie; napisz, czy blokuje                |
+| `polish`     | nic nie jest źle, ale treść można od razu poprawić       |
 | `issue`      | problem do poprawienia; dodaj sugestię, jeśli ją masz    |
 | `todo`       | mała, konieczna zmiana, np. brakujący test               |
+| `typo`       | jak todo, gdy problemem jest literówka                   |
 | `question`   | coś niejasnego albo do potwierdzenia                     |
 | `thought`    | pomysł na później, nie prośba w tym PR                   |
 | `chore`      | krok wymagany przed merge, np. aktualizacja dokumentacji |
@@ -34,6 +37,8 @@ musi zgadywać tonu ani priorytetu.
 
 Etykiety i dekoracje zostają po angielsku: tak opisuje je specyfikacja i tak rozpoznają je
 narzędzia.
+
+Ta lista to punkt wyjścia: użyj innej etykiety, jeśli żadna z tych nie pasuje.
 
 ## Przykłady
 
