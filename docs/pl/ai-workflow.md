@@ -179,7 +179,10 @@ git log main..
 git push -u origin feat/<nazwa>
 ```
 
-Otwórz pull request na GitHubie i poczekaj na zielone CI. Merge robisz ty.
+Otwórz pull request na GitHubie i poczekaj na zielone CI. Merge robisz ty, przez **Squash and
+merge**. Tytuł PR trafia na `main` jako wiadomość zmiany, więc napisz go w formacie
+Conventional Commits.
+Zobacz [Ustawienia GitHuba](./getting-started.md#ustawienia-githuba).
 
 ## Co sprawdzają bramki
 
@@ -270,10 +273,9 @@ Potem usuń pozostałe odwołania:
 ## Jednorazowe ustawienia
 
 1. Node 24: `nvm use` w katalogu projektu. Przy starszym Node `npm install` odmówi instalacji.
-2. GitHub, Settings → Branches → `main`:
-   - włącz wymaganie przechodzącego CI,
-   - opcja „Require review from Code Owners” ma sens tylko wtedy, gdy agenci wypychają zmiany z innego
-     konta niż twoje.
+2. GitHub: ustawienia repo z [Ustawień GitHuba](./getting-started.md#ustawienia-githuba). Do tego
+   opcja „Require review from Code Owners” ma sens tylko wtedy, gdy agenci wypychają zmiany z
+   innego konta niż twoje.
 3. AI review (opcjonalnie): dodaj secret `OPENROUTER_API_KEY` i zmienną `AI_REVIEW_MODEL`. Bez
    nich workflow się nie uruchamia i nic nie kosztuje.
 
@@ -282,3 +284,6 @@ Potem usuń pozostałe odwołania:
 Najprostszy start: jedna mała funkcja, scenariusz w `.feature` i polecenie dla agenta implementer.
 Potem przeczytaj jego raport. Pozostałe role dokładaj, gdy ten podstawowy cykl stanie się
 naturalny.
+
+Każdemu PR daj tytuł w formacie Conventional Commits i scalaj go przez **Squash and merge**: tytuł
+trafia na `main` jako wiadomość zmiany i jako wpis w CHANGELOG.

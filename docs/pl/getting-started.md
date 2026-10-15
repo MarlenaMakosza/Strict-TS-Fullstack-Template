@@ -47,10 +47,43 @@ Po każdym merge'u na `main` release-please aktualizuje otwarty release PR z nas
 nowymi wpisami w `CHANGELOG.md`. Merge tego PR taguje wersję i tworzy GitHub Release. Nigdy nie
 edytuj `CHANGELOG.md` ani wersji ręcznie.
 
-Jednorazowe ustawienie na GitHubie: Settings → Actions → General → Workflow permissions → włącz
-**Allow GitHub Actions to create and approve pull requests**. Bez tego release-please nie otworzy
-release PR. Na tym PR nie uruchamia się CI, bo GitHub nie startuje workflow dla zmian zrobionych
-domyślnym `GITHUB_TOKEN`; ten PR zmienia tylko wersję i `CHANGELOG.md`.
+release-please potrzebuje kilku ustawień repo: zobacz [Ustawienia GitHuba](#ustawienia-githuba).
+
+## Ustawienia GitHuba
+
+Jeśli projekt jest na GitHubie, ustaw to raz w ustawieniach repo.
+
+**Settings → General → Pull Requests**
+
+- Wyłącz **Allow merge commits** i **Allow rebase merging**, zostaw **Allow squash merging**.
+- Przy squash merging ustaw **Default commit message** na **Pull request title**.
+- Włącz **Automatically delete head branches**.
+
+Dzięki temu każdy PR trafia na `main` jako jeden commit z tytułem PR jako wiadomością i dostaje
+jeden wpis w `CHANGELOG.md`. Dlatego **tytuł PR musi być w formacie Conventional Commits**
+(`feat: …`, `fix: …`, `docs: …`): to on decyduje o następnej wersji. Merge commit dodałby każdą
+zmianę do CHANGELOG dwa razy: raz za commit i raz za merge commit, który powtarza tytuł PR.
+
+**Settings → Actions → General → Workflow permissions**
+
+- Włącz **Allow GitHub Actions to create and approve pull requests**. Bez tego release-please nie
+  otworzy release PR.
+
+**Settings → Rules → Rulesets** (albo **Settings → Branches**), dla `main`
+
+- Wymagaj PR przed merge i przechodzących sprawdzeń CI: `validate`, `mutation` i `e2e`.
+- Na release PR nie uruchamia się CI, bo GitHub nie startuje workflow dla zmian zrobionych
+  domyślnym `GITHUB_TOKEN`. Przy wymaganych sprawdzeniach dodaj siebie do listy obejść (bypass) albo daj
+  release-please osobisty token (pole `token` w akcji).
+
+Po merge GitHub usuwa gałąź zdalną, ale twoja lokalna kopia zostaje. Usuń ją też, bo inaczej
+następny `git push --all` ją przywróci:
+
+```sh
+git switch main && git pull
+git fetch --prune
+git branch -D <gałąź>   # -D: po squash merge git nie uznaje gałęzi za scaloną
+```
 
 ## Struktura projektu
 
