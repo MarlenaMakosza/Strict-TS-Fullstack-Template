@@ -19,6 +19,12 @@ npm run firstrun:dev
 `firstrun:dev` installs the dependencies and checks the types. It then starts PostgreSQL, runs the
 migrations and seeds the database.
 
+## Starting your own project
+
+`CHANGELOG.md` and the version in `package.json` describe releases of this template. In a project
+created from it, delete `CHANGELOG.md`, set `version` in `package.json` and in
+`.release-please-manifest.json` to `0.0.0`, and change `name` in `package.json`.
+
 ## Every day
 
 ```sh
@@ -29,6 +35,17 @@ npm run validate:full   # every gate: run it before you call a task done
 
 The other commands are in [Scripts](./scripts.md), and what each gate checks is in
 [Quality gates](./quality-gates.md).
+
+## Releases
+
+Versions follow [SemVer](https://semver.org/) and come from the commit messages, which
+`commitlint` already keeps in the Conventional Commits format: `fix:` bumps the patch version,
+`feat:` the minor one, and a breaking change (`feat!:` or `BREAKING CHANGE:`) the major one. Before
+1.0.0 a breaking change bumps the minor version.
+
+After every merge into `main`, release-please updates an open release pull request with the next
+version and the new `CHANGELOG.md` entries. Merging that pull request tags the version and creates a
+GitHub Release. Never edit `CHANGELOG.md` or the version by hand.
 
 ## Project structure
 

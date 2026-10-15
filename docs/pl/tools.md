@@ -85,12 +85,13 @@ zestaw dla projektu w czystym TypeScript. Komendy, które je uruchamiają, są w
 
 ## Git i CI
 
-| Narzędzie                                      | Rola                                                                                                                       |
-| ---------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
-| Husky                                          | Hooki gita                                                                                                                 |
-| lint-staged                                    | Lint i format tylko zmienionych plików przy commicie                                                                       |
-| commitlint + `@commitlint/config-conventional` | Conventional Commits                                                                                                       |
-| GitHub Actions                                 | CI: `validate`, mutation testing i e2e na każdym PR; opcjonalne AI review innym modelem (etykieta `ai-review`, OpenRouter) |
+| Narzędzie                                      | Rola                                                                                                                             |
+| ---------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| Husky                                          | Hooki gita                                                                                                                       |
+| lint-staged                                    | Lint i format tylko zmienionych plików przy commicie                                                                             |
+| commitlint + `@commitlint/config-conventional` | Conventional Commits                                                                                                             |
+| GitHub Actions                                 | CI: `validate`, mutation testing i e2e na każdym PR; opcjonalne AI review innym modelem (etykieta `ai-review`, OpenRouter)       |
+| release-please `*`                             | Wersje i `CHANGELOG.md` z Conventional Commits: utrzymuje otwarty release PR, a jego merge taguje wersję i tworzy GitHub Release |
 
 ## Utrzymanie
 
