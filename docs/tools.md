@@ -107,7 +107,10 @@ the checks work together, see [Quality gates](./quality-gates.md).
 | VitePress | Documentation site (arc42, ADR) |
 | Archgate  | Enforces ADRs in code           |
 
-## Left out on purpose
+## Worth considering in other projects, and other notes
+
+Tools that fit other kinds of projects, or that duplicate what the template already has. The
+Reason column says when they can still be useful.
 
 | Tool                                                                                                      | Reason                                                                        |
 | --------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |

@@ -107,7 +107,10 @@ zestaw dla projektu w czystym TypeScript. Komendy, które je uruchamiają, są w
 | VitePress | Strona z dokumentacją (arc42, ADR) |
 | Archgate  | Egzekwowanie ADR w kodzie          |
 
-## Celowo pominięte
+## Do rozważenia w innych projektach i inne notki
+
+Narzędzia, które pasują do innych projektów albo dublują to, co szablon już ma. Kolumna „Powód”
+mówi, kiedy mogą się przydać.
 
 | Narzędzie                                                                                                 | Powód                                                        |
 | --------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
