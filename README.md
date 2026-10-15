@@ -69,6 +69,6 @@ Not using AI agents? Everything else works the same without them. See
 
 [MIT](LICENSE)
 
-## 👩‍💻 Author
+## Author
 
 Made by [Marlena Makosza](https://marlenamakosza.com)
