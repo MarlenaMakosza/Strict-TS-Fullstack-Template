@@ -17,7 +17,7 @@ easy to review (see [Final report](#final-report)).
 - PostgreSQL through Drizzle (`src/db/`). Start the database with `npm run db:start`.
 - Architecture decisions (ADRs) live in `.archgate/adrs/`. Read the relevant ones before you change
   the structure of the code. The architecture overview is in `docs/architecture/` (arc42).
-- Follow `docs/coding-conventions.md`: naming, errors as Result values, no `enum`, dependency
+- Follow `docs/architecture/08-crosscutting-concepts-and-conventions.md`: naming, errors as Result values, no `enum`, dependency
   injection, tests by behavior. ESLint checks part of it; the rest is up to you and the reviewer.
 
 ## Definition of done
@@ -122,7 +122,7 @@ The human owns these files. Do not edit, rename or delete them:
 - `.husky/**`, `.github/**`: the hooks and CI
 - `CHANGELOG.md`, `release-please-config.json`, `.release-please-manifest.json` and the `version`
   in `package.json`: release-please writes them
-- `docs/coding-conventions.md`: the coding conventions
+- `docs/architecture/08-crosscutting-concepts-and-conventions.md`: the coding conventions
 - `.archgate/adrs/**`: architecture decisions. The architect may draft them, but only the human
   accepts them
 - `AGENTS.md`, `CLAUDE.md`, `.agents/**`, `.claude/**`: the agent rules
