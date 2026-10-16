@@ -430,7 +430,8 @@ export default [
         'prefer-rest-params': 'error',
         'prefer-spread': 'error',
         'prefer-template': 'error',
-        'no-console': 'off', // CLI/server output; replace with a logger when the project has one
+        // Log through src/logger.ts (ADR ARCH-002). The CLI prints its output in src/index.ts.
+        'no-console': 'error',
         'func-name-matching': 'error',
         'accessor-pairs': 'error',
         'grouped-accessor-pairs': 'error',
@@ -776,9 +777,19 @@ export default [
     },
   },
   {
+    name: 'CLI entry point',
+    files: ['src/index.ts'],
+    rules: {
+      // The CLI prints its output to stdout here; diagnostics go through src/logger.ts
+      'no-console': 'off',
+    },
+  },
+  {
     name: 'Dev scripts',
     files: ['dev/**/*.ts'],
     rules: {
+      // Dev scripts report to the terminal
+      'no-console': 'off',
       // Scripts run once in CLI context — sync I/O is fine, no event loop to block
       'node/no-sync': 'off',
       // Path is developer-controlled, not user input — no injection risk

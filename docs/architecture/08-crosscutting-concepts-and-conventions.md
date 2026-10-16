@@ -102,9 +102,19 @@ Shared types and helpers go into `shared/`.
 
 ## Logging
 
-- There is no logger yet. The CLI prints with `console.log`, and errors go to `console.error`.
-- To decide later: a structured logger such as pino or winston, for storing and searching logs.
-  Record the choice as an ADR.
+- Log through `logger` from `src/logger.ts`, a [pino](https://getpino.io/) logger (ADR `ARCH-002`).
+  Pass context as an object, and the message as a short sentence:
+
+  ```ts
+  logger.info({ userID }, 'Signed in');
+  ```
+
+- The level comes from `LOG_LEVEL` (default `info`). Production and tests write JSON lines; in
+  development, pino-pretty writes readable lines.
+- Logs go to stderr, so stdout stays free for the output of the program. Only `src/index.ts` prints
+  that output, with `console.log`. ESLint (`no-console`) rejects `console.*` everywhere else.
+- Secret fields (`DATABASE_URL`, `password`, `token`, `authorization`, `cookie`) are redacted. Add
+  new ones to `SECRET_FIELDS` in `src/logger.ts`, and never put a secret in the message string.
 
 ## Null and undefined
 

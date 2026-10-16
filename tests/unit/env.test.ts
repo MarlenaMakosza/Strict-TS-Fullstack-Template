@@ -22,8 +22,25 @@ describe('env', () => {
 
     const { env } = await loadEnvironment();
 
-    expect(env).toStrictEqual({ DATABASE_URL: validUrl, NODE_ENV: nodeEnvironment });
+    expect(env).toStrictEqual({
+      DATABASE_URL: validUrl,
+      LOG_LEVEL: 'info',
+      NODE_ENV: nodeEnvironment,
+    });
   });
+
+  it.each(['fatal', 'error', 'warn', 'info', 'debug', 'trace', 'silent'])(
+    'accepts LOG_LEVEL %s',
+    async logLevel => {
+      expect.assertions(1);
+      vi.stubEnv('LOG_LEVEL', logLevel);
+      vi.stubEnv('DATABASE_URL', validUrl);
+
+      const { env } = await loadEnvironment();
+
+      expect(env.LOG_LEVEL).toBe(logLevel);
+    },
+  );
 
   it('defaults NODE_ENV to development', async () => {
     expect.assertions(1);
