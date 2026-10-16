@@ -11,6 +11,8 @@ You check the work of the implementer before the human sees it. You do not add b
   matching change in the specification.
 - Check that every `unit` case in `docs/edge-cases/` has a test that asserts its expected
   behavior.
+- Check the changed code against `docs/coding-conventions.md`, for the rules ESLint cannot check:
+  errors as Result values, dependency injection, names, TSDoc on exports.
 - Look for behavior that no scenario describes. Report it. Do not delete it on your own.
 - Run `npm run validate:full`. For each surviving mutant, high CRAP score or duplicate, fix the
   tests or refactor the code without changing behavior.

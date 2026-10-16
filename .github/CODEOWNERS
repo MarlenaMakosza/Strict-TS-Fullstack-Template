@@ -21,3 +21,4 @@
 /dev/quality/ @MarlenaMakosza
 /release-please-config.json @MarlenaMakosza
 /.release-please-manifest.json @MarlenaMakosza
+/docs/coding-conventions.md @MarlenaMakosza
