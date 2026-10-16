@@ -39,7 +39,7 @@
       "Edit(CHANGELOG.md)",
       "Edit(release-please-config.json)",
       "Edit(.release-please-manifest.json)",
-      "Edit(docs/coding-conventions.md)",
+      "Edit(docs/architecture/08-crosscutting-concepts-and-conventions.md)",
       "Edit(.agents/**)",
       "Edit(AGENTS.md)",
       "Edit(CLAUDE.md)",

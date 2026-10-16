@@ -24,7 +24,10 @@ export default defineConfig({
               { text: 'Scripts', link: '/scripts' },
               { text: 'Tools', link: '/tools' },
               { text: 'Code review', link: '/code-review' },
-              { text: 'Coding conventions', link: '/coding-conventions' },
+              {
+                text: 'Coding conventions',
+                link: '/architecture/08-crosscutting-concepts-and-conventions',
+              },
             ],
           },
           {
@@ -37,7 +40,14 @@ export default defineConfig({
               { text: '3. Context and scope', link: '/architecture/03-context-scope' },
               { text: '4. Solution strategy', link: '/architecture/04-solution-strategy' },
               { text: '5. Building blocks', link: '/architecture/05-building-blocks' },
-              { text: 'Decisions', link: '/architecture/decisions' },
+              { text: '6. Runtime view', link: '/architecture/06-runtime-view' },
+              { text: '7. Deployment view', link: '/architecture/07-deployment-view' },
+              {
+                text: '8. Concepts and conventions',
+                link: '/architecture/08-crosscutting-concepts-and-conventions',
+              },
+              { text: '9. Decisions', link: '/architecture/decisions' },
+              { text: '10. Quality requirements', link: '/architecture/10-quality-requirements' },
               { text: '11. Risks', link: '/architecture/11-risks' },
               { text: '12. Glossary', link: '/architecture/12-glossary' },
             ],
@@ -68,7 +78,10 @@ export default defineConfig({
               { text: 'Narzędzia', link: '/pl/tools' },
               { text: 'Code review', link: '/pl/code-review' },
               // These pages exist in English only.
-              { text: 'Konwencje kodu (EN)', link: '/coding-conventions' },
+              {
+                text: 'Konwencje kodu (EN)',
+                link: '/architecture/08-crosscutting-concepts-and-conventions',
+              },
               { text: 'Architektura (EN)', link: '/architecture/' },
             ],
           },

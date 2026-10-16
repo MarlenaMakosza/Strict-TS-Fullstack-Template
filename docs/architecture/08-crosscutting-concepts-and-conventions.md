@@ -1,6 +1,7 @@
-# Coding conventions
+# 8. Crosscutting concepts and coding conventions
 
-How code is written in this project, by people and by AI agents. ESLint, Prettier and TypeScript
+The rules that apply across the whole code base (arc42 calls them crosscutting concepts): how
+code is written in this project, by people and by AI agents. ESLint, Prettier and TypeScript
 enforce most of the mechanics; this page covers the decisions they cannot check. Where a tool
 already enforces a rule, the rule says so.
 
@@ -19,7 +20,7 @@ already enforces a rule, the rule says so.
 - Guard clauses may return early, and ESLint (`no-else-return`) pushes toward them. Apart from
   guard clauses, a function has one exit point.
 - Length is not a quality metric. Complexity is: the CRAP gate fails a complex function that is
-  not well tested (see [Quality gates](./quality-gates.md)).
+  not well tested (see [Quality gates](../quality-gates.md)).
 
 ## Comments
 
@@ -163,13 +164,13 @@ quotes, trailing commas). `npm run format` applies them, and `npm run format:che
   request.
 - Branch names follow the commit types: `feat/short-description`, `fix/…`, `docs/…`, `chore/…`.
 - Never commit to `main` directly. GitHub deletes the branch after the merge; delete your local
-  copy too (see [GitHub settings](./getting-started.md#github-settings)).
+  copy too (see [GitHub settings](../getting-started.md#github-settings)).
 
 ## Commits and pull requests
 
 - [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) in English. `commitlint`
   checks the format, and the type sets the next version (see
-  [Releases](./getting-started.md#releases)).
+  [Releases](../getting-started.md#releases)).
 - One change: a one-line message. More context: a body after a blank line.
 
   ```text
@@ -180,4 +181,4 @@ quotes, trailing commas). `npm run format` applies them, and `npm run format:che
 
 - A pull request fills in `.github/PULL_REQUEST_TEMPLATE.md`: What, Why and How to test are
   required; Screenshots, Breaking changes and AI assistance are optional.
-- Review comments use [Conventional Comments](./code-review.md).
+- Review comments use [Conventional Comments](../code-review.md).
