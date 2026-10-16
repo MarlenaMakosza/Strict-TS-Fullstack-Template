@@ -24,6 +24,22 @@ export default defineConfig({
               { text: 'Scripts', link: '/scripts' },
               { text: 'Tools', link: '/tools' },
               { text: 'Code review', link: '/code-review' },
+              { text: 'Coding conventions', link: '/coding-conventions' },
+            ],
+          },
+          {
+            text: 'Architecture (arc42)',
+            collapsed: true,
+            items: [
+              { text: 'Overview', link: '/architecture/' },
+              { text: '1. Introduction and goals', link: '/architecture/01-introduction-goals' },
+              { text: '2. Constraints', link: '/architecture/02-constraints' },
+              { text: '3. Context and scope', link: '/architecture/03-context-scope' },
+              { text: '4. Solution strategy', link: '/architecture/04-solution-strategy' },
+              { text: '5. Building blocks', link: '/architecture/05-building-blocks' },
+              { text: 'Decisions', link: '/architecture/decisions' },
+              { text: '11. Risks', link: '/architecture/11-risks' },
+              { text: '12. Glossary', link: '/architecture/12-glossary' },
             ],
           },
           {
@@ -51,6 +67,9 @@ export default defineConfig({
               { text: 'Skrypty', link: '/pl/scripts' },
               { text: 'Narzędzia', link: '/pl/tools' },
               { text: 'Code review', link: '/pl/code-review' },
+              // These pages exist in English only.
+              { text: 'Konwencje kodu (EN)', link: '/coding-conventions' },
+              { text: 'Architektura (EN)', link: '/architecture/' },
             ],
           },
           {
