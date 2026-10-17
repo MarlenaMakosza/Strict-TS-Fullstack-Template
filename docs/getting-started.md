@@ -82,10 +82,25 @@ its first line and the description is its body. It gets one entry in `CHANGELOG.
 - Turn on **Allow GitHub Actions to create and approve pull requests**. Without it, release-please
   cannot open the release pull request.
 
+**Settings → Advanced Security**
+
+`npm run security:audit` and `eslint-plugin-security` need no setting. `SECURITY.md` needs one:
+
+- Turn on **Private vulnerability reporting**. `SECURITY.md` asks people to report a vulnerability
+  privately, with **Security → Report a vulnerability**. Without this setting, that button does not
+  exist.
+- Optional: **Dependabot alerts**. GitHub then lists known vulnerabilities in every dependency,
+  the development tools included; `npm run security:audit` checks only the runtime dependencies
+  (see [Quality gates](./quality-gates.md)). Expect a few dozen alerts at once, almost all in
+  development tools that never run in production, and an email for each by default. Turn the
+  emails off in your personal **Settings → Notifications → Dependabot alerts**. Leave
+  **Dependabot security updates** off: it opens a pull request for each fix, and Renovate already
+  updates the dependencies.
+
 **Settings → Rules → Rulesets** (or **Settings → Branches**), for `main`
 
 - Require a pull request before merging, and require the CI checks `validate`, `mutation` and `e2e`
-  to pass.
+  to pass. `validate` includes `npm run security:audit`.
 - CI does not run on the release pull request, because GitHub does not start workflows for changes
   made with the default `GITHUB_TOKEN`. With required checks, add yourself to the bypass list, or
   give release-please a personal access token (the `token` input of the action).

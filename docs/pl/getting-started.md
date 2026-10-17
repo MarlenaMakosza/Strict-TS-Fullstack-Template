@@ -81,9 +81,25 @@ jego treść. Dostaje jeden wpis w `CHANGELOG.md`. Dlatego:
 - Włącz **Allow GitHub Actions to create and approve pull requests**. Bez tego release-please nie
   otworzy release PR.
 
+**Settings → Advanced Security**
+
+`npm run security:audit` i `eslint-plugin-security` nie wymagają żadnego ustawienia. `SECURITY.md`
+wymaga jednego:
+
+- Włącz **Private vulnerability reporting**. `SECURITY.md` prosi, żeby lukę zgłaszać prywatnie,
+  przez **Security → Report a vulnerability**. Bez tego ustawienia tego przycisku nie ma.
+- Opcjonalnie: **Dependabot alerts**. GitHub pokazuje wtedy znane luki we wszystkich
+  zależnościach, także w narzędziach deweloperskich; `npm run security:audit` sprawdza tylko
+  zależności runtime (zobacz [Bramki jakości](./quality-gates.md)). Na start spodziewaj się kilku
+  tuzinów alertów, prawie wszystkich w narzędziach, które nigdy nie działają na produkcji, i
+  domyślnie e-maila o każdym. E-maile wyłączysz w swoich osobistych **Settings → Notifications →
+  Dependabot alerts**. Zostaw wyłączone **Dependabot security updates**: otwiera PR dla każdej
+  poprawki, a zależności i tak aktualizuje Renovate.
+
 **Settings → Rules → Rulesets** (albo **Settings → Branches**), dla `main`
 
 - Wymagaj PR przed merge i przechodzących sprawdzeń CI: `validate`, `mutation` i `e2e`.
+  `validate` zawiera `npm run security:audit`.
 - Na release PR nie uruchamia się CI, bo GitHub nie startuje workflow dla zmian zrobionych
   domyślnym `GITHUB_TOKEN`. Przy wymaganych sprawdzeniach dodaj siebie do listy obejść (bypass) albo daj
   release-please osobisty token (pole `token` w akcji).

@@ -27,8 +27,8 @@ Każde wymaganie zapisz jako scenariusz z miarą, żeby dało się je sprawdzić
 Przykłady tego, co projekty często dodają:
 
 - **Wydajność:** "Graf 2000 postaci renderuje się w mniej niż 1 s na przeciętnym laptopie."
-- **Bezpieczeństwo:** "Nie mergujemy zależności ze znaną podatnością o wysokiej albo krytycznej
-  wadze" (`npm audit` w CI).
+- **Bezpieczeństwo:** "Nie mergujemy zależności runtime ze znaną podatnością o wysokiej albo
+  krytycznej wadze" (szablon już to ma: `npm run security:audit` w CI).
 - **Dostępność:** "Każda strona przechodzi automatyczne sprawdzenie dostępności" (np. axe w
   scenariuszach Playwright).
 - **Niezawodność:** "Nieudane połączenie z bazą daje jasny komunikat i aplikacja się nie uruchamia."
