@@ -77,6 +77,9 @@ export function getDiscount(user: User): number {
 - Name a test by the behavior it checks. When the setup matters, use
   `given <state> when <action> then <expected result>`.
 - Cover the normal case **and** the edge cases. The edge case lists in `docs/edge-cases/` help.
+- Code that talks to the database gets an **integration test** in `tests/integration/`: it runs
+  against a real PostgreSQL that Testcontainers starts in Docker, with the committed migrations.
+  Unit tests stay free of the database. `tests/integration/db/users.test.ts` shows the setup.
 - When a rule holds for every input of a kind ("any name gives a greeting that ends with `!`"),
   add a **property-based test** with [fast-check](https://fast-check.dev/). It generates many
   inputs, and when one fails, shrinks it to the smallest failing example. Example tests stay:

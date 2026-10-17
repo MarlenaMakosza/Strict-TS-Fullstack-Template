@@ -119,7 +119,7 @@ wymaga jednego:
 
 **Settings → Rules → Rulesets** (albo **Settings → Branches**), dla `main`
 
-- Wymagaj PR przed merge i przechodzących sprawdzeń CI: `validate`, `mutation` i `e2e`.
+- Wymagaj PR przed merge i przechodzących sprawdzeń CI: `validate`, `integration`, `mutation` i `e2e`.
   `validate` zawiera `npm run security:audit`.
 - Na release PR nie uruchamia się CI, bo GitHub nie startuje workflow dla zmian zrobionych
   domyślnym `GITHUB_TOKEN`. Przy wymaganych sprawdzeniach dodaj siebie do listy obejść (bypass) albo daj
@@ -140,8 +140,10 @@ git branch -D <gałąź>   # -D: po squash merge git nie uznaje gałęzi za scal
 src/                  kod aplikacji
   db/                 schemat i klient Drizzle
 tests/unit/           testy jednostkowe Vitest
+tests/integration/    testy Vitest na prawdziwej bazie (Testcontainers, wymaga Dockera)
 tests/e2e/features/   scenariusze Gherkin (specyfikacja)
 tests/e2e/steps/      step definitions i fixtures
+drizzle/              migracje bazy danych, generuje je npm run db:generate
 dev/db/               skrypty migracji i danych testowych
 dev/quality/          bramka CRAP
 docs/                 ta dokumentacja (VitePress); polska wersja w docs/pl/

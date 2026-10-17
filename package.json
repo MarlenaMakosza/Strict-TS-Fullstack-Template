@@ -15,7 +15,7 @@
     "start": "node dist/index.js",
     "prepare": "husky",
     "validate": "npm run lint && npm run ts-check && npm run spellcheck && npm run knip && npm run test:coverage && npm run quality:crap && npm run quality:duplication && npm run check:adrs",
-    "validate:full": "npm run validate && npm run security:audit && npm run test:mutation -- --force && npm run test:e2e && npm run docs:build",
+    "validate:full": "npm run validate && npm run security:audit && npm run test:integration && npm run test:mutation -- --force && npm run test:e2e && npm run docs:build",
     "lint": "eslint --max-warnings 0",
     "lint:fix": "npm run lint -- --fix",
     "format": "prettier . --write --cache --log-level warn",
@@ -30,6 +30,7 @@
     "test:unit:watch": "vitest tests/unit",
     "test:coverage": "vitest run --coverage",
     "test:mutation": "stryker run",
+    "test:integration": "vitest run --config vitest.integration.config.ts",
     "test:e2e": "bddgen && playwright test",
     "test:e2e:open": "bddgen && playwright test --ui",
     "quality:crap": "node dev/quality/crap.ts",
@@ -120,12 +121,12 @@
   },
   "lint-staged": {
     "*.{ts,js,mjs,cjs,md,css}": [
-      "eslint --fix --max-warnings 0",
+      "eslint --fix --max-warnings 0 --no-warn-ignored",
       "prettier --write",
       "cspell --no-progress --no-must-find-files"
     ],
     "!(package-lock).json": [
-      "eslint --fix --max-warnings 0",
+      "eslint --fix --max-warnings 0 --no-warn-ignored",
       "prettier --write",
       "cspell --no-progress --no-must-find-files"
     ],

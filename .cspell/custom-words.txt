@@ -13,6 +13,7 @@ Commity
 commitów
 commonmark
 csstree
+Dockera
 Dockerze
 enumy
 enumów
