@@ -5,6 +5,7 @@
 | Aplikacja           | `src/`                                    | Kod projektu                                               |
 | Środowisko          | `src/env.ts`                              | Jedyny moduł, który czyta `process.env` (ARCH-001)         |
 | Logger              | `src/logger.ts`                           | Logger pino: poziom, format, ukrywanie sekretów (ARCH-002) |
+| Result              | `src/shared/result.ts`                    | Typ Result dla operacji, które mogą się nie udać           |
 | Baza danych         | `src/db/`, `dev/db/`                      | Schemat i klient Drizzle; migracje i dane testowe          |
 | Testy jednostkowe   | `tests/unit/`                             | Testy Vitest publicznego API                               |
 | Scenariusze         | `tests/e2e/features/`, `tests/e2e/steps/` | Specyfikacja Gherkin i jej step definitions                |

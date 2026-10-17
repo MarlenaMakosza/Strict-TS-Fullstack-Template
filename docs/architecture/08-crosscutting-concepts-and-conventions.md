@@ -43,14 +43,27 @@ export function getDiscount(user: User): number {
 
 ## Errors
 
-- Application logic returns a **Result** for operations that may fail, instead of throwing:
+- Application logic returns a **Result** from `src/shared/result.ts` for operations that may
+  fail, instead of throwing. `success(value)` and `failure(error)` build it:
 
   ```ts
-  type Result<TValue, TError = string> = { ok: true; value: TValue } | { ok: false; error: TError };
+  import { failure, type Result, success } from './shared/result.ts';
+
+  function parseAge(input: string): Result<number> {
+    const age = Number(input);
+
+    return Number.isSafeInteger(age) && age >= 0 ? success(age) : failure(`Not an age: ${input}`);
+  }
+
+  const result = parseAge(text);
+  if (result.ok) {
+    logger.info({ age: result.value }, 'Parsed the age'); // `value` is allowed only after the check
+  }
   ```
 
   The `ok` field lets TypeScript narrow the type, so the caller cannot use `value` without
-  checking for an error first.
+  checking for an error first. The error is a message by default; pass a type for a structured
+  one, such as `Result<User, 'not-found' | 'inactive'>`.
 
 - Exceptions are caught **only at external boundaries** (database, network, file system,
   third-party libraries) and turned into a Result there.
@@ -157,14 +170,31 @@ Shared types and helpers go into `shared/`.
   type AdminUser = User & { role: string };
   ```
 
-- **No `enum` and no `const enum`.** Node runs `.ts` files by stripping the types, and
-  `erasableSyntaxOnly` in `tsconfig.json` rejects any syntax that cannot be stripped, enums
-  included. Use a union of literals, or an `as const` object when you need the values at runtime:
+- **No `enum` and no `const enum`.** Node runs `.ts` files by stripping the types: it blanks out
+  the annotations and runs what is left, without a build step. An `enum` is not an annotation but
+  code that creates an object, so stripping cannot handle it, and Node stops with
+  `ERR_UNSUPPORTED_TYPESCRIPT_SYNTAX`. `erasableSyntaxOnly` in `tsconfig.json` reports such syntax
+  in the editor already. Use a union of literals, or an `as const` object when you need the values
+  at runtime:
 
   ```ts
   const DIRECTION = { up: 'up', down: 'down' } as const;
   type Direction = (typeof DIRECTION)[keyof typeof DIRECTION];
   ```
+
+- **Think this through before you change it in your project.** The choice affects how every file
+  runs, and switching later means touching the whole code base:
+
+  | Option                                                  | Enums | Cost                                                                                              |
+  | ------------------------------------------------------- | ----- | ------------------------------------------------------------------------------------------------- |
+  | Type stripping, no enums (the template)                 | no    | none; Node runs `.ts` directly, in development, tests and scenarios                               |
+  | `node --experimental-transform-types`                   | yes   | the flag is experimental and may change; every `node` command and tool needs it                   |
+  | Always compile with `tsc` (or a bundler) before running | yes   | a build step before every run, test and scenario; `erasableSyntaxOnly` and type stripping go away |
+
+  `npm run build` compiles with `tsc` for production already, but development, the unit tests and
+  the scenarios run the `.ts` files directly, so an enum would break them. See
+  [Node.js: type stripping](https://nodejs.org/api/typescript.html#type-stripping) and
+  [TypeScript 5.8: `--erasableSyntaxOnly`](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-8.html#the---erasablesyntaxonly-option).
 
 - Generic type parameters have descriptive names (`TItem`, `TValue`, `TResult`). A single letter is
   fine only when there is one parameter and its meaning is obvious.
