@@ -18,8 +18,6 @@ który przejdzie wszystkie ograniczenia. Inspiracją dla pracy z agentami był
 
 - **TypeScript na Node.js 24.** Node uruchamia pliki `.ts` bezpośrednio, bez kroku budowania
   podczas pracy. Zod sprawdza zmienne środowiskowe i inne dane na granicach aplikacji.
-- **Błędy jako wartości.** Typ `Result` w `src/shared/result.ts` dla operacji, które mogą się nie
-  udać, więc TypeScript zmusza do obsłużenia błędu.
 - **Surowy lint.** ESLint z regułami opartymi na typach i około 20 wtyczkami, Prettier, cspell
   (angielski i polski) oraz knip do wykrywania nieużywanego kodu.
 - **PostgreSQL z Drizzle.** Bazę uruchamia Docker Compose. Są też migracje i skrypt z danymi

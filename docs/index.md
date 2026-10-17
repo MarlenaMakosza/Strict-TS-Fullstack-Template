@@ -18,8 +18,6 @@ stays. The agent workflow was inspired by a
 
 - **TypeScript on Node.js 24.** Node runs `.ts` files directly, with no build step in
   development. Zod validates the environment and other input at the boundaries.
-- **Errors as values.** A `Result` type in `src/shared/result.ts` for operations that may fail, so
-  TypeScript makes the caller handle the error.
 - **Strict lint.** ESLint with type-aware rules and about 20 plugins, Prettier, cspell (English and
   Polish) and knip for unused code.
 - **PostgreSQL with Drizzle.** Docker Compose runs the database. You also get migrations and a
