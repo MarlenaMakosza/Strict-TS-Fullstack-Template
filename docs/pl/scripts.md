@@ -18,7 +18,7 @@ Każdy uruchamiasz przez `npm run <nazwa>`. Najczęściej potrzebne:
 | `start`                                              | `node dist/index.js`                                                                                                                        |
 | `prepare`                                            | husky (instaluje hooki po `npm install`)                                                                                                    |
 | `validate`                                           | lint + ts-check + spellcheck + knip + test:coverage + quality:crap + quality:duplication + check:adrs                                       |
-| `validate:full`                                      | validate + security:audit + test:mutation (`--force`) + test:e2e + docs:build                                                               |
+| `validate:full`                                      | validate + security:audit + test:integration + test:mutation (`--force`) + test:e2e + docs:build                                            |
 | `security:audit`                                     | `npm audit --omit=dev --audit-level=high`: błąd przy znanej podatności o wysokiej albo krytycznej wadze w zależności runtime (wymaga sieci) |
 | `lint` / `lint:fix`                                  | ESLint (`--max-warnings 0`)                                                                                                                 |
 | `format` / `format:check`                            | Prettier (`--write` / `--check` do CI)                                                                                                      |
@@ -30,6 +30,7 @@ Każdy uruchamiasz przez `npm run <nazwa>`. Najczęściej potrzebne:
 | `test:unit` / `test:unit:watch`                      | Vitest tylko dla `tests/unit`                                                                                                               |
 | `test:coverage`                                      | `vitest run --coverage`                                                                                                                     |
 | `test:mutation`                                      | `stryker run`                                                                                                                               |
+| `test:integration`                                   | `vitest run --config vitest.integration.config.ts`: testy na prawdziwych usługach w kontenerach (wymaga Dockera)                            |
 | `test:e2e` / `test:e2e:open`                         | `bddgen` + `playwright test` / z `--ui`                                                                                                     |
 | `quality:crap`                                       | CRAP na podstawie `coverage/coverage-final.json`                                                                                            |
 | `quality:duplication`                                | jscpd                                                                                                                                       |

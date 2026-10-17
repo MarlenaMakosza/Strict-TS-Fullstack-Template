@@ -4,6 +4,8 @@ export default defineConfig({
   test: {
     environment: 'node',
     include: ['src/**/*.{test,spec}.ts', 'tests/**/*.{test,spec}.ts'],
+    // Integration tests need Docker and have their own config: vitest.integration.config.ts.
+    exclude: ['tests/integration/**', '**/node_modules/**'],
     clearMocks: true,
     // Modules that import src/env.ts validate the environment on import (ADR ARCH-001). Tests must
     // not depend on a local .env, so they get a test database URL; tests can still stub it.
@@ -11,7 +13,7 @@ export default defineConfig({
     coverage: {
       provider: 'v8',
       include: ['src/**/*.ts'],
-      // src/db needs a real database: cover it with integration tests (Testcontainers), not unit tests.
+      // src/db needs a real database: tests/integration covers it (Testcontainers), not unit tests.
       exclude: ['src/**/*.{test,spec}.ts', 'src/index.ts', 'src/db/**'],
       reporter: ['text', 'html', 'lcov', 'json'],
       thresholds: {

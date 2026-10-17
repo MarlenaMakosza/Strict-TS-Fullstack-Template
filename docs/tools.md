@@ -76,7 +76,7 @@ the checks work together, see [Quality gates](./quality-gates.md).
 | ---------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Vitest                                   | Test runner                                                                                                                                               |
 | fast-check                               | Property-based tests: generates many inputs for a rule and shrinks a failing one to the smallest example                                                  |
-| `@testcontainers/postgresql`             | PostgreSQL in a container for tests                                                                                                                       |
+| `@testcontainers/postgresql`             | PostgreSQL in a container for the integration tests (`tests/integration/`)                                                                                |
 | `@vitest/coverage-v8` `*`                | Test coverage                                                                                                                                             |
 | Playwright (`@playwright/test`)          | End-to-end tests (`playwright.config.ts`)                                                                                                                 |
 | Gherkin                                  | BDD scenarios from the user's point of view (`.feature`, Given/When/Then), run in Playwright                                                              |
@@ -88,14 +88,14 @@ the checks work together, see [Quality gates](./quality-gates.md).
 
 ## Git and CI
 
-| Tool                                           | Role                                                                                                                                         |
-| ---------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
-| Husky                                          | Git hooks                                                                                                                                    |
-| lint-staged                                    | Lint and format only changed files on commit                                                                                                 |
-| commitlint + `@commitlint/config-conventional` | Conventional Commits                                                                                                                         |
-| GitHub Actions                                 | CI: `validate`, mutation testing and e2e on every PR; optional AI review by a different model (`ai-review` label, OpenRouter)                |
-| `npm audit`                                    | A gate in CI: known high or critical vulnerabilities in runtime dependencies (`security:audit`)                                              |
-| release-please `*`                             | Versions and `CHANGELOG.md` from Conventional Commits: keeps a release PR open, and merging it tags the version and creates a GitHub Release |
+| Tool                                           | Role                                                                                                                                             |
+| ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Husky                                          | Git hooks                                                                                                                                        |
+| lint-staged                                    | Lint and format only changed files on commit                                                                                                     |
+| commitlint + `@commitlint/config-conventional` | Conventional Commits                                                                                                                             |
+| GitHub Actions                                 | CI: `validate`, integration tests, mutation testing and e2e on every PR; optional AI review by a different model (`ai-review` label, OpenRouter) |
+| `npm audit`                                    | A gate in CI: known high or critical vulnerabilities in runtime dependencies (`security:audit`)                                                  |
+| release-please `*`                             | Versions and `CHANGELOG.md` from Conventional Commits: keeps a release PR open, and merging it tags the version and creates a GitHub Release     |
 
 ## Maintenance
 

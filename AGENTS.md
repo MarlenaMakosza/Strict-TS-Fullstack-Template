@@ -13,7 +13,8 @@ easy to review (see [Final report](#final-report)).
 ## Project
 
 - TypeScript on Node.js, no framework. Node runs `.ts` files directly.
-- Source code in `src/`, unit tests in `tests/unit/`, end-to-end scenarios in `tests/e2e/features/`.
+- Source code in `src/`, unit tests in `tests/unit/`, integration tests against a real database in
+  `tests/integration/`, end-to-end scenarios in `tests/e2e/features/`.
 - PostgreSQL through Drizzle (`src/db/`). Start the database with `npm run db:start`.
 - Log through `logger` from `src/logger.ts` (ADR `ARCH-002`). `console.*` is only for the output of
   the CLI in `src/index.ts`.
@@ -74,6 +75,7 @@ Follow this order for every change in behavior:
 | You need coverage numbers             | `npm run test:coverage`                               |
 | User-visible behavior changed         | `npm run test:e2e`                                    |
 | You changed `src/db/schema.ts`        | `npm run db:generate`, then `npm run db:check`        |
+| You changed code that uses the DB     | `npm run test:integration` (needs Docker)             |
 | `cspell` reports a real project word  | Add the word to `.cspell/custom-words.txt`            |
 | `knip` reports unused code or exports | Remove the unused code. Do not add ignores            |
 | `quality:crap` reports a function     | Add tests for it, or split it into simpler functions  |

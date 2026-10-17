@@ -79,6 +79,9 @@ Kod i komentarze w kodzie piszemy po angielsku.
 - Nazwa testu opisuje sprawdzane zachowanie. Gdy liczy się stan początkowy, używamy
   `given <state> when <action> then <expected result>`.
 - Pokrywamy zwykły przypadek **i** przypadki brzegowe. Pomagają w tym listy w `docs/edge-cases/`.
+- Kod, który rozmawia z bazą danych, dostaje **test integracyjny** w `tests/integration/`: działa on
+  na prawdziwym PostgreSQL, który Testcontainers uruchamia w Dockerze, z migracjami zapisanymi w
+  repozytorium. Testy jednostkowe nie dotykają bazy. Wzorzec: `tests/integration/db/users.test.ts`.
 - Gdy reguła działa dla każdego wejścia danego rodzaju ("każde imię daje powitanie kończące się
   na `!`"), dodajemy **test property-based** z [fast-check](https://fast-check.dev/). Generuje on
   wiele wejść, a gdy któreś nie przejdzie, zmniejsza je do najmniejszego przykładu, który nie
