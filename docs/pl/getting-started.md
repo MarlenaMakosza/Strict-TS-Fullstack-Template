@@ -82,14 +82,18 @@ jego treść. Dostaje jeden wpis w `CHANGELOG.md`. Dlatego:
 
 **Settings → Advanced Security**
 
-Szablon ma trzy sprawdzenia bezpieczeństwa. Dwa z nich wymagają tych ustawień:
+Szablon ma trzy sprawdzenia bezpieczeństwa: `npm run security:audit` nie wymaga żadnego ustawienia,
+pozostałe dwa wymagają tych:
 
 - Włącz **Private vulnerability reporting**. `SECURITY.md` prosi, żeby lukę zgłaszać prywatnie,
   przez **Security → Report a vulnerability**. Bez tego ustawienia tego przycisku nie ma.
-- Włącz **Dependabot alerts**. GitHub ostrzega wtedy o znanych lukach we wszystkich zależnościach,
-  także w narzędziach deweloperskich. `npm run security:audit` sprawdza tylko zależności runtime
-  (zobacz [Bramki jakości](./quality-gates.md)), więc resztę obejmują te ostrzeżenia. Nie blokują
-  one PR.
+- Opcjonalnie: **Dependabot alerts**. GitHub pokazuje wtedy znane luki we wszystkich
+  zależnościach, także w narzędziach deweloperskich; `npm run security:audit` sprawdza tylko
+  zależności runtime (zobacz [Bramki jakości](./quality-gates.md)). Na start spodziewaj się kilku
+  tuzinów alertów, prawie wszystkich w narzędziach, które nigdy nie działają na produkcji, i
+  domyślnie e-maila o każdym. E-maile wyłączysz w swoich osobistych **Settings → Notifications →
+  Dependabot alerts**. Zostaw wyłączone **Dependabot security updates**: otwiera PR dla każdej
+  poprawki, a zależności i tak aktualizuje Renovate.
 - Zostaw wyłączone **CodeQL analysis → Default setup**. `.github/workflows/codeql.yml` już
   uruchamia CodeQL, a gdy włączone są oba, workflow się wywala. Wyniki są w **Security → Code
   scanning**. CodeQL jest darmowy dla publicznych repozytoriów; prywatne potrzebuje GitHub Advanced

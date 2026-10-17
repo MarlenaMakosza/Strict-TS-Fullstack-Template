@@ -83,15 +83,19 @@ its first line and the description is its body. It gets one entry in `CHANGELOG.
 
 **Settings → Advanced Security**
 
-The template has three security checks. Two of them need these settings:
+The template has three security checks: `npm run security:audit` needs no setting, the other
+two need these:
 
 - Turn on **Private vulnerability reporting**. `SECURITY.md` asks people to report a vulnerability
   privately, with **Security → Report a vulnerability**. Without this setting, that button does not
   exist.
-- Turn on **Dependabot alerts**. GitHub then warns you about known vulnerabilities in every
-  dependency, the development tools included. `npm run security:audit` checks only the runtime
-  dependencies (see [Quality gates](./quality-gates.md)), so the alerts cover the rest. They do not
-  block pull requests.
+- Optional: **Dependabot alerts**. GitHub then lists known vulnerabilities in every dependency,
+  the development tools included; `npm run security:audit` checks only the runtime dependencies
+  (see [Quality gates](./quality-gates.md)). Expect a few dozen alerts at once, almost all in
+  development tools that never run in production, and an email for each by default. Turn the
+  emails off in your personal **Settings → Notifications → Dependabot alerts**. Leave
+  **Dependabot security updates** off: it opens a pull request for each fix, and Renovate already
+  updates the dependencies.
 - Leave **CodeQL analysis → Default setup** off. `.github/workflows/codeql.yml` already runs
   CodeQL, and with both on, the workflow fails. Results appear under **Security → Code scanning**.
   CodeQL is free for public repositories; a private repository needs GitHub Advanced Security.
