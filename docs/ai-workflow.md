@@ -285,6 +285,29 @@ looks for problems the gates cannot see: tests that do not match the scenarios, 
 no scenario describes. To enable it, add the `OPENROUTER_API_KEY` secret and the
 `AI_REVIEW_MODEL` variable (an OpenRouter model id) in the GitHub repository settings.
 
+## Optional: a code graph for the agents
+
+[codebase-memory-mcp](https://github.com/DeusData/codebase-memory-mcp) (MIT) indexes the code into
+a graph of functions, calls and imports, and gives an AI agent MCP tools to search it. The agent
+then finds the code it needs with fewer file reads, which saves tokens in a larger project. It
+works with Claude Code, Codex CLI, Gemini CLI and other agents.
+
+It is not in the project configuration, and the rules in `AGENTS.md` do not depend on it: each
+person installs it for their own tools.
+
+```sh
+# Install (Linux and macOS); the script also adds the MCP server to the agents it detects
+curl -fsSL https://raw.githubusercontent.com/DeusData/codebase-memory-mcp/main/install.sh | bash
+
+# Check it, and add it to agents installed later
+codebase-memory-mcp --version
+codebase-memory-mcp install -y
+```
+
+Then ask the agent once: "Index this repository with codebase-memory-mcp." The index stays on your
+machine. `codebase-memory-mcp update` updates the tool, and `codebase-memory-mcp uninstall` removes
+it from the agents.
+
 ## Removing the AI setup
 
 Delete these files and folders. Every gate still passes without them:
