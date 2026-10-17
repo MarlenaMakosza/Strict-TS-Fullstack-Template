@@ -292,8 +292,9 @@ a graph of functions, calls and imports, and gives an AI agent MCP tools to sear
 then finds the code it needs with fewer file reads, which saves tokens in a larger project. It
 works with Claude Code, Codex CLI, Gemini CLI and other agents.
 
-It is not in the project configuration, and the rules in `AGENTS.md` do not depend on it: each
-person installs it for their own tools.
+It is not in the project configuration: each person installs it for their own tools. `AGENTS.md`
+tells the agents to use it when its tools are available, and to search the files as usual when
+they are not.
 
 ```sh
 # Install (Linux and macOS); the script also adds the MCP server to the agents it detects

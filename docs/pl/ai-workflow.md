@@ -292,8 +292,9 @@ funkcji, wywołań i importów, i daje agentowi AI narzędzia MCP do przeszukiwa
 wtedy potrzebny kod, czytając mniej plików, co w większym projekcie oszczędza tokeny. Działa z
 Claude Code, Codex CLI, Gemini CLI i innymi agentami.
 
-Nie ma go w konfiguracji projektu, a reguły w `AGENTS.md` od niego nie zależą: każdy instaluje go
-sam, dla swoich narzędzi.
+Nie ma go w konfiguracji projektu: każdy instaluje go sam, dla swoich narzędzi. `AGENTS.md` każe
+agentom z niego korzystać, gdy jego narzędzia są dostępne, a gdy nie są, przeszukiwać pliki jak
+zwykle.
 
 ```sh
 # Instalacja (Linux i macOS); skrypt od razu dodaje serwer MCP do wykrytych agentów
