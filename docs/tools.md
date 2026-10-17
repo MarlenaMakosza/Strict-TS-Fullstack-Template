@@ -94,7 +94,6 @@ the checks work together, see [Quality gates](./quality-gates.md).
 | commitlint + `@commitlint/config-conventional` | Conventional Commits                                                                                                                         |
 | GitHub Actions                                 | CI: `validate`, mutation testing and e2e on every PR; optional AI review by a different model (`ai-review` label, OpenRouter)                |
 | `npm audit`                                    | A gate in CI: known high or critical vulnerabilities in runtime dependencies (`security:audit`)                                              |
-| CodeQL `*`                                     | Static security analysis of the code and the workflows (`.github/workflows/codeql.yml`), free for public repositories                        |
 | release-please `*`                             | Versions and `CHANGELOG.md` from Conventional Commits: keeps a release PR open, and merging it tags the version and creates a GitHub Release |
 
 ## Maintenance
@@ -117,12 +116,13 @@ the checks work together, see [Quality gates](./quality-gates.md).
 Tools that fit other kinds of projects, or that duplicate what the template already has. The
 Reason column says when they can still be useful.
 
-| Tool                                                                                                      | Reason                                                                        |
-| --------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| Svelte, SvelteKit, `svelte-check`, `eslint-plugin-svelte`, `prettier-plugin-svelte`, `@testing-library/*` | Framework-specific                                                            |
-| `@html-eslint/*`                                                                                          | No HTML files in plain TS                                                     |
-| `@stylistic/eslint-plugin`                                                                                | Duplicates Prettier                                                           |
-| `prettier-plugin-organize-imports`                                                                        | Duplicates perfectionist                                                      |
-| `@cspell/eslint-plugin`                                                                                   | Duplicates cspell CLI                                                         |
-| `eslint-plugin-eslint-plugin`                                                                             | Only for writing custom ESLint rules                                          |
-| skott                                                                                                     | knip + import-x cover most of it, but useful for viewing the dependency graph |
+| Tool                                                                                                      | Reason                                                                                                                                            |
+| --------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Svelte, SvelteKit, `svelte-check`, `eslint-plugin-svelte`, `prettier-plugin-svelte`, `@testing-library/*` | Framework-specific                                                                                                                                |
+| `@html-eslint/*`                                                                                          | No HTML files in plain TS                                                                                                                         |
+| `@stylistic/eslint-plugin`                                                                                | Duplicates Prettier                                                                                                                               |
+| `prettier-plugin-organize-imports`                                                                        | Duplicates perfectionist                                                                                                                          |
+| `@cspell/eslint-plugin`                                                                                   | Duplicates cspell CLI                                                                                                                             |
+| `eslint-plugin-eslint-plugin`                                                                             | Only for writing custom ESLint rules                                                                                                              |
+| skott                                                                                                     | knip + import-x cover most of it, but useful for viewing the dependency graph                                                                     |
+| CodeQL                                                                                                    | Security analysis that follows data through the code. Free only for public repositories, also locally; `eslint-plugin-security` covers the basics |

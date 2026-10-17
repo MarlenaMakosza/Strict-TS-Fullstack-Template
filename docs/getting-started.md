@@ -83,8 +83,7 @@ its first line and the description is its body. It gets one entry in `CHANGELOG.
 
 **Settings → Advanced Security**
 
-The template has three security checks: `npm run security:audit` needs no setting, the other
-two need these:
+`npm run security:audit` and `eslint-plugin-security` need no setting. `SECURITY.md` needs one:
 
 - Turn on **Private vulnerability reporting**. `SECURITY.md` asks people to report a vulnerability
   privately, with **Security → Report a vulnerability**. Without this setting, that button does not
@@ -96,16 +95,11 @@ two need these:
   emails off in your personal **Settings → Notifications → Dependabot alerts**. Leave
   **Dependabot security updates** off: it opens a pull request for each fix, and Renovate already
   updates the dependencies.
-- Leave **CodeQL analysis → Default setup** off. `.github/workflows/codeql.yml` already runs
-  CodeQL, and with both on, the workflow fails. Results appear under **Security → Code scanning**.
-  CodeQL is free for public repositories; a private repository needs GitHub Advanced Security.
 
 **Settings → Rules → Rulesets** (or **Settings → Branches**), for `main`
 
-- Require a pull request before merging, and require the CI checks `validate`, `mutation`, `e2e`,
-  `analyze (actions)` and `analyze (javascript-typescript)` to pass. The two `analyze` checks are
-  CodeQL; GitHub lists them only after the CodeQL workflow has run once. `validate` already
-  includes `npm run security:audit`.
+- Require a pull request before merging, and require the CI checks `validate`, `mutation` and `e2e`
+  to pass. `validate` includes `npm run security:audit`.
 - CI does not run on the release pull request, because GitHub does not start workflows for changes
   made with the default `GITHUB_TOKEN`. With required checks, add yourself to the bypass list, or
   give release-please a personal access token (the `token` input of the action).

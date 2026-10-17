@@ -82,8 +82,8 @@ jego treść. Dostaje jeden wpis w `CHANGELOG.md`. Dlatego:
 
 **Settings → Advanced Security**
 
-Szablon ma trzy sprawdzenia bezpieczeństwa: `npm run security:audit` nie wymaga żadnego ustawienia,
-pozostałe dwa wymagają tych:
+`npm run security:audit` i `eslint-plugin-security` nie wymagają żadnego ustawienia. `SECURITY.md`
+wymaga jednego:
 
 - Włącz **Private vulnerability reporting**. `SECURITY.md` prosi, żeby lukę zgłaszać prywatnie,
   przez **Security → Report a vulnerability**. Bez tego ustawienia tego przycisku nie ma.
@@ -94,17 +94,11 @@ pozostałe dwa wymagają tych:
   domyślnie e-maila o każdym. E-maile wyłączysz w swoich osobistych **Settings → Notifications →
   Dependabot alerts**. Zostaw wyłączone **Dependabot security updates**: otwiera PR dla każdej
   poprawki, a zależności i tak aktualizuje Renovate.
-- Zostaw wyłączone **CodeQL analysis → Default setup**. `.github/workflows/codeql.yml` już
-  uruchamia CodeQL, a gdy włączone są oba, workflow się wywala. Wyniki są w **Security → Code
-  scanning**. CodeQL jest darmowy dla publicznych repozytoriów; prywatne potrzebuje GitHub Advanced
-  Security.
 
 **Settings → Rules → Rulesets** (albo **Settings → Branches**), dla `main`
 
-- Wymagaj PR przed merge i przechodzących sprawdzeń CI: `validate`, `mutation`, `e2e`,
-  `analyze (actions)` i `analyze (javascript-typescript)`. Dwa sprawdzenia `analyze` to CodeQL;
-  GitHub pokazuje je na liście dopiero po pierwszym przebiegu workflow CodeQL. `validate` już
-  zawiera `npm run security:audit`.
+- Wymagaj PR przed merge i przechodzących sprawdzeń CI: `validate`, `mutation` i `e2e`.
+  `validate` zawiera `npm run security:audit`.
 - Na release PR nie uruchamia się CI, bo GitHub nie startuje workflow dla zmian zrobionych
   domyślnym `GITHUB_TOKEN`. Przy wymaganych sprawdzeniach dodaj siebie do listy obejść (bypass) albo daj
   release-please osobisty token (pole `token` w akcji).

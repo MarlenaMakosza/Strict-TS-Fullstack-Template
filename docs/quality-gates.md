@@ -21,7 +21,6 @@ works the same for code written by people and by AI agents.
 | Documentation    | VitePress             | the docs do not build, or a link is dead                        | `.vitepress/config.ts`             |
 | Commit message   | commitlint            | the message is not a Conventional Commit                        | `commitlint.config.js`             |
 | Dependencies     | `npm audit`           | a runtime dependency has a known high or critical vulnerability | `security:audit` in `package.json` |
-| Security bugs    | CodeQL                | the analysis finds a security bug in the code or the workflows  | `.github/workflows/codeql.yml`     |
 
 ## CRAP score
 

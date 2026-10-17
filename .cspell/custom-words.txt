@@ -49,5 +49,3 @@ tsdoc
 unstub
 valueonly
 vitepress
-workflowach
-workflowów
