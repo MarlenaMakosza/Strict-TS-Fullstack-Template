@@ -285,6 +285,30 @@ testów niezgodnych ze scenariuszami i zachowania, którego nie opisuje żaden s
 włączyć, dodaj w ustawieniach repo na GitHubie secret `OPENROUTER_API_KEY` i zmienną
 `AI_REVIEW_MODEL` (identyfikator modelu w OpenRouter).
 
+## Opcjonalnie: graf kodu dla agentów
+
+[codebase-memory-mcp](https://github.com/DeusData/codebase-memory-mcp) (MIT) indeksuje kod w graf
+funkcji, wywołań i importów, i daje agentowi AI narzędzia MCP do przeszukiwania go. Agent znajduje
+wtedy potrzebny kod, czytając mniej plików, co w większym projekcie oszczędza tokeny. Działa z
+Claude Code, Codex CLI, Gemini CLI i innymi agentami.
+
+Nie ma go w konfiguracji projektu: każdy instaluje go sam, dla swoich narzędzi. `AGENTS.md` każe
+agentom z niego korzystać, gdy jego narzędzia są dostępne, a gdy nie są, przeszukiwać pliki jak
+zwykle.
+
+```sh
+# Instalacja (Linux i macOS); skrypt od razu dodaje serwer MCP do wykrytych agentów
+curl -fsSL https://raw.githubusercontent.com/DeusData/codebase-memory-mcp/main/install.sh | bash
+
+# Sprawdzenie i dodanie do agentów zainstalowanych później
+codebase-memory-mcp --version
+codebase-memory-mcp install -y
+```
+
+Potem raz poproś agenta: "Index this repository with codebase-memory-mcp." Indeks zostaje na twoim
+komputerze. `codebase-memory-mcp update` aktualizuje narzędzie, a `codebase-memory-mcp uninstall`
+usuwa je z agentów.
+
 ## Usunięcie konfiguracji AI
 
 Usuń te pliki i katalogi. Wszystkie bramki dalej przechodzą bez nich:

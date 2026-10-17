@@ -77,6 +77,13 @@ Follow this order for every change in behavior:
 | `quality:crap` reports a function     | Add tests for it, or split it into simpler functions  |
 | `quality:duplication` finds a clone   | Extract the shared code into one function or module   |
 
+## Finding code
+
+If the codebase-memory-mcp tools are available to you (`search_graph`, `trace_path`,
+`get_code_snippet` and the others), use them to find definitions, callers and imports before you
+read whole files. If the repository is not indexed yet, run `index_repository` first. If the tools
+are not available, search and read the files as usual. Never ask the user to install it.
+
 ## Roles
 
 A task can be split between agents with separate roles. Each role has its own instructions in

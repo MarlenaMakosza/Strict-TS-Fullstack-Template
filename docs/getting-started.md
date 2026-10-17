@@ -20,6 +20,26 @@ npm run firstrun:dev
 `firstrun:dev` installs the dependencies and checks the types. It then starts PostgreSQL, runs the
 migrations and seeds the database.
 
+## Optional: codebase-memory-mcp for AI agents
+
+You can install it, but you do not have to: everything in the template works without it.
+
+[codebase-memory-mcp](https://github.com/DeusData/codebase-memory-mcp) (MIT, free) builds a map of
+the code: which functions exist, who calls them, and what imports what. An AI agent (Claude Code,
+Codex CLI, Gemini CLI and others) can then ask the map "where is this defined" or "what calls
+this", instead of opening file after file. It finds the code faster and uses fewer tokens, which
+matters more as the project grows. The map stays on your computer.
+
+```sh
+# Install (Linux and macOS); the script also connects it to the agents it finds
+curl -fsSL https://raw.githubusercontent.com/DeusData/codebase-memory-mcp/main/install.sh | bash
+codebase-memory-mcp --version
+```
+
+Then ask the agent once: "Index this repository with codebase-memory-mcp." `AGENTS.md` already
+tells the agents to use it when it is installed. More in
+[AI workflow](./ai-workflow.md#optional-a-code-graph-for-the-agents).
+
 ## Starting your own project
 
 `CHANGELOG.md` and the version in `package.json` describe releases of this template. In a project
