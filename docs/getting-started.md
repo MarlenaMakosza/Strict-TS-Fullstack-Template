@@ -2,7 +2,8 @@
 
 ## Requirements
 
-- Node.js 24 (the version is in `.nvmrc`; `npm install` refuses an older one)
+- Node.js 24 (the version is in `.nvmrc`; `npm install` refuses an older one), with the npm
+  version from `packageManager` in `package.json` (Renovate updates it)
 - Docker, for PostgreSQL
 - git
 
