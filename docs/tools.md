@@ -75,6 +75,7 @@ the checks work together, see [Quality gates](./quality-gates.md).
 | Tool                                     | Role                                                                                                                                                      |
 | ---------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Vitest                                   | Test runner                                                                                                                                               |
+| fast-check                               | Property-based tests: generates many inputs for a rule and shrinks a failing one to the smallest example                                                  |
 | `@testcontainers/postgresql`             | PostgreSQL in a container for tests                                                                                                                       |
 | `@vitest/coverage-v8` `*`                | Test coverage                                                                                                                                             |
 | Playwright (`@playwright/test`)          | End-to-end tests (`playwright.config.ts`)                                                                                                                 |
