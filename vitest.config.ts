@@ -5,6 +5,9 @@ export default defineConfig({
     environment: 'node',
     include: ['src/**/*.{test,spec}.ts', 'tests/**/*.{test,spec}.ts'],
     clearMocks: true,
+    // Modules that import src/env.ts validate the environment on import (ADR ARCH-001). Tests must
+    // not depend on a local .env, so they get a test database URL; tests can still stub it.
+    env: { DATABASE_URL: 'postgres://test:test@localhost:5432/test' },
     coverage: {
       provider: 'v8',
       include: ['src/**/*.ts'],

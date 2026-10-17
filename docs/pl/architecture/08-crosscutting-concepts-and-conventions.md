@@ -102,9 +102,24 @@ Wspólne typy i pomocnicze funkcje trafiają do `shared/`.
 
 ## Logowanie
 
-- Na razie nie ma loggera. CLI wypisuje przez `console.log`, a błędy idą do `console.error`.
-- Do decyzji później: logger strukturalny, np. pino albo winston, do przechowywania i
-  przeszukiwania logów. Wybór zapisz jako ADR.
+- Logujemy przez `logger` z `src/logger.ts`, czyli logger [pino](https://getpino.io/) (ADR
+  `ARCH-002`). Kontekst przekazujemy jako obiekt, a wiadomość jako krótkie zdanie:
+
+  ```ts
+  logger.info({ userID }, 'Signed in');
+  ```
+
+- Poziom pochodzi z `LOG_LEVEL` (domyślnie `info`). Produkcja i testy zapisują linie JSON; w
+  development pino-pretty pisze czytelne linie.
+- Logi idą na stderr, więc stdout zostaje dla wyniku programu. Ten wynik wypisuje tylko
+  `src/index.ts`, przez `console.log`. ESLint (`no-console`) odrzuca `console.*` w każdym innym
+  miejscu.
+- `dev/logger-example.ts` pokazuje wszystkie typowe przypadki (poziomy, kontekst, błędy, loggery
+  potomne, czyli `child`, ukrywanie sekretów) i jak zapisać logi do pliku. Uruchom go przez
+  `npm run example:logger`.
+- Pola z sekretami (`DATABASE_URL`, `password`, `token`, `authorization`, `cookie`) są
+  ukrywane. Nowe dopisz do `SECRET_FIELDS` w `src/logger.ts` i nigdy nie wkładaj sekretu do treści
+  wiadomości.
 
 ## Null i undefined
 

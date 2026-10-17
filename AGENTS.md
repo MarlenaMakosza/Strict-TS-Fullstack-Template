@@ -15,6 +15,8 @@ easy to review (see [Final report](#final-report)).
 - TypeScript on Node.js, no framework. Node runs `.ts` files directly.
 - Source code in `src/`, unit tests in `tests/unit/`, end-to-end scenarios in `tests/e2e/features/`.
 - PostgreSQL through Drizzle (`src/db/`). Start the database with `npm run db:start`.
+- Log through `logger` from `src/logger.ts` (ADR `ARCH-002`). `console.*` is only for the output of
+  the CLI in `src/index.ts`.
 - Architecture decisions (ADRs) live in `.archgate/adrs/`. Read the relevant ones before you change
   the structure of the code. The architecture overview is in `docs/architecture/` (arc42).
 - Follow `docs/architecture/08-crosscutting-concepts-and-conventions.md`: naming, errors as Result values, no `enum`, dependency

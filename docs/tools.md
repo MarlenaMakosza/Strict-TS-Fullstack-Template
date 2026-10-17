@@ -6,12 +6,14 @@ the checks work together, see [Quality gates](./quality-gates.md).
 
 ## Language and runtime
 
-| Tool       | Role                                            |
-| ---------- | ----------------------------------------------- |
-| TypeScript | Language, `tsc` for type checking and build     |
-| Node.js    | Runtime, runs `.ts` directly (type stripping)   |
-| Zod        | Data validation at boundaries (API, files, env) |
-| dotenv     | Loads variables from `.env`                     |
+| Tool            | Role                                               |
+| --------------- | -------------------------------------------------- |
+| TypeScript      | Language, `tsc` for type checking and build        |
+| Node.js         | Runtime, runs `.ts` directly (type stripping)      |
+| Zod             | Data validation at boundaries (API, files, env)    |
+| dotenv          | Loads variables from `.env`                        |
+| pino `*`        | Structured logging (`src/logger.ts`, ADR ARCH-002) |
+| pino-pretty `*` | Readable logs in development                       |
 
 ## Database
 
