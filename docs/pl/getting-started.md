@@ -101,9 +101,10 @@ pozostałe dwa wymagają tych:
 
 **Settings → Rules → Rulesets** (albo **Settings → Branches**), dla `main`
 
-- Wymagaj PR przed merge i przechodzących sprawdzeń CI: `validate`, `mutation`, `e2e` i `analyze`.
-  `analyze` to sprawdzenie CodeQL; GitHub pokazuje je na liście dopiero po pierwszym przebiegu
-  workflow CodeQL. `validate` już zawiera `npm run security:audit`.
+- Wymagaj PR przed merge i przechodzących sprawdzeń CI: `validate`, `mutation`, `e2e`,
+  `analyze (actions)` i `analyze (javascript-typescript)`. Dwa sprawdzenia `analyze` to CodeQL;
+  GitHub pokazuje je na liście dopiero po pierwszym przebiegu workflow CodeQL. `validate` już
+  zawiera `npm run security:audit`.
 - Na release PR nie uruchamia się CI, bo GitHub nie startuje workflow dla zmian zrobionych
   domyślnym `GITHUB_TOKEN`. Przy wymaganych sprawdzeniach dodaj siebie do listy obejść (bypass) albo daj
   release-please osobisty token (pole `token` w akcji).
