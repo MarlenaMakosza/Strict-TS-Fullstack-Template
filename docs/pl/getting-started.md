@@ -20,6 +20,26 @@ npm run firstrun:dev
 `firstrun:dev` instaluje zależności i sprawdza typy. Potem uruchamia PostgreSQL, wykonuje migracje
 i wypełnia bazę danymi.
 
+## Opcjonalnie: codebase-memory-mcp dla agentów AI
+
+Możesz go zainstalować, ale nie musisz: wszystko w szablonie działa bez niego.
+
+[codebase-memory-mcp](https://github.com/DeusData/codebase-memory-mcp) (MIT, darmowy) buduje mapę
+kodu: jakie są funkcje, kto je wywołuje i co importuje co. Agent AI (Claude Code, Codex CLI,
+Gemini CLI i inne) może wtedy zapytać mapę "gdzie to jest zdefiniowane" albo "co to wywołuje",
+zamiast otwierać plik po pliku. Szybciej znajduje kod i zużywa mniej tokenów, co ma tym większe
+znaczenie, im większy projekt. Mapa zostaje na twoim komputerze.
+
+```sh
+# Instalacja (Linux i macOS); skrypt od razu podłącza go do znalezionych agentów
+curl -fsSL https://raw.githubusercontent.com/DeusData/codebase-memory-mcp/main/install.sh | bash
+codebase-memory-mcp --version
+```
+
+Potem raz poproś agenta: "Index this repository with codebase-memory-mcp." `AGENTS.md` już każe
+agentom z niego korzystać, gdy jest zainstalowany. Więcej w
+[Pracy z agentami AI](./ai-workflow.md#opcjonalnie-graf-kodu-dla-agentow).
+
 ## Własny projekt na bazie szablonu
 
 `CHANGELOG.md` i wersja w `package.json` opisują wydania tego szablonu. W projekcie utworzonym z
