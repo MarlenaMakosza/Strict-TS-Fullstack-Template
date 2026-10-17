@@ -83,16 +83,24 @@ its first line and the description is its body. It gets one entry in `CHANGELOG.
 
 **Settings → Advanced Security**
 
-- Turn on **Private vulnerability reporting**: `SECURITY.md` points people to it.
-- Turn on **Dependabot alerts**. They also cover the development tools, which `security:audit`
-  skips.
-- Leave the CodeQL **default setup** off: `.github/workflows/codeql.yml` already runs CodeQL, and
-  the two conflict.
+The template has three security checks. Two of them need these settings:
+
+- Turn on **Private vulnerability reporting**. `SECURITY.md` asks people to report a vulnerability
+  privately, with **Security → Report a vulnerability**. Without this setting, that button does not
+  exist.
+- Turn on **Dependabot alerts**. GitHub then warns you about known vulnerabilities in every
+  dependency, the development tools included. `npm run security:audit` checks only the runtime
+  dependencies (see [Quality gates](./quality-gates.md)), so the alerts cover the rest. They do not
+  block pull requests.
+- Leave **CodeQL analysis → Default setup** off. `.github/workflows/codeql.yml` already runs
+  CodeQL, and with both on, the workflow fails. Results appear under **Security → Code scanning**.
+  CodeQL is free for public repositories; a private repository needs GitHub Advanced Security.
 
 **Settings → Rules → Rulesets** (or **Settings → Branches**), for `main`
 
 - Require a pull request before merging, and require the CI checks `validate`, `mutation`, `e2e`
-  and `analyze` to pass.
+  and `analyze` to pass. `analyze` is the CodeQL check; GitHub lists it only after the CodeQL
+  workflow has run once. `validate` already includes `npm run security:audit`.
 - CI does not run on the release pull request, because GitHub does not start workflows for changes
   made with the default `GITHUB_TOKEN`. With required checks, add yourself to the bypass list, or
   give release-please a personal access token (the `token` input of the action).

@@ -82,15 +82,24 @@ jego treść. Dostaje jeden wpis w `CHANGELOG.md`. Dlatego:
 
 **Settings → Advanced Security**
 
-- Włącz **Private vulnerability reporting**: `SECURITY.md` kieruje tam zgłoszenia.
-- Włącz **Dependabot alerts**. Obejmują też narzędzia deweloperskie, które `security:audit`
-  pomija.
-- Zostaw wyłączony **default setup** CodeQL: `.github/workflows/codeql.yml` już uruchamia CodeQL,
-  a oba się gryzą.
+Szablon ma trzy sprawdzenia bezpieczeństwa. Dwa z nich wymagają tych ustawień:
+
+- Włącz **Private vulnerability reporting**. `SECURITY.md` prosi, żeby lukę zgłaszać prywatnie,
+  przez **Security → Report a vulnerability**. Bez tego ustawienia tego przycisku nie ma.
+- Włącz **Dependabot alerts**. GitHub ostrzega wtedy o znanych lukach we wszystkich zależnościach,
+  także w narzędziach deweloperskich. `npm run security:audit` sprawdza tylko zależności runtime
+  (zobacz [Bramki jakości](./quality-gates.md)), więc resztę obejmują te ostrzeżenia. Nie blokują
+  one PR.
+- Zostaw wyłączone **CodeQL analysis → Default setup**. `.github/workflows/codeql.yml` już
+  uruchamia CodeQL, a gdy włączone są oba, workflow się wywala. Wyniki są w **Security → Code
+  scanning**. CodeQL jest darmowy dla publicznych repozytoriów; prywatne potrzebuje GitHub Advanced
+  Security.
 
 **Settings → Rules → Rulesets** (albo **Settings → Branches**), dla `main`
 
 - Wymagaj PR przed merge i przechodzących sprawdzeń CI: `validate`, `mutation`, `e2e` i `analyze`.
+  `analyze` to sprawdzenie CodeQL; GitHub pokazuje je na liście dopiero po pierwszym przebiegu
+  workflow CodeQL. `validate` już zawiera `npm run security:audit`.
 - Na release PR nie uruchamia się CI, bo GitHub nie startuje workflow dla zmian zrobionych
   domyślnym `GITHUB_TOKEN`. Przy wymaganych sprawdzeniach dodaj siebie do listy obejść (bypass) albo daj
   release-please osobisty token (pole `token` w akcji).
