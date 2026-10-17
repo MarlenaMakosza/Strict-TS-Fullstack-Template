@@ -16,24 +16,17 @@ stays. The agent workflow was inspired by a
 
 ## What you get
 
-- **Security checks.** `npm audit` fails CI on a known high or critical vulnerability in a runtime
-  dependency, `eslint-plugin-security` catches risky patterns in the code, and `SECURITY.md` tells
-  people how to report a vulnerability privately.
-- **Logging with pino.** One logger in `src/logger.ts`: JSON lines in production, readable lines
-  in development, the level from `LOG_LEVEL`, and secrets such as passwords and tokens hidden.
-  Logs go to stderr, so stdout stays free for the output of the program.
-- **Automatic releases.** release-please reads the
-  [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/), keeps a release pull
-  request with the next version and the `CHANGELOG.md` up to date, and tags the release when you
-  merge it.
 - **TypeScript on Node.js 24.** Node runs `.ts` files directly, with no build step in
   development. Zod validates the environment and other input at the boundaries.
 - **Errors as values.** A `Result` type in `src/shared/result.ts` for operations that may fail, so
   TypeScript makes the caller handle the error.
-- **PostgreSQL with Drizzle.** Docker Compose runs the database. You also get migrations and a
-  Faker seed script.
 - **Strict lint.** ESLint with type-aware rules and about 20 plugins, Prettier, cspell (English and
   Polish) and knip for unused code.
+- **PostgreSQL with Drizzle.** Docker Compose runs the database. You also get migrations and a
+  Faker seed script.
+- **Security checks.** `npm audit` fails CI on a known high or critical vulnerability in a runtime
+  dependency, `eslint-plugin-security` catches risky patterns in the code, and `SECURITY.md` tells
+  people how to report a vulnerability privately.
 - **Tests at every level.** Vitest for unit tests, with fast-check for property-based tests;
   integration tests against a real PostgreSQL in Docker (Testcontainers); Playwright with Gherkin
   scenarios (playwright-bdd) for end-to-end tests; and Stryker for mutation testing.
@@ -41,6 +34,13 @@ stays. The agent workflow was inspired by a
   detection.
 - **Architecture rules and docs.** ADRs in `.archgate/adrs/`, checked by Archgate, and a VitePress
   site with the arc42 architecture in English and Polish, published on GitHub Pages.
+- **Logging with pino.** One logger in `src/logger.ts`: JSON lines in production, readable lines
+  in development, the level from `LOG_LEVEL`, and secrets such as passwords and tokens hidden.
+  Logs go to stderr, so stdout stays free for the output of the program.
+- **Automatic releases.** release-please reads the
+  [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/), keeps a release pull
+  request with the next version and the `CHANGELOG.md` up to date, and tags the release when you
+  merge it.
 - **An AI agent setup that works with any tool.** `AGENTS.md` holds the rules, there are roles for
   separate agents, and an optional adapter connects Claude Code.
 - **CI on GitHub Actions.** Git hooks, issue forms that ask for Gherkin scenarios, and an optional
