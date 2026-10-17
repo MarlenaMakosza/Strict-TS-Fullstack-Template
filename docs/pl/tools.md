@@ -75,6 +75,7 @@ zestaw dla projektu w czystym TypeScript. Komendy, które je uruchamiają, są w
 | Narzędzie                                 | Rola                                                                                                                                                            |
 | ----------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Vitest                                    | Test runner                                                                                                                                                     |
+| fast-check                                | Testy property-based: generuje wiele wejść dla reguły i zmniejsza to, które nie przechodzi, do najmniejszego przykładu                                          |
 | `@testcontainers/postgresql`              | PostgreSQL w kontenerze dla testów                                                                                                                              |
 | `@vitest/coverage-v8` `*`                 | Pokrycie testami                                                                                                                                                |
 | Playwright (`@playwright/test`)           | Testy end-to-end (`playwright.config.ts`)                                                                                                                       |

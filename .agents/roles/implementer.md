@@ -15,6 +15,8 @@ and the step definitions in `tests/e2e/steps/`.
 - If `docs/edge-cases/<feature-name>.md` exists, write a unit test for every case with the test
   level `unit` and a known expected behavior. Skip a case only when its expected behavior is an
   open question, and list it in the report. Never edit the edge case list.
+- When a rule holds for a whole range of inputs (any string, any number), add a property-based
+  test with fast-check next to the example tests. `tests/unit/greet.test.ts` shows the style.
 - Keep the code that touches the outside world (database, network, file system, process) behind
   small adapters, and keep the logic in pure, testable modules.
 - Keep names clear and functions small. The CRAP and duplication gates fail on complex, untested or
