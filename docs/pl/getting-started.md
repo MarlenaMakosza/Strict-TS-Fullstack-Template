@@ -80,9 +80,17 @@ jego treść. Dostaje jeden wpis w `CHANGELOG.md`. Dlatego:
 - Włącz **Allow GitHub Actions to create and approve pull requests**. Bez tego release-please nie
   otworzy release PR.
 
+**Settings → Advanced Security**
+
+- Włącz **Private vulnerability reporting**: `SECURITY.md` kieruje tam zgłoszenia.
+- Włącz **Dependabot alerts**. Obejmują też narzędzia deweloperskie, które `security:audit`
+  pomija.
+- Zostaw wyłączony **default setup** CodeQL: `.github/workflows/codeql.yml` już uruchamia CodeQL,
+  a oba się gryzą.
+
 **Settings → Rules → Rulesets** (albo **Settings → Branches**), dla `main`
 
-- Wymagaj PR przed merge i przechodzących sprawdzeń CI: `validate`, `mutation` i `e2e`.
+- Wymagaj PR przed merge i przechodzących sprawdzeń CI: `validate`, `mutation`, `e2e` i `analyze`.
 - Na release PR nie uruchamia się CI, bo GitHub nie startuje workflow dla zmian zrobionych
   domyślnym `GITHUB_TOKEN`. Przy wymaganych sprawdzeniach dodaj siebie do listy obejść (bypass) albo daj
   release-please osobisty token (pole `token` w akcji).

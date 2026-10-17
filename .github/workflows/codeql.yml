@@ -1,0 +1,30 @@
+name: CodeQL
+
+# Static analysis for security bugs in the TypeScript code and in the workflows. Results appear
+# under Security → Code scanning. Free for public repositories; a private one needs GitHub Advanced
+# Security. Do not also turn on the CodeQL "default setup" in the settings: the two conflict.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: '0 6 * * 1'
+
+permissions:
+  contents: read
+  security-events: write
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        language: [actions, javascript-typescript]
+    steps:
+      - uses: actions/checkout@v5
+      - uses: github/codeql-action/init@v4
+        with:
+          languages: ${{ matrix.language }}
+          build-mode: none
+      - uses: github/codeql-action/analyze@v4

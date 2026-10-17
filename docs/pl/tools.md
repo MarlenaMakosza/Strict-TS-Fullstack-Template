@@ -93,6 +93,8 @@ zestaw dla projektu w czystym TypeScript. Komendy, które je uruchamiają, są w
 | lint-staged                                    | Lint i format tylko zmienionych plików przy commicie                                                                             |
 | commitlint + `@commitlint/config-conventional` | Conventional Commits                                                                                                             |
 | GitHub Actions                                 | CI: `validate`, mutation testing i e2e na każdym PR; opcjonalne AI review innym modelem (etykieta `ai-review`, OpenRouter)       |
+| `npm audit`                                    | Bramka w CI: znane podatności o wysokiej albo krytycznej wadze w zależnościach runtime (`security:audit`)                        |
+| CodeQL `*`                                     | Statyczna analiza bezpieczeństwa kodu i workflowów (`.github/workflows/codeql.yml`), darmowa dla publicznych repozytoriów        |
 | release-please `*`                             | Wersje i `CHANGELOG.md` z Conventional Commits: utrzymuje otwarty release PR, a jego merge taguje wersję i tworzy GitHub Release |
 
 ## Utrzymanie

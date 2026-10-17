@@ -93,6 +93,8 @@ the checks work together, see [Quality gates](./quality-gates.md).
 | lint-staged                                    | Lint and format only changed files on commit                                                                                                 |
 | commitlint + `@commitlint/config-conventional` | Conventional Commits                                                                                                                         |
 | GitHub Actions                                 | CI: `validate`, mutation testing and e2e on every PR; optional AI review by a different model (`ai-review` label, OpenRouter)                |
+| `npm audit`                                    | A gate in CI: known high or critical vulnerabilities in runtime dependencies (`security:audit`)                                              |
+| CodeQL `*`                                     | Static security analysis of the code and the workflows (`.github/workflows/codeql.yml`), free for public repositories                        |
 | release-please `*`                             | Versions and `CHANGELOG.md` from Conventional Commits: keeps a release PR open, and merging it tags the version and creates a GitHub Release |
 
 ## Maintenance

@@ -27,8 +27,8 @@ Write each requirement as a scenario with a measure, so it can be checked:
 Examples of what projects often add:
 
 - **Performance:** "The graph of 2000 characters renders in under 1 s on a mid-range laptop."
-- **Security:** "No dependency with a known high or critical vulnerability is merged"
-  (`npm audit` in CI).
+- **Security:** "No runtime dependency with a known high or critical vulnerability is merged"
+  (the template already has it: `npm run security:audit` in CI).
 - **Accessibility:** "Every page passes an automated accessibility check" (for example axe in the
   Playwright scenarios).
 - **Reliability:** "A failed database connection gives a clear error, and the app does not start."

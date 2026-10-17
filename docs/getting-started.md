@@ -81,10 +81,18 @@ its first line and the description is its body. It gets one entry in `CHANGELOG.
 - Turn on **Allow GitHub Actions to create and approve pull requests**. Without it, release-please
   cannot open the release pull request.
 
+**Settings → Advanced Security**
+
+- Turn on **Private vulnerability reporting**: `SECURITY.md` points people to it.
+- Turn on **Dependabot alerts**. They also cover the development tools, which `security:audit`
+  skips.
+- Leave the CodeQL **default setup** off: `.github/workflows/codeql.yml` already runs CodeQL, and
+  the two conflict.
+
 **Settings → Rules → Rulesets** (or **Settings → Branches**), for `main`
 
-- Require a pull request before merging, and require the CI checks `validate`, `mutation` and `e2e`
-  to pass.
+- Require a pull request before merging, and require the CI checks `validate`, `mutation`, `e2e`
+  and `analyze` to pass.
 - CI does not run on the release pull request, because GitHub does not start workflows for changes
   made with the default `GITHUB_TOKEN`. With required checks, add yourself to the bypass list, or
   give release-please a personal access token (the `token` input of the action).
