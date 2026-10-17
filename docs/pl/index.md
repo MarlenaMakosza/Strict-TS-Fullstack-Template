@@ -16,22 +16,40 @@ który przejdzie wszystkie ograniczenia. Inspiracją dla pracy z agentami był
 
 ## Co dostajesz
 
+Wbudowane od pierwszego commita:
+
+- **Sprawdzanie bezpieczeństwa.** `npm audit` zatrzymuje CI przy znanej podatności o wysokiej albo
+  krytycznej wadze w zależności runtime, `eslint-plugin-security` wyłapuje ryzykowne wzorce w
+  kodzie, a `SECURITY.md` mówi, jak zgłosić lukę prywatnie.
+- **Logowanie przez pino.** Jeden logger w `src/logger.ts`: linie JSON na produkcji, czytelne linie
+  podczas pracy, poziom z `LOG_LEVEL` i ukrywanie sekretów, takich jak hasła i tokeny. Logi idą na
+  stderr, więc stdout zostaje dla wyniku programu.
+- **Automatyczne wydania.** release-please czyta
+  [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/), utrzymuje aktualny PR z
+  następną wersją i `CHANGELOG.md`, a po jego merge'u oznacza wydanie tagiem.
+
+A do tego:
+
 - **TypeScript na Node.js 24.** Node uruchamia pliki `.ts` bezpośrednio, bez kroku budowania
   podczas pracy. Zod sprawdza zmienne środowiskowe i inne dane na granicach aplikacji.
+- **Błędy jako wartości.** Typ `Result` w `src/shared/result.ts` dla operacji, które mogą się nie
+  udać, więc TypeScript zmusza do obsłużenia błędu.
 - **PostgreSQL z Drizzle.** Bazę uruchamia Docker Compose. Są też migracje i skrypt z danymi
   testowymi (Faker).
 - **Surowy lint.** ESLint z regułami opartymi na typach i około 20 wtyczkami, Prettier, cspell
   (angielski i polski) oraz knip do wykrywania nieużywanego kodu.
-- **Testy na trzech poziomach.** Vitest do testów jednostkowych, Playwright ze scenariuszami Gherkin (playwright-bdd)
-  do testów end-to-end i Stryker do mutation testing.
+- **Testy na każdym poziomie.** Vitest do testów jednostkowych, z fast-check do testów
+  property-based; testy integracyjne na prawdziwym PostgreSQL w Dockerze (Testcontainers);
+  Playwright ze scenariuszami Gherkin (playwright-bdd) do testów end-to-end; i Stryker do mutation
+  testing.
 - **Metryki jakości.** Próg pokrycia testami, wynik CRAP dla każdej funkcji i wykrywanie
   skopiowanego kodu.
-- **Reguły architektury.** ADR-y w `.archgate/adrs/`, sprawdzane przez Archgate.
+- **Reguły architektury i dokumentacja.** ADR-y w `.archgate/adrs/`, sprawdzane przez Archgate, i
+  strona VitePress z architekturą arc42 po angielsku i po polsku, publikowana na GitHub Pages.
 - **Konfiguracja agentów AI, która działa z każdym narzędziem.** `AGENTS.md` zawiera reguły, są
   osobne role dla agentów, a opcjonalny adapter podłącza Claude Code.
-- **CI na GitHub Actions.** Hooki gita,
-  [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) i opcjonalne review drugim
-  modelem AI.
+- **CI na GitHub Actions.** Hooki gita, formularze zgłoszeń, które proszą o scenariusze Gherkin, i
+  opcjonalne review drugim modelem AI.
 
 ## Instalacja
 
