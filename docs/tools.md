@@ -99,10 +99,10 @@ the checks work together, see [Quality gates](./quality-gates.md).
 
 ## Maintenance
 
-| Tool                              | Role                                       |
-| --------------------------------- | ------------------------------------------ |
-| Renovate `*` or npm-check-updates | Dependency updates                         |
-| rimraf                            | `npm run clean` that also works on Windows |
+| Tool              | Role                                                                     |
+| ----------------- | ------------------------------------------------------------------------ |
+| npm-check-updates | Dependency updates (`list-outdated-dependencies`, `update-dependencies`) |
+| rimraf            | `npm run clean` that also works on Windows                               |
 
 ## Documentation and architecture
 
@@ -127,3 +127,4 @@ Reason column says when they can still be useful.
 | `eslint-plugin-eslint-plugin`                                                                             | Only for writing custom ESLint rules                                                                                                              |
 | skott                                                                                                     | knip + import-x cover most of it, but useful for viewing the dependency graph                                                                     |
 | CodeQL                                                                                                    | Security analysis that follows data through the code. Free only for public repositories, also locally; `eslint-plugin-security` covers the basics |
+| Renovate                                                                                                  | Rejected: it ties the project too closely to GitHub infrastructure (a GitHub App opening pull requests); npm-check-updates runs locally instead   |

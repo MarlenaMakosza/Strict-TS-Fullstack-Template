@@ -99,10 +99,10 @@ zestaw dla projektu w czystym TypeScript. Komendy, które je uruchamiają, są w
 
 ## Utrzymanie
 
-| Narzędzie                          | Rola                                        |
-| ---------------------------------- | ------------------------------------------- |
-| Renovate `*` lub npm-check-updates | Aktualizacja zależności                     |
-| rimraf                             | `npm run clean` działający też na Windowsie |
+| Narzędzie         | Rola                                                                          |
+| ----------------- | ----------------------------------------------------------------------------- |
+| npm-check-updates | Aktualizacja zależności (`list-outdated-dependencies`, `update-dependencies`) |
+| rimraf            | `npm run clean` działający też na Windowsie                                   |
 
 ## Dokumentacja i architektura
 
@@ -127,3 +127,4 @@ mówi, kiedy mogą się przydać.
 | `eslint-plugin-eslint-plugin`                                                                             | Tylko do pisania własnych reguł ESLint                                                                                                                |
 | skott                                                                                                     | knip + import-x pokrywają większość, ale do wglądu do grafów                                                                                          |
 | CodeQL                                                                                                    | Analiza bezpieczeństwa śledząca dane przez kod. Darmowa tylko dla publicznych repozytoriów, także lokalnie; podstawy pokrywa `eslint-plugin-security` |
+| Renovate                                                                                                  | Odrzucony: za mocno wiąże projekt z infrastrukturą GitHuba (aplikacja GitHub otwierająca PR-y); zamiast niego lokalnie działa npm-check-updates       |

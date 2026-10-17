@@ -3,7 +3,7 @@
 ## Requirements
 
 - Node.js 24 (the version is in `.nvmrc`; `npm install` refuses an older one), with the npm
-  version from `packageManager` in `package.json` (Renovate updates it)
+  version from `packageManager` in `package.json` (update it together with Node)
 - Docker, for PostgreSQL
 - git
 
@@ -114,7 +114,7 @@ its first line and the description is its body. It gets one entry in `CHANGELOG.
   (see [Quality gates](./quality-gates.md)). Expect a few dozen alerts at once, almost all in
   development tools that never run in production, and an email for each by default. Turn the
   emails off in your personal **Settings → Notifications → Dependabot alerts**. Leave
-  **Dependabot security updates** off: it opens a pull request for each fix, and Renovate already
+  **Dependabot security updates** off: it opens a pull request for each fix, and `npm run update-dependencies`
   updates the dependencies.
 
 **Settings → Rules → Rulesets** (or **Settings → Branches**), for `main`

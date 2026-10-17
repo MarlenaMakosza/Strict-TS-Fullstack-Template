@@ -3,7 +3,7 @@
 ## Wymagania
 
 - Node.js 24 (wersja jest w `.nvmrc`; ze starszą `npm install` odmówi instalacji) z wersją npm
-  z pola `packageManager` w `package.json` (Renovate ją aktualizuje)
+  z pola `packageManager` w `package.json` (aktualizuj ją razem z Node)
 - Docker, dla PostgreSQL
 - git
 
@@ -114,7 +114,8 @@ wymaga jednego:
   tuzinów alertów, prawie wszystkich w narzędziach, które nigdy nie działają na produkcji, i
   domyślnie e-maila o każdym. E-maile wyłączysz w swoich osobistych **Settings → Notifications →
   Dependabot alerts**. Zostaw wyłączone **Dependabot security updates**: otwiera PR dla każdej
-  poprawki, a zależności i tak aktualizuje Renovate.
+  poprawki, a zależności i tak aktualizuje
+  `npm run update-dependencies`.
 
 **Settings → Rules → Rulesets** (albo **Settings → Branches**), dla `main`
 

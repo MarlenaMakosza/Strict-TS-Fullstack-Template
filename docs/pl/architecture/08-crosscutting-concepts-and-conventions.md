@@ -174,14 +174,31 @@ Wspólne typy i pomocnicze funkcje trafiają do `shared/`.
   type AdminUser = User & { role: string };
   ```
 
-- **Bez `enum` i bez `const enum`.** Node uruchamia pliki `.ts` przez usuwanie typów, a
-  `erasableSyntaxOnly` w `tsconfig.json` odrzuca każdą składnię, której nie da się usunąć, także
-  enumy. Użyj unii literałów albo obiektu `as const`, gdy wartości są potrzebne w czasie działania:
+- **Bez `enum` i bez `const enum`.** Node uruchamia pliki `.ts` przez usuwanie typów: zamazuje
+  adnotacje i uruchamia to, co zostało, bez kroku budowania. `enum` to nie adnotacja, tylko kod,
+  który tworzy obiekt, więc usuwanie typów sobie z nim nie radzi i Node kończy się błędem
+  `ERR_UNSUPPORTED_TYPESCRIPT_SYNTAX`. `erasableSyntaxOnly` w `tsconfig.json` zgłasza taką składnię
+  już w edytorze. Użyj unii literałów albo obiektu `as const`, gdy wartości są potrzebne w czasie
+  działania:
 
   ```ts
   const DIRECTION = { up: 'up', down: 'down' } as const;
   type Direction = (typeof DIRECTION)[keyof typeof DIRECTION];
   ```
+
+- **Przemyśl to dobrze, zanim zmienisz to w swoim projekcie.** Wybór wpływa na to, jak uruchamia się
+  każdy plik, a późniejsza zmiana oznacza przeróbki w całym kodzie:
+
+  | Opcja                                                      | Enumy | Koszt                                                                                                           |
+  | ---------------------------------------------------------- | ----- | --------------------------------------------------------------------------------------------------------------- |
+  | Usuwanie typów, bez enumów (szablon)                       | nie   | żaden; Node uruchamia `.ts` bezpośrednio, w trybie development, w testach i w scenariuszach                     |
+  | `node --experimental-transform-types`                      | tak   | flaga jest eksperymentalna i może się zmienić; potrzebuje jej każda komenda `node` i każde narzędzie            |
+  | Zawsze kompilacja (`tsc` albo bundler) przed uruchomieniem | tak   | krok budowania przed każdym uruchomieniem, testem i scenariuszem; znikają `erasableSyntaxOnly` i usuwanie typów |
+
+  `npm run build` już kompiluje przez `tsc` na produkcję, ale development, testy jednostkowe i
+  scenariusze uruchamiają pliki `.ts` bezpośrednio, więc enum by je zepsuł. Zobacz
+  [Node.js: type stripping](https://nodejs.org/api/typescript.html#type-stripping) i
+  [TypeScript 5.8: `--erasableSyntaxOnly`](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-8.html#the---erasablesyntaxonly-option).
 
 - Parametry typów generycznych mają opisowe nazwy (`TItem`, `TValue`, `TResult`). Pojedyncza litera
   jest w porządku tylko przy jednym parametrze o oczywistym znaczeniu.
