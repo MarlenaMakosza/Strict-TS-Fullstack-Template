@@ -43,14 +43,27 @@ export function getDiscount(user: User): number {
 
 ## Errors
 
-- Application logic returns a **Result** for operations that may fail, instead of throwing:
+- Application logic returns a **Result** from `src/shared/result.ts` for operations that may
+  fail, instead of throwing. `success(value)` and `failure(error)` build it:
 
   ```ts
-  type Result<TValue, TError = string> = { ok: true; value: TValue } | { ok: false; error: TError };
+  import { failure, type Result, success } from './shared/result.ts';
+
+  function parseAge(input: string): Result<number> {
+    const age = Number(input);
+
+    return Number.isSafeInteger(age) && age >= 0 ? success(age) : failure(`Not an age: ${input}`);
+  }
+
+  const result = parseAge(text);
+  if (result.ok) {
+    logger.info({ age: result.value }, 'Parsed the age'); // `value` is allowed only after the check
+  }
   ```
 
   The `ok` field lets TypeScript narrow the type, so the caller cannot use `value` without
-  checking for an error first.
+  checking for an error first. The error is a message by default; pass a type for a structured
+  one, such as `Result<User, 'not-found' | 'inactive'>`.
 
 - Exceptions are caught **only at external boundaries** (database, network, file system,
   third-party libraries) and turned into a Result there.

@@ -45,14 +45,27 @@ Kod i komentarze w kodzie piszemy po angielsku.
 
 ## Błędy
 
-- Logika aplikacji zwraca **Result** dla operacji, które mogą się nie udać, zamiast rzucać wyjątek:
+- Logika aplikacji zwraca **Result** z `src/shared/result.ts` dla operacji, które mogą się nie
+  udać, zamiast rzucać wyjątek. Budują go `success(value)` i `failure(error)`:
 
   ```ts
-  type Result<TValue, TError = string> = { ok: true; value: TValue } | { ok: false; error: TError };
+  import { failure, type Result, success } from './shared/result.ts';
+
+  function parseAge(input: string): Result<number> {
+    const age = Number(input);
+
+    return Number.isSafeInteger(age) && age >= 0 ? success(age) : failure(`Not an age: ${input}`);
+  }
+
+  const result = parseAge(text);
+  if (result.ok) {
+    logger.info({ age: result.value }, 'Parsed the age'); // `value` wolno użyć dopiero po sprawdzeniu
+  }
   ```
 
   Dzięki polu `ok` TypeScript zawęża typ, więc nie da się użyć `value` bez wcześniejszego
-  sprawdzenia błędu.
+  sprawdzenia błędu. Domyślnie błąd to komunikat; dla błędu z określonymi wartościami podaj typ, np.
+  `Result<User, 'not-found' | 'inactive'>`.
 
 - Wyjątki łapiemy **tylko na granicach zewnętrznych** (baza danych, sieć, system plików,
   biblioteki zewnętrzne) i tam zamieniamy je w Result.
