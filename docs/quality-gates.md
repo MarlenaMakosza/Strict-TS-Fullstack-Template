@@ -43,3 +43,8 @@ one always passes. Complexity comes from the ESLint `complexity` rule, and cover
 
 With Claude Code, a Stop hook also runs `npm run validate` before Claude may finish a task. See
 [AI workflow](./ai-workflow.md).
+
+CI is set up only for **GitHub Actions** (`.github/workflows/`). On another platform, such as
+GitLab, nothing runs in CI until you add it there; the hooks and the `npm run` commands work the
+same everywhere. Each job in `.github/workflows/ci.yml` is `npm ci` followed by a few `npm run`
+commands, so a pipeline for another platform repeats those commands.

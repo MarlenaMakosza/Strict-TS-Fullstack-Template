@@ -43,3 +43,8 @@ pokrycie z ostatniego `npm run test:coverage`.
 
 W Claude Code dodatkowo Stop hook odpala `npm run validate`, zanim Claude może skończyć zadanie.
 Zobacz [Praca z agentami AI](./ai-workflow.md).
+
+CI jest przygotowane tylko dla **GitHub Actions** (`.github/workflows/`). Na innej platformie, np.
+GitLabie, w CI nic się nie uruchamia, dopóki go tam nie dodasz; hooki i komendy `npm run` działają
+wszędzie tak samo. Każdy job w `.github/workflows/ci.yml` to `npm ci` i kilka komend `npm run`, więc
+pipeline na innej platformie powtarza te komendy.
