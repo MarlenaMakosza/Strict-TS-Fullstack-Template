@@ -1,0 +1,42 @@
+name: Feature
+description: A new behavior, described as a Gherkin scenario.
+title: 'feat: '
+labels: [enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Describe the behavior from the user's point of view. The scenario becomes a `.feature`
+        file in `tests/e2e/features/`; see `greeting.feature` for the style.
+  - type: textarea
+    id: why
+    attributes:
+      label: Why
+      description: The problem this behavior solves, and who has it.
+    validations:
+      required: true
+  - type: textarea
+    id: scenario
+    attributes:
+      label: Scenario
+      description: One or more Gherkin scenarios. Leave it rough; the specifier agent can refine it.
+      render: gherkin
+      value: |
+        Feature: <name>
+
+          Scenario: <what the user does>
+            Given <the starting state>
+            When <the action>
+            Then <the result the user sees>
+    validations:
+      required: true
+  - type: textarea
+    id: edge-cases
+    attributes:
+      label: Edge cases
+      description: Optional. Unusual inputs or states you already know about.
+  - type: textarea
+    id: out-of-scope
+    attributes:
+      label: Out of scope
+      description: Optional. What this feature does not do.

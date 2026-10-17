@@ -1,0 +1,41 @@
+name: Bug
+description: Something does not work as the scenarios or the docs say.
+title: 'fix: '
+labels: [bug]
+body:
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      description: The actual behavior. Paste the exact error message.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Commands or steps. A Gherkin scenario works well, and becomes the regression test.
+      render: gherkin
+      value: |
+        Scenario: <the bug>
+          Given <the starting state>
+          When <the action>
+          Then <the expected result>
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version or commit
+      description: Optional. The release (for example 0.2.0) or the commit hash.
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: Optional. OS, Node version, NODE_ENV.
