@@ -114,6 +114,9 @@ Wspólne typy i pomocnicze funkcje trafiają do `shared/`.
 - Logi idą na stderr, więc stdout zostaje dla wyniku programu. Ten wynik wypisuje tylko
   `src/index.ts`, przez `console.log`. ESLint (`no-console`) odrzuca `console.*` w każdym innym
   miejscu.
+- `dev/logger-example.ts` pokazuje wszystkie typowe przypadki (poziomy, kontekst, błędy, loggery
+  potomne, czyli `child`, ukrywanie sekretów) i jak zapisać logi do pliku. Uruchom go przez
+  `npm run example:logger`.
 - Pola z sekretami (`DATABASE_URL`, `password`, `token`, `authorization`, `cookie`) są
   ukrywane. Nowe dopisz do `SECRET_FIELDS` w `src/logger.ts` i nigdy nie wkładaj sekretu do treści
   wiadomości.

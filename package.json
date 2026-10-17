@@ -47,6 +47,7 @@
     "db:push": "drizzle-kit push",
     "db:check": "drizzle-kit check",
     "seed:dev": "node dev/db/seed.ts",
+    "example:logger": "node dev/logger-example.ts",
     "firstrun:dev": "npm install && npm run ts-check && docker compose up --detach --wait && npm run db:sync && npm run seed:dev",
     "list-outdated-dependencies": "npm-check-updates --format repo,group --peer",
     "update-dependencies": "npm run list-outdated-dependencies -- -u && npm install && npm update && npm dedupe && npm run autofix",

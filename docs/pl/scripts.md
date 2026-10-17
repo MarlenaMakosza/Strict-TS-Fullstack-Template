@@ -40,6 +40,7 @@ Każdy uruchamiasz przez `npm run <nazwa>`. Najczęściej potrzebne:
 | `db:generate` / `db:migrate` / `db:sync`             | drizzle-kit generate (nazwy z datą przez `migrations.prefix`) / `dev/db/migrate.ts` / generate + migrate |
 | `db:studio` / `db:push` / `db:check`                 | drizzle-kit studio / push / check                                                                        |
 | `seed:dev`                                           | `dev/db/seed.ts`                                                                                         |
+| `example:logger`                                     | `node dev/logger-example.ts`: przykłady logowania przez `src/logger.ts`                                  |
 | `firstrun:dev`                                       | install + ts-check + docker + db:sync + seed                                                             |
 | `list-outdated-dependencies` / `update-dependencies` | npm-check-updates                                                                                        |
 | `clean`                                              | `rimraf node_modules dist coverage reports .stryker-tmp`                                                 |

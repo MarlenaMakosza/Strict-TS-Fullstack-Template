@@ -113,6 +113,8 @@ Shared types and helpers go into `shared/`.
   development, pino-pretty writes readable lines.
 - Logs go to stderr, so stdout stays free for the output of the program. Only `src/index.ts` prints
   that output, with `console.log`. ESLint (`no-console`) rejects `console.*` everywhere else.
+- `dev/logger-example.ts` shows every common case (levels, context, errors, child loggers,
+  redaction) and how to save the logs to a file. Run it with `npm run example:logger`.
 - Secret fields (`DATABASE_URL`, `password`, `token`, `authorization`, `cookie`) are redacted. Add
   new ones to `SECRET_FIELDS` in `src/logger.ts`, and never put a secret in the message string.
 

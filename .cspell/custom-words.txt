@@ -26,6 +26,7 @@ knip
 Lintowanie
 lintowanych
 loggera
+loggery
 marlenamakosza
 merguje
 mergujemy
