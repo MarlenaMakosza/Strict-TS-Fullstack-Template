@@ -1,5 +1,34 @@
 # Changelog
 
+## [0.2.0](https://github.com/MarlenaMakosza/Ultimate-TS-AI-project/compare/v0.1.0...v0.2.0) (2026-10-17)
+
+
+### Features
+
+* add a Result type, explain the enum trade-off and drop Renovate ([#18](https://github.com/MarlenaMakosza/Ultimate-TS-AI-project/issues/18)) ([8fa2c5b](https://github.com/MarlenaMakosza/Ultimate-TS-AI-project/commit/8fa2c5ba0d8fea8e4443fa2df87a4bd3ef05de8f))
+* log through pino in src/logger.ts ([#12](https://github.com/MarlenaMakosza/Ultimate-TS-AI-project/issues/12)) ([2f0f2e3](https://github.com/MarlenaMakosza/Ultimate-TS-AI-project/commit/2f0f2e379895271a0f81311002fac43b95310738))
+
+
+### Documentation
+
+* add arc42 architecture pages and coding conventions ([#10](https://github.com/MarlenaMakosza/Ultimate-TS-AI-project/issues/10)) ([34aac3c](https://github.com/MarlenaMakosza/Ultimate-TS-AI-project/commit/34aac3c3cf3a5fbe756c7537c175d4b819c820b8))
+* bring "What you get" up to date ([#21](https://github.com/MarlenaMakosza/Ultimate-TS-AI-project/issues/21)) ([33a3710](https://github.com/MarlenaMakosza/Ultimate-TS-AI-project/commit/33a37109d6933fc65071f5c1179ed619461b4a6b))
+* complete the arc42 sections ([#11](https://github.com/MarlenaMakosza/Ultimate-TS-AI-project/issues/11)) ([c102e65](https://github.com/MarlenaMakosza/Ultimate-TS-AI-project/commit/c102e651c6fb4107cade6cc271d3190afe8d00be))
+* describe codebase-memory-mcp as an optional code graph for agents ([#17](https://github.com/MarlenaMakosza/Ultimate-TS-AI-project/issues/17)) ([759a4bc](https://github.com/MarlenaMakosza/Ultimate-TS-AI-project/commit/759a4bc7de4eca6369f6c0b0214dbeae100206ca))
+* publish the documentation on GitHub Pages ([#8](https://github.com/MarlenaMakosza/Ultimate-TS-AI-project/issues/8)) ([f4d7acf](https://github.com/MarlenaMakosza/Ultimate-TS-AI-project/commit/f4d7acf7f6eac816d469a73cadfef13cf6968e23))
+* say that CI is set up only for GitHub Actions ([#20](https://github.com/MarlenaMakosza/Ultimate-TS-AI-project/issues/20)) ([f4e346b](https://github.com/MarlenaMakosza/Ultimate-TS-AI-project/commit/f4e346bc7c2dedf33402277d1704a1eeed612bcb))
+
+
+### Tests
+
+* add a database integration test with Testcontainers ([#19](https://github.com/MarlenaMakosza/Ultimate-TS-AI-project/issues/19)) ([d65e904](https://github.com/MarlenaMakosza/Ultimate-TS-AI-project/commit/d65e9043a1e88e104870441a800b961efd21e7c6))
+* add property-based tests with fast-check ([#15](https://github.com/MarlenaMakosza/Ultimate-TS-AI-project/issues/15)) ([49e8502](https://github.com/MarlenaMakosza/Ultimate-TS-AI-project/commit/49e85028883c98494461dc6d730fd52e5aef968b))
+
+
+### CI
+
+* add a dependency audit gate and a security policy ([#16](https://github.com/MarlenaMakosza/Ultimate-TS-AI-project/issues/16)) ([25d2e58](https://github.com/MarlenaMakosza/Ultimate-TS-AI-project/commit/25d2e5841fb61acb46d5267d563c62d59e47eca3))
+
 ## [0.1.0](https://github.com/MarlenaMakosza/Ultimate-TS-AI-project/compare/v0.0.1...v0.1.0) (2026-10-15)
 
 
