@@ -16,8 +16,6 @@ stays. The agent workflow was inspired by a
 
 ## What you get
 
-Built in from the first commit:
-
 - **Security checks.** `npm audit` fails CI on a known high or critical vulnerability in a runtime
   dependency, `eslint-plugin-security` catches risky patterns in the code, and `SECURITY.md` tells
   people how to report a vulnerability privately.
@@ -28,9 +26,6 @@ Built in from the first commit:
   [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/), keeps a release pull
   request with the next version and the `CHANGELOG.md` up to date, and tags the release when you
   merge it.
-
-And the rest:
-
 - **TypeScript on Node.js 24.** Node runs `.ts` files directly, with no build step in
   development. Zod validates the environment and other input at the boundaries.
 - **Errors as values.** A `Result` type in `src/shared/result.ts` for operations that may fail, so

@@ -16,8 +16,6 @@ który przejdzie wszystkie ograniczenia. Inspiracją dla pracy z agentami był
 
 ## Co dostajesz
 
-Wbudowane od pierwszego commita:
-
 - **Sprawdzanie bezpieczeństwa.** `npm audit` zatrzymuje CI przy znanej podatności o wysokiej albo
   krytycznej wadze w zależności runtime, `eslint-plugin-security` wyłapuje ryzykowne wzorce w
   kodzie, a `SECURITY.md` mówi, jak zgłosić lukę prywatnie.
@@ -27,9 +25,6 @@ Wbudowane od pierwszego commita:
 - **Automatyczne wydania.** release-please czyta
   [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/), utrzymuje aktualny PR z
   następną wersją i `CHANGELOG.md`, a po jego merge'u oznacza wydanie tagiem.
-
-A do tego:
-
 - **TypeScript na Node.js 24.** Node uruchamia pliki `.ts` bezpośrednio, bez kroku budowania
   podczas pracy. Zod sprawdza zmienne środowiskowe i inne dane na granicach aplikacji.
 - **Błędy jako wartości.** Typ `Result` w `src/shared/result.ts` dla operacji, które mogą się nie
