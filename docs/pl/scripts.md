@@ -45,6 +45,6 @@ każdej aplikacji w `apps/` (`--workspaces`) albo w jednej (`-w apps/api`); tabe
 | `db:studio` / `db:push` / `db:check`                 | w `apps/api`: drizzle-kit studio / push / check                                                                                             |
 | `seed:dev`                                           | w `apps/api`: `dev/db/seed.ts`                                                                                                              |
 | `example:logger`                                     | w `apps/api`: `node dev/logger-example.ts`, przykłady logowania przez `src/logger.ts`                                                       |
-| `firstrun:dev`                                       | install + ts-check, potem w `apps/api`: docker + db:sync + seed                                                                             |
+| `firstrun:dev`                                       | install + Chromium dla scenariuszy w przeglądarce + ts-check, potem w `apps/api`: docker + db:sync + seed                                   |
 | `list-outdated-dependencies` / `update-dependencies` | npm-check-updates, dla katalogu głównego i każdej aplikacji                                                                                 |
 | `clean`                                              | `rimraf` dla `node_modules`, `dist`, `coverage`, `reports` i `.stryker-tmp`, w katalogu głównym i w każdej aplikacji                        |

@@ -17,8 +17,10 @@ cp apps/api/.env.example apps/api/.env
 npm run firstrun:dev
 ```
 
-`firstrun:dev` instaluje zależności i sprawdza typy. Potem uruchamia PostgreSQL, wykonuje migracje
-i wypełnia bazę danymi.
+`firstrun:dev` instaluje zależności i Chromium dla scenariuszy w przeglądarce oraz sprawdza
+typy. Potem uruchamia PostgreSQL, wykonuje migracje i wypełnia bazę danymi. Na Linuksie Chromium
+może potrzebować bibliotek systemowych: jeśli scenariusze w przeglądarce nie mogą go uruchomić,
+wykonaj raz `sudo npx playwright install-deps chromium`.
 
 ## Opcjonalnie: codebase-memory-mcp dla agentów AI
 
