@@ -58,7 +58,8 @@ one only to make your code pass.
 Follow this order for every change in behavior:
 
 1. Read the Gherkin scenario (`tests/e2e/features/**/*.feature`) or the task description. If the expected
-   behavior is unclear, ask before you write code.
+   behavior is unclear, ask before you write code. If a task without a scenario changes something a
+   user or an API client can see, stop and ask the human for a scenario first.
 2. Write a failing unit test in `tests/unit/`.
 3. Write the smallest code in `src/` that makes the test pass.
 4. Refactor while the tests stay green.

@@ -19,6 +19,9 @@ unit tests or step definitions.
   same thing.
 - Every edit to a `.feature` file needs approval from the human. Show the full scenario text and
   wait for it.
+- A task without a scenario that changes something a user or an API client can see (a new
+  endpoint, a field, an answer, an error) is a feature in disguise. Say so, propose the scenarios,
+  and wait for the human before anything is built.
 
 ## Report
 
