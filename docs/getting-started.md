@@ -63,19 +63,23 @@ Create your repository from this one: on GitHub with **Use this template**, or c
 The examples are the patterns that the agents follow, so keep each one until your own code
 replaces it.
 
-- The greeting: `apps/api/src/greet.ts`, `apps/api/tests/unit/greet.test.ts`, the `/api/greeting`
-  route in `apps/api/src/server/app.ts` and its tests, the greeting scenarios in
+- The greeting in the API: `apps/api/src/greet.ts`, `apps/api/tests/unit/greet.test.ts`, the
+  `/api/greeting` route in `apps/api/src/server/app.ts` and its tests, the greeting scenarios in
   `tests/e2e/features/http-api.feature` and `docs/edge-cases/greeting.md`. Keep `/api/health`, the
-  server fixture and the steps in `tests/e2e/steps/`: they fit any API. The roles, `AGENTS.md` and
-  the docs name these files as style references: `git grep -n -E "greet|http-api"` lists every place
-  to update.
+  server fixture and the steps in `tests/e2e/steps/server.steps.ts`: they fit any API.
+- The greeting page in the web app: `apps/web/src/App.tsx`, `apps/web/src/api/greeting.ts` and
+  their tests in `apps/web/tests/unit/`, `tests/e2e/features/greeting-page.feature` and the UX
+  design `docs/ux/greeting.md`. Keep the steps in `tests/e2e/steps/page.steps.ts` (opening the app,
+  typing, pressing buttons, the keyboard and the axe check): they fit any page.
+- The roles, `AGENTS.md` and the docs name these files as style references:
+  `git grep -n -E "greet|http-api|greeting-page"` lists every place to update.
 - The database: the `users` table in `apps/api/src/db/schema.ts`, the migrations in
   `apps/api/drizzle/`, `apps/api/dev/db/seed.ts` and `apps/api/tests/integration/db/users.test.ts`.
   Delete `apps/api/drizzle/` and run `npm run db:generate` once your schema is in place, so the
   first migration is yours.
 - `apps/api/dev/logger-example.ts` and the `example:logger` script: delete them once you know the
   logger.
-- `.archgate/adrs/GEN-001-example.md`: delete it. Keep `ARCH-001` and `ARCH-002` for as long as
+- `.archgate/adrs/GEN-001-example.md`: delete it. Keep `ARCH-001` to `ARCH-005` for as long as
   they hold.
 
 **3. Docs about the template**
@@ -94,6 +98,22 @@ replaces it.
   and the database steps in `firstrun:dev`; the `integration` job in `.github/workflows/ci.yml`;
   `DATABASE_URL` in `apps/api/src/env.ts` and `apps/api/.env.example`; and the Drizzle, postgres and
   Testcontainers packages. knip then lists what is left over.
+- No frontend (an API only): delete `apps/web/`; `tests/e2e/features/greeting-page.feature`,
+  `tests/e2e/steps/page.steps.ts`, and the `webServer` and `use.baseURL` entries in
+  `playwright.config.ts`; the Chromium install step of the `e2e` job in
+  `.github/workflows/ci.yml`; `docs/ux/`, the `ux-designer` and `ui-reviewer` roles in
+  `.agents/roles/` and `.claude/agents/` and their rows in `AGENTS.md`; the `Web app (React)` block
+  and the Tailwind and CSS settings in `eslint.config.js`; `react` and `react-dom` from the root
+  `package.json`, the `quality:one-react` step and its script in `dev/quality/` with its tests;
+  the `apps/web` entry in `knip.json`; and `concurrently` (set `dev` to
+  `npm run dev -w apps/api`). Keep `packages/shared`: its `Result` is the
+  one the conventions ask for.
+- No backend (a web app that calls another API): delete `apps/api/`;
+  `tests/e2e/features/http-api.feature`, `tests/e2e/steps/server.steps.ts` and the `server`
+  fixture in `tests/e2e/steps/fixtures.ts`; the API entry in `webServer` in `playwright.config.ts`
+  (point `API_URL` at your API); the `integration` job and the database scripts; ADRs `ARCH-001` to
+  `ARCH-003`; the `apps/api` entry in `knip.json`; and `concurrently` (set `dev` to
+  `npm run dev -w apps/web`).
 - No AI agents: see [Removing the AI setup](./ai-workflow.md#removing-the-ai-setup).
 
 **5. Check**
