@@ -16,7 +16,7 @@
     "build": "npm run build --workspaces --if-present",
     "start": "npm run start -w apps/api",
     "prepare": "husky",
-    "validate": "npm run lint && npm run ts-check && npm run spellcheck && npm run knip && npm run test:coverage && npm run quality:crap && npm run quality:duplication && npm run check:adrs",
+    "validate": "npm run lint && npm run ts-check && npm run spellcheck && npm run knip && npm run test:coverage && npm run quality:crap && npm run quality:duplication && npm run quality:one-react && npm run check:adrs",
     "validate:full": "npm run validate && npm run security:audit && npm run test:integration && npm run test:mutation -- --force && npm run test:e2e && npm run build && npm run docs:build",
     "lint": "eslint --max-warnings 0",
     "lint:fix": "npm run lint -- --fix",
@@ -54,7 +54,8 @@
     "firstrun:dev": "npm install && npm run ts-check && npm run firstrun:dev -w apps/api",
     "list-outdated-dependencies": "npm-check-updates --format repo,group --peer --workspaces --root",
     "update-dependencies": "npm run list-outdated-dependencies -- -u && npm install && npm update && npm dedupe && npm run autofix",
-    "clean": "rimraf node_modules dist coverage reports .stryker-tmp \"apps/*/{node_modules,dist,coverage,reports,.stryker-tmp}\""
+    "clean": "rimraf node_modules dist coverage reports .stryker-tmp \"apps/*/{node_modules,dist,coverage,reports,.stryker-tmp}\"",
+    "quality:one-react": "node dev/quality/one-version.ts react react-dom"
   },
   "devDependencies": {
     "@commitlint/cli": "^21.2.3",

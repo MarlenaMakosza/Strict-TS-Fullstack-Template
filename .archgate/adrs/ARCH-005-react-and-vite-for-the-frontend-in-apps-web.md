@@ -53,6 +53,7 @@ Options considered (data from npm, October 2026):
 - VitePress at the root depends on React 18 (its search box), and npm hoisted it above the app's
   React 19, so Testing Library rendered with the wrong copy. The root therefore lists React 19 as
   a dev dependency to hoist one React; npm warns that DocSearch wants React below 19, which does
-  not matter because the docs do not use DocSearch.
+  not matter because the docs do not use DocSearch. `npm run quality:one-react` (in `validate`)
+  fails if two versions come back; the workaround ends with VitePress 2 (see `docs/todo.md`).
 - `eslint-plugin-jsx-a11y` has had no release since 2024 and does not support ESLint 10, so
   accessibility is not linted yet; the Gherkin scenarios in the browser will check it with axe.

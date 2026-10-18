@@ -18,7 +18,7 @@ każdej aplikacji w `apps/` (`--workspaces`) albo w jednej (`-w apps/api`); tabe
 | `build`                                              | w każdej aplikacji: `tsc --project tsconfig.build.json` w `apps/api` (do `apps/api/dist/`), `vite build` w `apps/web` (do `apps/web/dist/`) |
 | `start`                                              | w `apps/api`: `node dist/index.js`                                                                                                          |
 | `prepare`                                            | husky (instaluje hooki po `npm install`)                                                                                                    |
-| `validate`                                           | lint + ts-check + spellcheck + knip + test:coverage + quality:crap + quality:duplication + check:adrs                                       |
+| `validate`                                           | lint + ts-check + spellcheck + knip + test:coverage + quality:crap + quality:duplication + quality:one-react + check:adrs                   |
 | `validate:full`                                      | validate + security:audit + test:integration + test:mutation (`--force`) + test:e2e + docs:build                                            |
 | `security:audit`                                     | `npm audit --omit=dev --audit-level=high`: błąd przy znanej podatności o wysokiej albo krytycznej wadze w zależności runtime (wymaga sieci) |
 | `lint` / `lint:fix`                                  | ESLint (`--max-warnings 0`)                                                                                                                 |
@@ -35,6 +35,7 @@ każdej aplikacji w `apps/` (`--workspaces`) albo w jednej (`-w apps/api`); tabe
 | `test:e2e` / `test:e2e:open`                         | `bddgen` + `playwright test` / z `--ui`                                                                                                     |
 | `quality:crap`                                       | w każdej aplikacji: CRAP z jej `coverage/coverage-final.json`                                                                               |
 | `quality:duplication`                                | jscpd                                                                                                                                       |
+| `quality:one-react`                                  | `dev/quality/one-version.ts react react-dom`: błąd, gdy zainstalowane są dwie wersje Reacta                                                 |
 | `commitlint`                                         | `commitlint --edit` (hook `commit-msg`)                                                                                                     |
 | `check:adrs`                                         | archgate check                                                                                                                              |
 | `docs:api`                                           | TypeDoc                                                                                                                                     |

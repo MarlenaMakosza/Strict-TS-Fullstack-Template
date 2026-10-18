@@ -18,7 +18,7 @@ in `apps/` (`--workspaces`), or in one app (`-w apps/api`); the table says which
 | `build`                                              | in every app: `tsc --project tsconfig.build.json` in `apps/api` (into `apps/api/dist/`), `vite build` in `apps/web` (into `apps/web/dist/`) |
 | `start`                                              | in `apps/api`: `node dist/index.js`                                                                                                         |
 | `prepare`                                            | husky (installs hooks after `npm install`)                                                                                                  |
-| `validate`                                           | lint + ts-check + spellcheck + knip + test:coverage + quality:crap + quality:duplication + check:adrs                                       |
+| `validate`                                           | lint + ts-check + spellcheck + knip + test:coverage + quality:crap + quality:duplication + quality:one-react + check:adrs                   |
 | `validate:full`                                      | validate + security:audit + test:integration + test:mutation (`--force`) + test:e2e + docs:build                                            |
 | `security:audit`                                     | `npm audit --omit=dev --audit-level=high`: fails on a known high or critical vulnerability in a runtime dependency (needs the network)      |
 | `lint` / `lint:fix`                                  | ESLint (`--max-warnings 0`)                                                                                                                 |
@@ -35,6 +35,7 @@ in `apps/` (`--workspaces`), or in one app (`-w apps/api`); the table says which
 | `test:e2e` / `test:e2e:open`                         | `bddgen` + `playwright test` / with `--ui`                                                                                                  |
 | `quality:crap`                                       | in every app: CRAP from its `coverage/coverage-final.json`                                                                                  |
 | `quality:duplication`                                | jscpd                                                                                                                                       |
+| `quality:one-react`                                  | `dev/quality/one-version.ts react react-dom`: fails when two versions of React are installed                                                |
 | `commitlint`                                         | `commitlint --edit` (`commit-msg` hook)                                                                                                     |
 | `check:adrs`                                         | archgate check                                                                                                                              |
 | `docs:api`                                           | TypeDoc                                                                                                                                     |

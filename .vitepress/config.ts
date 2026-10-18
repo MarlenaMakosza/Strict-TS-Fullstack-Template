@@ -24,6 +24,7 @@ export default defineConfig({
               { text: 'Scripts', link: '/scripts' },
               { text: 'Tools', link: '/tools' },
               { text: 'Code review', link: '/code-review' },
+              { text: 'To do', link: '/todo' },
               {
                 text: 'Coding conventions',
                 link: '/architecture/08-crosscutting-concepts-and-conventions',
@@ -77,6 +78,7 @@ export default defineConfig({
               { text: 'Skrypty', link: '/pl/scripts' },
               { text: 'Narzędzia', link: '/pl/tools' },
               { text: 'Code review', link: '/pl/code-review' },
+              { text: 'Do zrobienia', link: '/pl/todo' },
               {
                 text: 'Konwencje kodu',
                 link: '/pl/architecture/08-crosscutting-concepts-and-conventions',
