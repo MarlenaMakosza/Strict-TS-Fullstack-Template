@@ -65,18 +65,23 @@ a po każdej `npm run validate:full` powinien przechodzić.
 Przykłady to wzorce, według których pracują agenci, więc zostaw każdy, dopóki nie zastąpi go twój
 kod.
 
-- Powitanie: `apps/api/src/greet.ts`, `apps/api/tests/unit/greet.test.ts`, trasa `/api/greeting` w
-  `apps/api/src/server/app.ts` i jej testy, scenariusze powitania w
+- Powitanie w API: `apps/api/src/greet.ts`, `apps/api/tests/unit/greet.test.ts`, trasa
+  `/api/greeting` w `apps/api/src/server/app.ts` i jej testy, scenariusze powitania w
   `tests/e2e/features/http-api.feature` oraz `docs/edge-cases/greeting.md`. Zostaw `/api/health`,
-  fixture serwera i kroki w `tests/e2e/steps/`: pasują do każdego API. Role, `AGENTS.md` i
-  dokumentacja podają te pliki jako wzorce stylu: `git grep -n -E "greet|http-api"` pokazuje
-  wszystkie miejsca do poprawienia.
+  fixture serwera i kroki w `tests/e2e/steps/server.steps.ts`: pasują do każdego API.
+- Strona powitania w aplikacji webowej: `apps/web/src/App.tsx`, `apps/web/src/api/greeting.ts` i
+  ich testy w `apps/web/tests/unit/`, `tests/e2e/features/greeting-page.feature` oraz projekt UX
+  `docs/ux/greeting.md`. Zostaw kroki w `tests/e2e/steps/page.steps.ts` (otwarcie aplikacji,
+  wpisywanie, przyciski, klawiatura i sprawdzanie przez axe): pasują do każdej strony.
+- Role, `AGENTS.md` i dokumentacja podają te pliki jako wzorce stylu:
+  `git grep -n -E "greet|http-api|greeting-page"` pokazuje wszystkie miejsca do poprawienia.
 - Baza danych: tabela `users` w `apps/api/src/db/schema.ts`, migracje w `apps/api/drizzle/`,
   `apps/api/dev/db/seed.ts` i `apps/api/tests/integration/db/users.test.ts`. Gdy twój schemat będzie
   gotowy, usuń `apps/api/drizzle/` i uruchom `npm run db:generate`, żeby pierwsza migracja była
   twoja.
 - `apps/api/dev/logger-example.ts` i skrypt `example:logger`: usuń je, gdy poznasz już logger.
-- `.archgate/adrs/GEN-001-example.md`: usuń go. `ARCH-001` i `ARCH-002` zostaw, dopóki obowiązują.
+- `.archgate/adrs/GEN-001-example.md`: usuń go. Od `ARCH-001` do `ARCH-005` zostaw, dopóki
+  obowiązują.
 
 **3. Dokumentacja o szablonie**
 
@@ -94,6 +99,20 @@ kod.
   kroki bazy w `firstrun:dev`; job `integration` w `.github/workflows/ci.yml`; `DATABASE_URL` w
   `apps/api/src/env.ts` i `apps/api/.env.example`; oraz paczki Drizzle, postgres i Testcontainers.
   knip pokaże potem, co zostało.
+- Bez frontendu (samo API): usuń `apps/web/`; `tests/e2e/features/greeting-page.feature`,
+  `tests/e2e/steps/page.steps.ts` oraz wpisy `webServer` i `use.baseURL` w `playwright.config.ts`;
+  krok instalacji Chromium w jobie `e2e` w `.github/workflows/ci.yml`; `docs/ux/`, role
+  `ux-designer` i `ui-reviewer` w `.agents/roles/` i `.claude/agents/` oraz ich wiersze w
+  `AGENTS.md`; blok `Web app (React)` i ustawienia Tailwind oraz CSS w `eslint.config.js`; `react`
+  i `react-dom` z głównego `package.json`, krok `quality:one-react` i jego skrypt w `dev/quality/`
+  razem z testami; wpis `apps/web` w `knip.json`; oraz `concurrently` (ustaw `dev` na
+  `npm run dev -w apps/api`). Zostaw `packages/shared`: jego `Result` to ten,
+  którego wymagają konwencje.
+- Bez backendu (aplikacja webowa wywołująca inne API): usuń `apps/api/`;
+  `tests/e2e/features/http-api.feature`, `tests/e2e/steps/server.steps.ts` i fixture `server` w
+  `tests/e2e/steps/fixtures.ts`; wpis API w `webServer` w `playwright.config.ts` (ustaw `API_URL` na
+  swoje API); job `integration` i skrypty bazy danych; ADR-y od `ARCH-001` do `ARCH-003`; wpis
+  `apps/api` w `knip.json`; oraz `concurrently` (ustaw `dev` na `npm run dev -w apps/web`).
 - Bez agentów AI: zobacz [Usunięcie konfiguracji AI](./ai-workflow.md#usuniecie-konfiguracji-ai).
 
 **5. Sprawdzenie**
