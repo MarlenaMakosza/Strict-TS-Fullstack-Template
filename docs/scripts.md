@@ -19,7 +19,7 @@ in `apps/` (`--workspaces`), or in one app (`-w apps/api`); the table says which
 | `start`                                              | in `apps/api`: `node dist/index.js`                                                                                                         |
 | `prepare`                                            | husky (installs hooks after `npm install`)                                                                                                  |
 | `validate`                                           | lint + ts-check + spellcheck + knip + test:coverage + quality:crap + quality:duplication + quality:one-react + check:adrs                   |
-| `validate:full`                                      | validate + security:audit + test:integration + test:mutation (`--force`) + test:e2e + docs:build                                            |
+| `validate:full`                                      | validate + security:audit + test:integration + test:mutation (`--force`) + test:e2e + build + docs:api + docs:build                         |
 | `security:audit`                                     | `npm audit --omit=dev --audit-level=high`: fails on a known high or critical vulnerability in a runtime dependency (needs the network)      |
 | `lint` / `lint:fix`                                  | ESLint (`--max-warnings 0`)                                                                                                                 |
 | `format` / `format:check`                            | Prettier (`--write` / `--check` for CI)                                                                                                     |
@@ -38,7 +38,7 @@ in `apps/` (`--workspaces`), or in one app (`-w apps/api`); the table says which
 | `quality:one-react`                                  | `dev/quality/one-version.ts react react-dom`: fails when two versions of React are installed                                                |
 | `commitlint`                                         | `commitlint --edit` (`commit-msg` hook)                                                                                                     |
 | `check:adrs`                                         | archgate check                                                                                                                              |
-| `docs:api`                                           | TypeDoc                                                                                                                                     |
+| `docs:api`                                           | TypeDoc for `apps/api`, `apps/web` and `packages/shared` (each has a `typedoc.json`), into `docs/api/public` and `docs/api/internal`        |
 | `docs:dev` / `docs:build` / `docs:preview`           | VitePress                                                                                                                                   |
 | `db:start`                                           | in `apps/api`: docker compose up                                                                                                            |
 | `db:generate` / `db:migrate` / `db:sync`             | in `apps/api`: drizzle-kit generate (date-stamped names via `migrations.prefix`) / `dev/db/migrate.ts` / generate + migrate                 |

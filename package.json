@@ -17,7 +17,7 @@
     "start": "npm run start -w apps/api",
     "prepare": "husky",
     "validate": "npm run lint && npm run ts-check && npm run spellcheck && npm run knip && npm run test:coverage && npm run quality:crap && npm run quality:duplication && npm run quality:one-react && npm run check:adrs",
-    "validate:full": "npm run validate && npm run security:audit && npm run test:integration && npm run test:mutation -- --force && npm run test:e2e && npm run build && npm run docs:build",
+    "validate:full": "npm run validate && npm run security:audit && npm run test:integration && npm run test:mutation -- --force && npm run test:e2e && npm run build && npm run docs:api && npm run docs:build",
     "lint": "eslint --max-warnings 0",
     "lint:fix": "npm run lint -- --fix",
     "format": "prettier . --write --cache --log-level warn",

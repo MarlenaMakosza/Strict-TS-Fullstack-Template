@@ -1,7 +1,6 @@
 {
-  "entryPointStrategy": "expand",
-  "entryPoints": ["src"],
-  "exclude": ["**/*.{test,spec}.ts"],
+  "entryPointStrategy": "packages",
+  "entryPoints": ["apps/api", "apps/web", "packages/shared"],
   "excludeInternal": false,
   "out": "docs/api/internal"
 }
