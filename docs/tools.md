@@ -115,11 +115,11 @@ the checks work together, see [Quality gates](./quality-gates.md).
 
 ## Documentation and architecture
 
-| Tool      | Role                            |
-| --------- | ------------------------------- |
-| TypeDoc   | API docs from TSDoc comments    |
-| VitePress | Documentation site (arc42, ADR) |
-| Archgate  | Enforces ADRs in code           |
+| Tool      | Role                                                                                       |
+| --------- | ------------------------------------------------------------------------------------------ |
+| TypeDoc   | A reference of the TSDoc comments of `apps/api` and `packages/shared` (`npm run docs:api`) |
+| VitePress | Documentation site (arc42, ADR)                                                            |
+| Archgate  | Enforces ADRs in code                                                                      |
 
 ## Worth considering in other projects, and other notes
 

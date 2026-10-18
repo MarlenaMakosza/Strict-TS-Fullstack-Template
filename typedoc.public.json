@@ -1,6 +1,6 @@
 {
   "entryPointStrategy": "packages",
-  "entryPoints": ["apps/api", "apps/web", "packages/shared"],
+  "entryPoints": ["apps/api", "packages/shared"],
   "excludeInternal": true,
   "out": "docs/api/public"
 }
