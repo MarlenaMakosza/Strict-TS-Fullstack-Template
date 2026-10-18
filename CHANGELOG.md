@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.3.1](https://github.com/MarlenaMakosza/Ultimate-TS-AI-project/compare/v0.3.0...v0.3.1) (2026-10-18)
+
+
+### Bug Fixes
+
+* build the API docs for every workspace ([#35](https://github.com/MarlenaMakosza/Ultimate-TS-AI-project/issues/35)) ([9225104](https://github.com/MarlenaMakosza/Ultimate-TS-AI-project/commit/9225104f2127dfc478a813e0cc527778aab799d8))
+* install Chromium in firstrun:dev ([#33](https://github.com/MarlenaMakosza/Ultimate-TS-AI-project/issues/33)) ([06d0eca](https://github.com/MarlenaMakosza/Ultimate-TS-AI-project/commit/06d0ecaa851300f48248c3b57f070ff4dfd4f1b9))
+
+
+### Documentation
+
+* cover the web app in the new-project checklist ([#32](https://github.com/MarlenaMakosza/Ultimate-TS-AI-project/issues/32)) ([070bfd4](https://github.com/MarlenaMakosza/Ultimate-TS-AI-project/commit/070bfd4bb7e6f7b1c2ad59cb456237e7fffe5b9b))
+
 ## [0.3.0](https://github.com/MarlenaMakosza/Ultimate-TS-AI-project/compare/v0.2.0...v0.3.0) (2026-10-18)
 
 
