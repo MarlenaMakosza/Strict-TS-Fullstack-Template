@@ -29,12 +29,17 @@ the checks work together, see [Quality gates](./quality-gates.md).
 | `postgres`          | PostgreSQL driver                                 |
 | `@faker-js/faker`   | Seed data (`apps/api/dev/db/seed*.ts`)            |
 
-## Styles
+## Frontend
 
-| Tool                            | Role                                                                                                    |
-| ------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| Tailwind CSS v4 (`tailwindcss`) | Utility classes; config lives in CSS (`apps/api/src/styles/app.css`, `@theme`), no `tailwind.config.js` |
-| `@tailwindcss/cli`              | Builds `dist/app.css` (`css:build`, `css:watch`)                                                        |
+| Tool                                                                     | Role                                                                                               |
+| ------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------- |
+| React `*`                                                                | UI library (`apps/web`, ADR ARCH-005)                                                              |
+| Vite `*` + `@vitejs/plugin-react`                                        | Dev server and build; forwards `/api` to the backend in development                                |
+| Tailwind CSS v4 + `@tailwindcss/vite`                                    | Utility classes; config lives in CSS (`apps/web/src/index.css`, `@theme`), no `tailwind.config.js` |
+| Testing Library (`@testing-library/react`, `user-event`, `jest-dom`) `*` | Component tests that find elements by role and label, as a user does                               |
+| jsdom `*`                                                                | A browser DOM for Vitest                                                                           |
+| `@eslint-react/eslint-plugin`, `eslint-plugin-react-hooks` `*`           | React and hooks rules                                                                              |
+| concurrently `*`                                                         | `npm run dev` starts the API and the web app together                                              |
 
 ## Linters and formatting
 

@@ -29,12 +29,17 @@ zestaw dla projektu w czystym TypeScript. Komendy, które je uruchamiają, są w
 | `postgres`          | Sterownik PostgreSQL                            |
 | `@faker-js/faker`   | Dane seedujące (`apps/api/dev/db/seed*.ts`)     |
 
-## Style
+## Frontend
 
-| Narzędzie                       | Rola                                                                                                  |
-| ------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| Tailwind CSS v4 (`tailwindcss`) | Klasy utility; konfiguracja w CSS (`apps/api/src/styles/app.css`, `@theme`), bez `tailwind.config.js` |
-| `@tailwindcss/cli`              | Buduje `dist/app.css` (`css:build`, `css:watch`)                                                      |
+| Narzędzie                                                                | Rola                                                                                             |
+| ------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
+| React `*`                                                                | Biblioteka UI (`apps/web`, ADR ARCH-005)                                                         |
+| Vite `*` + `@vitejs/plugin-react`                                        | Serwer deweloperski i build; w trybie development przekazuje `/api` do backendu                  |
+| Tailwind CSS v4 + `@tailwindcss/vite`                                    | Klasy utility; konfiguracja w CSS (`apps/web/src/index.css`, `@theme`), bez `tailwind.config.js` |
+| Testing Library (`@testing-library/react`, `user-event`, `jest-dom`) `*` | Testy komponentów, które szukają elementów po roli i etykiecie, jak użytkownik                   |
+| jsdom `*`                                                                | DOM przeglądarki dla Vitest                                                                      |
+| `@eslint-react/eslint-plugin`, `eslint-plugin-react-hooks` `*`           | Reguły Reacta i hooków                                                                           |
+| concurrently `*`                                                         | `npm run dev` uruchamia razem API i aplikację webową                                             |
 
 ## Lintery i formatowanie
 

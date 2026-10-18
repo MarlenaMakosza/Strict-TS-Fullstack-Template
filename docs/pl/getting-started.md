@@ -102,7 +102,7 @@ Uruchom `npm run validate:full` i `npm run format:check`, a potem wprowadź
 ## Na co dzień
 
 ```sh
-npm run dev             # uruchamia serwer (http://localhost:3000) i restartuje go po każdej zmianie
+npm run dev             # aplikacja (http://localhost:5173) i API (http://localhost:3000), odświeżane po każdej zmianie
 npm run validate        # szybkie bramki jakości
 npm run validate:full   # wszystkie bramki: odpal przed uznaniem zadania za skończone
 ```
@@ -198,6 +198,10 @@ apps/api/             backend: API HTTP na Hono
   tests/integration/  testy Vitest na prawdziwej bazie (Testcontainers, wymaga Dockera)
   drizzle/            migracje bazy danych, generuje je npm run db:generate
   dev/db/             skrypty migracji i danych testowych
+apps/web/             frontend: React z Vite i Tailwind CSS
+  src/                komponenty; src/api/ wywołuje backend
+  tests/unit/         testy Vitest i Testing Library
+packages/shared/      kod używany przez obie aplikacje, np. Result
 tests/e2e/features/   scenariusze Gherkin (specyfikacja)
 tests/e2e/steps/      step definitions i fixtures
 dev/quality/          bramka CRAP, wspólna dla wszystkich aplikacji
@@ -208,7 +212,7 @@ docs/                 ta dokumentacja (VitePress); polska wersja w docs/pl/
 .github/              workflow CI, właściciele kodu, szablon opisu PR
 ```
 
-Repozytorium to monorepo z npm workspaces. Każda aplikacja w `apps/` ma własny `package.json`,
+Repozytorium to monorepo z npm workspaces. Każda aplikacja w `apps/` i każda paczka w `packages/` ma własny `package.json`,
 swoje zależności, konfiguracje Vitest i Strykera oraz własne skrypty. W katalogu głównym jest to,
 co wszystkie aplikacje dzielą: ESLint, Prettier, cspell, knip, jscpd, Archgate, hooki gita,
 scenariusze Gherkin i dokumentacja. Uruchamiaj skrypty z katalogu głównego: odpalają ten sam

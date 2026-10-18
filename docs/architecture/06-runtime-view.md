@@ -13,6 +13,13 @@ How the parts work together in the scenarios that matter.
 5. On `SIGINT` or `SIGTERM`, the server stops taking new requests, finishes the open ones and
    exits.
 
+## The app in development
+
+`npm run dev` starts the API on port 3000 and Vite on port 5173. The browser loads the app from
+Vite; every request to `/api/…` goes to Vite, which forwards it to the API (ADR `ARCH-005`). So the
+browser sees one origin and needs no CORS. The app validates every answer with Zod before it uses
+it.
+
 ## A request
 
 1. The request gets a request ID: the one from the `X-Request-Id` header, or a new one.

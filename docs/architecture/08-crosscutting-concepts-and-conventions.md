@@ -43,11 +43,12 @@ export function getDiscount(user: User): number {
 
 ## Errors
 
-- Application logic returns a **Result** from `apps/api/src/shared/result.ts` for operations that
-  may fail, instead of throwing. `success(value)` and `failure(error)` build it:
+- Application logic returns a **Result** from `@app/shared/result` (`packages/shared/src/result.ts`)
+  for operations that may fail, instead of throwing. `success(value)` and `failure(error)` build
+  it. The backend and the frontend use the same one:
 
   ```ts
-  import { failure, type Result, success } from './shared/result.ts';
+  import { failure, type Result, success } from '@app/shared/result';
 
   function parseAge(input: string): Result<number> {
     const age = Number(input);

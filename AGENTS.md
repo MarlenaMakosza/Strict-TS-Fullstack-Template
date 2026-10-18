@@ -15,13 +15,20 @@ easy to review (see [Final report](#final-report)).
 - TypeScript on Node.js. Node runs `.ts` files directly. An HTTP API with Hono in
   `apps/api/src/server/` (ADR `ARCH-003`): add routes with `createRoute` and `app.openapi()`, so
   they are validated and appear in `/api/openapi.json`.
-- Source code in `apps/api/src/`, unit tests in `apps/api/tests/unit/`, integration tests against a
-  real database in `apps/api/tests/integration/`, end-to-end scenarios in `tests/e2e/features/`.
+- An npm workspaces monorepo (ADR `ARCH-004`): the backend in `apps/api/`, the React frontend in
+  `apps/web/` (ADR `ARCH-005`), shared code in `packages/shared/`. Each has its code in `src/` and
+  its unit tests in `tests/unit/` (in `packages/shared`: `tests/`); the backend also has
+  integration tests against a real database in `apps/api/tests/integration/`. End-to-end
+  scenarios are in `tests/e2e/features/`. Run scripts from the root.
+- The frontend calls the backend through `/api/…` only; Vite forwards those requests to it in
+  development. Build components that are accessible: a label for every input, real buttons, and
+  `role="status"` or `role="alert"` for messages.
 - PostgreSQL through Drizzle (`apps/api/src/db/`). Start the database with `npm run db:start`.
 - Log through `logger` from `apps/api/src/logger.ts` (ADR `ARCH-002`). Never call `console.*` in
   `apps/api/src/`.
-- For an operation that may fail, return a `Result` from `apps/api/src/shared/result.ts` (`success`,
-  `failure`) instead of throwing.
+- For an operation that may fail, return a `Result` from `@app/shared/result` (`success`,
+  `failure`, in `packages/shared/src/result.ts`) instead of throwing. Never import from another
+  app's `src/`; move shared code to `packages/shared/` instead.
 - Architecture decisions (ADRs) live in `.archgate/adrs/`. Read the relevant ones before you change
   the structure of the code. The architecture overview is in `docs/architecture/` (arc42).
 - Follow `docs/architecture/08-crosscutting-concepts-and-conventions.md`: naming, errors as Result values, no `enum`, dependency

@@ -1,6 +1,6 @@
 {
   "path": ["apps", "dev", "tests/e2e"],
-  "format": ["typescript", "javascript"],
+  "format": ["typescript", "tsx", "javascript"],
   "minTokens": 50,
   "exitCode": 1,
   "reporters": ["console"],

@@ -45,11 +45,12 @@ Kod i komentarze w kodzie piszemy po angielsku.
 
 ## Błędy
 
-- Logika aplikacji zwraca **Result** z `apps/api/src/shared/result.ts` dla operacji, które mogą się
-  nie udać, zamiast rzucać wyjątek. Budują go `success(value)` i `failure(error)`:
+- Logika aplikacji zwraca **Result** z `@app/shared/result` (`packages/shared/src/result.ts`) dla
+  operacji, które mogą się nie udać, zamiast rzucać wyjątek. Budują go `success(value)` i
+  `failure(error)`. Backend i frontend używają tego samego:
 
   ```ts
-  import { failure, type Result, success } from './shared/result.ts';
+  import { failure, type Result, success } from '@app/shared/result';
 
   function parseAge(input: string): Result<number> {
     const age = Number(input);

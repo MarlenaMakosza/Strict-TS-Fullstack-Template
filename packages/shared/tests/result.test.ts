@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { failure, type Result, success } from '../../../src/shared/result.ts';
+import { failure, type Result, success } from '../src/result.ts';
 
 // An example of an operation that may fail, written the way the conventions ask.
 function parseAge(input: string): Result<number> {

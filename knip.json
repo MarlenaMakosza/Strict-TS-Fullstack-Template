@@ -3,12 +3,21 @@
   "workspaces": {
     ".": {
       "entry": ["dev/**/*.ts", "tests/e2e/steps/**/*.ts"],
-      "project": ["dev/**/*.ts", "tests/**/*.ts"]
+      "project": ["dev/**/*.ts", "tests/**/*.ts"],
+      "ignoreDependencies": ["react", "react-dom"]
     },
     "apps/api": {
       "entry": ["dev/**/*.ts"],
       "project": ["src/**/*.ts", "dev/**/*.ts", "tests/**/*.ts"],
       "ignoreDependencies": ["@stryker-mutator/command-runner", "pino-pretty"]
+    },
+    "apps/web": {
+      "project": ["src/**/*.{ts,tsx}", "tests/**/*.{ts,tsx}"],
+      "ignoreDependencies": ["@stryker-mutator/command-runner"]
+    },
+    "packages/shared": {
+      "project": ["src/**/*.ts", "tests/**/*.ts"],
+      "ignoreDependencies": ["@stryker-mutator/command-runner"]
     }
   }
 }

@@ -2,8 +2,8 @@
 
 [English](../index.md) | Polski
 
-Gotowy do użycia produkcyjnego szablon backendu w TypeScript na Node.js: małe API HTTP na Hono,
-gotowe do wywołania przez frontend.
+Gotowy do użycia produkcyjnego szablon fullstack w TypeScript: API HTTP na Hono w Node.js i
+frontend w React z Vite, w jednym monorepo.
 
 Pisanie nietrywialnego kodu w TypeScript jest trudne. Język ma mnóstwo drobnych pułapek, które w
 pewnych okolicznościach sprawiają poważne problemy, dlatego lintery i inne narzędzia jakości kodu
@@ -17,10 +17,10 @@ który przejdzie wszystkie ograniczenia. Inspiracją dla pracy z agentami był
 
 ## Co dostajesz
 
-- **TypeScript na Node.js 24, z API HTTP.** Node uruchamia pliki `.ts` bezpośrednio, bez kroku
-  budowania podczas pracy. Hono obsługuje trasy pod `/api/`, Zod sprawdza ich dane wejściowe i
-  zmienne środowiskowe, a `/api/openapi.json` opisuje API, więc frontend może z niego wygenerować
-  typy.
+- **Fullstack w TypeScript w jednym monorepo.** Backend (`apps/api`) działa na Node.js 24 prosto
+  z plików `.ts`: Hono obsługuje trasy pod `/api/`, Zod sprawdza ich dane wejściowe i zmienne
+  środowiskowe, a `/api/openapi.json` opisuje API. Frontend (`apps/web`) to React z Vite i
+  Tailwind CSS. Wspólny kod jest w `packages/shared`.
 - **Surowy lint.** ESLint z regułami opartymi na typach i około 20 wtyczkami, Prettier, cspell
   (angielski i polski) oraz knip do wykrywania nieużywanego kodu.
 - **PostgreSQL z Drizzle.** Bazę uruchamia Docker Compose. Są też migracje i skrypt z danymi
@@ -63,6 +63,7 @@ nvm use
 cp apps/api/.env.example apps/api/.env
 npm run firstrun:dev
 npm run validate
+npm run dev   # aplikacja na http://localhost:5173, API na http://localhost:3000
 ```
 
 ## Praca z agentami AI

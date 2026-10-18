@@ -1,5 +1,6 @@
 import importAlias from '@dword-design/eslint-plugin-import-alias';
 import eslintComments from '@eslint-community/eslint-plugin-eslint-comments';
+import eslintReact from '@eslint-react/eslint-plugin';
 import css from '@eslint/css';
 import js from '@eslint/js';
 import json from '@eslint/json';
@@ -15,6 +16,7 @@ import esImport from 'eslint-plugin-import-x';
 import node from 'eslint-plugin-n';
 import perfectionist from 'eslint-plugin-perfectionist';
 import promise from 'eslint-plugin-promise';
+import reactHooks from 'eslint-plugin-react-hooks';
 import regexp from 'eslint-plugin-regexp';
 import security from 'eslint-plugin-security';
 import sonarjs from 'eslint-plugin-sonarjs';
@@ -61,7 +63,8 @@ const rulesOf = configs => Object.assign({}, ...configs.map(config => config.rul
 // Tailwind v4 keeps its config in CSS — the plugin reads theme and custom utilities from here
 const tailwindSettings = {
   'better-tailwindcss': {
-    entryPoint: 'apps/api/src/styles/app.css',
+    // Absolute, so the rules work whether ESLint runs from the root or from apps/web.
+    entryPoint: `${import.meta.dirname}/apps/web/src/index.css`,
   },
 };
 
@@ -93,7 +96,7 @@ export default [
   },
   {
     name: 'Main ruleset',
-    files: ['**/*.{ts,js,mjs,cjs}'],
+    files: ['**/*.{ts,tsx,js,mjs,cjs}'],
     ignores: ['**/*.config.{js,ts}', '.vitepress/**', '.archgate/**'],
     languageOptions: {
       parser: tseslint.parser,
@@ -777,6 +780,25 @@ export default [
     },
   },
   {
+    // The browser app: React components and hooks, browser globals instead of Node ones.
+    name: 'Web app (React)',
+    files: ['apps/web/**/*.{ts,tsx}'],
+    ignores: ['apps/web/*.config.ts'],
+    ...eslintReact.configs['recommended-type-checked'],
+    languageOptions: {
+      ...eslintReact.configs['recommended-type-checked'].languageOptions,
+      globals: { ...globals.browser },
+    },
+    plugins: {
+      ...eslintReact.configs['recommended-type-checked'].plugins,
+      'react-hooks': reactHooks,
+    },
+    rules: {
+      ...eslintReact.configs['recommended-type-checked'].rules,
+      ...reactHooks.configs.flat['recommended-latest'].rules,
+    },
+  },
+  {
     name: 'Dev scripts',
     files: ['dev/**/*.ts', 'apps/*/dev/**/*.ts'],
     rules: {
@@ -794,7 +816,7 @@ export default [
   },
   {
     name: 'Tests',
-    files: ['**/tests/**/*.ts', '**/src/**/*.{test,spec}.ts'],
+    files: ['**/tests/**/*.{ts,tsx}', '**/src/**/*.{test,spec}.{ts,tsx}'],
     // Playwright scenarios have their own block below: Vitest rules do not apply to them.
     ignores: ['tests/e2e/**'],
     plugins: {
@@ -812,7 +834,7 @@ export default [
         'vitest/no-conditional-in-test': 'error',
         'vitest/consistent-test-filename': [
           'error',
-          { pattern: String.raw`.*\.(spec|test)\.[jt]s$` },
+          { pattern: String.raw`.*\.(spec|test)\.[jt]sx?$` },
         ],
         'vitest/consistent-test-it': 'error',
         'vitest/expect-expect': 'error',
@@ -860,6 +882,14 @@ export default [
         'vitest/valid-title': ['error', { ignoreTypeOfDescribeName: true }],
         'vitest/valid-expect-in-promise': 'error',
       }),
+    },
+  },
+  {
+    // Vitest loads this file once for every test file; its hooks apply to all of them.
+    name: 'Test setup',
+    files: ['**/tests/setup.ts'],
+    rules: {
+      'vitest/require-top-level-describe': 'off',
     },
   },
   {

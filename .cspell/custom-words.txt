@@ -21,11 +21,14 @@ enumy
 enumów
 firstrun
 frameworka
+frontendu
 frontmatter
 globali
 healthcheck
+hoistingu
 isready
 knip
+lintowania
 Lintowanie
 lintowanych
 loggera
@@ -41,6 +44,8 @@ onnotice
 openrouter
 pgdata
 rawfile
+Reacta
+Reactem
 requesta
 requesty
 rulesecie
