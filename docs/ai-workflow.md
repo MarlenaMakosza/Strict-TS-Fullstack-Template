@@ -11,20 +11,24 @@ and CI work the same without it. To remove the AI setup completely, see
 
 | #   | Agent              | What it does                                | What you check                                    |
 | --- | ------------------ | ------------------------------------------- | ------------------------------------------------- |
+| 0   | `ux-designer`      | Flow, screen states, texts (web only)       | Approve `docs/ux/<name>.md`                       |
 | 1   | `specifier`        | Requirement → Gherkin scenario (`.feature`) | Answer its questions, approve the `.feature` file |
 | 2   | `edge-case-hunter` | List of edge cases                          | Answer the "Questions for the human"              |
 | 3   | `architect`        | ADR and Archgate rule (only when needed)    | Accept or reject the ADR                          |
 | 4   | `implementer`      | Tests and code, until the gates pass        | Report: changed assertions, edge cases            |
+| 4b  | `ui-reviewer`      | Checks the web app against the UX design    | Findings from the user's side                     |
 | 5   | `reviewer`         | Compares the tests with the scenario        | List of mismatches                                |
 | 6   | `documenter`       | Documentation, README, TSDoc                | Changed pages in `docs/` and the README           |
 
 Example prompts for Claude Code:
 
 ```text
+0. Use the ux-designer agent. Feature: <what the user wants to do in the web app>.
 1. Use the specifier agent. Requirement: <what the app should do>.
 2. Use the edge-case-hunter agent for tests/e2e/features/<name>.feature.
 3. Use the architect agent. Does <change> need an architecture decision? If it does, propose an ADR with a rule.
 4. Use the implementer agent for tests/e2e/features/<name>.feature and docs/edge-cases/<name>.md.
+4b. Use the ui-reviewer agent for docs/ux/<name>.md and the changes in apps/web.
 5. Use the reviewer agent for the changes from <name>.
 6. Use the documenter agent for the changes from <name>.
 ```
@@ -78,6 +82,14 @@ git switch -c feat/<name>
 ```
 
 A separate branch makes it easy to throw everything away if the experiment fails.
+
+### Step 0b: ux-designer (only for the web app)
+
+For a change that a user sees in `apps/web`, the ux-designer goes first. It asks who the user is
+and what they want to get done, then writes `docs/ux/<name>.md`: the flow step by step, every state
+of the screen (empty, waiting, success, error, no data), the texts, the accessibility requirements
+and the narrow screen. Claude asks for approval before it writes the file. The specifier then turns
+the approved design into scenarios. `docs/ux/greeting.md` is the example.
 
 ### Step 1: specifier, the scenario
 
@@ -161,6 +173,12 @@ When it finishes, read its report:
   expect changes where `apps/api/src/index.ts` builds the message.
 - **Edge cases**: what it tested, what it skipped, and why.
 - **Open questions**: what was unclear in the specification.
+
+### Step 4b: ui-reviewer (only for the web app)
+
+After the implementer, the ui-reviewer goes through the feature in a browser, with the mouse and
+with the keyboard alone, on a wide and a narrow screen, and compares it with `docs/ux/<name>.md`.
+It reports findings as Conventional Comments and changes no file; the implementer fixes them.
 
 ### Step 5: reviewer, the check
 

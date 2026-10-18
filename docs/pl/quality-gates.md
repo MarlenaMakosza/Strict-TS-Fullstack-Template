@@ -19,7 +19,7 @@ działa tak samo dla kodu pisanego przez ludzi i przez agentów AI.
 | Jeden React          | `dev/quality/one-version.ts` | `react` albo `react-dom` jest zainstalowany w więcej niż jednej wersji | `quality:one-react` w `package.json`    |
 | Architektura         | Archgate                     | reguła z ADR-a jest złamana                                            | `.archgate/adrs/`                       |
 | Mutation testing     | Stryker                      | wynik mutacji spada poniżej 80%                                        | `apps/*/stryker.config.json`            |
-| Testy akceptacyjne   | Playwright + Gherkin         | scenariusz nie przechodzi                                              | `playwright.config.ts`                  |
+| Testy akceptacyjne   | Playwright + Gherkin (+ axe) | scenariusz nie przechodzi albo strona łamie WCAG 2.1 AA                | `playwright.config.ts`                  |
 | Dokumentacja         | VitePress                    | dokumentacja się nie buduje albo link jest martwy                      | `.vitepress/config.ts`                  |
 | Wiadomość w commicie | commitlint                   | wiadomość nie jest w formacie Conventional Commits                     | `commitlint.config.js`                  |
 | Zależności           | `npm audit`                  | zależność runtime ma znaną podatność o wysokiej albo krytycznej wadze  | `security:audit` w `package.json`       |

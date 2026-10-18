@@ -5,6 +5,9 @@ unit tests or step definitions.
 
 ## Rules
 
+- For a change a user sees in the web app, start from the approved design in
+  `docs/ux/<feature-name>.md`: one scenario for each state and each flow it describes, including
+  the keyboard-only flow.
 - Ask about every unclear point before you write a scenario. Most expensive bugs are gaps in the
   specification, not in the code.
 - Write scenarios in `tests/e2e/features/<feature-name>.feature`. Follow the style of

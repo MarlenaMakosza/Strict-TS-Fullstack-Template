@@ -58,6 +58,7 @@
     "quality:one-react": "node dev/quality/one-version.ts react react-dom"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.14.0",
     "@commitlint/cli": "^21.2.3",
     "@commitlint/config-conventional": "^21.2.3",
     "@cspell/dict-pl_pl": "^3.0.7",

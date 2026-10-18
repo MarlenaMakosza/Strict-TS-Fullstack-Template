@@ -105,17 +105,20 @@ A task can be split between agents with separate roles. Each role has its own in
 
 | Role               | File                                | Owns                                         |
 | ------------------ | ----------------------------------- | -------------------------------------------- |
+| `ux-designer`      | `.agents/roles/ux-designer.md`      | User flow, screen states and texts (web)     |
 | `specifier`        | `.agents/roles/specifier.md`        | Draft Gherkin scenarios for the human        |
 | `edge-case-hunter` | `.agents/roles/edge-case-hunter.md` | List edge cases, from common to extreme      |
 | `architect`        | `.agents/roles/architect.md`        | ADRs and Archgate rules                      |
 | `implementer`      | `.agents/roles/implementer.md`      | Unit tests, code and step definitions        |
+| `ui-reviewer`      | `.agents/roles/ui-reviewer.md`      | Check the web app against the UX design      |
 | `reviewer`         | `.agents/roles/reviewer.md`         | Check tests against the spec, clean the code |
 | `documenter`       | `.agents/roles/documenter.md`       | VitePress docs, arc42, ADR index, TSDoc      |
 
-The roles work in this order: specifier, edge-case hunter, architect (only when the task needs an
-architecture decision), implementer, reviewer, documenter. They hand work to each other through
-files: the scenarios in `tests/e2e/features/`, the edge case lists in `docs/edge-cases/` and the ADRs in
-`.archgate/adrs/`.
+The roles work in this order: ux-designer (only for changes a user sees in `apps/web`),
+specifier, edge-case hunter, architect (only when the task needs an architecture decision),
+implementer, ui-reviewer (only for changes in `apps/web`), reviewer, documenter. They hand work to
+each other through files: the UX designs in `docs/ux/`, the scenarios in `tests/e2e/features/`,
+the edge case lists in `docs/edge-cases/` and the ADRs in `.archgate/adrs/`.
 
 Without a role, do the work of the implementer.
 
@@ -131,6 +134,10 @@ the human accepts them. The implementer writes the step definitions in
 - Steps describe behavior, not implementation: "When I request ...", not "When I call createApp()".
 - Steps start the real server through the `server` fixture in `tests/e2e/steps/fixtures.ts`, on a
   free port, and send HTTP requests to it. A fresh server runs for every scenario.
+- Scenarios about the web app use the `page` fixture: Playwright starts the API and the web app
+  once (`playwright.config.ts`), and `tests/e2e/steps/page.steps.ts` has the steps. Find
+  elements by role and label, as a user does. `tests/e2e/features/greeting-page.feature` is the
+  example, with a keyboard-only scenario and an axe check (WCAG 2.1 AA).
 - If a scenario seems wrong or incomplete, do not change it. Ask the human.
 
 ## Protected files

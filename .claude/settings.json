@@ -22,7 +22,12 @@
       "Bash(npx vitest run:*)",
       "Bash(npx eslint:*)"
     ],
-    "ask": ["Edit(tests/e2e/features/**)", "Edit(docs/edge-cases/**)", "Edit(.archgate/adrs/**)"],
+    "ask": [
+      "Edit(tests/e2e/features/**)",
+      "Edit(docs/ux/**)",
+      "Edit(docs/edge-cases/**)",
+      "Edit(.archgate/adrs/**)"
+    ],
     "deny": [
       "Edit(eslint.config.js)",
       "Edit(**/tsconfig*.json)",

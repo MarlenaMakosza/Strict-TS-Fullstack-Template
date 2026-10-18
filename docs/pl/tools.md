@@ -89,6 +89,7 @@ zestaw dla projektu w czystym TypeScript. Komendy, które je uruchamiają, są w
 | Playwright (`@playwright/test`)           | Testy end-to-end (`playwright.config.ts`)                                                                                                                       |
 | Gherkin                                   | Scenariusze BDD z perspektywy użytkownika (`.feature`, Given/When/Then), uruchamiane w Playwright                                                               |
 | `playwright-bdd`                          | Zamienia scenariusze Gherkin (`.feature`) w testy Playwright, mapuje kroki na definicje w TS                                                                    |
+| `@axe-core/playwright` `*`                | Sprawdzanie dostępności w scenariuszach strony (WCAG 2.1 AA); MPL-2.0                                                                                           |
 | Stryker (`@stryker-mutator/core`)         | Mutation testing: celowo psuje kod i sprawdza, czy testy to wykryją (mutation score zamiast samego coverage)                                                    |
 | Stryker command runner (wbudowany w core) | Odpala `vitest run` dla każdego mutanta. `@stryker-mutator/vitest-runner` jest szybszy, ale nie działa z Vitest 5 (stryker-js #6210); wróć do niego po poprawce |
 | jscpd `*`                                 | Duplikacja kodu (`.jscpd.json`), bramka w `validate`: żaden klon niedozwolony                                                                                   |

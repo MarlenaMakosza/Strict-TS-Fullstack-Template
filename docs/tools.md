@@ -89,6 +89,7 @@ the checks work together, see [Quality gates](./quality-gates.md).
 | Playwright (`@playwright/test`)          | End-to-end tests (`playwright.config.ts`)                                                                                                                 |
 | Gherkin                                  | BDD scenarios from the user's point of view (`.feature`, Given/When/Then), run in Playwright                                                              |
 | `playwright-bdd`                         | Turns Gherkin scenarios (`.feature`) into Playwright tests, maps steps to TS definitions                                                                  |
+| `@axe-core/playwright` `*`               | Accessibility check in the page scenarios (WCAG 2.1 AA); MPL-2.0                                                                                          |
 | Stryker (`@stryker-mutator/core`)        | Mutation testing: deliberately breaks the code and checks that tests catch it (mutation score instead of plain coverage)                                  |
 | Stryker command runner (built into core) | Runs `vitest run` for every mutant. `@stryker-mutator/vitest-runner` is faster but does not work with Vitest 5 (stryker-js #6210); switch back once fixed |
 | jscpd `*`                                | Duplicated code (`.jscpd.json`), a gate in `validate`: no clone allowed                                                                                   |

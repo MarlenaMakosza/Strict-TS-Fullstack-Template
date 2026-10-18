@@ -11,10 +11,12 @@ hooki gita i CI działają tak samo bez niej. Żeby całkiem usunąć konfigurac
 
 | #   | Agent              | Co robi                                     | Co sprawdzasz ty                                |
 | --- | ------------------ | ------------------------------------------- | ----------------------------------------------- |
+| 0   | `ux-designer`      | Przebieg, stany ekranu, teksty (tylko web)  | Zatwierdzasz `docs/ux/<nazwa>.md`               |
 | 1   | `specifier`        | Wymaganie → scenariusz Gherkin (`.feature`) | Odpowiadasz na pytania, zatwierdzasz `.feature` |
 | 2   | `edge-case-hunter` | Lista przypadków brzegowych                 | Odpowiadasz na „Questions for the human”        |
 | 3   | `architect`        | ADR i reguła Archgate (tylko gdy potrzeba)  | Zatwierdzasz albo odrzucasz ADR                 |
 | 4   | `implementer`      | Testy i kod, aż bramki przejdą              | Raport: zmienione asercje, przypadki brzegowe   |
+| 4b  | `ui-reviewer`      | Sprawdza aplikację webową z projektem UX    | Uwagi z perspektywy użytkownika                 |
 | 5   | `reviewer`         | Porównuje testy ze scenariuszem             | Lista niezgodności                              |
 | 6   | `documenter`       | Dokumentacja, README, TSDoc                 | Zmienione strony w `docs/` i README             |
 
@@ -77,6 +79,14 @@ git switch -c feat/<nazwa>
 ```
 
 Osobna gałąź pozwala łatwo wszystko wyrzucić, jeśli eksperyment nie wyjdzie.
+
+### Krok 0b: ux-designer (tylko dla aplikacji webowej)
+
+Przy zmianie, którą użytkownik zobaczy w `apps/web`, pierwszy jest ux-designer. Pyta, kim jest
+użytkownik i co chce załatwić, potem zapisuje `docs/ux/<nazwa>.md`: przebieg krok po kroku, każdy
+stan ekranu (pusty, czekanie, sukces, błąd, brak danych), teksty, wymagania dostępności i wąski
+ekran. Claude pyta o zgodę przed zapisem pliku. Specifier zamienia zatwierdzony projekt w
+scenariusze. Wzorzec: `docs/ux/greeting.md`.
 
 ### Krok 1: specifier, czyli scenariusz
 
@@ -159,6 +169,12 @@ Po skończeniu czytasz raport:
   tam, gdzie `apps/api/src/index.ts` składa komunikat.
 - **Edge cases**: co przetestował, a co pominął i dlaczego.
 - **Open questions**: co w specyfikacji było niejasne.
+
+### Krok 4b: ui-reviewer (tylko dla aplikacji webowej)
+
+Po implementerze ui-reviewer przechodzi funkcję w przeglądarce, myszą i samą klawiaturą, na
+szerokim i wąskim ekranie, i porównuje ją z `docs/ux/<nazwa>.md`. Uwagi zgłasza jako Conventional
+Comments i niczego nie zmienia; poprawia je implementer.
 
 ### Krok 5: reviewer, czyli kontrola
 
