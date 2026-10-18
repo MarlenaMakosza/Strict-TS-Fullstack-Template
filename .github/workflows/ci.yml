@@ -53,4 +53,6 @@ jobs:
           node-version-file: .nvmrc
           cache: npm
       - run: npm ci
+      # The page scenarios run the web app in Chromium.
+      - run: npx playwright install --with-deps chromium
       - run: npm run test:e2e

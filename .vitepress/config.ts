@@ -57,6 +57,7 @@ export default defineConfig({
             text: 'AI agents',
             items: [
               { text: 'AI workflow', link: '/ai-workflow' },
+              { text: 'UX: greeting page', link: '/ux/greeting' },
               { text: 'Edge cases: greeting', link: '/edge-cases/greeting' },
             ],
           },
@@ -114,7 +115,8 @@ export default defineConfig({
             text: 'Agenci AI',
             items: [
               { text: 'Praca z agentami AI', link: '/pl/ai-workflow' },
-              // The example edge case list exists in English only.
+              // The example UX design and edge case list exist in English only.
+              { text: 'UX: greeting page (EN)', link: '/ux/greeting' },
               { text: 'Edge cases: greeting (EN)', link: '/edge-cases/greeting' },
             ],
           },

@@ -1,6 +1,7 @@
 # The specification and the quality gates belong to the human.
 # With branch protection ("Require review from Code Owners"), any change here needs an approval.
 /tests/e2e/features/ @MarlenaMakosza
+/docs/ux/ @MarlenaMakosza
 /eslint.config.js @MarlenaMakosza
 /tsconfig*.json @MarlenaMakosza
 /apps/*/tsconfig*.json @MarlenaMakosza

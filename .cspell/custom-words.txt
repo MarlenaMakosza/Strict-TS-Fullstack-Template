@@ -26,6 +26,7 @@ frontmatter
 globali
 healthcheck
 hoistingu
+implementerze
 isready
 knip
 lintowania
@@ -60,3 +61,4 @@ tsdoc
 unstub
 valueonly
 vitepress
+WCAG

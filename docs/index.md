@@ -30,7 +30,8 @@ stays. The agent workflow was inspired by a
   people how to report a vulnerability privately.
 - **Tests at every level.** Vitest for unit tests, with fast-check for property-based tests;
   integration tests against a real PostgreSQL in Docker (Testcontainers); Playwright with Gherkin
-  scenarios (playwright-bdd) for end-to-end tests; and Stryker for mutation testing.
+  scenarios (playwright-bdd) for the API and for the web app in a browser, with an axe
+  accessibility check; and Stryker for mutation testing.
 - **Quality metrics.** A coverage threshold, a CRAP score per function and duplicated-code
   detection.
 - **Architecture rules and docs.** ADRs in `.archgate/adrs/`, checked by Archgate, and a VitePress

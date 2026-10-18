@@ -30,7 +30,8 @@ który przejdzie wszystkie ograniczenia. Inspiracją dla pracy z agentami był
   kodzie, a `SECURITY.md` mówi, jak zgłosić lukę prywatnie.
 - **Testy na każdym poziomie.** Vitest do testów jednostkowych, z fast-check do testów
   property-based; testy integracyjne na prawdziwym PostgreSQL w Dockerze (Testcontainers);
-  Playwright ze scenariuszami Gherkin (playwright-bdd) do testów end-to-end; i Stryker do mutation
+  Playwright ze scenariuszami Gherkin (playwright-bdd) dla API i dla aplikacji webowej w
+  przeglądarce, ze sprawdzaniem dostępności przez axe; i Stryker do mutation
   testing.
 - **Metryki jakości.** Próg pokrycia testami, wynik CRAP dla każdej funkcji i wykrywanie
   skopiowanego kodu.
