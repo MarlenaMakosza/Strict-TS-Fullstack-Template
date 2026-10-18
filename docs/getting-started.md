@@ -99,7 +99,7 @@ Run `npm run validate:full` and `npm run format:check`, then apply the
 ## Every day
 
 ```sh
-npm run dev             # run src/index.ts and restart it on every change
+npm run dev             # start the server (http://localhost:3000) and restart it on every change
 npm run validate        # the fast quality gates
 npm run validate:full   # every gate: run it before you call a task done
 ```

@@ -430,7 +430,7 @@ export default [
         'prefer-rest-params': 'error',
         'prefer-spread': 'error',
         'prefer-template': 'error',
-        // Log through src/logger.ts (ADR ARCH-002). The CLI prints its output in src/index.ts.
+        // Log through src/logger.ts (ADR ARCH-002).
         'no-console': 'error',
         'func-name-matching': 'error',
         'accessor-pairs': 'error',
@@ -777,14 +777,6 @@ export default [
     },
   },
   {
-    name: 'CLI entry point',
-    files: ['src/index.ts'],
-    rules: {
-      // The CLI prints its output to stdout here; diagnostics go through src/logger.ts
-      'no-console': 'off',
-    },
-  },
-  {
     name: 'Dev scripts',
     files: ['dev/**/*.ts'],
     rules: {
@@ -880,8 +872,6 @@ export default [
       'new-cap': ['error', { capIsNewExceptions: ['Given', 'When', 'Then', 'Before', 'After'] }],
       // Playwright fixtures must destructure their first argument, even when they use no fixture
       'no-empty-pattern': ['error', { allowObjectPatternsAsParameters: true }],
-      // Steps run the CLI once and wait for it; there is no event loop work to block
-      'node/no-sync': 'off',
     },
   },
   {

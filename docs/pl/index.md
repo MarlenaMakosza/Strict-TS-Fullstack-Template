@@ -2,7 +2,8 @@
 
 [English](../index.md) | Polski
 
-Gotowy do użycia produkcyjnego szablon projektu w czystym TypeScript na Node.js, bez frameworka.
+Gotowy do użycia produkcyjnego szablon backendu w TypeScript na Node.js: małe API HTTP na Hono,
+gotowe do wywołania przez frontend.
 
 Pisanie nietrywialnego kodu w TypeScript jest trudne. Język ma mnóstwo drobnych pułapek, które w
 pewnych okolicznościach sprawiają poważne problemy, dlatego lintery i inne narzędzia jakości kodu
@@ -16,8 +17,10 @@ który przejdzie wszystkie ograniczenia. Inspiracją dla pracy z agentami był
 
 ## Co dostajesz
 
-- **TypeScript na Node.js 24.** Node uruchamia pliki `.ts` bezpośrednio, bez kroku budowania
-  podczas pracy. Zod sprawdza zmienne środowiskowe i inne dane na granicach aplikacji.
+- **TypeScript na Node.js 24, z API HTTP.** Node uruchamia pliki `.ts` bezpośrednio, bez kroku
+  budowania podczas pracy. Hono obsługuje trasy pod `/api/`, Zod sprawdza ich dane wejściowe i
+  zmienne środowiskowe, a `/api/openapi.json` opisuje API, więc frontend może z niego wygenerować
+  typy.
 - **Surowy lint.** ESLint z regułami opartymi na typach i około 20 wtyczkami, Prettier, cspell
   (angielski i polski) oraz knip do wykrywania nieużywanego kodu.
 - **PostgreSQL z Drizzle.** Bazę uruchamia Docker Compose. Są też migracje i skrypt z danymi
@@ -35,7 +38,7 @@ który przejdzie wszystkie ograniczenia. Inspiracją dla pracy z agentami był
   strona VitePress z architekturą arc42 po angielsku i po polsku, publikowana na GitHub Pages.
 - **Logowanie przez pino.** Jeden logger w `src/logger.ts`: linie JSON na produkcji, czytelne linie
   podczas pracy, poziom z `LOG_LEVEL` i ukrywanie sekretów, takich jak hasła i tokeny. Logi idą na
-  stderr, więc stdout zostaje dla wyniku programu.
+  stderr.
 - **Automatyczne wydania.** release-please czyta
   [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/), utrzymuje aktualny PR z
   następną wersją i `CHANGELOG.md`, a po jego merge'u oznacza wydanie tagiem.

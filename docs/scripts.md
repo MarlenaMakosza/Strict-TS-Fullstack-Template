@@ -2,7 +2,7 @@
 
 Run each one with `npm run <name>`. The ones you need most often:
 
-- `dev`: run `src/index.ts` and restart it on every change.
+- `dev`: start the server from `src/index.ts` and restart it on every change.
 - `validate`: all fast quality gates. Also runs in CI.
 - `validate:full`: every gate, including mutation testing, the Gherkin scenarios and the docs
   build. See [Quality gates](./quality-gates.md).

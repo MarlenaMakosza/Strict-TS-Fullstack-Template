@@ -2,7 +2,8 @@
 
 ## Purpose
 
-A template for plain TypeScript projects on Node.js, without a framework. It sets up a strict
+A template for TypeScript backends on Node.js: a small HTTP API with Hono that a frontend can
+call. It sets up a strict
 toolchain and quality gates, so a new project starts with professional-quality checks instead of
 adding them later.
 

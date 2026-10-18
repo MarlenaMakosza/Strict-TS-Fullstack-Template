@@ -97,7 +97,7 @@ Uruchom `npm run validate:full` i `npm run format:check`, a potem wprowadź
 ## Na co dzień
 
 ```sh
-npm run dev             # uruchamia src/index.ts i restartuje go po każdej zmianie
+npm run dev             # uruchamia serwer (http://localhost:3000) i restartuje go po każdej zmianie
 npm run validate        # szybkie bramki jakości
 npm run validate:full   # wszystkie bramki: odpal przed uznaniem zadania za skończone
 ```

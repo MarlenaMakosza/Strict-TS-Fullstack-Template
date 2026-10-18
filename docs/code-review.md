@@ -42,7 +42,7 @@ The list is a starting point: use another label when none of these fits.
 ```text
 issue (blocking): tests/unit/greet.test.ts:12 asserts the old greeting
 
-The scenario in tests/e2e/features/greeting.feature now expects "Hello, Ada!".
+The scenario in tests/e2e/features/http-api.feature now expects "Hello, Ada!".
 ```
 
 ```text

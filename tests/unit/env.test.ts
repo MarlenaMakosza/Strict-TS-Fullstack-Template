@@ -27,6 +27,7 @@ describe('env', () => {
       DATABASE_URL: validUrl,
       LOG_LEVEL: 'info',
       NODE_ENV: nodeEnvironment,
+      PORT: 3000,
     });
   });
 
@@ -51,6 +52,28 @@ describe('env', () => {
     const { env } = await loadEnvironment();
 
     expect(env.LOG_LEVEL).toBe('info');
+  });
+
+  it.each([
+    ['8080', 8080],
+    ['1', 1],
+    ['65535', 65_535],
+  ])('accepts PORT %s', async (port, expected) => {
+    expect.assertions(1);
+    vi.stubEnv('PORT', port);
+    vi.stubEnv('DATABASE_URL', validUrl);
+
+    const { env } = await loadEnvironment();
+
+    expect(env.PORT).toBe(expected);
+  });
+
+  it.each(['0', '65536', '80.5', 'http'])('rejects PORT %s', async port => {
+    expect.assertions(1);
+    vi.stubEnv('PORT', port);
+    vi.stubEnv('DATABASE_URL', validUrl);
+
+    await expect(loadEnvironment()).rejects.toThrow('Missing or invalid values in .env:\nPORT');
   });
 
   it('defaults NODE_ENV to development', async () => {

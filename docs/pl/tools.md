@@ -6,14 +6,17 @@ zestaw dla projektu w czystym TypeScript. Komendy, które je uruchamiają, są w
 
 ## Język i runtime
 
-| Narzędzie       | Rola                                                   |
-| --------------- | ------------------------------------------------------ |
-| TypeScript      | Język, `tsc` jako sprawdzanie typów i build            |
-| Node.js         | Runtime, uruchamia `.ts` bezpośrednio (type stripping) |
-| Zod             | Walidacja danych na granicach (API, pliki, env)        |
-| dotenv          | Ładowanie zmiennych z `.env`                           |
-| pino `*`        | Logowanie strukturalne (`src/logger.ts`, ADR ARCH-002) |
-| pino-pretty `*` | Czytelne logi w development                            |
+| Narzędzie               | Rola                                                                          |
+| ----------------------- | ----------------------------------------------------------------------------- |
+| TypeScript              | Język, `tsc` jako sprawdzanie typów i build                                   |
+| Node.js                 | Runtime, uruchamia `.ts` bezpośrednio (type stripping)                        |
+| Zod                     | Walidacja danych na granicach (API, pliki, env)                               |
+| Hono `*`                | Trasy HTTP pod `/api/` (`src/server/app.ts`, ADR ARCH-003)                    |
+| `@hono/node-server` `*` | Uruchamia aplikację Hono na Node.js (`src/index.ts`)                          |
+| `@hono/zod-openapi` `*` | Sprawdza trasy przez Zod i buduje `/api/openapi.json` z tych samych schematów |
+| dotenv                  | Ładowanie zmiennych z `.env`                                                  |
+| pino `*`                | Logowanie strukturalne (`src/logger.ts`, ADR ARCH-002)                        |
+| pino-pretty `*`         | Czytelne logi w development                                                   |
 
 ## Baza danych
 

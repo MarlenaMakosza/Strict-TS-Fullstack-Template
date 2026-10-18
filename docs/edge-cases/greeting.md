@@ -1,6 +1,6 @@
 # Edge cases: Greeting
 
-Scenarios: `tests/e2e/features/greeting.feature`. Code: `src/env.ts`, `src/greet.ts`, `src/index.ts`.
+Scenarios: `tests/e2e/features/http-api.feature`. Code: `src/env.ts`, `src/greet.ts`, `src/index.ts`.
 
 | #   | Likelihood | Case                                                              | Expected behavior                             | Test level                      |
 | --- | ---------- | ----------------------------------------------------------------- | --------------------------------------------- | ------------------------------- |

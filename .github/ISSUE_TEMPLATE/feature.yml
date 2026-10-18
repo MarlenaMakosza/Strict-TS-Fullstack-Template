@@ -7,7 +7,7 @@ body:
     attributes:
       value: |
         Describe the behavior from the user's point of view. The scenario becomes a `.feature`
-        file in `tests/e2e/features/`; see `greeting.feature` for the style.
+        file in `tests/e2e/features/`; see `http-api.feature` for the style.
   - type: textarea
     id: why
     attributes:

@@ -33,8 +33,8 @@ Log through the `logger` exported by `src/logger.ts`, a pino logger configured i
 - logs go to **stderr**, so stdout stays free for the output of the program,
 - secret fields (`DATABASE_URL`, `password`, `token`, `authorization`, `cookie`) are redacted.
 
-Other modules never call `console.*`. Only `src/index.ts` prints the output of the CLI with
-`console.log`.
+Code in `src/` never calls `console.*`. (When this ADR was written, the template was a CLI and
+`src/index.ts` printed its output with `console.log`; since ARCH-003, it is an HTTP server.)
 
 ## Do's and Don'ts
 

@@ -132,9 +132,8 @@ Wspólne typy i pomocnicze funkcje trafiają do `shared/`.
 
 - Poziom pochodzi z `LOG_LEVEL` (domyślnie `info`). Produkcja i testy zapisują linie JSON; w
   development pino-pretty pisze czytelne linie.
-- Logi idą na stderr, więc stdout zostaje dla wyniku programu. Ten wynik wypisuje tylko
-  `src/index.ts`, przez `console.log`. ESLint (`no-console`) odrzuca `console.*` w każdym innym
-  miejscu.
+- Logi idą na stderr. ESLint (`no-console`) odrzuca `console.*` w `src/`; do terminala piszą tylko
+  skrypty w `dev/`.
 - `dev/logger-example.ts` pokazuje wszystkie typowe przypadki (poziomy, kontekst, błędy, loggery
   potomne, czyli `child`, ukrywanie sekretów) i jak zapisać logi do pliku. Uruchom go przez
   `npm run example:logger`.
