@@ -11,30 +11,30 @@ zestaw dla projektu w czystym TypeScript. Komendy, które je uruchamiają, są w
 | TypeScript              | Język, `tsc` jako sprawdzanie typów i build                                   |
 | Node.js                 | Runtime, uruchamia `.ts` bezpośrednio (type stripping)                        |
 | Zod                     | Walidacja danych na granicach (API, pliki, env)                               |
-| Hono `*`                | Trasy HTTP pod `/api/` (`src/server/app.ts`, ADR ARCH-003)                    |
-| `@hono/node-server` `*` | Uruchamia aplikację Hono na Node.js (`src/index.ts`)                          |
+| Hono `*`                | Trasy HTTP pod `/api/` (`apps/api/src/server/app.ts`, ADR ARCH-003)           |
+| `@hono/node-server` `*` | Uruchamia aplikację Hono na Node.js (`apps/api/src/index.ts`)                 |
 | `@hono/zod-openapi` `*` | Sprawdza trasy przez Zod i buduje `/api/openapi.json` z tych samych schematów |
 | dotenv                  | Ładowanie zmiennych z `.env`                                                  |
-| pino `*`                | Logowanie strukturalne (`src/logger.ts`, ADR ARCH-002)                        |
+| pino `*`                | Logowanie strukturalne (`apps/api/src/logger.ts`, ADR ARCH-002)               |
 | pino-pretty `*`         | Czytelne logi w development                                                   |
 
 ## Baza danych
 
-| Narzędzie           | Rola                                   |
-| ------------------- | -------------------------------------- |
-| PostgreSQL (Docker) | Baza (`docker-compose.yml`)            |
-| Docker Compose      | Uruchamianie bazy (`npm run db:start`) |
-| `drizzle-orm`       | ORM                                    |
-| `drizzle-kit`       | Migracje, studio (`drizzle.config.ts`) |
-| `postgres`          | Sterownik PostgreSQL                   |
-| `@faker-js/faker`   | Dane seedujące (`dev/db/seed*.ts`)     |
+| Narzędzie           | Rola                                            |
+| ------------------- | ----------------------------------------------- |
+| PostgreSQL (Docker) | Baza (`apps/api/docker-compose.yml`)            |
+| Docker Compose      | Uruchamianie bazy (`npm run db:start`)          |
+| `drizzle-orm`       | ORM                                             |
+| `drizzle-kit`       | Migracje, studio (`apps/api/drizzle.config.ts`) |
+| `postgres`          | Sterownik PostgreSQL                            |
+| `@faker-js/faker`   | Dane seedujące (`apps/api/dev/db/seed*.ts`)     |
 
 ## Style
 
-| Narzędzie                       | Rola                                                                                         |
-| ------------------------------- | -------------------------------------------------------------------------------------------- |
-| Tailwind CSS v4 (`tailwindcss`) | Klasy utility; konfiguracja w CSS (`src/styles/app.css`, `@theme`), bez `tailwind.config.js` |
-| `@tailwindcss/cli`              | Buduje `dist/app.css` (`css:build`, `css:watch`)                                             |
+| Narzędzie                       | Rola                                                                                                  |
+| ------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| Tailwind CSS v4 (`tailwindcss`) | Klasy utility; konfiguracja w CSS (`apps/api/src/styles/app.css`, `@theme`), bez `tailwind.config.js` |
+| `@tailwindcss/cli`              | Buduje `dist/app.css` (`css:build`, `css:watch`)                                                      |
 
 ## Lintery i formatowanie
 
@@ -79,7 +79,7 @@ zestaw dla projektu w czystym TypeScript. Komendy, które je uruchamiają, są w
 | ----------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Vitest                                    | Test runner                                                                                                                                                     |
 | fast-check                                | Testy property-based: generuje wiele wejść dla reguły i zmniejsza to, które nie przechodzi, do najmniejszego przykładu                                          |
-| `@testcontainers/postgresql`              | PostgreSQL w kontenerze dla testów integracyjnych (`tests/integration/`)                                                                                        |
+| `@testcontainers/postgresql`              | PostgreSQL w kontenerze dla testów integracyjnych (`apps/api/tests/integration/`)                                                                               |
 | `@vitest/coverage-v8` `*`                 | Pokrycie testami                                                                                                                                                |
 | Playwright (`@playwright/test`)           | Testy end-to-end (`playwright.config.ts`)                                                                                                                       |
 | Gherkin                                   | Scenariusze BDD z perspektywy użytkownika (`.feature`, Given/When/Then), uruchamiane w Playwright                                                               |

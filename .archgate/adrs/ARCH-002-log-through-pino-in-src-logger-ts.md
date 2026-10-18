@@ -3,7 +3,7 @@ id: ARCH-002
 title: Log through pino in src/logger.ts
 domain: architecture
 rules: false
-files: ['src/**/*.ts']
+files: ['apps/api/src/**/*.ts']
 ---
 
 # Log through pino in src/logger.ts
@@ -26,27 +26,30 @@ Options considered (data from npm and GitHub, October 2026):
 
 ## Decision
 
-Log through the `logger` exported by `src/logger.ts`, a pino logger configured in one place:
+Log through the `logger` exported by `apps/api/src/logger.ts`, a pino logger configured in one
+place:
 
-- the level comes from `LOG_LEVEL` (validated in `src/env.ts`, default `info`),
+- the level comes from `LOG_LEVEL` (validated in `apps/api/src/env.ts`, default `info`),
 - JSON lines in production and tests, readable lines (pino-pretty) in development,
 - logs go to **stderr**, so stdout stays free for the output of the program,
 - secret fields (`DATABASE_URL`, `password`, `token`, `authorization`, `cookie`) are redacted.
 
-Code in `src/` never calls `console.*`. (When this ADR was written, the template was a CLI and
-`src/index.ts` printed its output with `console.log`; since ARCH-003, it is an HTTP server.)
+Code in `apps/api/src/` never calls `console.*`. (When this ADR was written, the template was a CLI
+and `apps/api/src/index.ts` printed its output with `console.log`; since ARCH-003, it is an HTTP
+server.)
 
 ## Do's and Don'ts
 
 ### Do
 
-- Import `logger` from `src/logger.ts`, and pass context as an object: `logger.info({ userID }, 'Signed in')`.
-- Add the name of every new secret field to `SECRET_FIELDS` in `src/logger.ts`.
+- Import `logger` from `apps/api/src/logger.ts`, and pass context as an object: `logger.info({
+userID }, 'Signed in')`.
+- Add the name of every new secret field to `SECRET_FIELDS` in `apps/api/src/logger.ts`.
 - Use `createLogger` with a test stream to check what a module logs.
 
 ### Don't
 
-- Don't call `console.*` outside `src/index.ts`.
+- Don't call `console.*` outside `apps/api/src/index.ts`.
 - Don't put secrets in the message string: redaction only covers fields.
 
 ## Consequences
@@ -68,11 +71,11 @@ Code in `src/` never calls `console.*`. (When this ADR was written, the template
 
 ## Compliance and Enforcement
 
-ESLint enforces it: `no-console` is an error everywhere except `src/index.ts` (program output) and
-`dev/` (scripts). `npm run validate` and CI run ESLint. The tests in `tests/unit/logger.test.ts`
-check the level, the format and the redaction.
+ESLint enforces it: `no-console` is an error everywhere except `apps/api/src/index.ts` (program
+output) and `dev/` (scripts). `npm run validate` and CI run ESLint. The tests in
+`apps/api/tests/unit/logger.test.ts` check the level, the format and the redaction.
 
 ## References
 
-- `src/logger.ts`, `tests/unit/logger.test.ts`
+- `apps/api/src/logger.ts`, `apps/api/tests/unit/logger.test.ts`
 - ADR `ARCH-001` (environment variables)

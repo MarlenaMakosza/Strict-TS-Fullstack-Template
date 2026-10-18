@@ -45,8 +45,8 @@ Kod i komentarze w kodzie piszemy po angielsku.
 
 ## Błędy
 
-- Logika aplikacji zwraca **Result** z `src/shared/result.ts` dla operacji, które mogą się nie
-  udać, zamiast rzucać wyjątek. Budują go `success(value)` i `failure(error)`:
+- Logika aplikacji zwraca **Result** z `apps/api/src/shared/result.ts` dla operacji, które mogą się
+  nie udać, zamiast rzucać wyjątek. Budują go `success(value)` i `failure(error)`:
 
   ```ts
   import { failure, type Result, success } from './shared/result.ts';
@@ -70,7 +70,7 @@ Kod i komentarze w kodzie piszemy po angielsku.
 - Wyjątki łapiemy **tylko na granicach zewnętrznych** (baza danych, sieć, system plików,
   biblioteki zewnętrzne) i tam zamieniamy je w Result.
 - Dwa wyjątki od zasady "nie rzucamy": błędna konfiguracja przy starcie kończy proces od razu
-  błędem (zobacz `src/env.ts` i ADR `ARCH-001`), a skrypty w `dev/` mogą rzucać.
+  błędem (zobacz `apps/api/src/env.ts` i ADR `ARCH-001`), a skrypty w `dev/` mogą rzucać.
 - API odpowiada na każdy błąd w jednym formacie JSON: `{ "error": "Not found" }`. Przy błędnych
   danych wejściowych dodaje listę błędnych pól, ze statusem `400`:
 
@@ -88,14 +88,15 @@ Kod i komentarze w kodzie piszemy po angielsku.
 - Nazwa testu opisuje sprawdzane zachowanie. Gdy liczy się stan początkowy, używamy
   `given <state> when <action> then <expected result>`.
 - Pokrywamy zwykły przypadek **i** przypadki brzegowe. Pomagają w tym listy w `docs/edge-cases/`.
-- Kod, który rozmawia z bazą danych, dostaje **test integracyjny** w `tests/integration/`: działa on
-  na prawdziwym PostgreSQL, który Testcontainers uruchamia w Dockerze, z migracjami zapisanymi w
-  repozytorium. Testy jednostkowe nie dotykają bazy. Wzorzec: `tests/integration/db/users.test.ts`.
+- Kod, który rozmawia z bazą danych, dostaje **test integracyjny** w `apps/api/tests/integration/`:
+  działa on na prawdziwym PostgreSQL, który Testcontainers uruchamia w Dockerze, z migracjami
+  zapisanymi w repozytorium. Testy jednostkowe nie dotykają bazy. Wzorzec:
+  `apps/api/tests/integration/db/users.test.ts`.
 - Gdy reguła działa dla każdego wejścia danego rodzaju ("każde imię daje powitanie kończące się
   na `!`"), dodajemy **test property-based** z [fast-check](https://fast-check.dev/). Generuje on
   wiele wejść, a gdy któreś nie przejdzie, zmniejsza je do najmniejszego przykładu, który nie
   przechodzi. Testy na przykładach zostają, bo dokumentują konkretne przypadki. Wzorzec:
-  `tests/unit/greet.test.ts`.
+  `apps/api/tests/unit/greet.test.ts`.
 
 ## Zależności i importy
 
@@ -117,7 +118,7 @@ Kod i komentarze w kodzie piszemy po angielsku.
 Kod grupujemy według funkcji: każda funkcja ma własne pliki.
 
 ```text
-src/
+apps/api/src/
   user/
     user.model.ts
     user.service.ts
@@ -132,7 +133,7 @@ Wspólne typy i pomocnicze funkcje trafiają do `shared/`.
 
 ## Logowanie
 
-- Logujemy przez `logger` z `src/logger.ts`, czyli logger [pino](https://getpino.io/) (ADR
+- Logujemy przez `logger` z `apps/api/src/logger.ts`, czyli logger [pino](https://getpino.io/) (ADR
   `ARCH-002`). Kontekst przekazujemy jako obiekt, a wiadomość jako krótkie zdanie:
 
   ```ts
@@ -141,17 +142,17 @@ Wspólne typy i pomocnicze funkcje trafiają do `shared/`.
 
 - Poziom pochodzi z `LOG_LEVEL` (domyślnie `info`). Produkcja i testy zapisują linie JSON; w
   development pino-pretty pisze czytelne linie.
-- Logi idą na stderr. ESLint (`no-console`) odrzuca `console.*` w `src/`; do terminala piszą tylko
-  skrypty w `dev/`.
+- Logi idą na stderr. ESLint (`no-console`) odrzuca `console.*` w `apps/api/src/`; do terminala
+  piszą tylko skrypty w `dev/`.
 - Serwer loguje jedną linię na zapytanie (`Request handled`) z metodą, ścieżką, statusem,
   `durationMs` i `requestID`. W trasie loguj z tym samym `requestID`, żeby wszystkie linie jednego
   zapytania dało się znaleźć razem.
-- `dev/logger-example.ts` pokazuje wszystkie typowe przypadki (poziomy, kontekst, błędy, loggery
-  potomne, czyli `child`, ukrywanie sekretów) i jak zapisać logi do pliku. Uruchom go przez
+- `apps/api/dev/logger-example.ts` pokazuje wszystkie typowe przypadki (poziomy, kontekst, błędy,
+  loggery potomne, czyli `child`, ukrywanie sekretów) i jak zapisać logi do pliku. Uruchom go przez
   `npm run example:logger`.
 - Pola z sekretami (`DATABASE_URL`, `password`, `token`, `authorization`, `cookie`) są
-  ukrywane. Nowe dopisz do `SECRET_FIELDS` w `src/logger.ts` i nigdy nie wkładaj sekretu do treści
-  wiadomości.
+  ukrywane. Nowe dopisz do `SECRET_FIELDS` w `apps/api/src/logger.ts` i nigdy nie wkładaj sekretu do
+  treści wiadomości.
 
 ## Null i undefined
 

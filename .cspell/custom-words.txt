@@ -50,6 +50,7 @@ signale
 skott
 sonarjs
 stryker
+Strykera
 tsdoc
 unstub
 valueonly

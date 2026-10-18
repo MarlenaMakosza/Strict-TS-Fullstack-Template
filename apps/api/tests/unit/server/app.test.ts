@@ -144,26 +144,20 @@ describe('app', () => {
   });
 
   it('logs every request with its method, path, status, duration and request ID', async () => {
-    expect.assertions(3);
+    expect.assertions(1);
 
     const { app, logInfo } = appWithLogger();
 
+    // The clock reads 1000 ms when the request starts and 1012 ms when it ends.
+    vi.spyOn(performance, 'now').mockReturnValueOnce(1000).mockReturnValueOnce(1012);
     await app.request(`${GREETING_PATH}?name=Ada`, {
       headers: { [REQUEST_ID_HEADER]: REQUEST_ID },
     });
 
-    const [fields, message] = logInfo.mock.lastCall ?? [];
-    const { durationMs, ...rest } = fields ?? {};
-
-    expect(message).toBe('Request handled');
-    expect(rest).toStrictEqual({
-      method: 'GET',
-      path: GREETING_PATH,
-      requestID: REQUEST_ID,
-      status: 200,
-    });
-    // A whole number of milliseconds, measured from the start of this request.
-    expect(Number.isSafeInteger(durationMs) && Number(durationMs) < 1000).toBe(true);
+    expect(logInfo.mock.lastCall).toStrictEqual([
+      { durationMs: 12, method: 'GET', path: GREETING_PATH, requestID: REQUEST_ID, status: 200 },
+      'Request handled',
+    ]);
   });
 
   it('logs a failed request with its 500 status', async () => {

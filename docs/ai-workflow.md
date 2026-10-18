@@ -51,7 +51,7 @@ it for you. Code that does not pass every gate does not get into the project.
 | Who        | What they do                                   | Where                                         |
 | ---------- | ---------------------------------------------- | --------------------------------------------- |
 | You        | Describe the behavior and answer questions     | `tests/e2e/features/*.feature`, agent reports |
-| Agents     | Write scenarios, tests, code and documentation | `tests/`, `src/`, `docs/`                     |
+| Agents     | Write scenarios, tests, code and documentation | `tests/`, `apps/api/src/`, `docs/`            |
 | Automation | Checks everything with the gates               | `npm run validate:full`, CI                   |
 
 You read only:
@@ -61,8 +61,8 @@ You read only:
 - the implementer's report, especially the changed assertions in existing tests,
 - the reviewer's report.
 
-You do not read the code in `src/` or the tests. The gates and the reviewer do that for you. At the
-start, you can still look at the diff until you trust the gates.
+You do not read the code in `apps/api/src/` or the tests. The gates and the reviewer do that for
+you. At the start, you can still look at the diff until you trust the gates.
 
 ## The whole flow, step by step
 
@@ -158,7 +158,7 @@ When it finishes, read its report:
 - **Commands**: which gates it ran, and their results.
 - **Changed existing tests**: whether it changed old assertions, and why. An agent could "fix" a
   test to match its own wrong code, so it must report every such change. For the greeting by name,
-  expect changes where `src/index.ts` builds the message.
+  expect changes where `apps/api/src/index.ts` builds the message.
 - **Edge cases**: what it tested, what it skipped, and why.
 - **Open questions**: what was unclear in the specification.
 
@@ -209,8 +209,8 @@ may finish. What each gate checks, and its limit, is in [Quality gates](./qualit
 
 **Gates:**
 
-- `vitest.config.ts`: the 90% coverage threshold.
-- `stryker.config.json`: the 80% mutation testing threshold.
+- `apps/api/vitest.config.ts`: the 90% coverage threshold.
+- `apps/api/stryker.config.json`: the 80% mutation testing threshold.
 - `dev/quality/crap.ts`: computes CRAP.
 - `.jscpd.json`: copied code detection.
 - `.archgate/adrs/`: architecture decisions and their rules.

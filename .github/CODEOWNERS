@@ -3,13 +3,16 @@
 /tests/e2e/features/ @MarlenaMakosza
 /eslint.config.js @MarlenaMakosza
 /tsconfig*.json @MarlenaMakosza
+/apps/*/tsconfig*.json @MarlenaMakosza
 /vitest.config.ts @MarlenaMakosza
+/apps/*/vitest*.config.ts @MarlenaMakosza
 /playwright.config.ts @MarlenaMakosza
-/stryker.config.json @MarlenaMakosza
+/apps/*/stryker.config.json @MarlenaMakosza
 /knip.json @MarlenaMakosza
 /cspell.json @MarlenaMakosza
 /commitlint.config.js @MarlenaMakosza
 /package.json @MarlenaMakosza
+/apps/*/package.json @MarlenaMakosza
 /.husky/ @MarlenaMakosza
 /.github/ @MarlenaMakosza
 /.archgate/adrs/ @MarlenaMakosza

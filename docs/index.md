@@ -34,8 +34,8 @@ stays. The agent workflow was inspired by a
   detection.
 - **Architecture rules and docs.** ADRs in `.archgate/adrs/`, checked by Archgate, and a VitePress
   site with the arc42 architecture in English and Polish, published on GitHub Pages.
-- **Logging with pino.** One logger in `src/logger.ts`: JSON lines in production, readable lines
-  in development, the level from `LOG_LEVEL`, and secrets such as passwords and tokens hidden.
+- **Logging with pino.** One logger in `apps/api/src/logger.ts`: JSON lines in production, readable
+  lines in development, the level from `LOG_LEVEL`, and secrets such as passwords and tokens hidden.
   Logs go to stderr.
 - **Automatic releases.** release-please reads the
   [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/), keeps a release pull
@@ -59,7 +59,7 @@ You need Node.js 24 (see `.nvmrc`) and Docker.
 
 ```sh
 nvm use
-cp .env.example .env
+cp apps/api/.env.example apps/api/.env
 npm run firstrun:dev
 npm run validate
 ```

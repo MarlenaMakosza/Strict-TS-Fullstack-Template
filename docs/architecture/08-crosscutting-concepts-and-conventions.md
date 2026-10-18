@@ -43,8 +43,8 @@ export function getDiscount(user: User): number {
 
 ## Errors
 
-- Application logic returns a **Result** from `src/shared/result.ts` for operations that may
-  fail, instead of throwing. `success(value)` and `failure(error)` build it:
+- Application logic returns a **Result** from `apps/api/src/shared/result.ts` for operations that
+  may fail, instead of throwing. `success(value)` and `failure(error)` build it:
 
   ```ts
   import { failure, type Result, success } from './shared/result.ts';
@@ -68,7 +68,7 @@ export function getDiscount(user: User): number {
 - Exceptions are caught **only at external boundaries** (database, network, file system,
   third-party libraries) and turned into a Result there.
 - Two exceptions to "no throwing": invalid configuration at startup fails fast with an error (see
-  `src/env.ts` and ADR `ARCH-001`), and scripts in `dev/` may throw.
+  `apps/api/src/env.ts` and ADR `ARCH-001`), and scripts in `dev/` may throw.
 - The API answers every error in one JSON format: `{ "error": "Not found" }`. Invalid input also
   lists every invalid field, with status `400`:
 
@@ -86,13 +86,14 @@ export function getDiscount(user: User): number {
 - Name a test by the behavior it checks. When the setup matters, use
   `given <state> when <action> then <expected result>`.
 - Cover the normal case **and** the edge cases. The edge case lists in `docs/edge-cases/` help.
-- Code that talks to the database gets an **integration test** in `tests/integration/`: it runs
-  against a real PostgreSQL that Testcontainers starts in Docker, with the committed migrations.
-  Unit tests stay free of the database. `tests/integration/db/users.test.ts` shows the setup.
+- Code that talks to the database gets an **integration test** in `apps/api/tests/integration/`: it
+  runs against a real PostgreSQL that Testcontainers starts in Docker, with the committed
+  migrations. Unit tests stay free of the database. `apps/api/tests/integration/db/users.test.ts`
+  shows the setup.
 - When a rule holds for every input of a kind ("any name gives a greeting that ends with `!`"),
   add a **property-based test** with [fast-check](https://fast-check.dev/). It generates many
   inputs, and when one fails, shrinks it to the smallest failing example. Example tests stay:
-  they document the concrete cases. See `tests/unit/greet.test.ts`.
+  they document the concrete cases. See `apps/api/tests/unit/greet.test.ts`.
 
 ## Dependencies and imports
 
@@ -116,7 +117,7 @@ export function getDiscount(user: User): number {
 Group code by feature: each feature owns its files.
 
 ```text
-src/
+apps/api/src/
   user/
     user.model.ts
     user.service.ts
@@ -131,8 +132,8 @@ Shared types and helpers go into `shared/`.
 
 ## Logging
 
-- Log through `logger` from `src/logger.ts`, a [pino](https://getpino.io/) logger (ADR `ARCH-002`).
-  Pass context as an object, and the message as a short sentence:
+- Log through `logger` from `apps/api/src/logger.ts`, a [pino](https://getpino.io/) logger (ADR
+  `ARCH-002`). Pass context as an object, and the message as a short sentence:
 
   ```ts
   logger.info({ userID }, 'Signed in');
@@ -140,15 +141,16 @@ Shared types and helpers go into `shared/`.
 
 - The level comes from `LOG_LEVEL` (default `info`). Production and tests write JSON lines; in
   development, pino-pretty writes readable lines.
-- Logs go to stderr. ESLint (`no-console`) rejects `console.*` in `src/`; only the scripts in
-  `dev/` print to the terminal.
+- Logs go to stderr. ESLint (`no-console`) rejects `console.*` in `apps/api/src/`; only the scripts
+  in `dev/` print to the terminal.
 - The server logs one line per request (`Request handled`) with the method, path, status,
   `durationMs` and `requestID`. Log inside a route with the same `requestID`, so that all lines of
   one request can be found together.
-- `dev/logger-example.ts` shows every common case (levels, context, errors, child loggers,
+- `apps/api/dev/logger-example.ts` shows every common case (levels, context, errors, child loggers,
   redaction) and how to save the logs to a file. Run it with `npm run example:logger`.
 - Secret fields (`DATABASE_URL`, `password`, `token`, `authorization`, `cookie`) are redacted. Add
-  new ones to `SECRET_FIELDS` in `src/logger.ts`, and never put a secret in the message string.
+  new ones to `SECRET_FIELDS` in `apps/api/src/logger.ts`, and never put a secret in the message
+  string.
 
 ## Null and undefined
 

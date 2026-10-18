@@ -4,19 +4,19 @@ Jak części współpracują w scenariuszach, które mają znaczenie.
 
 ## Start i zatrzymanie serwera
 
-1. `node src/index.ts` wczytuje `src/env.ts`.
-2. `src/env.ts` czyta `.env` przez dotenv i sprawdza `process.env` przez Zod.
+1. `node src/index.ts` wczytuje `apps/api/src/env.ts`.
+2. `apps/api/src/env.ts` czyta `.env` przez dotenv i sprawdza `process.env` przez Zod.
 3. Błędne albo brakujące zmienne: proces kończy się błędem, który wymienia każdy zły klucz (zobacz
    ADR `ARCH-001`).
-4. Poprawne zmienne: `src/index.ts` buduje aplikację przez `createApp()` i nasłuchuje na `PORT`
-   (ADR `ARCH-003`). W logu pojawia się `Server started`.
+4. Poprawne zmienne: `apps/api/src/index.ts` buduje aplikację przez `createApp()` i nasłuchuje na
+   `PORT` (ADR `ARCH-003`). W logu pojawia się `Server started`.
 5. Po `SIGINT` albo `SIGTERM` serwer przestaje przyjmować nowe zapytania, kończy otwarte i się
    zamyka.
 
 ## Zapytanie
 
 1. Zapytanie dostaje identyfikator: ten z nagłówka `X-Request-Id` albo nowy.
-2. Hono dopasowuje ścieżkę do trasy w `src/server/app.ts`.
+2. Hono dopasowuje ścieżkę do trasy w `apps/api/src/server/app.ts`.
 3. Schemat Zod trasy sprawdza dane wejściowe. Błędne dane dostają `400` z
    `{"error":"Invalid request","issues":[…]}`, jeden wpis na każde błędne pole.
 4. Obsługa trasy odpowiada JSON-em. Nieznana ścieżka dostaje `404` z `{"error":"Not found"}`.

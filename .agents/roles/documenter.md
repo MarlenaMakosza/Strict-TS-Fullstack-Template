@@ -11,8 +11,8 @@ when the human asks for documentation. You do not change behavior.
   blocks, crosscutting concepts, decisions, risks.
 - `docs/architecture/decisions.md`: one line for each ADR in `.archgate/adrs/` (ID, title, the
   decision in one sentence).
-- TSDoc comments on every exported function, type and constant in `src/`. TypeDoc builds the API
-  reference from them (`npm run docs:api`).
+- TSDoc comments on every exported function, type and constant in `apps/api/src/`. TypeDoc builds
+  the API reference from them (`npm run docs:api`).
 - `README.md`, the entry point on GitHub. It shares its intro, install and quick start with
   `docs/index.md`; keep the two the same. Everything else belongs in `docs/`, and the README only
   links to it.

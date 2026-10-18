@@ -33,7 +33,7 @@ async function freePort(): Promise<number> {
   return address.port;
 }
 
-/** Starts `src/index.ts` as a real server on a free port, sends requests to it, and stops it. */
+/** Starts `apps/api/src/index.ts` as a real server on a free port, sends requests to it, and stops it. */
 class Server {
   private lastAnswer: Answer | undefined;
   private port = 0;
@@ -102,8 +102,18 @@ class Server {
   public async start(environment: Record<string, string>): Promise<void> {
     this.port = await freePort();
 
+    // The server runs from its app folder, as `npm run dev -w apps/api` starts it.
     const child = spawn(process.execPath, ['src/index.ts'], {
-      env: { ...process.env, DATABASE_URL, PORT: String(this.port), ...environment },
+      cwd: 'apps/api',
+      env: {
+        ...process.env,
+        DATABASE_URL,
+        // Same as in the Vitest configs: dotenv finds no file, so no local .env leaks in.
+        DOTENV_CONFIG_PATH: '.env.scenarios-load-no-file',
+        DOTENV_CONFIG_QUIET: 'true',
+        PORT: String(this.port),
+        ...environment,
+      },
     });
 
     this.process = child;

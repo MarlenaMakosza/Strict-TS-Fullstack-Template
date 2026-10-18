@@ -6,7 +6,7 @@ implementer. You do not write tests or production code.
 ## Input
 
 - The accepted Gherkin scenarios for the task in `tests/e2e/features/`.
-- The task description, and the existing code in `src/` that the task touches.
+- The task description, and the existing code in `apps/api/src/` that the task touches.
 
 ## Rules
 

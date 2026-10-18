@@ -3,7 +3,7 @@ id: ARCH-001
 title: Read environment variables only in src/env.ts
 domain: architecture
 rules: true
-files: ['src/**/*.ts']
+files: ['apps/api/src/**/*.ts']
 ---
 
 # Read environment variables only in src/env.ts
@@ -17,21 +17,22 @@ shortest way to get a value.
 
 ## Decision
 
-`src/env.ts` is the only module in `src/` that reads `process.env`. It validates every variable
-with Zod when the app starts and exports the typed result as `env`. Every other module imports
-`env` from `src/env.ts`.
+`apps/api/src/env.ts` is the only module in `apps/api/src/` that reads `process.env`. It validates
+every variable with Zod when the app starts and exports the typed result as `env`. Every other
+module imports `env` from `apps/api/src/env.ts`.
 
 ## Do's and Don'ts
 
 ### Do
 
-- Add a new variable to `EnvironmentSchema` in `src/env.ts`, with a default when one makes sense.
-- Add the variable to `.env.example`.
-- Import `env` from `src/env.ts` where you need a value.
+- Add a new variable to `EnvironmentSchema` in `apps/api/src/env.ts`, with a default when one makes
+  sense.
+- Add the variable to `apps/api/.env.example`.
+- Import `env` from `apps/api/src/env.ts` where you need a value.
 
 ### Don't
 
-- Don't read `process.env` anywhere else in `src/`.
+- Don't read `process.env` anywhere else in `apps/api/src/`.
 - Don't pass raw strings from the environment around without validation.
 
 ## Consequences
@@ -39,24 +40,25 @@ with Zod when the app starts and exports the typed result as `env`. Every other 
 ### Positive
 
 - The app fails at start with one message that lists every missing or invalid variable.
-- `src/env.ts` and `.env.example` document every variable in one place.
+- `apps/api/src/env.ts` and `apps/api/.env.example` document every variable in one place.
 - Code that uses `env` gets typed values.
 
 ### Negative
 
-- Tests that need other values must stub the environment and reload `src/env.ts`.
+- Tests that need other values must stub the environment and reload `apps/api/src/env.ts`.
 
 ### Risks
 
-- Tool configs and dev scripts outside `src/` still read `process.env` directly. This ADR does not
-  cover them.
+- Tool configs and dev scripts outside `apps/api/src/` still read `process.env` directly. This ADR
+  does not cover them.
 
 ## Compliance and Enforcement
 
 The companion rule `[1;33mARCH-001-read-environment-variables-only-in-src-env-ts.rules.ts[0m` reports every `process.env` in
-`src/**/*.ts` outside `src/env.ts`. `npm run check:adrs` runs it in `validate` and in CI.
+`apps/api/src/**/*.ts` outside `apps/api/src/env.ts`. `npm run check:adrs` runs it in `validate` and
+in CI.
 
 ## References
 
-- `src/env.ts`
-- `tests/unit/env.test.ts`
+- `apps/api/src/env.ts`
+- `apps/api/tests/unit/env.test.ts`

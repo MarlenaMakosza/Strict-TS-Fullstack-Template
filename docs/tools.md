@@ -11,30 +11,30 @@ the checks work together, see [Quality gates](./quality-gates.md).
 | TypeScript              | Language, `tsc` for type checking and build                                    |
 | Node.js                 | Runtime, runs `.ts` directly (type stripping)                                  |
 | Zod                     | Data validation at boundaries (API, files, env)                                |
-| Hono `*`                | HTTP routes under `/api/` (`src/server/app.ts`, ADR ARCH-003)                  |
-| `@hono/node-server` `*` | Runs the Hono app on Node.js (`src/index.ts`)                                  |
+| Hono `*`                | HTTP routes under `/api/` (`apps/api/src/server/app.ts`, ADR ARCH-003)         |
+| `@hono/node-server` `*` | Runs the Hono app on Node.js (`apps/api/src/index.ts`)                         |
 | `@hono/zod-openapi` `*` | Validates routes with Zod and builds `/api/openapi.json` from the same schemas |
 | dotenv                  | Loads variables from `.env`                                                    |
-| pino `*`                | Structured logging (`src/logger.ts`, ADR ARCH-002)                             |
+| pino `*`                | Structured logging (`apps/api/src/logger.ts`, ADR ARCH-002)                    |
 | pino-pretty `*`         | Readable logs in development                                                   |
 
 ## Database
 
-| Tool                | Role                                     |
-| ------------------- | ---------------------------------------- |
-| PostgreSQL (Docker) | Database (`docker-compose.yml`)          |
-| Docker Compose      | Starts the database (`npm run db:start`) |
-| `drizzle-orm`       | ORM                                      |
-| `drizzle-kit`       | Migrations, studio (`drizzle.config.ts`) |
-| `postgres`          | PostgreSQL driver                        |
-| `@faker-js/faker`   | Seed data (`dev/db/seed*.ts`)            |
+| Tool                | Role                                              |
+| ------------------- | ------------------------------------------------- |
+| PostgreSQL (Docker) | Database (`apps/api/docker-compose.yml`)          |
+| Docker Compose      | Starts the database (`npm run db:start`)          |
+| `drizzle-orm`       | ORM                                               |
+| `drizzle-kit`       | Migrations, studio (`apps/api/drizzle.config.ts`) |
+| `postgres`          | PostgreSQL driver                                 |
+| `@faker-js/faker`   | Seed data (`apps/api/dev/db/seed*.ts`)            |
 
 ## Styles
 
-| Tool                            | Role                                                                                           |
-| ------------------------------- | ---------------------------------------------------------------------------------------------- |
-| Tailwind CSS v4 (`tailwindcss`) | Utility classes; config lives in CSS (`src/styles/app.css`, `@theme`), no `tailwind.config.js` |
-| `@tailwindcss/cli`              | Builds `dist/app.css` (`css:build`, `css:watch`)                                               |
+| Tool                            | Role                                                                                                    |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| Tailwind CSS v4 (`tailwindcss`) | Utility classes; config lives in CSS (`apps/api/src/styles/app.css`, `@theme`), no `tailwind.config.js` |
+| `@tailwindcss/cli`              | Builds `dist/app.css` (`css:build`, `css:watch`)                                                        |
 
 ## Linters and formatting
 
@@ -79,7 +79,7 @@ the checks work together, see [Quality gates](./quality-gates.md).
 | ---------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Vitest                                   | Test runner                                                                                                                                               |
 | fast-check                               | Property-based tests: generates many inputs for a rule and shrinks a failing one to the smallest example                                                  |
-| `@testcontainers/postgresql`             | PostgreSQL in a container for the integration tests (`tests/integration/`)                                                                                |
+| `@testcontainers/postgresql`             | PostgreSQL in a container for the integration tests (`apps/api/tests/integration/`)                                                                       |
 | `@vitest/coverage-v8` `*`                | Test coverage                                                                                                                                             |
 | Playwright (`@playwright/test`)          | End-to-end tests (`playwright.config.ts`)                                                                                                                 |
 | Gherkin                                  | BDD scenarios from the user's point of view (`.feature`, Given/When/Then), run in Playwright                                                              |

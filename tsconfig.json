@@ -1,30 +1,9 @@
 {
+  "extends": "./tsconfig.base.json",
   "compilerOptions": {
-    "target": "es2024",
-    "lib": ["es2024"],
-    "module": "nodenext",
-    "moduleResolution": "nodenext",
-    "types": ["node"],
     "rootDir": ".",
-    "outDir": "dist",
-
-    "strict": true,
-    "noImplicitReturns": true,
-    "noImplicitOverride": true,
-    "noUncheckedIndexedAccess": true,
-    "noFallthroughCasesInSwitch": true,
-    "exactOptionalPropertyTypes": true,
-    "forceConsistentCasingInFileNames": true,
-
-    "allowImportingTsExtensions": true,
-    "rewriteRelativeImportExtensions": true,
-    "erasableSyntaxOnly": true,
-    "verbatimModuleSyntax": true,
-    "isolatedModules": true,
-    "resolveJsonModule": true,
-    "skipLibCheck": true,
-    "sourceMap": true
+    "noEmit": true
   },
-  "include": ["src/**/*", "tests/**/*", "dev/**/*", "*.config.ts"],
-  "exclude": ["node_modules", "dist"]
+  "include": ["dev/**/*", "tests/**/*", "*.config.ts"],
+  "exclude": ["node_modules", "apps"]
 }

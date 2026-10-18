@@ -1,7 +1,15 @@
 {
-  "path": ["src", "dev", "tests/e2e"],
+  "path": ["apps", "dev", "tests/e2e"],
   "format": ["typescript", "javascript"],
   "minTokens": 50,
   "exitCode": 1,
-  "reporters": ["console"]
+  "reporters": ["console"],
+  "ignore": [
+    "apps/*/tests/**",
+    "**/node_modules/**",
+    "**/dist/**",
+    "**/coverage/**",
+    "**/reports/**",
+    "**/.stryker-tmp/**"
+  ]
 }
