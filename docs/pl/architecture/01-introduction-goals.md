@@ -2,8 +2,8 @@
 
 ## Cel
 
-Szablon dla backendów w TypeScript na Node.js: małe API HTTP na Hono, które może wywoływać
-frontend. Ustawia surowy zestaw
+Szablon fullstack w TypeScript: API HTTP na Hono w Node.js i frontend w React z Vite, w jednym
+monorepo. Ustawia surowy zestaw
 narzędzi i bramki jakości, żeby nowy projekt startował od sprawdzeń na profesjonalnym poziomie,
 zamiast dokładać je później.
 

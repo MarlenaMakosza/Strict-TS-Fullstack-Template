@@ -12,12 +12,12 @@ works the same for code written by people and by AI agents.
 | Formatting        | Prettier                | a file is not formatted                                         | `.prettierrc`                           |
 | Spelling          | cspell                  | an unknown word                                                 | `cspell.json`                           |
 | Unused code       | knip                    | an unused file, export or dependency                            | `knip.json`                             |
-| Unit tests        | Vitest                  | a failing test, or coverage below 90%                           | `apps/api/vitest.config.ts`             |
+| Unit tests        | Vitest                  | a failing test, or coverage below 90%                           | `apps/*/vitest.config.ts`               |
 | Integration tests | Vitest + Testcontainers | a test against the real database fails                          | `apps/api/vitest.integration.config.ts` |
 | CRAP score        | `dev/quality/crap.ts`   | a function scores above 30                                      | `dev/quality/crap.ts`                   |
 | Duplicated code   | jscpd                   | any clone of 50 tokens or more                                  | `.jscpd.json`                           |
 | Architecture      | Archgate                | an ADR rule is broken                                           | `.archgate/adrs/`                       |
-| Mutation testing  | Stryker                 | the mutation score is below 80%                                 | `apps/api/stryker.config.json`          |
+| Mutation testing  | Stryker                 | the mutation score is below 80%                                 | `apps/*/stryker.config.json`            |
 | Acceptance tests  | Playwright + Gherkin    | a scenario fails                                                | `playwright.config.ts`                  |
 | Documentation     | VitePress               | the docs do not build, or a link is dead                        | `.vitepress/config.ts`                  |
 | Commit message    | commitlint              | the message is not a Conventional Commit                        | `commitlint.config.js`                  |

@@ -13,6 +13,13 @@ Jak części współpracują w scenariuszach, które mają znaczenie.
 5. Po `SIGINT` albo `SIGTERM` serwer przestaje przyjmować nowe zapytania, kończy otwarte i się
    zamyka.
 
+## Aplikacja w trybie development
+
+`npm run dev` uruchamia API na porcie 3000 i Vite na porcie 5173. Przeglądarka pobiera aplikację z
+Vite; każde zapytanie do `/api/…` trafia do Vite, który przekazuje je do API (ADR `ARCH-005`).
+Przeglądarka widzi więc jedno źródło i nie potrzebuje CORS. Aplikacja sprawdza każdą odpowiedź
+przez Zod, zanim jej użyje.
+
 ## Zapytanie
 
 1. Zapytanie dostaje identyfikator: ten z nagłówka `X-Request-Id` albo nowy.

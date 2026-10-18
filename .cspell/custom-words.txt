@@ -21,6 +21,7 @@ enumy
 enumów
 firstrun
 frameworka
+frontendu
 frontmatter
 globali
 healthcheck
@@ -41,6 +42,7 @@ onnotice
 openrouter
 pgdata
 rawfile
+Reacta
 requesta
 requesty
 rulesecie

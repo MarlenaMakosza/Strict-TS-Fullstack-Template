@@ -27,7 +27,12 @@ Options considered:
 ## Decision
 
 - Each app lives in `apps/<name>/` with its own `package.json`, dependencies, scripts, Vitest
-  config, coverage threshold and Stryker config. The backend is `apps/api`.
+  config, coverage threshold and Stryker config: the backend in `apps/api`, the frontend in
+  `apps/web`. Code that both use lives in `packages/<name>/` (today `packages/shared`, imported
+  as `@app/shared/…`), with the same gates.
+- A shared package exports its `.ts` files directly, with no build step. Node strips their types
+  because npm links the workspace into `node_modules` and Node follows the link to the real
+  path, which is outside `node_modules`; Vite and TypeScript read them as source.
 - The root holds what every app shares: ESLint, Prettier, cspell, knip, jscpd, Archgate, the git
   hooks, commitlint, release-please, the Gherkin scenarios in `tests/e2e/`, the CRAP gate in
   `dev/quality/` and the docs.
@@ -41,8 +46,7 @@ Options considered:
 
 - **Do** run scripts from the root.
 - **Do** put a dependency in the app that imports it.
-- **Don't** import from another app's `src/`. Share code through a package in `packages/` once
-  there is something to share.
+- **Don't** import from another app's `src/`. Share code through a package in `packages/`.
 - **Don't** add a monorepo tool before the gates are measurably slow.
 
 ## Consequences

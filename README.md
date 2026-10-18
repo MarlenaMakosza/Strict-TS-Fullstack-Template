@@ -2,8 +2,8 @@
 
 English | [Polski](docs/pl/index.md)
 
-A production-ready template for a TypeScript backend on Node.js: a small HTTP API with Hono, ready
-for a frontend to call.
+A production-ready fullstack TypeScript template: an HTTP API with Hono on Node.js and a React
+frontend with Vite, in one monorepo.
 
 Writing non-trivial TypeScript well is hard. The language has many small gotchas that cause real
 problems in the right circumstances, so linters and other code quality tools matter a lot. This
@@ -17,9 +17,10 @@ stays. The agent workflow was inspired by a
 
 ## What you get
 
-- **TypeScript on Node.js 24, with an HTTP API.** Node runs `.ts` files directly, with no build
-  step in development. Hono serves the routes under `/api/`, Zod validates their input and the
-  environment, and `/api/openapi.json` describes the API, so a frontend can generate its types.
+- **TypeScript fullstack in one monorepo.** The backend (`apps/api`) runs on Node.js 24 straight
+  from `.ts` files: Hono serves the routes under `/api/`, Zod validates their input and the
+  environment, and `/api/openapi.json` describes the API. The frontend (`apps/web`) is React with
+  Vite and Tailwind CSS. Shared code lives in `packages/shared`.
 - **Strict lint.** ESLint with type-aware rules and about 20 plugins, Prettier, cspell (English and
   Polish) and knip for unused code.
 - **PostgreSQL with Drizzle.** Docker Compose runs the database. You also get migrations and a
@@ -62,6 +63,7 @@ nvm use
 cp apps/api/.env.example apps/api/.env
 npm run firstrun:dev
 npm run validate
+npm run dev   # the app on http://localhost:5173, the API on http://localhost:3000
 ```
 
 ## Working with AI agents

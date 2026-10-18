@@ -2,7 +2,7 @@
 @import 'tailwindcss';
 
 /* Where Tailwind looks for class names (relative to this file) */
-@source '../';
+@source './';
 
 /* Design tokens — every --color-*, --font-*, --spacing-* becomes a utility class */
 @theme {

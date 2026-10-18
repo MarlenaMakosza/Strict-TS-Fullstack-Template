@@ -3,11 +3,12 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
+  "engines": {
+    "node": ">=24.15.0"
+  },
   "scripts": {
     "dev": "node --watch src/index.ts",
-    "build": "tsc --project tsconfig.build.json && npm run css:build",
-    "css:build": "tailwindcss --input src/styles/app.css --output dist/app.css --minify",
-    "css:watch": "tailwindcss --input src/styles/app.css --output dist/app.css --watch",
+    "build": "tsc --project tsconfig.build.json",
     "start": "node dist/index.js",
     "ts-check": "tsc --noEmit",
     "test": "vitest run",
@@ -46,8 +47,6 @@
     "@vitest/coverage-v8": "^5.0.3",
     "drizzle-kit": "^0.31.11",
     "fast-check": "^4.10.2",
-    "pino-pretty": "^13.2.0",
-    "@tailwindcss/cli": "^4.3.3",
-    "tailwindcss": "^4.3.3"
+    "pino-pretty": "^13.2.0"
   }
 }

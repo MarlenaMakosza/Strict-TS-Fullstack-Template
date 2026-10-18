@@ -3,7 +3,8 @@
 Każdy uruchamiasz z katalogu głównego przez `npm run <nazwa>`. Większość odpala ten sam skrypt w
 każdej aplikacji w `apps/` (`--workspaces`) albo w jednej (`-w apps/api`); tabela mówi, który. Najczęściej potrzebne:
 
-- `dev`: uruchamia serwer z `apps/api/src/index.ts` i restartuje go po każdej zmianie.
+- `dev`: uruchamia API i aplikację webową i odświeża je po każdej zmianie. Otwórz
+  `http://localhost:5173`.
 - `validate`: wszystkie szybkie bramki jakości. Uruchamia się też w CI.
 - `validate:full`: wszystkie bramki, razem z mutation testing, scenariuszami Gherkin i budowaniem
   dokumentacji. Zobacz [Bramki jakości](./quality-gates.md).
@@ -13,9 +14,8 @@ każdej aplikacji w `apps/` (`--workspaces`) albo w jednej (`-w apps/api`); tabe
 
 | Skrypt                                               | Polecenie                                                                                                                                   |
 | ---------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| `dev`                                                | w `apps/api`: `node --watch src/index.ts`                                                                                                   |
-| `build`                                              | w każdej aplikacji: `tsc --project tsconfig.build.json` + `css:build` (do `apps/api/dist/`)                                                 |
-| `css:build` / `css:watch`                            | tylko w `apps/api`: Tailwind CLI, `src/styles/app.css` → `dist/app.css`                                                                     |
+| `dev`                                                | API (`node --watch src/index.ts` w `apps/api`) i aplikacja webowa (`vite` w `apps/web`) razem, przez concurrently                           |
+| `build`                                              | w każdej aplikacji: `tsc --project tsconfig.build.json` w `apps/api` (do `apps/api/dist/`), `vite build` w `apps/web` (do `apps/web/dist/`) |
 | `start`                                              | w `apps/api`: `node dist/index.js`                                                                                                          |
 | `prepare`                                            | husky (instaluje hooki po `npm install`)                                                                                                    |
 | `validate`                                           | lint + ts-check + spellcheck + knip + test:coverage + quality:crap + quality:duplication + check:adrs                                       |

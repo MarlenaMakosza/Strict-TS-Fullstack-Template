@@ -12,12 +12,12 @@ działa tak samo dla kodu pisanego przez ludzi i przez agentów AI.
 | Formatowanie         | Prettier                | plik nie jest sformatowany                                            | `.prettierrc`                           |
 | Pisownia             | cspell                  | jest nieznane słowo                                                   | `cspell.json`                           |
 | Nieużywany kod       | knip                    | jest nieużywany plik, eksport albo zależność                          | `knip.json`                             |
-| Testy jednostkowe    | Vitest                  | test nie przechodzi albo pokrycie spada poniżej 90%                   | `apps/api/vitest.config.ts`             |
+| Testy jednostkowe    | Vitest                  | test nie przechodzi albo pokrycie spada poniżej 90%                   | `apps/*/vitest.config.ts`               |
 | Testy integracyjne   | Vitest + Testcontainers | test na prawdziwej bazie danych nie przechodzi                        | `apps/api/vitest.integration.config.ts` |
 | Wynik CRAP           | `dev/quality/crap.ts`   | funkcja ma wynik powyżej 30                                           | `dev/quality/crap.ts`                   |
 | Skopiowany kod       | jscpd                   | jest kopia długości 50 tokenów lub więcej                             | `.jscpd.json`                           |
 | Architektura         | Archgate                | reguła z ADR-a jest złamana                                           | `.archgate/adrs/`                       |
-| Mutation testing     | Stryker                 | wynik mutacji spada poniżej 80%                                       | `apps/api/stryker.config.json`          |
+| Mutation testing     | Stryker                 | wynik mutacji spada poniżej 80%                                       | `apps/*/stryker.config.json`            |
 | Testy akceptacyjne   | Playwright + Gherkin    | scenariusz nie przechodzi                                             | `playwright.config.ts`                  |
 | Dokumentacja         | VitePress               | dokumentacja się nie buduje albo link jest martwy                     | `.vitepress/config.ts`                  |
 | Wiadomość w commicie | commitlint              | wiadomość nie jest w formacie Conventional Commits                    | `commitlint.config.js`                  |

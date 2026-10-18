@@ -2,8 +2,8 @@
 
 ## Purpose
 
-A template for TypeScript backends on Node.js: a small HTTP API with Hono that a frontend can
-call. It sets up a strict
+A fullstack TypeScript template: an HTTP API with Hono on Node.js and a React frontend with Vite,
+in one monorepo. It sets up a strict
 toolchain and quality gates, so a new project starts with professional-quality checks instead of
 adding them later.
 
