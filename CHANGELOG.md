@@ -1,5 +1,34 @@
 # Changelog
 
+## [0.3.0](https://github.com/MarlenaMakosza/Ultimate-TS-AI-project/compare/v0.2.0...v0.3.0) (2026-10-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* move the backend into apps/api in an npm workspaces monorepo ([#29](https://github.com/MarlenaMakosza/Ultimate-TS-AI-project/issues/29))
+
+### Features
+
+* add a React frontend in apps/web and shared code in packages/shared ([#30](https://github.com/MarlenaMakosza/Ultimate-TS-AI-project/issues/30)) ([3f4ac45](https://github.com/MarlenaMakosza/Ultimate-TS-AI-project/commit/3f4ac45f753d34b50404ee49def5a4112dff68ed))
+* add browser scenarios with axe and the ux-designer and ui-reviewer roles ([#31](https://github.com/MarlenaMakosza/Ultimate-TS-AI-project/issues/31)) ([71d3f27](https://github.com/MarlenaMakosza/Ultimate-TS-AI-project/commit/71d3f27ae354fe5a06cd0d9b1aadaea6f50eb889))
+* log every request and send security headers ([#28](https://github.com/MarlenaMakosza/Ultimate-TS-AI-project/issues/28)) ([7bc15ac](https://github.com/MarlenaMakosza/Ultimate-TS-AI-project/commit/7bc15acfa738c5a1f08ea81036afe591eca032d9))
+* serve an HTTP API with Hono ([#26](https://github.com/MarlenaMakosza/Ultimate-TS-AI-project/issues/26)) ([9a74d1a](https://github.com/MarlenaMakosza/Ultimate-TS-AI-project/commit/9a74d1a3e0ee3100c01a00cd91f4ad9133caae24))
+
+
+### Documentation
+
+* turn "Starting your own project" into a checklist ([#23](https://github.com/MarlenaMakosza/Ultimate-TS-AI-project/issues/23)) ([b3cc1fb](https://github.com/MarlenaMakosza/Ultimate-TS-AI-project/commit/b3cc1fb1921c901af86659fc20a4b92e8f54b5cc))
+
+
+### Tests
+
+* keep the tests independent of the local .env ([#22](https://github.com/MarlenaMakosza/Ultimate-TS-AI-project/issues/22)) ([7b72e0c](https://github.com/MarlenaMakosza/Ultimate-TS-AI-project/commit/7b72e0c2c640d927769779541b1d431178f240ae))
+
+
+### Refactoring
+
+* move the backend into apps/api in an npm workspaces monorepo ([#29](https://github.com/MarlenaMakosza/Ultimate-TS-AI-project/issues/29)) ([4d31e58](https://github.com/MarlenaMakosza/Ultimate-TS-AI-project/commit/4d31e585bde9b52f12de3105ec263c27aa32df9f))
+
 ## [0.2.0](https://github.com/MarlenaMakosza/Ultimate-TS-AI-project/compare/v0.1.0...v0.2.0) (2026-10-17)
 
 
