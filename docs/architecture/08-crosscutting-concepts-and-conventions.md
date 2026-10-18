@@ -69,6 +69,15 @@ export function getDiscount(user: User): number {
   third-party libraries) and turned into a Result there.
 - Two exceptions to "no throwing": invalid configuration at startup fails fast with an error (see
   `src/env.ts` and ADR `ARCH-001`), and scripts in `dev/` may throw.
+- The API answers every error in one JSON format: `{ "error": "Not found" }`. Invalid input also
+  lists every invalid field, with status `400`:
+
+  ```json
+  { "error": "Invalid request", "issues": [{ "message": "…", "path": "range.from" }] }
+  ```
+
+  A route turns a failed Result into one of these answers with a fitting status. An unexpected
+  error gets `500` and `{ "error": "Internal server error" }`; the details go only to the log.
 
 ## Tests
 
@@ -133,6 +142,9 @@ Shared types and helpers go into `shared/`.
   development, pino-pretty writes readable lines.
 - Logs go to stderr. ESLint (`no-console`) rejects `console.*` in `src/`; only the scripts in
   `dev/` print to the terminal.
+- The server logs one line per request (`Request handled`) with the method, path, status,
+  `durationMs` and `requestID`. Log inside a route with the same `requestID`, so that all lines of
+  one request can be found together.
 - `dev/logger-example.ts` shows every common case (levels, context, errors, child loggers,
   redaction) and how to save the logs to a file. Run it with `npm run example:logger`.
 - Secret fields (`DATABASE_URL`, `password`, `token`, `authorization`, `cookie`) are redacted. Add

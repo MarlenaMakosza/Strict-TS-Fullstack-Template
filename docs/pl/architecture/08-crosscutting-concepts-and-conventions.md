@@ -71,6 +71,15 @@ Kod i komentarze w kodzie piszemy po angielsku.
   biblioteki zewnętrzne) i tam zamieniamy je w Result.
 - Dwa wyjątki od zasady "nie rzucamy": błędna konfiguracja przy starcie kończy proces od razu
   błędem (zobacz `src/env.ts` i ADR `ARCH-001`), a skrypty w `dev/` mogą rzucać.
+- API odpowiada na każdy błąd w jednym formacie JSON: `{ "error": "Not found" }`. Przy błędnych
+  danych wejściowych dodaje listę błędnych pól, ze statusem `400`:
+
+  ```json
+  { "error": "Invalid request", "issues": [{ "message": "…", "path": "range.from" }] }
+  ```
+
+  Trasa zamienia nieudany Result w jedną z takich odpowiedzi z pasującym statusem. Nieoczekiwany
+  błąd dostaje `500` i `{ "error": "Internal server error" }`; szczegóły trafiają tylko do logu.
 
 ## Testy
 
@@ -134,6 +143,9 @@ Wspólne typy i pomocnicze funkcje trafiają do `shared/`.
   development pino-pretty pisze czytelne linie.
 - Logi idą na stderr. ESLint (`no-console`) odrzuca `console.*` w `src/`; do terminala piszą tylko
   skrypty w `dev/`.
+- Serwer loguje jedną linię na zapytanie (`Request handled`) z metodą, ścieżką, statusem,
+  `durationMs` i `requestID`. W trasie loguj z tym samym `requestID`, żeby wszystkie linie jednego
+  zapytania dało się znaleźć razem.
 - `dev/logger-example.ts` pokazuje wszystkie typowe przypadki (poziomy, kontekst, błędy, loggery
   potomne, czyli `child`, ukrywanie sekretów) i jak zapisać logi do pliku. Uruchom go przez
   `npm run example:logger`.
