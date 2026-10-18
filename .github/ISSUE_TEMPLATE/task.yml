@@ -1,0 +1,45 @@
+name: Task
+description: Work that changes nothing a user or an API client can see, such as tooling, CI or docs.
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Can you describe it as "When I … then I see / I get …"?** Then it is a **Feature** (or a
+        **Bug**, if it worked before), not a Task. This includes anything a frontend or another
+        client of the API can notice: a new endpoint, a new field, a changed answer or error.
+
+        | Task (no scenario)               | Feature (needs a scenario)                  |
+        | -------------------------------- | ------------------------------------------- |
+        | upgrade Hono to the next major   | `/api/greeting` answers in Polish           |
+        | add a lint rule, speed up CI     | `/api/users` can be filtered by email       |
+        | rename a module, refactor        | a new error message for an invalid name     |
+        | docs, agent roles, issue forms   | a field added to an API response            |
+
+        Start the title with the commit type: `chore:`, `docs:`, `ci:`, `refactor:`, `test:` or
+        `build:`.
+  - type: checkboxes
+    id: no-visible-change
+    attributes:
+      label: Scope
+      options:
+        - label: Nothing that a user or an API client can see changes. If something does, I use the Feature or Bug form.
+          required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What
+      description: What to change.
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why
+      description: The problem it solves, or what gets better and how you will know.
+    validations:
+      required: true
+  - type: textarea
+    id: done-when
+    attributes:
+      label: Done when
+      description: Optional. How to check that the task is finished.
