@@ -2,7 +2,8 @@
 
 English | [Polski](docs/pl/index.md)
 
-A production-ready template for a plain TypeScript project on Node.js, with no framework.
+A production-ready template for a TypeScript backend on Node.js: a small HTTP API with Hono, ready
+for a frontend to call.
 
 Writing non-trivial TypeScript well is hard. The language has many small gotchas that cause real
 problems in the right circumstances, so linters and other code quality tools matter a lot. This
@@ -16,8 +17,9 @@ stays. The agent workflow was inspired by a
 
 ## What you get
 
-- **TypeScript on Node.js 24.** Node runs `.ts` files directly, with no build step in
-  development. Zod validates the environment and other input at the boundaries.
+- **TypeScript on Node.js 24, with an HTTP API.** Node runs `.ts` files directly, with no build
+  step in development. Hono serves the routes under `/api/`, Zod validates their input and the
+  environment, and `/api/openapi.json` describes the API, so a frontend can generate its types.
 - **Strict lint.** ESLint with type-aware rules and about 20 plugins, Prettier, cspell (English and
   Polish) and knip for unused code.
 - **PostgreSQL with Drizzle.** Docker Compose runs the database. You also get migrations and a
@@ -34,7 +36,7 @@ stays. The agent workflow was inspired by a
   site with the arc42 architecture in English and Polish, published on GitHub Pages.
 - **Logging with pino.** One logger in `src/logger.ts`: JSON lines in production, readable lines
   in development, the level from `LOG_LEVEL`, and secrets such as passwords and tokens hidden.
-  Logs go to stderr, so stdout stays free for the output of the program.
+  Logs go to stderr.
 - **Automatic releases.** release-please reads the
   [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/), keeps a release pull
   request with the next version and the `CHANGELOG.md` up to date, and tags the release when you

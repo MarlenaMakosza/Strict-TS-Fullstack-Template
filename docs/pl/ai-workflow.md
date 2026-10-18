@@ -81,24 +81,26 @@ Osobna gałąź pozwala łatwo wszystko wyrzucić, jeśli eksperyment nie wyjdzi
 ### Krok 1: specifier, czyli scenariusz
 
 ```text
-Użyj agenta specifier. Wymaganie: gdy uruchomię aplikację z imieniem jako argumentem
-(node src/index.ts Ada), ma przywitać po imieniu: "Hello, Ada!". Bez argumentu działa jak dotąd.
+Użyj agenta specifier. Wymaganie: /api/greeting przyjmuje język, więc
+/api/greeting?name=Ada&language=pl odpowiada "Cześć, Ada!". Bez języka działa jak dotąd.
 ```
 
-- Odpowiadasz na pytania agenta, np. czy przy imieniu wyświetlać środowisko albo co zrobić przy
-  kilku argumentach.
+- Odpowiadasz na pytania agenta, np. co zrobić z nieznanym językiem albo czy wielkość liter w
+  nazwie języka ma znaczenie.
 - Claude pyta o zgodę na zapis pliku `.feature`. Przeczytaj scenariusz i zatwierdź.
 - Plik `.feature` możesz też napisać samodzielnie. Musi zaczynać się od linii `Feature:`, np.:
 
 ```gherkin
-Feature: Greeting by name
+Feature: Greeting in other languages
 
-  Scenario: Greet by name
-    When I start the app with name "Ada"
-    Then the app prints "Hello, Ada!"
+  Scenario: Greet in Polish
+    Given the server runs
+    When I request "/api/greeting?name=Ada&language=pl"
+    Then the response status is 200
+    And the response body is '{"message":"Cześć, Ada!"}'
 ```
 
-Wzorzec stylu to `tests/e2e/features/greeting.feature`.
+Wzorzec stylu to `tests/e2e/features/http-api.feature`.
 
 Na GitHubie formularz zgłoszenia **Feature** prosi o scenariusz w tym samym formacie, a formularz
 **Bug** o kroki w formie scenariusza. Daj zgłoszenie agentowi specifier jako wymaganie. Pracę,
@@ -215,8 +217,8 @@ Claude może skończyć. Co sprawdza każda bramka i jaki ma próg, opisują
 
 **Wzorce do naśladowania:**
 
-- `tests/e2e/features/greeting.feature`: scenariusz Gherkin.
-- `tests/e2e/steps/app.steps.ts`: step definitions.
+- `tests/e2e/features/http-api.feature`: scenariusze Gherkin.
+- `tests/e2e/steps/server.steps.ts`: step definitions; `fixtures.ts` uruchamia serwer.
 - `docs/edge-cases/greeting.md`: lista przypadków brzegowych.
 - `.archgate/adrs/ARCH-001-*.md` i `.rules.ts`: ADR z regułą.
 

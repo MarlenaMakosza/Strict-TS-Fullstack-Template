@@ -82,25 +82,27 @@ A separate branch makes it easy to throw everything away if the experiment fails
 ### Step 1: specifier, the scenario
 
 ```text
-Use the specifier agent. Requirement: when I start the app with a name as an argument
-(node src/index.ts Ada), it greets by name: "Hello, Ada!". Without an argument it works as before.
+Use the specifier agent. Requirement: /api/greeting takes a language, so
+/api/greeting?name=Ada&language=pl answers "Cześć, Ada!". Without a language it works as before.
 ```
 
-- Answer the agent's questions, for example whether to show the environment with a name, or what
-  to do with several arguments.
+- Answer the agent's questions, for example what to do with an unknown language, or whether the
+  language name is case-sensitive.
 - Claude asks for approval before it writes the `.feature` file. Read the scenario and approve it.
 - You can also write the `.feature` file yourself. It must start with a `Feature:` line, for
   example:
 
 ```gherkin
-Feature: Greeting by name
+Feature: Greeting in other languages
 
-  Scenario: Greet by name
-    When I start the app with name "Ada"
-    Then the app prints "Hello, Ada!"
+  Scenario: Greet in Polish
+    Given the server runs
+    When I request "/api/greeting?name=Ada&language=pl"
+    Then the response status is 200
+    And the response body is '{"message":"Cześć, Ada!"}'
 ```
 
-Use `tests/e2e/features/greeting.feature` as the style reference.
+Use `tests/e2e/features/http-api.feature` as the style reference.
 
 On GitHub, the **Feature** issue form asks for the scenario in the same format, and the **Bug**
 form asks for the steps as a scenario. Give the issue to the specifier as the requirement. Work
@@ -215,8 +217,8 @@ may finish. What each gate checks, and its limit, is in [Quality gates](./qualit
 
 **Examples to follow:**
 
-- `tests/e2e/features/greeting.feature`: a Gherkin scenario.
-- `tests/e2e/steps/app.steps.ts`: step definitions.
+- `tests/e2e/features/http-api.feature`: Gherkin scenarios.
+- `tests/e2e/steps/server.steps.ts`: step definitions; `fixtures.ts` starts the server.
 - `docs/edge-cases/greeting.md`: an edge case list.
 - `.archgate/adrs/ARCH-001-*.md` and `.rules.ts`: an ADR with a rule.
 

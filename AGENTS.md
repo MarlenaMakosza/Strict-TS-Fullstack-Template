@@ -12,12 +12,13 @@ easy to review (see [Final report](#final-report)).
 
 ## Project
 
-- TypeScript on Node.js, no framework. Node runs `.ts` files directly.
+- TypeScript on Node.js. Node runs `.ts` files directly. An HTTP API with Hono in `src/server/`
+  (ADR `ARCH-003`): add routes with `createRoute` and `app.openapi()`, so they are validated and
+  appear in `/api/openapi.json`.
 - Source code in `src/`, unit tests in `tests/unit/`, integration tests against a real database in
   `tests/integration/`, end-to-end scenarios in `tests/e2e/features/`.
 - PostgreSQL through Drizzle (`src/db/`). Start the database with `npm run db:start`.
-- Log through `logger` from `src/logger.ts` (ADR `ARCH-002`). `console.*` is only for the output of
-  the CLI in `src/index.ts`.
+- Log through `logger` from `src/logger.ts` (ADR `ARCH-002`). Never call `console.*` in `src/`.
 - For an operation that may fail, return a `Result` from `src/shared/result.ts` (`success`,
   `failure`) instead of throwing.
 - Architecture decisions (ADRs) live in `.archgate/adrs/`. Read the relevant ones before you change
@@ -116,13 +117,12 @@ The human owns the scenarios in `tests/e2e/features/**/*.feature`. The specifier
 the human accepts them. The implementer writes the step definitions in
 `tests/e2e/steps/` and the code that makes the scenarios pass.
 
-- `tests/e2e/features/greeting.feature` with `tests/e2e/steps/app.steps.ts` is the reference
+- `tests/e2e/features/http-api.feature` with `tests/e2e/steps/server.steps.ts` is the reference
   example. Follow its style. Import `Given`, `When` and `Then` from `tests/e2e/steps/fixtures.ts`.
 - Reuse existing steps before you add new ones. One step text maps to exactly one definition.
-- Steps describe behavior, not implementation: "When I start the app", not "When I call main()".
-- The app is a CLI for now: steps start it through the `app` fixture in
-  `tests/e2e/steps/fixtures.ts`. When the app gets an HTTP server, add `webServer` and
-  `use.baseURL` to `playwright.config.ts`, and use the `page` and `request` fixtures.
+- Steps describe behavior, not implementation: "When I request ...", not "When I call createApp()".
+- Steps start the real server through the `server` fixture in `tests/e2e/steps/fixtures.ts`, on a
+  free port, and send HTTP requests to it. A fresh server runs for every scenario.
 - If a scenario seems wrong or incomplete, do not change it. Ask the human.
 
 ## Protected files

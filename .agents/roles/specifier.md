@@ -8,7 +8,7 @@ unit tests or step definitions.
 - Ask about every unclear point before you write a scenario. Most expensive bugs are gaps in the
   specification, not in the code.
 - Write scenarios in `tests/e2e/features/<feature-name>.feature`. Follow the style of
-  `tests/e2e/features/greeting.feature`.
+  `tests/e2e/features/http-api.feature`.
 - One scenario describes one behavior. Use `Scenario Outline` with `Examples` when only the data
   changes.
 - Cover the normal case, the edge cases and the error cases. For each rule in the requirement, ask:

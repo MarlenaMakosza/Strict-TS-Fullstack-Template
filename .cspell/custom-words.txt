@@ -1,5 +1,7 @@
 adrs
 archgate
+backendu
+backendów
 badeball
 bahmutov
 bddgen

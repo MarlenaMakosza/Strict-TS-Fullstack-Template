@@ -2,7 +2,7 @@
 
 Każdy uruchamiasz przez `npm run <nazwa>`. Najczęściej potrzebne:
 
-- `dev`: uruchamia `src/index.ts` i restartuje go po każdej zmianie.
+- `dev`: uruchamia serwer z `src/index.ts` i restartuje go po każdej zmianie.
 - `validate`: wszystkie szybkie bramki jakości. Uruchamia się też w CI.
 - `validate:full`: wszystkie bramki, razem z mutation testing, scenariuszami Gherkin i budowaniem
   dokumentacji. Zobacz [Bramki jakości](./quality-gates.md).

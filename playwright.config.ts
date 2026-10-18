@@ -7,7 +7,6 @@ const testDirectory = defineBddConfig({
   steps: 'tests/e2e/steps/**/*.ts',
 });
 
-// The app is a CLI for now: the steps start it as a process, so there is no browser and no web
-// server. When the app gets an HTTP server, add `webServer` and `use.baseURL`, and use the `page`
-// fixture in the steps.
+// The scenarios call the HTTP API: the `server` fixture in tests/e2e/steps/fixtures.ts starts the
+// real server on a free port for each scenario, so there is no `webServer` and no browser here.
 export default defineConfig({ testDir: testDirectory });

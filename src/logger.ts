@@ -39,7 +39,7 @@ export function loggerOptions(settings: LoggerSettings): pino.LoggerOptions {
 /**
  * Creates a logger.
  *
- * Logs go to stderr, so stdout stays free for the output of the program.
+ * Logs go to stderr, the usual place for the logs of a server process.
  *
  * @param settings - The level and the output format.
  * @param destination - Where JSON lines go; stderr by default. Ignored with `pretty`.

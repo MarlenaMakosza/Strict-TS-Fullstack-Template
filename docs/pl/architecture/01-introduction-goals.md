@@ -2,7 +2,8 @@
 
 ## Cel
 
-Szablon dla projektów w czystym TypeScript na Node.js, bez frameworka. Ustawia surowy zestaw
+Szablon dla backendów w TypeScript na Node.js: małe API HTTP na Hono, które może wywoływać
+frontend. Ustawia surowy zestaw
 narzędzi i bramki jakości, żeby nowy projekt startował od sprawdzeń na profesjonalnym poziomie,
 zamiast dokładać je później.
 

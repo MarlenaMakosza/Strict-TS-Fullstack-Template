@@ -63,10 +63,11 @@ Create your repository from this one: on GitHub with **Use this template**, or c
 The examples are the patterns that the agents follow, so keep each one until your own code
 replaces it.
 
-- The greeting: `src/greet.ts`, `tests/unit/greet.test.ts`, `tests/e2e/features/greeting.feature`,
-  `tests/e2e/steps/app.steps.ts`, `docs/edge-cases/greeting.md` and the greeting in
-  `src/index.ts`. The roles, `AGENTS.md` and the docs name these files as style references:
-  `git grep -n greet` lists every place to update.
+- The greeting: `src/greet.ts`, `tests/unit/greet.test.ts`, the `/api/greeting` route in
+  `src/server/app.ts` and its tests, the greeting scenarios in `tests/e2e/features/http-api.feature`
+  and `docs/edge-cases/greeting.md`. Keep `/api/health`, the server fixture and the steps in
+  `tests/e2e/steps/`: they fit any API. The roles, `AGENTS.md` and the docs name these files as
+  style references: `git grep -n -E "greet|http-api"` lists every place to update.
 - The database: the `users` table in `src/db/schema.ts`, the migrations in `drizzle/`,
   `dev/db/seed.ts` and `tests/integration/db/users.test.ts`. Delete `drizzle/` and run
   `npm run db:generate` once your schema is in place, so the first migration is yours.
@@ -99,7 +100,7 @@ Run `npm run validate:full` and `npm run format:check`, then apply the
 ## Every day
 
 ```sh
-npm run dev             # run src/index.ts and restart it on every change
+npm run dev             # start the server (http://localhost:3000) and restart it on every change
 npm run validate        # the fast quality gates
 npm run validate:full   # every gate: run it before you call a task done
 ```
