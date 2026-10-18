@@ -115,11 +115,11 @@ zestaw dla projektu w czystym TypeScript. Komendy, które je uruchamiają, są w
 
 ## Dokumentacja i architektura
 
-| Narzędzie | Rola                               |
-| --------- | ---------------------------------- |
-| TypeDoc   | API docs z komentarzy TSDoc        |
-| VitePress | Strona z dokumentacją (arc42, ADR) |
-| Archgate  | Egzekwowanie ADR w kodzie          |
+| Narzędzie | Rola                                                                        |
+| --------- | --------------------------------------------------------------------------- |
+| TypeDoc   | Spis komentarzy TSDoc z `apps/api` i `packages/shared` (`npm run docs:api`) |
+| VitePress | Strona z dokumentacją (arc42, ADR)                                          |
+| Archgate  | Egzekwowanie ADR w kodzie                                                   |
 
 ## Do rozważenia w innych projektach i inne notki
 

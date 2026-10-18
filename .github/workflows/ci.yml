@@ -19,6 +19,7 @@ jobs:
       - run: npm run validate
       - run: npm run security:audit
       - run: npm run build
+      - run: npm run docs:api
       - run: npm run docs:build
 
   mutation:

@@ -15,7 +15,7 @@ type Status =
 /**
  * The example page: the user types a name and the backend greets them.
  *
- * @param props - Where the greeting comes from.
+ * @param properties - Where the greeting comes from.
  * @returns The page.
  */
 export function App(properties: Readonly<AppProperties>): React.JSX.Element {
