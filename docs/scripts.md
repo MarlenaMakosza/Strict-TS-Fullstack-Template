@@ -45,6 +45,6 @@ in `apps/` (`--workspaces`), or in one app (`-w apps/api`); the table says which
 | `db:studio` / `db:push` / `db:check`                 | in `apps/api`: drizzle-kit studio / push / check                                                                                            |
 | `seed:dev`                                           | in `apps/api`: `dev/db/seed.ts`                                                                                                             |
 | `example:logger`                                     | in `apps/api`: `node dev/logger-example.ts`, examples of logging with `src/logger.ts`                                                       |
-| `firstrun:dev`                                       | install + ts-check, then in `apps/api`: docker + db:sync + seed                                                                             |
+| `firstrun:dev`                                       | install + Chromium for the browser scenarios + ts-check, then in `apps/api`: docker + db:sync + seed                                        |
 | `list-outdated-dependencies` / `update-dependencies` | npm-check-updates, for the root and every app                                                                                               |
 | `clean`                                              | `rimraf` of `node_modules`, `dist`, `coverage`, `reports` and `.stryker-tmp`, at the root and in every app                                  |

@@ -51,7 +51,7 @@
     "seed:dev": "npm run seed:dev -w apps/api",
     "example:logger": "npm run example:logger -w apps/api",
     "security:audit": "npm audit --omit=dev --audit-level=high",
-    "firstrun:dev": "npm install && npm run ts-check && npm run firstrun:dev -w apps/api",
+    "firstrun:dev": "npm install && npx playwright install chromium && npm run ts-check && npm run firstrun:dev -w apps/api",
     "list-outdated-dependencies": "npm-check-updates --format repo,group --peer --workspaces --root",
     "update-dependencies": "npm run list-outdated-dependencies -- -u && npm install && npm update && npm dedupe && npm run autofix",
     "clean": "rimraf node_modules dist coverage reports .stryker-tmp \"apps/*/{node_modules,dist,coverage,reports,.stryker-tmp}\"",
