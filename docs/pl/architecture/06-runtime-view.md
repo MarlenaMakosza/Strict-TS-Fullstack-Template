@@ -15,10 +15,14 @@ Jak części współpracują w scenariuszach, które mają znaczenie.
 
 ## Zapytanie
 
-1. Hono dopasowuje ścieżkę do trasy w `src/server/app.ts`.
-2. Schemat Zod trasy sprawdza dane wejściowe, np. parametry w adresie.
-3. Obsługa trasy odpowiada JSON-em. Nieznana ścieżka dostaje `404` z `{"error":"Not found"}`.
-4. Błąd w obsłudze trasy trafia do logu ze szczegółami; klient dostaje `500` z ogólnym komunikatem.
+1. Zapytanie dostaje identyfikator: ten z nagłówka `X-Request-Id` albo nowy.
+2. Hono dopasowuje ścieżkę do trasy w `src/server/app.ts`.
+3. Schemat Zod trasy sprawdza dane wejściowe. Błędne dane dostają `400` z
+   `{"error":"Invalid request","issues":[…]}`, jeden wpis na każde błędne pole.
+4. Obsługa trasy odpowiada JSON-em. Nieznana ścieżka dostaje `404` z `{"error":"Not found"}`.
+5. Błąd w obsłudze trasy trafia do logu ze szczegółami; klient dostaje `500` z ogólnym komunikatem.
+6. Odpowiedź niesie identyfikator zapytania i nagłówki bezpieczeństwa, a jedna linia logu zapisuje
+   metodę, ścieżkę, status, czas i identyfikator.
 
 ## Droga zmiany od commita do wydania
 

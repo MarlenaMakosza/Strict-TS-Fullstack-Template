@@ -35,6 +35,7 @@ merguje
 mergujemy
 mysecretpassword
 niemutowalność
+nosniff
 oneline
 onnotice
 openrouter
@@ -43,6 +44,7 @@ rawfile
 requesta
 requesty
 rulesecie
+SAMEORIGIN
 seedujące
 signale
 skott

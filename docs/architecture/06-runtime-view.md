@@ -15,10 +15,14 @@ How the parts work together in the scenarios that matter.
 
 ## A request
 
-1. Hono matches the path to a route in `src/server/app.ts`.
-2. The route's Zod schema validates the input, for example the query string.
-3. The handler answers with JSON. An unknown path gets `404` with `{"error":"Not found"}`.
-4. An error in a handler is logged with its details; the client gets `500` with a generic message.
+1. The request gets a request ID: the one from the `X-Request-Id` header, or a new one.
+2. Hono matches the path to a route in `src/server/app.ts`.
+3. The route's Zod schema validates the input. Invalid input gets `400` with
+   `{"error":"Invalid request","issues":[…]}`, one issue per invalid field.
+4. The handler answers with JSON. An unknown path gets `404` with `{"error":"Not found"}`.
+5. An error in a handler is logged with its details; the client gets `500` with a generic message.
+6. The answer carries the request ID and the security headers, and one log line records the
+   method, path, status, duration and request ID.
 
 ## A change goes from a commit to a release
 

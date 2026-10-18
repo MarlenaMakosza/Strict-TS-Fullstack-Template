@@ -36,6 +36,12 @@ Options considered (data from npm and GitHub, October 2026):
 - `src/index.ts` only starts the server on `PORT` (validated in `src/env.ts`, default 3000) with
   `@hono/node-server`, and closes it on `SIGINT` and `SIGTERM`.
 - Routes live under `/api/`, so a frontend dev server can forward that prefix to the backend.
+- Every request gets a request ID (taken from the `X-Request-Id` header, or created) that the
+  answer carries back, the standard security headers (`secureHeaders`), and one log line with
+  the method, path, status, duration and request ID.
+- Every error has one JSON format, `{ "error": "…" }`. Invalid input also lists what was wrong:
+  `{ "error": "Invalid request", "issues": [{ "path": "range.from", "message": "…" }] }`, with
+  status `400`.
 
 ## Do's and Don'ts
 
