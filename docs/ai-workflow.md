@@ -103,7 +103,9 @@ Feature: Greeting by name
 Use `tests/e2e/features/greeting.feature` as the style reference.
 
 On GitHub, the **Feature** issue form asks for the scenario in the same format, and the **Bug**
-form asks for the steps as a scenario. Give the issue to the specifier as the requirement.
+form asks for the steps as a scenario. Give the issue to the specifier as the requirement. Work
+that changes no behavior a user sees (tooling, CI, docs) goes in the **Task** form, without a
+scenario.
 
 ### Step 2: edge-case hunter, the edge cases
 
@@ -231,7 +233,7 @@ may finish. What each gate checks, and its limit, is in [Quality gates](./qualit
 - `.github/workflows/ai-review.yml`: an optional review by a different model.
 - `.github/CODEOWNERS`: changes to important files need approval from a code owner.
 - `.github/ISSUE_TEMPLATE/`: issue forms; a feature request and a bug report as Gherkin
-  scenarios.
+  scenarios, and a task without one.
 
 ## How the rules are enforced
 

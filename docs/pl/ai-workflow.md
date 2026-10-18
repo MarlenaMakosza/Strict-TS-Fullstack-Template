@@ -101,7 +101,9 @@ Feature: Greeting by name
 Wzorzec stylu to `tests/e2e/features/greeting.feature`.
 
 Na GitHubie formularz zgłoszenia **Feature** prosi o scenariusz w tym samym formacie, a formularz
-**Bug** o kroki w formie scenariusza. Daj zgłoszenie agentowi specifier jako wymaganie.
+**Bug** o kroki w formie scenariusza. Daj zgłoszenie agentowi specifier jako wymaganie. Pracę,
+która nie zmienia zachowania widocznego dla użytkownika (narzędzia, CI, dokumentacja), zgłoś
+formularzem **Task**, bez scenariusza.
 
 ### Krok 2: edge-case-hunter, czyli przypadki brzegowe
 
@@ -231,7 +233,7 @@ Claude może skończyć. Co sprawdza każda bramka i jaki ma próg, opisują
 - `.github/workflows/ai-review.yml`: opcjonalne review innym modelem.
 - `.github/CODEOWNERS`: zmiany w ważnych plikach wymagają akceptacji osoby z `CODEOWNERS`.
 - `.github/ISSUE_TEMPLATE/`: formularze zgłoszeń; prośba o funkcję i zgłoszenie błędu jako
-  scenariusze Gherkin.
+  scenariusze Gherkin oraz zadanie bez scenariusza.
 
 ## Jak egzekwowane są reguły
 

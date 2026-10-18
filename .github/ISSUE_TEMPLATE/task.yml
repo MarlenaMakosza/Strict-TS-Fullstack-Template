@@ -1,0 +1,27 @@
+name: Task
+description: Work that changes no behavior a user sees, such as tooling, the agent setup, CI or docs.
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Start the title with the commit type: `chore:`, `docs:`, `ci:`, `refactor:`, `test:` or
+        `build:`. For a new behavior, use the Feature form; for something broken, the Bug form.
+  - type: textarea
+    id: what
+    attributes:
+      label: What
+      description: What to change.
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why
+      description: The problem it solves, or what gets better and how you will know.
+    validations:
+      required: true
+  - type: textarea
+    id: done-when
+    attributes:
+      label: Done when
+      description: Optional. How to check that the task is finished.
