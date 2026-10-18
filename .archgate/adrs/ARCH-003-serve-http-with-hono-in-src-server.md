@@ -3,7 +3,7 @@ id: ARCH-003
 title: Serve HTTP with Hono in src/server/
 domain: architecture
 rules: false
-files: ['src/**/*.ts']
+files: ['apps/api/src/**/*.ts']
 ---
 
 # Serve HTTP with Hono in src/server/
@@ -28,13 +28,13 @@ Options considered (data from npm and GitHub, October 2026):
 
 ## Decision
 
-- `src/server/app.ts` builds the app with `createApp(dependencies)`: the routes, the OpenAPI
-  description at `/api/openapi.json`, a JSON 404 answer and an error handler. It does not listen
-  on a port.
+- `apps/api/src/server/app.ts` builds the app with `createApp(dependencies)`: the routes, the
+  OpenAPI description at `/api/openapi.json`, a JSON 404 answer and an error handler. It does not
+  listen on a port.
 - Every route is defined with `createRoute` and Zod schemas, so its input is validated and it
   appears in the OpenAPI description.
-- `src/index.ts` only starts the server on `PORT` (validated in `src/env.ts`, default 3000) with
-  `@hono/node-server`, and closes it on `SIGINT` and `SIGTERM`.
+- `apps/api/src/index.ts` only starts the server on `PORT` (validated in `apps/api/src/env.ts`,
+  default 3000) with `@hono/node-server`, and closes it on `SIGINT` and `SIGTERM`.
 - Routes live under `/api/`, so a frontend dev server can forward that prefix to the backend.
 - Every request gets a request ID (taken from the `X-Request-Id` header, or created) that the
   answer carries back, the standard security headers (`secureHeaders`), and one log line with

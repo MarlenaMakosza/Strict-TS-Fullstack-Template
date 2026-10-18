@@ -50,7 +50,7 @@ Kod, który nie przejdzie wszystkich bramek, nie wejdzie do projektu.
 | Kto     | Co robi                                                | Gdzie                                           |
 | ------- | ------------------------------------------------------ | ----------------------------------------------- |
 | Ty      | Opisujesz zachowanie programu i odpowiadasz na pytania | `tests/e2e/features/*.feature`, raporty agentów |
-| Agenci  | Piszą scenariusze, testy, kod i dokumentację           | `tests/`, `src/`, `docs/`                       |
+| Agenci  | Piszą scenariusze, testy, kod i dokumentację           | `tests/`, `apps/api/src/`, `docs/`              |
 | Automat | Sprawdza wszystko bramkami                             | `npm run validate:full`, CI                     |
 
 Czytasz tylko:
@@ -60,8 +60,8 @@ Czytasz tylko:
 - raport agenta implementer, zwłaszcza zmienione asercje w istniejących testach,
 - raport agenta reviewer.
 
-Nie czytasz kodu w `src/` ani testów. Za ciebie robią to bramki i reviewer. Na początek możesz
-jednak zaglądać w diff, dopóki nie zaufasz bramkom.
+Nie czytasz kodu w `apps/api/src/` ani testów. Za ciebie robią to bramki i reviewer. Na początek
+możesz jednak zaglądać w diff, dopóki nie zaufasz bramkom.
 
 ## Cały przebieg krok po kroku
 
@@ -156,7 +156,7 @@ Po skończeniu czytasz raport:
 - **Commands**: jakie bramki odpalił i z jakim wynikiem.
 - **Changed existing tests**: czy zmienił stare asercje i dlaczego. Agent mógłby „naprawić” test
   pod swój błędny kod, dlatego musi to zgłosić. Przy powitaniu po imieniu spodziewaj się zmian
-  tam, gdzie `src/index.ts` składa komunikat.
+  tam, gdzie `apps/api/src/index.ts` składa komunikat.
 - **Edge cases**: co przetestował, a co pominął i dlaczego.
 - **Open questions**: co w specyfikacji było niejasne.
 
@@ -209,8 +209,8 @@ Claude może skończyć. Co sprawdza każda bramka i jaki ma próg, opisują
 
 **Bramki:**
 
-- `vitest.config.ts`: próg coverage 90%.
-- `stryker.config.json`: próg mutation testing 80%.
+- `apps/api/vitest.config.ts`: próg coverage 90%.
+- `apps/api/stryker.config.json`: próg mutation testing 80%.
 - `dev/quality/crap.ts`: liczy CRAP.
 - `.jscpd.json`: wykrywanie skopiowanego kodu.
 - `.archgate/adrs/`: decyzje architektoniczne i ich reguły.

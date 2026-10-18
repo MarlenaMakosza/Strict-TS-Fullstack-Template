@@ -12,14 +12,15 @@ easy to review (see [Final report](#final-report)).
 
 ## Project
 
-- TypeScript on Node.js. Node runs `.ts` files directly. An HTTP API with Hono in `src/server/`
-  (ADR `ARCH-003`): add routes with `createRoute` and `app.openapi()`, so they are validated and
-  appear in `/api/openapi.json`.
-- Source code in `src/`, unit tests in `tests/unit/`, integration tests against a real database in
-  `tests/integration/`, end-to-end scenarios in `tests/e2e/features/`.
-- PostgreSQL through Drizzle (`src/db/`). Start the database with `npm run db:start`.
-- Log through `logger` from `src/logger.ts` (ADR `ARCH-002`). Never call `console.*` in `src/`.
-- For an operation that may fail, return a `Result` from `src/shared/result.ts` (`success`,
+- TypeScript on Node.js. Node runs `.ts` files directly. An HTTP API with Hono in
+  `apps/api/src/server/` (ADR `ARCH-003`): add routes with `createRoute` and `app.openapi()`, so
+  they are validated and appear in `/api/openapi.json`.
+- Source code in `apps/api/src/`, unit tests in `apps/api/tests/unit/`, integration tests against a
+  real database in `apps/api/tests/integration/`, end-to-end scenarios in `tests/e2e/features/`.
+- PostgreSQL through Drizzle (`apps/api/src/db/`). Start the database with `npm run db:start`.
+- Log through `logger` from `apps/api/src/logger.ts` (ADR `ARCH-002`). Never call `console.*` in
+  `apps/api/src/`.
+- For an operation that may fail, return a `Result` from `apps/api/src/shared/result.ts` (`success`,
   `failure`) instead of throwing.
 - Architecture decisions (ADRs) live in `.archgate/adrs/`. Read the relevant ones before you change
   the structure of the code. The architecture overview is in `docs/architecture/` (arc42).
@@ -35,7 +36,7 @@ A task is done only when all of these are true:
    types, spelling, unused code, unit tests with a 90% coverage threshold, CRAP score (30 or less
    per function), duplicated code (none allowed) and ADRs.
 2. `npm run format:check` exits with code 0. Run `npm run autofix` to fix formatting.
-3. Every new or changed behavior has a unit test in `tests/unit/`.
+3. Every new or changed behavior has a unit test in `apps/api/tests/unit/`.
 4. If the change is visible to a user, a Gherkin scenario in `tests/e2e/features/` describes it.
 
 Never report a task as done without running these commands yourself.
@@ -61,27 +62,27 @@ Follow this order for every change in behavior:
 1. Read the Gherkin scenario (`tests/e2e/features/**/*.feature`) or the task description. If the expected
    behavior is unclear, ask before you write code. If a task without a scenario changes something a
    user or an API client can see, stop and ask the human for a scenario first.
-2. Write a failing unit test in `tests/unit/`.
-3. Write the smallest code in `src/` that makes the test pass.
+2. Write a failing unit test in `apps/api/tests/unit/`.
+3. Write the smallest code in `apps/api/src/` that makes the test pass.
 4. Refactor while the tests stay green.
 5. Run the full definition of done.
 
 ## Which command to run
 
-| When                                  | Run                                                   |
-| ------------------------------------- | ----------------------------------------------------- |
-| After each edit (fast feedback)       | `npx vitest run <test file>` and `npx eslint <files>` |
-| Before you say you are done           | `npm run validate:full` and `npm run format:check`    |
-| Lint or formatting errors             | `npm run autofix`, then fix what is left by hand      |
-| You changed logic in `src/` or tests  | `npm run test:mutation -- --force`                    |
-| You need coverage numbers             | `npm run test:coverage`                               |
-| User-visible behavior changed         | `npm run test:e2e`                                    |
-| You changed `src/db/schema.ts`        | `npm run db:generate`, then `npm run db:check`        |
-| You changed code that uses the DB     | `npm run test:integration` (needs Docker)             |
-| `cspell` reports a real project word  | Add the word to `.cspell/custom-words.txt`            |
-| `knip` reports unused code or exports | Remove the unused code. Do not add ignores            |
-| `quality:crap` reports a function     | Add tests for it, or split it into simpler functions  |
-| `quality:duplication` finds a clone   | Extract the shared code into one function or module   |
+| When                                          | Run                                                            |
+| --------------------------------------------- | -------------------------------------------------------------- |
+| After each edit (fast feedback)               | `npm test -w apps/api -- <test file>` and `npx eslint <files>` |
+| Before you say you are done                   | `npm run validate:full` and `npm run format:check`             |
+| Lint or formatting errors                     | `npm run autofix`, then fix what is left by hand               |
+| You changed logic in `apps/api/src/` or tests | `npm run test:mutation -- --force`                             |
+| You need coverage numbers                     | `npm run test:coverage`                                        |
+| User-visible behavior changed                 | `npm run test:e2e`                                             |
+| You changed `apps/api/src/db/schema.ts`       | `npm run db:generate`, then `npm run db:check`                 |
+| You changed code that uses the DB             | `npm run test:integration` (needs Docker)                      |
+| `cspell` reports a real project word          | Add the word to `.cspell/custom-words.txt`                     |
+| `knip` reports unused code or exports         | Remove the unused code. Do not add ignores                     |
+| `quality:crap` reports a function             | Add tests for it, or split it into simpler functions           |
+| `quality:duplication` finds a clone           | Extract the shared code into one function or module            |
 
 ## Finding code
 
@@ -130,9 +131,9 @@ the human accepts them. The implementer writes the step definitions in
 The human owns these files. Do not edit, rename or delete them:
 
 - `tests/e2e/features/**/*.feature`: the specification
-- `eslint.config.js`, `tsconfig*.json`, `vitest.config.ts`, `stryker.config.json`, `knip.json`,
-  `playwright.config.ts`, `cspell.json`, `commitlint.config.js`, `.jscpd.json`, `dev/quality/**` and
-  the `scripts` in `package.json`: the gates and their thresholds
+- `eslint.config.js`, `tsconfig*.json`, `apps/api/vitest.config.ts`, `apps/api/stryker.config.json`,
+  `knip.json`, `playwright.config.ts`, `cspell.json`, `commitlint.config.js`, `.jscpd.json`,
+  `dev/quality/**` and the `scripts` in `package.json`: the gates and their thresholds
 - `.husky/**`, `.github/**`: the hooks and CI
 - `CHANGELOG.md`, `release-please-config.json`, `.release-please-manifest.json` and the `version`
   in `package.json`: release-please writes them

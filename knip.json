@@ -1,6 +1,14 @@
 {
   "$schema": "https://unpkg.com/knip@6/schema.json",
-  "entry": ["dev/**/*.ts", "tests/e2e/steps/**/*.ts"],
-  "project": ["src/**/*.ts", "src/**/*.css", "dev/**/*.ts", "tests/**/*.ts"],
-  "ignoreDependencies": ["@stryker-mutator/command-runner", "pino-pretty"]
+  "workspaces": {
+    ".": {
+      "entry": ["dev/**/*.ts", "tests/e2e/steps/**/*.ts"],
+      "project": ["dev/**/*.ts", "tests/**/*.ts"]
+    },
+    "apps/api": {
+      "entry": ["dev/**/*.ts"],
+      "project": ["src/**/*.ts", "dev/**/*.ts", "tests/**/*.ts"],
+      "ignoreDependencies": ["@stryker-mutator/command-runner", "pino-pretty"]
+    }
+  }
 }

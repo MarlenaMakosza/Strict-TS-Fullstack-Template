@@ -36,9 +36,9 @@ który przejdzie wszystkie ograniczenia. Inspiracją dla pracy z agentami był
   skopiowanego kodu.
 - **Reguły architektury i dokumentacja.** ADR-y w `.archgate/adrs/`, sprawdzane przez Archgate, i
   strona VitePress z architekturą arc42 po angielsku i po polsku, publikowana na GitHub Pages.
-- **Logowanie przez pino.** Jeden logger w `src/logger.ts`: linie JSON na produkcji, czytelne linie
-  podczas pracy, poziom z `LOG_LEVEL` i ukrywanie sekretów, takich jak hasła i tokeny. Logi idą na
-  stderr.
+- **Logowanie przez pino.** Jeden logger w `apps/api/src/logger.ts`: linie JSON na produkcji,
+  czytelne linie podczas pracy, poziom z `LOG_LEVEL` i ukrywanie sekretów, takich jak hasła i
+  tokeny. Logi idą na stderr.
 - **Automatyczne wydania.** release-please czyta
   [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/), utrzymuje aktualny PR z
   następną wersją i `CHANGELOG.md`, a po jego merge'u oznacza wydanie tagiem.
@@ -60,7 +60,7 @@ Potrzebujesz Node.js 24 (patrz `.nvmrc`) i Docker.
 
 ```sh
 nvm use
-cp .env.example .env
+cp apps/api/.env.example apps/api/.env
 npm run firstrun:dev
 npm run validate
 ```

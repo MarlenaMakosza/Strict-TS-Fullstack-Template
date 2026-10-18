@@ -25,9 +25,9 @@
     "ask": ["Edit(tests/e2e/features/**)", "Edit(docs/edge-cases/**)", "Edit(.archgate/adrs/**)"],
     "deny": [
       "Edit(eslint.config.js)",
-      "Edit(tsconfig*.json)",
-      "Edit(vitest.config.ts)",
-      "Edit(stryker.config.json)",
+      "Edit(**/tsconfig*.json)",
+      "Edit(**/vitest*.config.ts)",
+      "Edit(**/stryker.config.json)",
       "Edit(playwright.config.ts)",
       "Edit(knip.json)",
       "Edit(cspell.json)",

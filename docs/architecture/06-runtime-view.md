@@ -4,11 +4,11 @@ How the parts work together in the scenarios that matter.
 
 ## The server starts and stops
 
-1. `node src/index.ts` loads `src/env.ts`.
-2. `src/env.ts` reads `.env` with dotenv and validates `process.env` with Zod.
+1. `node src/index.ts` loads `apps/api/src/env.ts`.
+2. `apps/api/src/env.ts` reads `.env` with dotenv and validates `process.env` with Zod.
 3. Invalid or missing variables: the process stops with an error that lists every bad key (see
    ADR `ARCH-001`).
-4. Valid variables: `src/index.ts` builds the app with `createApp()` and listens on `PORT`
+4. Valid variables: `apps/api/src/index.ts` builds the app with `createApp()` and listens on `PORT`
    (ADR `ARCH-003`). The log says `Server started`.
 5. On `SIGINT` or `SIGTERM`, the server stops taking new requests, finishes the open ones and
    exits.
@@ -16,7 +16,7 @@ How the parts work together in the scenarios that matter.
 ## A request
 
 1. The request gets a request ID: the one from the `X-Request-Id` header, or a new one.
-2. Hono matches the path to a route in `src/server/app.ts`.
+2. Hono matches the path to a route in `apps/api/src/server/app.ts`.
 3. The route's Zod schema validates the input. Invalid input gets `400` with
    `{"error":"Invalid request","issues":[…]}`, one issue per invalid field.
 4. The handler answers with JSON. An unknown path gets `404` with `{"error":"Not found"}`.

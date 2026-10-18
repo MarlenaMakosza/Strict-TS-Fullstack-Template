@@ -13,7 +13,7 @@
 git clone https://github.com/MarlenaMakosza/Ultimate-TS-AI-project.git
 cd Ultimate-TS-AI-project
 nvm use
-cp .env.example .env
+cp apps/api/.env.example apps/api/.env
 npm run firstrun:dev
 ```
 
@@ -63,15 +63,17 @@ a po każdej `npm run validate:full` powinien przechodzić.
 Przykłady to wzorce, według których pracują agenci, więc zostaw każdy, dopóki nie zastąpi go twój
 kod.
 
-- Powitanie: `src/greet.ts`, `tests/unit/greet.test.ts`, trasa `/api/greeting` w
-  `src/server/app.ts` i jej testy, scenariusze powitania w `tests/e2e/features/http-api.feature`
-  oraz `docs/edge-cases/greeting.md`. Zostaw `/api/health`, fixture serwera i kroki w
-  `tests/e2e/steps/`: pasują do każdego API. Role, `AGENTS.md` i dokumentacja podają te pliki jako
-  wzorce stylu: `git grep -n -E "greet|http-api"` pokazuje wszystkie miejsca do poprawienia.
-- Baza danych: tabela `users` w `src/db/schema.ts`, migracje w `drizzle/`, `dev/db/seed.ts` i
-  `tests/integration/db/users.test.ts`. Gdy twój schemat będzie gotowy, usuń `drizzle/` i uruchom
-  `npm run db:generate`, żeby pierwsza migracja była twoja.
-- `dev/logger-example.ts` i skrypt `example:logger`: usuń je, gdy poznasz już logger.
+- Powitanie: `apps/api/src/greet.ts`, `apps/api/tests/unit/greet.test.ts`, trasa `/api/greeting` w
+  `apps/api/src/server/app.ts` i jej testy, scenariusze powitania w
+  `tests/e2e/features/http-api.feature` oraz `docs/edge-cases/greeting.md`. Zostaw `/api/health`,
+  fixture serwera i kroki w `tests/e2e/steps/`: pasują do każdego API. Role, `AGENTS.md` i
+  dokumentacja podają te pliki jako wzorce stylu: `git grep -n -E "greet|http-api"` pokazuje
+  wszystkie miejsca do poprawienia.
+- Baza danych: tabela `users` w `apps/api/src/db/schema.ts`, migracje w `apps/api/drizzle/`,
+  `apps/api/dev/db/seed.ts` i `apps/api/tests/integration/db/users.test.ts`. Gdy twój schemat będzie
+  gotowy, usuń `apps/api/drizzle/` i uruchom `npm run db:generate`, żeby pierwsza migracja była
+  twoja.
+- `apps/api/dev/logger-example.ts` i skrypt `example:logger`: usuń je, gdy poznasz już logger.
 - `.archgate/adrs/GEN-001-example.md`: usuń go. `ARCH-001` i `ARCH-002` zostaw, dopóki obowiązują.
 
 **3. Dokumentacja o szablonie**
@@ -84,10 +86,12 @@ kod.
 
 **4. Części, których możesz nie potrzebować**
 
-- Bez bazy danych: usuń `src/db/`, `dev/db/`, `drizzle/`, `drizzle.config.ts`, `docker-compose.yml`,
-  `tests/integration/` i `vitest.integration.config.ts`; skrypty `db:*`, `seed:dev` i
-  `test:integration` oraz kroki bazy w `firstrun:dev`; job `integration` w `.github/workflows/ci.yml`; `DATABASE_URL` w `src/env.ts`
-  i `.env.example`; oraz paczki Drizzle, postgres i Testcontainers. knip pokaże potem, co zostało.
+- Bez bazy danych: usuń `apps/api/src/db/`, `apps/api/dev/db/`, `apps/api/drizzle/`,
+  `apps/api/drizzle.config.ts`, `apps/api/docker-compose.yml`, `apps/api/tests/integration/` i
+  `apps/api/vitest.integration.config.ts`; skrypty `db:*`, `seed:dev` i `test:integration` oraz
+  kroki bazy w `firstrun:dev`; job `integration` w `.github/workflows/ci.yml`; `DATABASE_URL` w
+  `apps/api/src/env.ts` i `apps/api/.env.example`; oraz paczki Drizzle, postgres i Testcontainers.
+  knip pokaże potem, co zostało.
 - Bez agentów AI: zobacz [Usunięcie konfiguracji AI](./ai-workflow.md#usuniecie-konfiguracji-ai).
 
 **5. Sprawdzenie**
@@ -186,18 +190,26 @@ git branch -D <gałąź>   # -D: po squash merge git nie uznaje gałęzi za scal
 ## Struktura projektu
 
 ```text
-src/                  kod aplikacji
-  db/                 schemat i klient Drizzle
-tests/unit/           testy jednostkowe Vitest
-tests/integration/    testy Vitest na prawdziwej bazie (Testcontainers, wymaga Dockera)
+apps/api/             backend: API HTTP na Hono
+  src/                kod aplikacji
+    db/               schemat i klient Drizzle
+    server/           aplikacja Hono i jej trasy
+  tests/unit/         testy jednostkowe Vitest
+  tests/integration/  testy Vitest na prawdziwej bazie (Testcontainers, wymaga Dockera)
+  drizzle/            migracje bazy danych, generuje je npm run db:generate
+  dev/db/             skrypty migracji i danych testowych
 tests/e2e/features/   scenariusze Gherkin (specyfikacja)
 tests/e2e/steps/      step definitions i fixtures
-drizzle/              migracje bazy danych, generuje je npm run db:generate
-dev/db/               skrypty migracji i danych testowych
-dev/quality/          bramka CRAP
+dev/quality/          bramka CRAP, wspólna dla wszystkich aplikacji
 docs/                 ta dokumentacja (VitePress); polska wersja w docs/pl/
 .archgate/adrs/       decyzje architektoniczne (ADR)
 .agents/roles/        instrukcje ról dla agentów AI
 .claude/              adapter dla Claude Code (hooki, uprawnienia, agenci)
 .github/              workflow CI, właściciele kodu, szablon opisu PR
 ```
+
+Repozytorium to monorepo z npm workspaces. Każda aplikacja w `apps/` ma własny `package.json`,
+swoje zależności, konfiguracje Vitest i Strykera oraz własne skrypty. W katalogu głównym jest to,
+co wszystkie aplikacje dzielą: ESLint, Prettier, cspell, knip, jscpd, Archgate, hooki gita,
+scenariusze Gherkin i dokumentacja. Uruchamiaj skrypty z katalogu głównego: odpalają ten sam
+skrypt w każdej aplikacji (`--workspaces`) albo w jednej (`-w apps/api`).
