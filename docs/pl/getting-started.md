@@ -63,10 +63,11 @@ a po każdej `npm run validate:full` powinien przechodzić.
 Przykłady to wzorce, według których pracują agenci, więc zostaw każdy, dopóki nie zastąpi go twój
 kod.
 
-- Powitanie: `src/greet.ts`, `tests/unit/greet.test.ts`, `tests/e2e/features/greeting.feature`,
-  `tests/e2e/steps/app.steps.ts`, `docs/edge-cases/greeting.md` i powitanie w `src/index.ts`.
-  Role, `AGENTS.md` i dokumentacja podają te pliki jako wzorce stylu: `git grep -n greet` pokazuje
-  wszystkie miejsca do poprawienia.
+- Powitanie: `src/greet.ts`, `tests/unit/greet.test.ts`, trasa `/api/greeting` w
+  `src/server/app.ts` i jej testy, scenariusze powitania w `tests/e2e/features/http-api.feature`
+  oraz `docs/edge-cases/greeting.md`. Zostaw `/api/health`, fixture serwera i kroki w
+  `tests/e2e/steps/`: pasują do każdego API. Role, `AGENTS.md` i dokumentacja podają te pliki jako
+  wzorce stylu: `git grep -n -E "greet|http-api"` pokazuje wszystkie miejsca do poprawienia.
 - Baza danych: tabela `users` w `src/db/schema.ts`, migracje w `drizzle/`, `dev/db/seed.ts` i
   `tests/integration/db/users.test.ts`. Gdy twój schemat będzie gotowy, usuń `drizzle/` i uruchom
   `npm run db:generate`, żeby pierwsza migracja była twoja.
