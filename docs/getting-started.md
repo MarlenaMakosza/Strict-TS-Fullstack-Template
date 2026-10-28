@@ -125,6 +125,10 @@ replaces it.
 <!-- ai:start -->
 
 - No AI agents: see [Use without AI](./without-ai.md).
+- Keeping the AI agents: delete `dev/remove-ai.ts`, `dev/ai-markers.ts` and
+  `tests/tooling/ai-markers.test.ts`, the `remove-ai` job in `.github/workflows/ci.yml`, and
+  `docs/without-ai.md`, `docs/pl/without-ai.md` and their sidebar entries. You need them only to
+  remove the AI setup. The `ai:start` and `ai:end` comments do nothing, so you can leave them.
 
 <!-- ai:end -->
 

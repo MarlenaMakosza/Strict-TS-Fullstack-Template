@@ -122,6 +122,11 @@ kod.
 <!-- ai:start -->
 
 - Bez agentów AI: zobacz [Bez AI](./without-ai.md).
+- Z agentami AI: usuń `dev/remove-ai.ts`, `dev/ai-markers.ts` i
+  `tests/tooling/ai-markers.test.ts`, job `remove-ai` w `.github/workflows/ci.yml` oraz
+  `docs/without-ai.md`, `docs/pl/without-ai.md` i ich wpisy w panelu bocznym. Są potrzebne tylko
+  do usunięcia konfiguracji AI. Komentarze `ai:start` i `ai:end` nic nie robią, więc możesz je
+  zostawić.
 
 <!-- ai:end -->
 
