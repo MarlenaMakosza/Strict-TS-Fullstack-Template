@@ -10,8 +10,8 @@
 ## Instalacja
 
 ```sh
-git clone https://github.com/MarlenaMakosza/Ultimate-TS-AI-project.git
-cd Ultimate-TS-AI-project
+git clone https://github.com/MarlenaMakosza/Strict-TS-Fullstack-Template.git
+cd Strict-TS-Fullstack-Template
 nvm use
 cp apps/api/.env.example apps/api/.env
 npm run firstrun:dev
@@ -113,7 +113,7 @@ kod.
   `tests/e2e/steps/fixtures.ts`; wpis API w `webServer` w `playwright.config.ts` (ustaw `API_URL` na
   swoje API); job `integration` i skrypty bazy danych; ADR-y od `ARCH-001` do `ARCH-003`; wpis
   `apps/api` w `knip.json`; oraz `concurrently` (ustaw `dev` na `npm run dev -w apps/web`).
-- Bez agentów AI: zobacz [Usunięcie konfiguracji AI](./ai-workflow.md#usuniecie-konfiguracji-ai).
+- Bez agentów AI: zobacz [Bez AI](./without-ai.md).
 
 **5. Sprawdzenie**
 

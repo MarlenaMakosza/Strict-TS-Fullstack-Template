@@ -6,7 +6,7 @@ export default defineConfig({
   // GitHub Pages serves the site under /<repository>/; the Docs workflow sets DOCS_BASE.
   base: process.env['DOCS_BASE'] ?? '/',
   srcExclude: ['api/**'],
-  title: 'Ultimate TS',
+  title: 'Strict TS Fullstack Template',
   description: 'Production-ready TypeScript template with strict quality gates',
   // English pages live in docs/, Polish pages with the same names in docs/pl/.
   locales: {
@@ -24,6 +24,7 @@ export default defineConfig({
               { text: 'Scripts', link: '/scripts' },
               { text: 'Tools', link: '/tools' },
               { text: 'Code review', link: '/code-review' },
+              { text: 'Use without AI', link: '/without-ai' },
               { text: 'To do', link: '/todo' },
               {
                 text: 'Coding conventions',
@@ -79,6 +80,7 @@ export default defineConfig({
               { text: 'Skrypty', link: '/pl/scripts' },
               { text: 'Narzędzia', link: '/pl/tools' },
               { text: 'Code review', link: '/pl/code-review' },
+              { text: 'Bez AI', link: '/pl/without-ai' },
               { text: 'Do zrobienia', link: '/pl/todo' },
               {
                 text: 'Konwencje kodu',

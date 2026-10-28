@@ -1,6 +1,10 @@
-# Ultimate TS project
+# Strict TS Fullstack Template
 
 English | [Polski](./pl/index.md)
+
+> [!NOTE]
+> **AI is optional.** The quality gates, git hooks and CI work the same when people write the
+> code. See [Use without AI](./without-ai.md).
 
 A production-ready fullstack TypeScript template: an HTTP API with Hono on Node.js and a React
 frontend with Vite, in one monorepo.
@@ -51,8 +55,8 @@ stays. The agent workflow was inspired by a
 ## How to install
 
 ```sh
-git clone https://github.com/MarlenaMakosza/Ultimate-TS-AI-project.git
-cd Ultimate-TS-AI-project
+git clone https://github.com/MarlenaMakosza/Strict-TS-Fullstack-Template.git
+cd Strict-TS-Fullstack-Template
 ```
 
 ## Quick start
@@ -72,7 +76,8 @@ npm run dev   # the app on http://localhost:5173, the API on http://localhost:30
 The rules for every agent are in `AGENTS.md`, and six roles in `.agents/roles/` split a task from
 the specification to the documentation. An optional adapter in `.claude/` connects Claude Code.
 Not using AI agents? Everything else works the same without them. See
-[AI workflow](./ai-workflow.md) for the step-by-step guide and for how to remove the AI setup.
+[AI workflow](./ai-workflow.md) for the step-by-step guide, and
+[Use without AI](./without-ai.md) for how to remove the AI setup.
 
 ## Documentation
 
@@ -81,3 +86,4 @@ Not using AI agents? Everything else works the same without them. See
 - [Scripts](./scripts.md): every npm script
 - [Tools](./tools.md): every tool, and why it is here
 - [AI workflow](./ai-workflow.md): working with AI agents, step by step
+- [Use without AI](./without-ai.md): how to remove the AI setup

@@ -1,6 +1,10 @@
-# Ultimate TS project
+# Strict TS Fullstack Template
 
 [English](../index.md) | Polski
+
+> [!NOTE]
+> **AI jest opcjonalne.** Bramki jakości, hooki gita i CI działają tak samo, gdy kod piszą ludzie.
+> Zobacz [Bez AI](./without-ai.md).
 
 Gotowy do użycia produkcyjnego szablon fullstack w TypeScript: API HTTP na Hono w Node.js i
 frontend w React z Vite, w jednym monorepo.
@@ -51,8 +55,8 @@ który przejdzie wszystkie ograniczenia. Inspiracją dla pracy z agentami był
 ## Instalacja
 
 ```sh
-git clone https://github.com/MarlenaMakosza/Ultimate-TS-AI-project.git
-cd Ultimate-TS-AI-project
+git clone https://github.com/MarlenaMakosza/Strict-TS-Fullstack-Template.git
+cd Strict-TS-Fullstack-Template
 ```
 
 ## Szybki start
@@ -71,15 +75,17 @@ npm run dev   # aplikacja na http://localhost:5173, API na http://localhost:3000
 
 Reguły dla każdego agenta są w `AGENTS.md`, a sześć ról w `.agents/roles/` dzieli zadanie od
 specyfikacji po dokumentację. Opcjonalny adapter w `.claude/` podłącza Claude Code. Nie korzystasz
-z agentów AI? Wszystko inne działa bez nich tak samo. Opis krok po kroku i to, jak usunąć
-konfigurację AI, jest na stronie [Praca z agentami AI](./ai-workflow.md).
+z agentów AI? Wszystko inne działa bez nich tak samo. Opis krok po kroku jest na stronie
+[Praca z agentami AI](./ai-workflow.md), a to, jak usunąć konfigurację AI, na stronie
+[Bez AI](./without-ai.md).
 
 ## Dokumentacja
 
-Online: **[marlenamakosza.github.io/Ultimate-TS-AI-project/pl](https://marlenamakosza.github.io/Ultimate-TS-AI-project/pl/)**.
+Online: **[marlenamakosza.github.io/Strict-TS-Fullstack-Template/pl](https://marlenamakosza.github.io/Strict-TS-Fullstack-Template/pl/)**.
 
 - [Pierwsze kroki](./getting-started.md): wymagania, instalacja, struktura projektu
 - [Bramki jakości](./quality-gates.md): co sprawdza każda bramka i kiedy się uruchamia
 - [Skrypty](./scripts.md): wszystkie skrypty npm
 - [Narzędzia](./tools.md): wszystkie narzędzia i powód, dla którego są w projekcie
 - [Praca z agentami AI](./ai-workflow.md): praca z agentami krok po kroku
+- [Bez AI](./without-ai.md): jak usunąć konfigurację AI

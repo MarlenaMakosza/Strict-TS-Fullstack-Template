@@ -10,8 +10,8 @@
 ## Install
 
 ```sh
-git clone https://github.com/MarlenaMakosza/Ultimate-TS-AI-project.git
-cd Ultimate-TS-AI-project
+git clone https://github.com/MarlenaMakosza/Strict-TS-Fullstack-Template.git
+cd Strict-TS-Fullstack-Template
 nvm use
 cp apps/api/.env.example apps/api/.env
 npm run firstrun:dev
@@ -116,7 +116,7 @@ replaces it.
   (point `API_URL` at your API); the `integration` job and the database scripts; ADRs `ARCH-001` to
   `ARCH-003`; the `apps/api` entry in `knip.json`; and `concurrently` (set `dev` to
   `npm run dev -w apps/web`).
-- No AI agents: see [Removing the AI setup](./ai-workflow.md#removing-the-ai-setup).
+- No AI agents: see [Use without AI](./without-ai.md).
 
 **5. Check**
 
