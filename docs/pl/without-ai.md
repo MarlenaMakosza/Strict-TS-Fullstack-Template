@@ -20,7 +20,6 @@ przechodzą, więc skrypt jest zawsze aktualny.
 - `AGENTS.md`, `CLAUDE.md`, `.agents/` i `.claude/`: reguły, role i adapter dla Claude Code.
 - `.github/workflows/ai-review.yml`: opcjonalne AI review PR.
 - `docs/ai-workflow.md`, `docs/pl/ai-workflow.md`, tę stronę i jej angielską wersję.
-- `docs/edge-cases/`: listy przypadków brzegowych, które pisze rola edge-case hunter.
 - `dev/remove-ai.ts`, `dev/ai-markers.ts` i ich test: sam skrypt.
 
 **Fragmenty innych plików**, oznaczone w nich komentarzami `ai:start` i `ai:end`:
@@ -38,8 +37,12 @@ przechodzą, więc skrypt jest zawsze aktualny.
 - `.gitignore`: wiersz dla osobistych ustawień Claude Code.
 
 **Co zostaje:** wszystkie bramki jakości, hooki gita, CI, scenariusze Gherkin, ADR-y i strony
-arc42. Strony arc42 i ADR-y w kilku miejscach dalej wspominają o agentach AI. Opisują ten szablon,
-więc i tak przepisz je pod swój projekt.
+arc42. Zostają też listy przypadków brzegowych w `docs/edge-cases/` i projekty UX w `docs/ux/`: to
+praktyka także dla ludzi. Człowiek pisze je sam; z konfiguracją AI szkice przygotowują role
+edge-case hunter i ux-designer.
+
+Strony arc42 i ADR-y w kilku miejscach dalej wspominają o agentach AI. Opisują ten szablon, więc i
+tak przepisz je pod swój projekt.
 
 ## Albo zostaw pliki i nie zwracaj na nie uwagi
 

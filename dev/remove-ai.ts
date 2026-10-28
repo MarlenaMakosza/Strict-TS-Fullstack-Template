@@ -24,7 +24,6 @@ const AI_PATHS = [
   'docs/pl/ai-workflow.md',
   'docs/without-ai.md',
   'docs/pl/without-ai.md',
-  'docs/edge-cases',
   'dev/ai-markers.ts',
   'dev/remove-ai.ts',
   'tests/tooling/ai-markers.test.ts',

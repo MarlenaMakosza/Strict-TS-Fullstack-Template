@@ -56,14 +56,17 @@ export default defineConfig({
               { text: '12. Glossary', link: '/architecture/12-glossary' },
             ],
           },
-          // ai:start
           {
-            text: 'AI agents',
+            text: 'Examples',
             items: [
-              { text: 'AI workflow', link: '/ai-workflow' },
               { text: 'UX: greeting page', link: '/ux/greeting' },
               { text: 'Edge cases: greeting', link: '/edge-cases/greeting' },
             ],
+          },
+          // ai:start
+          {
+            text: 'AI agents',
+            items: [{ text: 'AI workflow', link: '/ai-workflow' }],
           },
           // ai:end
         ],
@@ -119,15 +122,18 @@ export default defineConfig({
               { text: '12. Słownik', link: '/pl/architecture/12-glossary' },
             ],
           },
-          // ai:start
           {
-            text: 'Agenci AI',
+            text: 'Przykłady',
             items: [
-              { text: 'Praca z agentami AI', link: '/pl/ai-workflow' },
               // The example UX design and edge case list exist in English only.
               { text: 'UX: greeting page (EN)', link: '/ux/greeting' },
               { text: 'Edge cases: greeting (EN)', link: '/edge-cases/greeting' },
             ],
+          },
+          // ai:start
+          {
+            text: 'Agenci AI',
+            items: [{ text: 'Praca z agentami AI', link: '/pl/ai-workflow' }],
           },
           // ai:end
         ],

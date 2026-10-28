@@ -21,7 +21,6 @@ afterwards, so it stays up to date.
   adapter.
 - `.github/workflows/ai-review.yml`: the optional AI review of pull requests.
 - `docs/ai-workflow.md`, `docs/pl/ai-workflow.md`, this page and its Polish version.
-- `docs/edge-cases/`: the edge case lists that the edge-case hunter role writes.
 - `dev/remove-ai.ts`, `dev/ai-markers.ts` and their test: the script itself.
 
 **Parts of other files**, marked in them with `ai:start` and `ai:end` comments:
@@ -39,8 +38,12 @@ afterwards, so it stays up to date.
 - `.gitignore`: the line for the personal Claude Code settings.
 
 **What stays:** every quality gate, the git hooks, CI, the Gherkin scenarios, the ADRs and the
-arc42 pages. The arc42 pages and the ADRs still mention AI agents in a few places. They describe
-this template, so rewrite them for your own project anyway.
+arc42 pages. So do the edge case lists in `docs/edge-cases/` and the UX designs in `docs/ux/`: they
+are a practice for people too. A person writes them by hand; with the AI setup, the edge-case
+hunter and ux-designer roles draft them.
+
+The arc42 pages and the ADRs still mention AI agents in a few places. They describe this template,
+so rewrite them for your own project anyway.
 
 ## Or keep the files and ignore them
 
