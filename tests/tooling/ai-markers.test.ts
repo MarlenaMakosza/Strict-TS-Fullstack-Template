@@ -30,6 +30,12 @@ describe('stripAiBlocks', () => {
     },
     {
       blocks: 1,
+      expected: 'Leave the `ai:start` and `ai:end` comments.\nkeep\n',
+      name: 'ignores a marker mentioned in text',
+      text: 'Leave the `ai:start` and `ai:end` comments.\n# ai:start\n- `ai:to-end` too\n# ai:end\nkeep\n',
+    },
+    {
+      blocks: 1,
       expected: 'keep\n',
       name: 'removes everything from a to-end marker on',
       text: 'keep\n\n<!-- ai:to-end -->\n## AI assistance\n\nAssisted-by:\n',

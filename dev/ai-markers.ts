@@ -1,8 +1,9 @@
 /**
- * Finds the AI-only parts of a text file. A part starts at a line that contains `ai:start` and
- * ends at a line that contains `ai:end`; a line with `ai:to-end` starts a part that runs to the end
- * of the file. The comment around the marker fits the file type: `<!-- ai:start -->` in Markdown,
- * `# ai:start` in YAML, `// ai:start` in TypeScript. `dev/remove-ai.ts` removes these parts.
+ * Finds the AI-only parts of a text file. A part starts at a line with an `ai:start` comment and
+ * ends at a line with an `ai:end` comment; an `ai:to-end` comment starts a part that runs to the
+ * end of the file. The comment fits the file type and is alone on its line: `<!-- ai:start -->` in
+ * Markdown, `# ai:start` in YAML, `// ai:start` in TypeScript. A marker mentioned in text is not a
+ * marker. `dev/remove-ai.ts` removes these parts.
  */
 
 const START = 'ai:start';
@@ -11,6 +12,17 @@ const TO_END = 'ai:to-end';
 const NONE = 0;
 const ONE = 1;
 const LAST = -1;
+
+/** Each marker as a whole line, in the comment style of Markdown, TypeScript and YAML. */
+const MARKERS = new Map(
+  [START, END, TO_END].flatMap(marker => {
+    return [
+      [`<!-- ${marker} -->`, marker],
+      [`// ${marker}`, marker],
+      [`# ${marker}`, marker],
+    ];
+  }),
+);
 
 /** The text without its AI-only parts, and how many parts were removed. */
 export interface Stripped {
@@ -50,14 +62,16 @@ function findBlocks(lines: readonly string[]): Block[] {
   let open: number | undefined;
 
   for (const [index, line] of lines.entries()) {
-    if (line.includes(TO_END)) {
+    const marker = MARKERS.get(line.trim());
+
+    if (marker === TO_END) {
       blocks.push({ first: startOf(open, TO_END, index), last: lines.length - ONE });
       return blocks;
     }
 
-    if (line.includes(START)) {
+    if (marker === START) {
       open = startOf(open, START, index);
-    } else if (line.includes(END)) {
+    } else if (marker === END) {
       blocks.push(endOf(open, index));
       open = undefined;
     } else {

@@ -56,7 +56,7 @@ The AI files do nothing on their own:
 ## Adding AI-only content
 
 When you add something that only matters with the AI setup, wrap it in markers, so that the script
-removes it too. Use the comment style of the file:
+removes it too. Put each marker alone on its line, in the comment style of the file:
 
 ```md
 <!-- ai:start -->

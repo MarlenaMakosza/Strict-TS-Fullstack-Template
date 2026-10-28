@@ -55,7 +55,7 @@ Pliki AI same nic nie robią:
 ## Dodawanie treści tylko dla AI
 
 Gdy dodajesz coś, co ma sens tylko z konfiguracją AI, otocz to znacznikami, żeby skrypt też to
-usunął. Użyj stylu komentarzy danego pliku:
+usunął. Każdy znacznik stawiaj w osobnym wierszu, w stylu komentarzy danego pliku:
 
 ```md
 <!-- ai:start -->
