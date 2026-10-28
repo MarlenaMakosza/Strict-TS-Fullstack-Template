@@ -58,9 +58,14 @@ praise: the edge case list covers every boundary of the input
 ## Who uses it
 
 - People reviewing a pull request.
+
+<!-- ai:start -->
+
 - The `reviewer` agent, in its final report.
 - The optional AI review in CI (see [AI workflow](./ai-workflow.md)), in its comment on the pull
   request.
+
+<!-- ai:end -->
 
 ## Faster on GitHub: saved replies
 

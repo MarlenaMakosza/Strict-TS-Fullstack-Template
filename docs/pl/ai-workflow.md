@@ -5,7 +5,7 @@ Szczegółowe reguły dla agentów są w `AGENTS.md` w katalogu głównym repo.
 
 Nie korzystasz z agentów AI? Ta strona nie jest ci potrzebna: [bramki jakości](./quality-gates.md),
 hooki gita i CI działają tak samo bez niej. Żeby całkiem usunąć konfigurację AI, zobacz
-[Usunięcie konfiguracji AI](#usunięcie-konfiguracji-ai).
+[Bez AI](./without-ai.md).
 
 ## Ściągawka: agenci po kolei
 
@@ -328,28 +328,6 @@ codebase-memory-mcp install -y
 Potem raz poproś agenta: "Index this repository with codebase-memory-mcp." Indeks zostaje na twoim
 komputerze. `codebase-memory-mcp update` aktualizuje narzędzie, a `codebase-memory-mcp uninstall`
 usuwa je z agentów.
-
-## Usunięcie konfiguracji AI
-
-Usuń te pliki i katalogi. Wszystkie bramki dalej przechodzą bez nich:
-
-```sh
-rm -rf AGENTS.md CLAUDE.md .agents .claude docs/ai-workflow.md docs/pl/ai-workflow.md \
-  docs/edge-cases .github/workflows/ai-review.yml
-```
-
-Potem usuń pozostałe odwołania:
-
-- `README.md`, `docs/index.md` i `docs/pl/index.md`: sekcję o pracy z agentami AI, wiersz o
-  agentach w „Co dostajesz” i link do pracy z agentami w „Dokumentacji”.
-- `docs/quality-gates.md` i `docs/pl/quality-gates.md`: ostatni akapit, o Stop hooku w Claude Code.
-- `.vitepress/config.ts`: wpisy „AI workflow” / „Praca z agentami AI” i „Edge cases” w obu panelach bocznych.
-- `docs/getting-started.md` i `docs/pl/getting-started.md`: wiersze `.agents/` i `.claude/` w
-  strukturze projektu.
-- `docs/tools.md` i `docs/pl/tools.md`: część o AI review w wierszu GitHub Actions.
-- `.github/CODEOWNERS`: wiersze dla `AGENTS.md`, `CLAUDE.md`, `.claude/` i `.agents/`.
-- `.gitignore`: wiersz `.claude/settings.local.json`.
-- `.github/PULL_REQUEST_TEMPLATE.md`: sekcję „AI assistance”.
 
 ## Jednorazowe ustawienia
 

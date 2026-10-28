@@ -18,6 +18,8 @@
 
 <!-- Optional: anything that breaks existing behaviour -->
 
+<!-- ai:to-end -->
+
 ## AI assistance
 
 <!-- One "Assisted-by: <tool>:<model>" line for each tool and model that wrote part of this pull

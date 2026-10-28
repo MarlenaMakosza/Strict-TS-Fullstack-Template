@@ -97,14 +97,21 @@ the checks work together, see [Quality gates](./quality-gates.md).
 
 ## Git and CI
 
-| Tool                                           | Role                                                                                                                                             |
-| ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Husky                                          | Git hooks                                                                                                                                        |
-| lint-staged                                    | Lint and format only changed files on commit                                                                                                     |
-| commitlint + `@commitlint/config-conventional` | Conventional Commits                                                                                                                             |
-| GitHub Actions                                 | CI: `validate`, integration tests, mutation testing and e2e on every PR; optional AI review by a different model (`ai-review` label, OpenRouter) |
-| `npm audit`                                    | A gate in CI: known high or critical vulnerabilities in runtime dependencies (`security:audit`)                                                  |
-| release-please `*`                             | Versions and `CHANGELOG.md` from Conventional Commits: keeps a release PR open, and merging it tags the version and creates a GitHub Release     |
+| Tool                                           | Role                                                                                                                                         |
+| ---------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| Husky                                          | Git hooks                                                                                                                                    |
+| lint-staged                                    | Lint and format only changed files on commit                                                                                                 |
+| commitlint + `@commitlint/config-conventional` | Conventional Commits                                                                                                                         |
+| GitHub Actions                                 | CI: `validate`, integration tests, mutation testing and e2e on every PR                                                                      |
+| `npm audit`                                    | A gate in CI: known high or critical vulnerabilities in runtime dependencies (`security:audit`)                                              |
+| release-please `*`                             | Versions and `CHANGELOG.md` from Conventional Commits: keeps a release PR open, and merging it tags the version and creates a GitHub Release |
+
+<!-- ai:start -->
+
+GitHub Actions also runs an optional AI review by a different model on pull requests with the
+`ai-review` label (OpenRouter).
+
+<!-- ai:end -->
 
 ## Maintenance
 

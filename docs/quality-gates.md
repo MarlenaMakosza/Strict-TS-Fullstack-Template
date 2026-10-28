@@ -1,7 +1,12 @@
 # Quality gates
 
-A gate is an automated check that code must pass before it gets into the project. Every gate
-works the same for code written by people and by AI agents.
+A gate is an automated check that code must pass before it gets into the project.
+
+<!-- ai:start -->
+
+Every gate works the same for code written by people and by AI agents.
+
+<!-- ai:end -->
 
 ## The gates
 
@@ -43,8 +48,11 @@ one always passes. Complexity comes from the ESLint `complexity` rule, and cover
 | Definition of done | `npm run validate:full` | `validate`, then the dependency audit, the integration tests, mutation testing, the Gherkin scenarios and the docs build                          |
 | CI                 | GitHub Actions          | formatting, `validate`, the integration tests, mutation testing, the scenarios and the docs build, on every push to `main` and every pull request |
 
+<!-- ai:start -->
+
 With Claude Code, a Stop hook also runs `npm run validate` before Claude may finish a task. See
 [AI workflow](./ai-workflow.md).
+<!-- ai:end -->
 
 CI is set up only for **GitHub Actions** (`.github/workflows/`). On another platform, such as
 GitLab, nothing runs in CI until you add it there; the hooks and the `npm run` commands work the

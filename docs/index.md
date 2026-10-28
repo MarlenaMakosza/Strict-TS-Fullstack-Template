@@ -1,6 +1,14 @@
-# Ultimate TS project
+# Strict TS Fullstack Template
 
 English | [Polski](./pl/index.md)
+
+<!-- ai:start -->
+
+> [!NOTE]
+> **AI is optional.** The quality gates, git hooks and CI work the same when people write the
+> code, and one command removes the AI setup: see [Use without AI](./without-ai.md).
+
+<!-- ai:end -->
 
 A production-ready fullstack TypeScript template: an HTTP API with Hono on Node.js and a React
 frontend with Vite, in one monorepo.
@@ -10,10 +18,13 @@ problems in the right circumstances, so linters and other code quality tools mat
 template gives you a large set of them, configured strictly and ready to use, so you can write
 professional-quality code from the first commit.
 
+<!-- ai:start -->
+
 The same gates work whether people or AI agents write the code. For people, they catch mistakes
 before code review. For AI agents, they go further: only the code that passes every constraint
 stays. The agent workflow was inspired by a
 [post by Robert C. Martin (Uncle Bob)](https://x.com/unclebobmartin/status/2080257779395154409).
+<!-- ai:end -->
 
 ## What you get
 
@@ -43,16 +54,21 @@ stays. The agent workflow was inspired by a
   [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/), keeps a release pull
   request with the next version and the `CHANGELOG.md` up to date, and tags the release when you
   merge it.
+- **CI on GitHub Actions.** Git hooks and issue forms that ask for Gherkin scenarios.
+
+<!-- ai:start -->
+
 - **An AI agent setup that works with any tool.** `AGENTS.md` holds the rules, there are roles for
-  separate agents, and an optional adapter connects Claude Code.
-- **CI on GitHub Actions.** Git hooks, issue forms that ask for Gherkin scenarios, and an optional
-  review by a second AI model.
+  separate agents, an optional adapter connects Claude Code, and an optional review by a second AI
+  model checks pull requests.
+
+<!-- ai:end -->
 
 ## How to install
 
 ```sh
-git clone https://github.com/MarlenaMakosza/Ultimate-TS-AI-project.git
-cd Ultimate-TS-AI-project
+git clone https://github.com/MarlenaMakosza/Strict-TS-Fullstack-Template.git
+cd Strict-TS-Fullstack-Template
 ```
 
 ## Quick start
@@ -67,12 +83,16 @@ npm run validate
 npm run dev   # the app on http://localhost:5173, the API on http://localhost:3000
 ```
 
+<!-- ai:start -->
+
 ## Working with AI agents
 
 The rules for every agent are in `AGENTS.md`, and six roles in `.agents/roles/` split a task from
 the specification to the documentation. An optional adapter in `.claude/` connects Claude Code.
 Not using AI agents? Everything else works the same without them. See
-[AI workflow](./ai-workflow.md) for the step-by-step guide and for how to remove the AI setup.
+[AI workflow](./ai-workflow.md) for the step-by-step guide, and
+[Use without AI](./without-ai.md) for how to remove the AI setup.
+<!-- ai:end -->
 
 ## Documentation
 
@@ -80,4 +100,10 @@ Not using AI agents? Everything else works the same without them. See
 - [Quality gates](./quality-gates.md): what each gate checks, and when it runs
 - [Scripts](./scripts.md): every npm script
 - [Tools](./tools.md): every tool, and why it is here
+
+<!-- ai:start -->
+
 - [AI workflow](./ai-workflow.md): working with AI agents, step by step
+- [Use without AI](./without-ai.md): how to remove the AI setup
+
+<!-- ai:end -->

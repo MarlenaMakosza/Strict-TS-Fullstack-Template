@@ -1,6 +1,14 @@
-# Ultimate TS project
+# Strict TS Fullstack Template
 
 [English](../index.md) | Polski
+
+<!-- ai:start -->
+
+> [!NOTE]
+> **AI jest opcjonalne.** Bramki jakości, hooki gita i CI działają tak samo, gdy kod piszą ludzie.
+> Jedna komenda usuwa konfigurację AI: zobacz [Bez AI](./without-ai.md).
+
+<!-- ai:end -->
 
 Gotowy do użycia produkcyjnego szablon fullstack w TypeScript: API HTTP na Hono w Node.js i
 frontend w React z Vite, w jednym monorepo.
@@ -10,10 +18,13 @@ pewnych okolicznościach sprawiają poważne problemy, dlatego lintery i inne na
 są tak ważne. Ten szablon zawiera duży zestaw takich narzędzi, surowo skonfigurowanych i gotowych
 do użycia, żeby od samego początku pisać kod profesjonalnej jakości.
 
+<!-- ai:start -->
+
 Te same bramki działają, niezależnie od tego, czy kod piszą ludzie, czy agenci AI. Ludziom
 wyłapują błędy, zanim kod trafi do review. W pracy z agentami AI idą dalej: zostaje tylko kod,
 który przejdzie wszystkie ograniczenia. Inspiracją dla pracy z agentami był
 [post Roberta C. Martina (Uncle Bob)](https://x.com/unclebobmartin/status/2080257779395154409).
+<!-- ai:end -->
 
 ## Co dostajesz
 
@@ -43,16 +54,21 @@ który przejdzie wszystkie ograniczenia. Inspiracją dla pracy z agentami był
 - **Automatyczne wydania.** release-please czyta
   [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/), utrzymuje aktualny PR z
   następną wersją i `CHANGELOG.md`, a po jego merge'u oznacza wydanie tagiem.
+- **CI na GitHub Actions.** Hooki gita i formularze zgłoszeń, które proszą o scenariusze Gherkin.
+
+<!-- ai:start -->
+
 - **Konfiguracja agentów AI, która działa z każdym narzędziem.** `AGENTS.md` zawiera reguły, są
-  osobne role dla agentów, a opcjonalny adapter podłącza Claude Code.
-- **CI na GitHub Actions.** Hooki gita, formularze zgłoszeń, które proszą o scenariusze Gherkin, i
-  opcjonalne review drugim modelem AI.
+  osobne role dla agentów, opcjonalny adapter podłącza Claude Code, a opcjonalne review drugim
+  modelem AI sprawdza pull requesty.
+
+<!-- ai:end -->
 
 ## Instalacja
 
 ```sh
-git clone https://github.com/MarlenaMakosza/Ultimate-TS-AI-project.git
-cd Ultimate-TS-AI-project
+git clone https://github.com/MarlenaMakosza/Strict-TS-Fullstack-Template.git
+cd Strict-TS-Fullstack-Template
 ```
 
 ## Szybki start
@@ -67,19 +83,29 @@ npm run validate
 npm run dev   # aplikacja na http://localhost:5173, API na http://localhost:3000
 ```
 
+<!-- ai:start -->
+
 ## Praca z agentami AI
 
 Reguły dla każdego agenta są w `AGENTS.md`, a sześć ról w `.agents/roles/` dzieli zadanie od
 specyfikacji po dokumentację. Opcjonalny adapter w `.claude/` podłącza Claude Code. Nie korzystasz
-z agentów AI? Wszystko inne działa bez nich tak samo. Opis krok po kroku i to, jak usunąć
-konfigurację AI, jest na stronie [Praca z agentami AI](./ai-workflow.md).
+z agentów AI? Wszystko inne działa bez nich tak samo. Opis krok po kroku jest na stronie
+[Praca z agentami AI](./ai-workflow.md), a to, jak usunąć konfigurację AI, na stronie
+[Bez AI](./without-ai.md).
+<!-- ai:end -->
 
 ## Dokumentacja
 
-Online: **[marlenamakosza.github.io/Ultimate-TS-AI-project/pl](https://marlenamakosza.github.io/Ultimate-TS-AI-project/pl/)**.
+Online: **[marlenamakosza.github.io/Strict-TS-Fullstack-Template/pl](https://marlenamakosza.github.io/Strict-TS-Fullstack-Template/pl/)**.
 
 - [Pierwsze kroki](./getting-started.md): wymagania, instalacja, struktura projektu
 - [Bramki jakości](./quality-gates.md): co sprawdza każda bramka i kiedy się uruchamia
 - [Skrypty](./scripts.md): wszystkie skrypty npm
 - [Narzędzia](./tools.md): wszystkie narzędzia i powód, dla którego są w projekcie
+
+<!-- ai:start -->
+
 - [Praca z agentami AI](./ai-workflow.md): praca z agentami krok po kroku
+- [Bez AI](./without-ai.md): jak usunąć konfigurację AI
+
+<!-- ai:end -->

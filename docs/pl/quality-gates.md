@@ -1,7 +1,12 @@
 # Bramki jakości
 
-Bramka to automatyczne sprawdzenie, które kod musi przejść, zanim trafi do projektu. Każda bramka
-działa tak samo dla kodu pisanego przez ludzi i przez agentów AI.
+Bramka to automatyczne sprawdzenie, które kod musi przejść, zanim trafi do projektu.
+
+<!-- ai:start -->
+
+Każda bramka działa tak samo dla kodu pisanego przez ludzi i przez agentów AI.
+
+<!-- ai:end -->
 
 ## Bramki
 
@@ -43,8 +48,11 @@ pokrycie z ostatniego `npm run test:coverage`.
 | Definition of done | `npm run validate:full` | `validate`, potem audyt zależności, testy integracyjne, mutation testing, scenariusze Gherkin i budowanie dokumentacji                               |
 | CI                 | GitHub Actions          | formatowanie, `validate`, testy integracyjne, mutation testing, scenariusze i budowanie dokumentacji przy każdym wypchnięciu na `main` i w każdym PR |
 
+<!-- ai:start -->
+
 W Claude Code dodatkowo Stop hook odpala `npm run validate`, zanim Claude może skończyć zadanie.
 Zobacz [Praca z agentami AI](./ai-workflow.md).
+<!-- ai:end -->
 
 CI jest przygotowane tylko dla **GitHub Actions** (`.github/workflows/`). Na innej platformie, np.
 GitLabie, w CI nic się nie uruchamia, dopóki go tam nie dodasz; hooki i komendy `npm run` działają

@@ -6,7 +6,7 @@ export default defineConfig({
   // GitHub Pages serves the site under /<repository>/; the Docs workflow sets DOCS_BASE.
   base: process.env['DOCS_BASE'] ?? '/',
   srcExclude: ['api/**'],
-  title: 'Ultimate TS',
+  title: 'Strict TS Fullstack Template',
   description: 'Production-ready TypeScript template with strict quality gates',
   // English pages live in docs/, Polish pages with the same names in docs/pl/.
   locales: {
@@ -24,6 +24,9 @@ export default defineConfig({
               { text: 'Scripts', link: '/scripts' },
               { text: 'Tools', link: '/tools' },
               { text: 'Code review', link: '/code-review' },
+              // ai:start
+              { text: 'Use without AI', link: '/without-ai' },
+              // ai:end
               { text: 'To do', link: '/todo' },
               {
                 text: 'Coding conventions',
@@ -54,13 +57,18 @@ export default defineConfig({
             ],
           },
           {
-            text: 'AI agents',
+            text: 'Examples',
             items: [
-              { text: 'AI workflow', link: '/ai-workflow' },
               { text: 'UX: greeting page', link: '/ux/greeting' },
               { text: 'Edge cases: greeting', link: '/edge-cases/greeting' },
             ],
           },
+          // ai:start
+          {
+            text: 'AI agents',
+            items: [{ text: 'AI workflow', link: '/ai-workflow' }],
+          },
+          // ai:end
         ],
       },
     },
@@ -79,6 +87,9 @@ export default defineConfig({
               { text: 'Skrypty', link: '/pl/scripts' },
               { text: 'Narzędzia', link: '/pl/tools' },
               { text: 'Code review', link: '/pl/code-review' },
+              // ai:start
+              { text: 'Bez AI', link: '/pl/without-ai' },
+              // ai:end
               { text: 'Do zrobienia', link: '/pl/todo' },
               {
                 text: 'Konwencje kodu',
@@ -112,14 +123,19 @@ export default defineConfig({
             ],
           },
           {
-            text: 'Agenci AI',
+            text: 'Przykłady',
             items: [
-              { text: 'Praca z agentami AI', link: '/pl/ai-workflow' },
               // The example UX design and edge case list exist in English only.
               { text: 'UX: greeting page (EN)', link: '/ux/greeting' },
               { text: 'Edge cases: greeting (EN)', link: '/edge-cases/greeting' },
             ],
           },
+          // ai:start
+          {
+            text: 'Agenci AI',
+            items: [{ text: 'Praca z agentami AI', link: '/pl/ai-workflow' }],
+          },
+          // ai:end
         ],
       },
     },

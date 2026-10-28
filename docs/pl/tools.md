@@ -97,14 +97,21 @@ zestaw dla projektu w czystym TypeScript. Komendy, które je uruchamiają, są w
 
 ## Git i CI
 
-| Narzędzie                                      | Rola                                                                                                                                           |
-| ---------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| Husky                                          | Hooki gita                                                                                                                                     |
-| lint-staged                                    | Lint i format tylko zmienionych plików przy commicie                                                                                           |
-| commitlint + `@commitlint/config-conventional` | Conventional Commits                                                                                                                           |
-| GitHub Actions                                 | CI: `validate`, testy integracyjne, mutation testing i e2e na każdym PR; opcjonalne AI review innym modelem (etykieta `ai-review`, OpenRouter) |
-| `npm audit`                                    | Bramka w CI: znane podatności o wysokiej albo krytycznej wadze w zależnościach runtime (`security:audit`)                                      |
-| release-please `*`                             | Wersje i `CHANGELOG.md` z Conventional Commits: utrzymuje otwarty release PR, a jego merge taguje wersję i tworzy GitHub Release               |
+| Narzędzie                                      | Rola                                                                                                                             |
+| ---------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| Husky                                          | Hooki gita                                                                                                                       |
+| lint-staged                                    | Lint i format tylko zmienionych plików przy commicie                                                                             |
+| commitlint + `@commitlint/config-conventional` | Conventional Commits                                                                                                             |
+| GitHub Actions                                 | CI: `validate`, testy integracyjne, mutation testing i e2e na każdym PR                                                          |
+| `npm audit`                                    | Bramka w CI: znane podatności o wysokiej albo krytycznej wadze w zależnościach runtime (`security:audit`)                        |
+| release-please `*`                             | Wersje i `CHANGELOG.md` z Conventional Commits: utrzymuje otwarty release PR, a jego merge taguje wersję i tworzy GitHub Release |
+
+<!-- ai:start -->
+
+GitHub Actions uruchamia też opcjonalne AI review innym modelem dla PR z etykietą `ai-review`
+(OpenRouter).
+
+<!-- ai:end -->
 
 ## Utrzymanie
 
