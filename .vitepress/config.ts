@@ -24,7 +24,9 @@ export default defineConfig({
               { text: 'Scripts', link: '/scripts' },
               { text: 'Tools', link: '/tools' },
               { text: 'Code review', link: '/code-review' },
+              // ai:start
               { text: 'Use without AI', link: '/without-ai' },
+              // ai:end
               { text: 'To do', link: '/todo' },
               {
                 text: 'Coding conventions',
@@ -54,6 +56,7 @@ export default defineConfig({
               { text: '12. Glossary', link: '/architecture/12-glossary' },
             ],
           },
+          // ai:start
           {
             text: 'AI agents',
             items: [
@@ -62,6 +65,7 @@ export default defineConfig({
               { text: 'Edge cases: greeting', link: '/edge-cases/greeting' },
             ],
           },
+          // ai:end
         ],
       },
     },
@@ -80,7 +84,9 @@ export default defineConfig({
               { text: 'Skrypty', link: '/pl/scripts' },
               { text: 'Narzędzia', link: '/pl/tools' },
               { text: 'Code review', link: '/pl/code-review' },
+              // ai:start
               { text: 'Bez AI', link: '/pl/without-ai' },
+              // ai:end
               { text: 'Do zrobienia', link: '/pl/todo' },
               {
                 text: 'Konwencje kodu',
@@ -113,6 +119,7 @@ export default defineConfig({
               { text: '12. Słownik', link: '/pl/architecture/12-glossary' },
             ],
           },
+          // ai:start
           {
             text: 'Agenci AI',
             items: [
@@ -122,6 +129,7 @@ export default defineConfig({
               { text: 'Edge cases: greeting (EN)', link: '/edge-cases/greeting' },
             ],
           },
+          // ai:end
         ],
       },
     },

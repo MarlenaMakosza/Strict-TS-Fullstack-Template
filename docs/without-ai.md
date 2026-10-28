@@ -1,50 +1,68 @@
 # Use without AI
 
-The AI agent setup is optional. The quality gates, git hooks and CI work the same when people
-write the code, and none of them calls an AI model.
+Remove the whole AI setup with one command:
 
-## Keep the files and ignore them
+```sh
+node dev/remove-ai.ts --dry-run   # list what it would remove, change nothing
+node dev/remove-ai.ts             # remove it
+npm run autofix
+npm run validate:full
+```
+
+Commit your work first. Then `git diff` shows every change the script made, and `git checkout .`
+undoes them all. CI runs the script on every pull request and checks that the gates still pass
+afterwards, so it stays up to date.
+
+## What the script removes
+
+**Files and folders:**
+
+- `AGENTS.md`, `CLAUDE.md`, `.agents/` and `.claude/`: the rules, the roles and the Claude Code
+  adapter.
+- `.github/workflows/ai-review.yml`: the optional AI review of pull requests.
+- `docs/ai-workflow.md`, `docs/pl/ai-workflow.md`, this page and its Polish version.
+- `docs/edge-cases/`: the edge case lists that the edge-case hunter role writes.
+- `dev/remove-ai.ts`, `dev/ai-markers.ts` and their test: the script itself.
+
+**Parts of other files**, marked in them with `ai:start` and `ai:end` comments:
+
+- `README.md`, `docs/index.md` and `docs/pl/index.md`: the "AI is optional" note, the paragraph
+  about AI agents, the AI line in "What you get", the "Working with AI agents" section and the AI
+  links in "Documentation".
+- `.vitepress/config.ts`: the "AI agents" group and this page in both sidebars.
+- `docs/getting-started.md`, `docs/quality-gates.md`, `docs/code-review.md` and `docs/tools.md`,
+  in English and Polish: the sections, lines and notes about agents, the Claude Code Stop hook,
+  the AI review and the `Assisted-by` lines.
+- `.github/workflows/ci.yml`: the job that checks this script.
+- `.github/PULL_REQUEST_TEMPLATE.md`: the "AI assistance" section.
+- `.github/CODEOWNERS`: the lines for the AI files.
+- `.gitignore`: the line for the personal Claude Code settings.
+
+**What stays:** every quality gate, the git hooks, CI, the Gherkin scenarios, the ADRs and the
+arc42 pages. The arc42 pages and the ADRs still mention AI agents in a few places. They describe
+this template, so rewrite them for your own project anyway.
+
+## Or keep the files and ignore them
 
 The AI files do nothing on their own:
 
 - `AGENTS.md`, `CLAUDE.md`, `.agents/` and `.claude/` are read only by an AI coding tool.
-- The AI review workflow (`.github/workflows/ai-review.yml`) runs only on a pull request with the
-  `ai-review` label, and it needs an `OPENROUTER_API_KEY` secret.
+- The AI review workflow runs only on a pull request with the `ai-review` label, and it needs an
+  `OPENROUTER_API_KEY` secret.
 
-So you can keep them and never use them.
+## Adding AI-only content
 
-## Remove the AI setup
+When you add something that only matters with the AI setup, wrap it in markers, so that the script
+removes it too. Use the comment style of the file:
 
-Delete these files and folders. Every gate still passes without them:
+```md
+<!-- ai:start -->
 
-```sh
-rm -rf AGENTS.md CLAUDE.md .agents .claude docs/ai-workflow.md docs/pl/ai-workflow.md \
-  docs/without-ai.md docs/pl/without-ai.md docs/edge-cases .github/workflows/ai-review.yml
+Text about AI agents.
+
+<!-- ai:end -->
 ```
 
-Then remove the references that are left:
-
-- `README.md`, `docs/index.md` and `docs/pl/index.md`: the "AI is optional" note at the top, the
-  "Working with AI agents" section, the AI agent line in "What you get", and the "AI workflow" and
-  "Use without AI" links in "Documentation".
-- `.vitepress/config.ts`: the "AI agents" group and the "Use without AI" entry in both sidebars.
-- `docs/getting-started.md` and `docs/pl/getting-started.md`: the "Optional: codebase-memory-mcp
-  for AI agents" section, the "No AI agents" line, the link to the AI statistics, the
-  `.agents/` and `.claude/` lines in the project structure, and the mentions of `AGENTS.md` and
-  the roles in "Starting your own project".
-- `docs/quality-gates.md` and `docs/pl/quality-gates.md`: the last paragraph, about the Claude
-  Code Stop hook.
-- `docs/code-review.md` and `docs/pl/code-review.md`: the lines about the `reviewer` agent and the
-  optional AI review.
-- `docs/tools.md` and `docs/pl/tools.md`: the AI review part of the GitHub Actions row.
-- `.github/CODEOWNERS`: the lines for `AGENTS.md`, `CLAUDE.md`, `.claude/` and `.agents/`.
-- `.github/PULL_REQUEST_TEMPLATE.md`: the "AI assistance" section.
-- `.github/ISSUE_TEMPLATE/feature.yml` and `task.yml`: the mentions of the specifier agent and the
-  agent roles.
-- `.gitignore`: the `.claude/settings.local.json` line.
-
-The arc42 pages in `docs/architecture/` and the ADRs still mention AI agents. They describe this
-template, so rewrite them for your own project anyway.
-
-Finally, run `npm run autofix` to fix the formatting, then `npm run validate:full` to check that
-every gate still passes.
+In TypeScript, write `// ai:start` and `// ai:end`; in YAML, `.gitignore` and `CODEOWNERS`,
+`# ai:start` and `# ai:end`. A line with `ai:to-end` removes everything from that line to the end
+of the file. A whole AI-only file goes into `AI_PATHS` in `dev/remove-ai.ts` instead.

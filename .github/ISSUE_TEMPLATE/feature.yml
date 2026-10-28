@@ -19,7 +19,7 @@ body:
     id: scenario
     attributes:
       label: Scenario
-      description: One or more Gherkin scenarios. Leave it rough; the specifier agent can refine it.
+      description: One or more Gherkin scenarios. Leave it rough; it can be refined later.
       render: gherkin
       value: |
         Feature: <name>

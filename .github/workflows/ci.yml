@@ -57,3 +57,20 @@ jobs:
       # The page scenarios run the web app in Chromium.
       - run: npx playwright install --with-deps chromium
       - run: npm run test:e2e
+
+  # ai:start
+  # The steps in docs/without-ai.md: removing the AI setup must leave a project that passes the gates.
+  remove-ai:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: node dev/remove-ai.ts
+      - run: npm run autofix
+      - run: npm run validate
+      - run: npm run docs:build
+  # ai:end

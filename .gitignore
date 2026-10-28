@@ -35,7 +35,9 @@ test-results
 playwright-report
 .features-gen
 
+# ai:start
 # Claude Code (personal settings)
 .claude/settings.local.json
+# ai:end
 
 .history

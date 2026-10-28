@@ -13,7 +13,7 @@ body:
         | upgrade Hono to the next major   | `/api/greeting` answers in Polish           |
         | add a lint rule, speed up CI     | `/api/users` can be filtered by email       |
         | rename a module, refactor        | a new error message for an invalid name     |
-        | docs, agent roles, issue forms   | a field added to an API response            |
+        | docs, code owners, issue forms   | a field added to an API response            |
 
         Start the title with the commit type: `chore:`, `docs:`, `ci:`, `refactor:`, `test:` or
         `build:`.

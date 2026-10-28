@@ -22,6 +22,8 @@ typy. Potem uruchamia PostgreSQL, wykonuje migracje i wypełnia bazę danymi. Na
 może potrzebować bibliotek systemowych: jeśli scenariusze w przeglądarce nie mogą go uruchomić,
 wykonaj raz `sudo npx playwright install-deps chromium`.
 
+<!-- ai:start -->
+
 ## Opcjonalnie: codebase-memory-mcp dla agentów AI
 
 Możesz go zainstalować, ale nie musisz: wszystko w szablonie działa bez niego.
@@ -41,6 +43,7 @@ codebase-memory-mcp --version
 Potem raz poproś agenta: "Index this repository with codebase-memory-mcp." `AGENTS.md` już każe
 agentom z niego korzystać, gdy jest zainstalowany. Więcej w
 [Pracy z agentami AI](./ai-workflow.md#opcjonalnie-graf-kodu-dla-agentow).
+<!-- ai:end -->
 
 ## Własny projekt na bazie szablonu
 
@@ -62,7 +65,7 @@ a po każdej `npm run validate:full` powinien przechodzić.
 
 **2. Przykładowy kod: zastąp go swoją pierwszą funkcją**
 
-Przykłady to wzorce, według których pracują agenci, więc zostaw każdy, dopóki nie zastąpi go twój
+Przykłady to wzorce, według których powstaje nowy kod, więc zostaw każdy, dopóki nie zastąpi go twój
 kod.
 
 - Powitanie w API: `apps/api/src/greet.ts`, `apps/api/tests/unit/greet.test.ts`, trasa
@@ -73,7 +76,7 @@ kod.
   ich testy w `apps/web/tests/unit/`, `tests/e2e/features/greeting-page.feature` oraz projekt UX
   `docs/ux/greeting.md`. Zostaw kroki w `tests/e2e/steps/page.steps.ts` (otwarcie aplikacji,
   wpisywanie, przyciski, klawiatura i sprawdzanie przez axe): pasują do każdej strony.
-- Role, `AGENTS.md` i dokumentacja podają te pliki jako wzorce stylu:
+- Inne pliki podają je jako wzorce stylu:
   `git grep -n -E "greet|http-api|greeting-page"` pokazuje wszystkie miejsca do poprawienia.
 - Baza danych: tabela `users` w `apps/api/src/db/schema.ts`, migracje w `apps/api/drizzle/`,
   `apps/api/dev/db/seed.ts` i `apps/api/tests/integration/db/users.test.ts`. Gdy twój schemat będzie
@@ -101,19 +104,26 @@ kod.
   knip pokaże potem, co zostało.
 - Bez frontendu (samo API): usuń `apps/web/`; `tests/e2e/features/greeting-page.feature`,
   `tests/e2e/steps/page.steps.ts` oraz wpisy `webServer` i `use.baseURL` w `playwright.config.ts`;
-  krok instalacji Chromium w jobie `e2e` w `.github/workflows/ci.yml`; `docs/ux/`, role
-  `ux-designer` i `ui-reviewer` w `.agents/roles/` i `.claude/agents/` oraz ich wiersze w
-  `AGENTS.md`; blok `Web app (React)` i ustawienia Tailwind oraz CSS w `eslint.config.js`; `react`
-  i `react-dom` z głównego `package.json`, krok `quality:one-react` i jego skrypt w `dev/quality/`
+  krok instalacji Chromium w jobie `e2e` w `.github/workflows/ci.yml`; `docs/ux/`; blok
+  `Web app (React)` i ustawienia Tailwind oraz CSS w `eslint.config.js`; `react` i `react-dom` z głównego `package.json`, krok `quality:one-react` i jego skrypt w `dev/quality/`
   razem z testami; wpis `apps/web` w `knip.json`; oraz `concurrently` (ustaw `dev` na
   `npm run dev -w apps/api`). Zostaw `packages/shared`: jego `Result` to ten,
   którego wymagają konwencje.
+  <!-- ai:start -->
+  Z konfiguracją AI usuń też role `ux-designer` i `ui-reviewer` w `.agents/roles/` i
+  `.claude/agents/` oraz ich wiersze w `AGENTS.md`.
+  <!-- ai:end -->
 - Bez backendu (aplikacja webowa wywołująca inne API): usuń `apps/api/`;
   `tests/e2e/features/http-api.feature`, `tests/e2e/steps/server.steps.ts` i fixture `server` w
   `tests/e2e/steps/fixtures.ts`; wpis API w `webServer` w `playwright.config.ts` (ustaw `API_URL` na
   swoje API); job `integration` i skrypty bazy danych; ADR-y od `ARCH-001` do `ARCH-003`; wpis
   `apps/api` w `knip.json`; oraz `concurrently` (ustaw `dev` na `npm run dev -w apps/web`).
+
+<!-- ai:start -->
+
 - Bez agentów AI: zobacz [Bez AI](./without-ai.md).
+
+<!-- ai:end -->
 
 **5. Sprawdzenie**
 
@@ -159,9 +169,15 @@ jego treść. Dostaje jeden wpis w `CHANGELOG.md`. Dlatego:
 
 - **Tytuł PR musi być w formacie Conventional Commits** (`feat: …`, `fix: …`, `docs: …`): to on
   decyduje o następnej wersji.
+
+<!-- ai:start -->
+
 - Wiersze `Assisted-by` na końcu opisu stają się trailerami tej
   zmiany, więc
   [statystyki AI](./ai-workflow.md#podpisy-ai-i-statystyki) mogą je policzyć.
+
+<!-- ai:end -->
+
 - Pisz `BREAKING CHANGE:` w opisie tylko przy prawdziwej zmianie łamiącej: podbija wersję major. Merge commit dodałby każdą
   zmianę do CHANGELOG dwa razy: raz za commit i raz za merge commit, który powtarza tytuł PR.
 
@@ -228,10 +244,16 @@ tests/e2e/steps/      step definitions i fixtures
 dev/quality/          bramka CRAP, wspólna dla wszystkich aplikacji
 docs/                 ta dokumentacja (VitePress); polska wersja w docs/pl/
 .archgate/adrs/       decyzje architektoniczne (ADR)
-.agents/roles/        instrukcje ról dla agentów AI
-.claude/              adapter dla Claude Code (hooki, uprawnienia, agenci)
 .github/              workflow CI, właściciele kodu, szablon opisu PR
 ```
+
+<!-- ai:start -->
+
+Konfiguracja AI dodaje `AGENTS.md` i `CLAUDE.md` (reguły dla agentów), `.agents/roles/`
+(instrukcje ról dla agentów AI) oraz `.claude/` (adapter dla Claude Code: hooki, uprawnienia,
+agenci).
+
+<!-- ai:end -->
 
 Repozytorium to monorepo z npm workspaces. Każda aplikacja w `apps/` i każda paczka w `packages/` ma własny `package.json`,
 swoje zależności, konfiguracje Vitest i Strykera oraz własne skrypty. W katalogu głównym jest to,

@@ -21,10 +21,12 @@
 /.husky/ @MarlenaMakosza
 /.github/ @MarlenaMakosza
 /.archgate/adrs/ @MarlenaMakosza
+# ai:start
 /AGENTS.md @MarlenaMakosza
 /CLAUDE.md @MarlenaMakosza
 /.claude/ @MarlenaMakosza
 /.agents/ @MarlenaMakosza
+# ai:end
 /.jscpd.json @MarlenaMakosza
 /dev/quality/ @MarlenaMakosza
 /release-please-config.json @MarlenaMakosza

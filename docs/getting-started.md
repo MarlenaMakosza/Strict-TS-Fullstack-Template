@@ -22,6 +22,8 @@ types. It then starts PostgreSQL, runs the migrations and seeds the database. On
 may need system libraries: if the browser scenarios fail to start it, run
 `sudo npx playwright install-deps chromium` once.
 
+<!-- ai:start -->
+
 ## Optional: codebase-memory-mcp for AI agents
 
 You can install it, but you do not have to: everything in the template works without it.
@@ -41,6 +43,7 @@ codebase-memory-mcp --version
 Then ask the agent once: "Index this repository with codebase-memory-mcp." `AGENTS.md` already
 tells the agents to use it when it is installed. More in
 [AI workflow](./ai-workflow.md#optional-a-code-graph-for-the-agents).
+<!-- ai:end -->
 
 ## Starting your own project
 
@@ -62,7 +65,7 @@ Create your repository from this one: on GitHub with **Use this template**, or c
 
 **2. Example code: replace it with your first feature**
 
-The examples are the patterns that the agents follow, so keep each one until your own code
+The examples are the patterns that new code follows, so keep each one until your own code
 replaces it.
 
 - The greeting in the API: `apps/api/src/greet.ts`, `apps/api/tests/unit/greet.test.ts`, the
@@ -73,7 +76,7 @@ replaces it.
   their tests in `apps/web/tests/unit/`, `tests/e2e/features/greeting-page.feature` and the UX
   design `docs/ux/greeting.md`. Keep the steps in `tests/e2e/steps/page.steps.ts` (opening the app,
   typing, pressing buttons, the keyboard and the axe check): they fit any page.
-- The roles, `AGENTS.md` and the docs name these files as style references:
+- Other files name these as style references:
   `git grep -n -E "greet|http-api|greeting-page"` lists every place to update.
 - The database: the `users` table in `apps/api/src/db/schema.ts`, the migrations in
   `apps/api/drizzle/`, `apps/api/dev/db/seed.ts` and `apps/api/tests/integration/db/users.test.ts`.
@@ -103,20 +106,27 @@ replaces it.
 - No frontend (an API only): delete `apps/web/`; `tests/e2e/features/greeting-page.feature`,
   `tests/e2e/steps/page.steps.ts`, and the `webServer` and `use.baseURL` entries in
   `playwright.config.ts`; the Chromium install step of the `e2e` job in
-  `.github/workflows/ci.yml`; `docs/ux/`, the `ux-designer` and `ui-reviewer` roles in
-  `.agents/roles/` and `.claude/agents/` and their rows in `AGENTS.md`; the `Web app (React)` block
-  and the Tailwind and CSS settings in `eslint.config.js`; `react` and `react-dom` from the root
-  `package.json`, the `quality:one-react` step and its script in `dev/quality/` with its tests;
+  `.github/workflows/ci.yml`; `docs/ux/`; the `Web app (React)` block and the Tailwind and CSS
+  settings in `eslint.config.js`; `react` and `react-dom` from the root `package.json`, the `quality:one-react` step and its script in `dev/quality/` with its tests;
   the `apps/web` entry in `knip.json`; and `concurrently` (set `dev` to
   `npm run dev -w apps/api`). Keep `packages/shared`: its `Result` is the
   one the conventions ask for.
+  <!-- ai:start -->
+  With the AI setup, also delete the `ux-designer` and `ui-reviewer` roles in `.agents/roles/` and
+  `.claude/agents/`, and their rows in `AGENTS.md`.
+  <!-- ai:end -->
 - No backend (a web app that calls another API): delete `apps/api/`;
   `tests/e2e/features/http-api.feature`, `tests/e2e/steps/server.steps.ts` and the `server`
   fixture in `tests/e2e/steps/fixtures.ts`; the API entry in `webServer` in `playwright.config.ts`
   (point `API_URL` at your API); the `integration` job and the database scripts; ADRs `ARCH-001` to
   `ARCH-003`; the `apps/api` entry in `knip.json`; and `concurrently` (set `dev` to
   `npm run dev -w apps/web`).
+
+<!-- ai:start -->
+
 - No AI agents: see [Use without AI](./without-ai.md).
+
+<!-- ai:end -->
 
 **5. Check**
 
@@ -162,8 +172,14 @@ its first line and the description is its body. It gets one entry in `CHANGELOG.
 
 - **The pull request title must be a Conventional Commit** (`feat: …`, `fix: …`, `docs: …`): it
   decides the next version.
+
+<!-- ai:start -->
+
 - The `Assisted-by` lines at the end of the description become trailers of that commit, so the
   [AI statistics](./ai-workflow.md#ai-attribution-and-statistics) can count them.
+
+<!-- ai:end -->
+
 - Write `BREAKING CHANGE:` in the description only for a real breaking change: it bumps the major
   version. A merge
   commit would put every change in the CHANGELOG twice: once for the commit, and once for the merge
@@ -231,10 +247,16 @@ tests/e2e/steps/      step definitions and fixtures
 dev/quality/          CRAP gate, shared by all apps
 docs/                 this documentation (VitePress); Polish version in docs/pl/
 .archgate/adrs/       architecture decision records
-.agents/roles/        role instructions for AI agents
-.claude/              Claude Code adapter (hooks, permissions, subagents)
 .github/              CI workflows, code owners, pull request template
 ```
+
+<!-- ai:start -->
+
+The AI setup adds `AGENTS.md` and `CLAUDE.md` (the rules for agents), `.agents/roles/` (role
+instructions for AI agents) and `.claude/` (the Claude Code adapter: hooks, permissions,
+subagents).
+
+<!-- ai:end -->
 
 The repository is an npm workspaces monorepo. Each app in `apps/` and each package in `packages/` has its own `package.json`, its
 dependencies, its Vitest and Stryker configs and its own scripts. The root holds what all apps

@@ -61,8 +61,13 @@ praise: the edge case list covers every boundary of the input
 ## Kto z tego korzysta
 
 - Ludzie robiący review PR.
+
+<!-- ai:start -->
+
 - Agent `reviewer`, w swoim końcowym raporcie.
 - Opcjonalne AI review w CI (zobacz [Praca z agentami AI](./ai-workflow.md)), w komentarzu do PR.
+
+<!-- ai:end -->
 
 ## Szybciej na GitHubie: zapisane odpowiedzi
 
