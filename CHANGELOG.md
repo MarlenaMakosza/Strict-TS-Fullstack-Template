@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.4.0](https://github.com/MarlenaMakosza/Strict-TS-Fullstack-Template/compare/v0.3.1...v0.4.0) (2026-10-28)
+
+
+### Features
+
+* make the AI setup optional and removable with one script ([#36](https://github.com/MarlenaMakosza/Strict-TS-Fullstack-Template/issues/36)) ([cb95664](https://github.com/MarlenaMakosza/Strict-TS-Fullstack-Template/commit/cb956647d76cbc6b54c056331d80104d8770f9d8))
+
+
+### Bug Fixes
+
+* **deps:** update zod to 4.6.7 for GHSA-mrhx-c7xc-m3w5 ([#37](https://github.com/MarlenaMakosza/Strict-TS-Fullstack-Template/issues/37)) ([fd457cd](https://github.com/MarlenaMakosza/Strict-TS-Fullstack-Template/commit/fd457cdc169cc9513f091d5a2b72f32b0fa85f94))
+
 ## [0.3.1](https://github.com/MarlenaMakosza/Ultimate-TS-AI-project/compare/v0.3.0...v0.3.1) (2026-10-18)
 
 
