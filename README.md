@@ -37,7 +37,8 @@ stays. The agent workflow was inspired by a
 - **PostgreSQL with Drizzle.** Docker Compose runs the database. You also get migrations and a
   Faker seed script.
 - **Security checks.** `npm audit` fails CI on a known high or critical vulnerability in a runtime
-  dependency, `eslint-plugin-security` catches risky patterns in the code, and `SECURITY.md` tells
+  dependency, secretlint stops a commit or CI run that contains a key, token or password,
+  `eslint-plugin-security` catches risky patterns in the code, and `SECURITY.md` tells
   people how to report a vulnerability privately.
 - **Tests at every level.** Vitest for unit tests, with fast-check for property-based tests;
   integration tests against a real PostgreSQL in Docker (Testcontainers); Playwright with Gherkin

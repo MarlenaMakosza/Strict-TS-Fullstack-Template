@@ -201,7 +201,8 @@ its first line and the description is its body. It gets one entry in `CHANGELOG.
 
 **Settings → Advanced Security**
 
-`npm run security:audit` and `eslint-plugin-security` need no setting. `SECURITY.md` needs one:
+`npm run security:audit`, `npm run security:secrets` and `eslint-plugin-security` need no setting.
+`SECURITY.md` needs one:
 
 - Turn on **Private vulnerability reporting**. `SECURITY.md` asks people to report a vulnerability
   privately, with **Security → Report a vulnerability**. Without this setting, that button does not
@@ -213,6 +214,8 @@ its first line and the description is its body. It gets one entry in `CHANGELOG.
   emails off in your personal **Settings → Notifications → Dependabot alerts**. Leave
   **Dependabot security updates** off: it opens a pull request for each fix, and `npm run update-dependencies`
   updates the dependencies.
+- Optional: **Secret Protection** with **Push protection**, free for public repositories. GitHub
+  then rejects a push that contains a secret, even one committed with `--no-verify`.
 
 **Settings → Rules → Rulesets** (or **Settings → Branches**), for `main`
 

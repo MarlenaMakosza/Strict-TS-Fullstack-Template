@@ -37,7 +37,8 @@ który przejdzie wszystkie ograniczenia. Inspiracją dla pracy z agentami był
 - **PostgreSQL z Drizzle.** Bazę uruchamia Docker Compose. Są też migracje i skrypt z danymi
   testowymi (Faker).
 - **Sprawdzanie bezpieczeństwa.** `npm audit` zatrzymuje CI przy znanej podatności o wysokiej albo
-  krytycznej wadze w zależności runtime, `eslint-plugin-security` wyłapuje ryzykowne wzorce w
+  krytycznej wadze w zależności runtime, secretlint zatrzymuje commit i CI, gdy w kodzie jest
+  klucz, token albo hasło, `eslint-plugin-security` wyłapuje ryzykowne wzorce w
   kodzie, a `SECURITY.md` mówi, jak zgłosić lukę prywatnie.
 - **Testy na każdym poziomie.** Vitest do testów jednostkowych, z fast-check do testów
   property-based; testy integracyjne na prawdziwym PostgreSQL w Dockerze (Testcontainers);

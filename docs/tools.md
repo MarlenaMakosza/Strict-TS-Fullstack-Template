@@ -104,6 +104,7 @@ the checks work together, see [Quality gates](./quality-gates.md).
 | commitlint + `@commitlint/config-conventional` | Conventional Commits                                                                                                                         |
 | GitHub Actions                                 | CI: `validate`, integration tests, mutation testing and e2e on every PR                                                                      |
 | `npm audit`                                    | A gate in CI: known high or critical vulnerabilities in runtime dependencies (`security:audit`)                                              |
+| secretlint (`@secretlint/quick-start`)         | Keys, tokens, passwords and private keys in files, on commit and in CI (`security:secrets`)                                                  |
 | release-please `*`                             | Versions and `CHANGELOG.md` from Conventional Commits: keeps a release PR open, and merging it tags the version and creates a GitHub Release |
 
 <!-- ai:start -->
