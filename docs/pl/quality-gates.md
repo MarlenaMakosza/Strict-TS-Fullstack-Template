@@ -28,6 +28,7 @@ Każda bramka działa tak samo dla kodu pisanego przez ludzi i przez agentów AI
 | Dokumentacja         | VitePress                    | dokumentacja się nie buduje albo link jest martwy                      | `.vitepress/config.ts`                  |
 | Wiadomość w commicie | commitlint                   | wiadomość nie jest w formacie Conventional Commits                     | `commitlint.config.js`                  |
 | Zależności           | `npm audit`                  | zależność runtime ma znaną podatność o wysokiej albo krytycznej wadze  | `security:audit` w `package.json`       |
+| Sekrety              | secretlint                   | plik zawiera klucz, token, hasło albo klucz prywatny                   | `security:secrets` w `package.json`     |
 
 ## Wynik CRAP
 

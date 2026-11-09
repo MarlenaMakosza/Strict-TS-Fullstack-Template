@@ -28,6 +28,7 @@ Every gate works the same for code written by people and by AI agents.
 | Documentation     | VitePress                    | the docs do not build, or a link is dead                        | `.vitepress/config.ts`                  |
 | Commit message    | commitlint                   | the message is not a Conventional Commit                        | `commitlint.config.js`                  |
 | Dependencies      | `npm audit`                  | a runtime dependency has a known high or critical vulnerability | `security:audit` in `package.json`      |
+| Secrets           | secretlint                   | a file contains a key, token, password or private key           | `security:secrets` in `package.json`    |
 
 ## CRAP score
 

@@ -104,6 +104,7 @@ zestaw dla projektu w czystym TypeScript. Komendy, które je uruchamiają, są w
 | commitlint + `@commitlint/config-conventional` | Conventional Commits                                                                                                             |
 | GitHub Actions                                 | CI: `validate`, testy integracyjne, mutation testing i e2e na każdym PR                                                          |
 | `npm audit`                                    | Bramka w CI: znane podatności o wysokiej albo krytycznej wadze w zależnościach runtime (`security:audit`)                        |
+| secretlint (`@secretlint/quick-start`)         | Klucze, tokeny, hasła i klucze prywatne w plikach, przy commicie i w CI (`security:secrets`)                                     |
 | release-please `*`                             | Wersje i `CHANGELOG.md` z Conventional Commits: utrzymuje otwarty release PR, a jego merge taguje wersję i tworzy GitHub Release |
 
 <!-- ai:start -->
