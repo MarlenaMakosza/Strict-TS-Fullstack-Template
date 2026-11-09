@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.0](https://github.com/MarlenaMakosza/Strict-TS-Fullstack-Template/compare/v0.4.0...v0.5.0) (2026-11-09)
+
+
+### Features
+
+* block commits and CI runs that contain secrets ([#40](https://github.com/MarlenaMakosza/Strict-TS-Fullstack-Template/issues/40)) ([56b7b16](https://github.com/MarlenaMakosza/Strict-TS-Fullstack-Template/commit/56b7b163e943446f53f8674e1cca5235d1c0b439))
+
 ## [0.4.0](https://github.com/MarlenaMakosza/Strict-TS-Fullstack-Template/compare/v0.3.1...v0.4.0) (2026-10-28)
 
 
