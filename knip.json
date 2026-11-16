@@ -2,9 +2,9 @@
   "$schema": "https://unpkg.com/knip@6/schema.json",
   "workspaces": {
     ".": {
-      "entry": ["dev/**/*.ts", "tests/e2e/steps/**/*.ts"],
+      "entry": ["dev/**/*.ts", "tests/e2e/steps/**/*.ts", "tests/perf/**/*.ts"],
       "project": ["dev/**/*.ts", "tests/**/*.ts"],
-      "ignoreDependencies": ["react", "react-dom"]
+      "ignoreDependencies": ["react", "react-dom", "k6"]
     },
     "apps/api": {
       "entry": ["dev/**/*.ts"],

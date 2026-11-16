@@ -22,6 +22,7 @@ export default defineConfig({
               { text: 'Getting started', link: '/getting-started' },
               { text: 'Quality gates', link: '/quality-gates' },
               { text: 'Scripts', link: '/scripts' },
+              { text: 'Performance tests', link: '/performance-tests' },
               { text: 'Tools', link: '/tools' },
               { text: 'Code review', link: '/code-review' },
               // ai:start
@@ -85,6 +86,7 @@ export default defineConfig({
               { text: 'Pierwsze kroki', link: '/pl/getting-started' },
               { text: 'Bramki jakości', link: '/pl/quality-gates' },
               { text: 'Skrypty', link: '/pl/scripts' },
+              { text: 'Testy wydajności', link: '/pl/performance-tests' },
               { text: 'Narzędzia', link: '/pl/tools' },
               { text: 'Code review', link: '/pl/code-review' },
               // ai:start
