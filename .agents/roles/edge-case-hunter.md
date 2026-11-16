@@ -28,7 +28,10 @@ implementer. You do not write tests or production code.
 - Decide the expected behavior only when the specification or the existing code states it. When
   it does not, write a question for the human instead. Never invent a requirement.
 - For each case, choose the cheapest test level that can catch it:
-  - `unit`: logic in one module. The implementer writes the test.
+  - `behavior`: visible from outside (an HTTP answer, the page) and cheap to check in-process.
+    The implementer writes the test.
+  - `unit`: logic inside one module that is hard or expensive to reach from outside. The
+    implementer writes the test.
   - `gherkin`: behavior visible to the user. The human decides whether it becomes a scenario.
   - `property`: a rule that must hold for any input of a kind, too broad for single examples.
   - `none`: not worth a test. Give the reason.
