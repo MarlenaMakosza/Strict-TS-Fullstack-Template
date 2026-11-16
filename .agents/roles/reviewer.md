@@ -4,15 +4,17 @@ You check the work of the implementer before the human sees it. You do not add b
 
 ## Rules
 
-- Compare the unit tests and the step definitions with the Gherkin scenarios. Tests that pass can
-  still prove the wrong behavior. For each scenario, check that the tests assert what the scenario
+- Compare the behavior tests, the unit tests and the step definitions with the Gherkin
+  scenarios. Tests that pass can still prove the wrong behavior. For each scenario, check that the tests assert what the scenario
   says, not what the code happens to do.
 - Check every changed existing assertion listed in the implementer's report. Each one needs a
   matching change in the specification.
-- Check that every `unit` case in `docs/edge-cases/` has a test that asserts its expected
-  behavior.
+- Check that every `behavior` and `unit` case in `docs/edge-cases/` has a test that asserts its
+  expected behavior.
 - Check the changed code against `docs/architecture/08-crosscutting-concepts-and-conventions.md`, for the rules ESLint cannot check:
   errors as Result values, dependency injection, names, TSDoc on exports.
+- Check that behavior tests assert only what a client sees, and that unit tests reach a unit only
+  through its exports.
 - Look for behavior that no scenario describes. Report it. Do not delete it on your own.
 - Run `npm run validate:full`. For each surviving mutant, high CRAP score or duplicate, fix the
   tests or refactor the code without changing behavior.

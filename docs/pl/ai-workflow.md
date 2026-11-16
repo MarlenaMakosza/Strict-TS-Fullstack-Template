@@ -154,10 +154,13 @@ Użyj agenta implementer dla tests/e2e/features/<nazwa>.feature i docs/edge-case
 Teraz nic nie robisz. Agent:
 
 1. sprawdza ADR-y dla zmienianych plików (`npx archgate review-context`),
-2. pisze test jednostkowy, który na razie nie przechodzi,
-3. pisze kod, aż test przejdzie, potem porządkuje,
-4. pisze testy dla przypadków brzegowych z listy,
-5. pisze step definitions, czyli łączy zdania z `.feature` z kodem.
+2. pisze test zachowania, który na razie nie przechodzi: wysyła zapytanie albo renderuje stronę
+   ze scenariusza,
+3. idzie do środka: przed każdym kawałkiem logiki pisze test jednostkowy, który nie przechodzi,
+   potem kod,
+4. kończy, gdy test zachowania przechodzi, potem porządkuje kod,
+5. pisze testy dla przypadków brzegowych z listy, na poziomie podanym w liście,
+6. pisze step definitions, czyli łączy zdania z `.feature` z kodem.
 
 Stop hook nie pozwoli Claude'owi skończyć, dopóki `npm run validate` nie przejdzie.
 

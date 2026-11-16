@@ -43,10 +43,25 @@ A task is done only when all of these are true:
    types, spelling, unused code, unit tests with a 90% coverage threshold, CRAP score (30 or less
    per function), duplicated code (none allowed) and ADRs.
 2. `npm run format:check` exits with code 0. Run `npm run autofix` to fix formatting.
-3. Every new or changed behavior has a unit test in `apps/api/tests/unit/`.
+3. Every new or changed behavior has a behavior test, and every unit with its own logic has a
+   unit test (see [Test levels](#test-levels)).
 4. If the change is visible to a user, a Gherkin scenario in `tests/e2e/features/` describes it.
 
 Never report a task as done without running these commands yourself.
+
+## Test levels
+
+- **Behavior test**: tests the app from outside, as a client sees it: an HTTP request through
+  `createApp().request()` in `apps/api`, a rendered page with Testing Library in `apps/web`. It
+  knows nothing of the code inside. `apps/api/tests/unit/server/app.test.ts` shows the style.
+- **Unit test**: tests one unit (a function, a module, an adapter) from inside: every branch and
+  edge case, with its dependencies replaced by fakes, and what it does with them. It goes through
+  the exports of the unit, never through its private functions.
+- **Property test**: a unit test with fast-check, for a rule that holds for any input of a kind.
+- **Gherkin scenario**: the specification, run end to end by Playwright. The human owns it.
+
+Behavior, unit and property tests are Vitest tests in `tests/unit/`. Only Vitest tests count for
+coverage and mutation testing, so a Gherkin scenario never replaces them.
 
 ## Final report
 
@@ -69,10 +84,12 @@ Follow this order for every change in behavior:
 1. Read the Gherkin scenario (`tests/e2e/features/**/*.feature`) or the task description. If the expected
    behavior is unclear, ask before you write code. If a task without a scenario changes something a
    user or an API client can see, stop and ask the human for a scenario first.
-2. Write a failing unit test in `apps/api/tests/unit/`.
-3. Write the smallest code in `apps/api/src/` that makes the test pass.
-4. Refactor while the tests stay green.
-5. Run the full definition of done.
+2. Write a failing behavior test: send the request or render the page that the scenario describes.
+3. Work inward, outside-in. Before you write a unit with its own logic, write a failing unit test
+   for it, then the smallest code in `src/` that makes it pass.
+4. Finish when the behavior test passes. Write no code that no failing test asked for.
+5. Refactor while the tests stay green.
+6. Run the full definition of done.
 
 ## Which command to run
 
@@ -110,7 +127,7 @@ A task can be split between agents with separate roles. Each role has its own in
 | `specifier`        | `.agents/roles/specifier.md`        | Draft Gherkin scenarios for the human        |
 | `edge-case-hunter` | `.agents/roles/edge-case-hunter.md` | List edge cases, from common to extreme      |
 | `architect`        | `.agents/roles/architect.md`        | ADRs and Archgate rules                      |
-| `implementer`      | `.agents/roles/implementer.md`      | Unit tests, code and step definitions        |
+| `implementer`      | `.agents/roles/implementer.md`      | Behavior and unit tests, code, steps         |
 | `ui-reviewer`      | `.agents/roles/ui-reviewer.md`      | Check the web app against the UX design      |
 | `reviewer`         | `.agents/roles/reviewer.md`         | Check tests against the spec, clean the code |
 | `documenter`       | `.agents/roles/documenter.md`       | VitePress docs, arc42, ADR index, TSDoc      |

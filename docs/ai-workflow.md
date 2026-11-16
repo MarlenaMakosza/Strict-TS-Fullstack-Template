@@ -158,10 +158,11 @@ Use the implementer agent for tests/e2e/features/<name>.feature and docs/edge-ca
 You do nothing now. The agent:
 
 1. checks the ADRs for the files it changes (`npx archgate review-context`),
-2. writes a unit test that fails,
-3. writes code until the test passes, then cleans it up,
-4. writes tests for the edge cases from the list,
-5. writes the step definitions, which connect the `.feature` sentences to the code.
+2. writes a behavior test that fails: it sends the request or renders the page from the scenario,
+3. works inward: before each piece of logic, it writes a unit test that fails, then the code,
+4. stops when the behavior test passes, then cleans the code up,
+5. writes tests for the edge cases from the list, at the level the list gives,
+6. writes the step definitions, which connect the `.feature` sentences to the code.
 
 The Stop hook does not let Claude finish until `npm run validate` passes.
 
