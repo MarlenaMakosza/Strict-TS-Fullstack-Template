@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.5.0](https://github.com/MarlenaMakosza/Strict-TS-Fullstack-Template/compare/v0.4.0...v0.5.0) (2026-11-16)
+
+
+### Features
+
+* block commits and CI runs that contain secrets ([#40](https://github.com/MarlenaMakosza/Strict-TS-Fullstack-Template/issues/40)) ([56b7b16](https://github.com/MarlenaMakosza/Strict-TS-Fullstack-Template/commit/56b7b163e943446f53f8674e1cca5235d1c0b439))
+
+
+### Tests
+
+* add k6 performance tests for the API ([#42](https://github.com/MarlenaMakosza/Strict-TS-Fullstack-Template/issues/42)) ([a27f639](https://github.com/MarlenaMakosza/Strict-TS-Fullstack-Template/commit/a27f639e240045d5eb7601b8a053db87b34af51d))
+* make agents work in outside-in TDD with behavior tests ([#43](https://github.com/MarlenaMakosza/Strict-TS-Fullstack-Template/issues/43)) ([cef10fa](https://github.com/MarlenaMakosza/Strict-TS-Fullstack-Template/commit/cef10fa58a35aec1cba97c0adbed0cb448e96fc0))
+
 ## [0.4.0](https://github.com/MarlenaMakosza/Strict-TS-Fullstack-Template/compare/v0.3.1...v0.4.0) (2026-10-28)
 
 
