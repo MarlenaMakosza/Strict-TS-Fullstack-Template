@@ -6,15 +6,16 @@ express, and is the place for the requirements of each project.
 
 ## Scenarios for this template
 
-| Goal          | Scenario                                                   | Measure                                                       |
-| ------------- | ---------------------------------------------------------- | ------------------------------------------------------------- |
-| Correctness   | A change breaks behavior that a Gherkin scenario describes | CI fails before the merge                                     |
-| Correctness   | A test passes without checking anything                    | Mutation score drops below 80%, CI fails                      |
-| Correctness   | A complex function has no tests                            | CRAP score above 30, `validate` fails                         |
-| Fast feedback | A developer runs the fast gates before a commit            | `npm run validate` takes well under a minute                  |
-| Fast feedback | A pull request is opened                                   | All CI checks report within a few minutes                     |
-| Adaptability  | A project removes the AI setup                             | Every gate still passes (checked when the steps were written) |
-| Adaptability  | A project replaces or drops one tool                       | One config file and its scripts change, nothing else          |
+| Goal          | Scenario                                                   | Measure                                                                        |
+| ------------- | ---------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| Correctness   | A change breaks behavior that a Gherkin scenario describes | CI fails before the merge                                                      |
+| Correctness   | A test passes without checking anything                    | Mutation score drops below 80%, CI fails                                       |
+| Correctness   | A complex function has no tests                            | CRAP score above 30, `validate` fails                                          |
+| Fast feedback | A developer runs the fast gates before a commit            | `npm run validate` takes well under a minute                                   |
+| Fast feedback | A pull request is opened                                   | All CI checks report within a few minutes                                      |
+| Performance   | 10 users at once call `GET /api/greeting` for 20 s         | p95 under 200 ms and under 1% errors, checked on demand by `npm run test:perf` |
+| Adaptability  | A project removes the AI setup                             | Every gate still passes (checked when the steps were written)                  |
+| Adaptability  | A project replaces or drops one tool                       | One config file and its scripts change, nothing else                           |
 
 ## Adding requirements for your project
 

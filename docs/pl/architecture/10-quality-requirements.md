@@ -6,15 +6,16 @@ i jest miejscem na wymagania konkretnego projektu.
 
 ## Scenariusze dla tego szablonu
 
-| Cel                       | Scenariusz                                            | Miara                                                                  |
-| ------------------------- | ----------------------------------------------------- | ---------------------------------------------------------------------- |
-| Poprawność                | Zmiana psuje zachowanie opisane w scenariuszu Gherkin | CI nie przechodzi przed merge                                          |
-| Poprawność                | Test przechodzi, choć niczego nie sprawdza            | Wynik mutacji spada poniżej 80%, CI nie przechodzi                     |
-| Poprawność                | Złożona funkcja nie ma testów                         | Wynik CRAP powyżej 30, `validate` nie przechodzi                       |
-| Szybka informacja zwrotna | Programista odpala szybkie bramki przed commitem      | `npm run validate` trwa wyraźnie poniżej minuty                        |
-| Szybka informacja zwrotna | Otwarto pull request                                  | Wszystkie checki CI kończą się w kilka minut                           |
-| Elastyczność              | Projekt usuwa konfigurację AI                         | Wszystkie bramki dalej przechodzą (sprawdzone przy pisaniu instrukcji) |
-| Elastyczność              | Projekt wymienia albo usuwa jedno narzędzie           | Zmienia się jeden plik konfiguracji i jego skrypty, nic więcej         |
+| Cel                       | Scenariusz                                                | Miara                                                                                   |
+| ------------------------- | --------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| Poprawność                | Zmiana psuje zachowanie opisane w scenariuszu Gherkin     | CI nie przechodzi przed merge                                                           |
+| Poprawność                | Test przechodzi, choć niczego nie sprawdza                | Wynik mutacji spada poniżej 80%, CI nie przechodzi                                      |
+| Poprawność                | Złożona funkcja nie ma testów                             | Wynik CRAP powyżej 30, `validate` nie przechodzi                                        |
+| Szybka informacja zwrotna | Programista odpala szybkie bramki przed commitem          | `npm run validate` trwa wyraźnie poniżej minuty                                         |
+| Szybka informacja zwrotna | Otwarto pull request                                      | Wszystkie checki CI kończą się w kilka minut                                            |
+| Wydajność                 | 10 użytkowników naraz woła `GET /api/greeting` przez 20 s | p95 poniżej 200 ms i poniżej 1% błędów, sprawdzane na żądanie przez `npm run test:perf` |
+| Elastyczność              | Projekt usuwa konfigurację AI                             | Wszystkie bramki dalej przechodzą (sprawdzone przy pisaniu instrukcji)                  |
+| Elastyczność              | Projekt wymienia albo usuwa jedno narzędzie               | Zmienia się jeden plik konfiguracji i jego skrypty, nic więcej                          |
 
 ## Wymagania twojego projektu
 

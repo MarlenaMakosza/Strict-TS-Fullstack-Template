@@ -56,7 +56,8 @@
     "list-outdated-dependencies": "npm-check-updates --format repo,group --peer --workspaces --root",
     "update-dependencies": "npm run list-outdated-dependencies -- -u && npm install && npm update && npm dedupe && npm run autofix",
     "clean": "rimraf node_modules dist coverage reports .stryker-tmp \"apps/*/{node_modules,dist,coverage,reports,.stryker-tmp}\"",
-    "quality:one-react": "node dev/quality/one-version.ts react react-dom"
+    "quality:one-react": "node dev/quality/one-version.ts react react-dom",
+    "test:perf": "concurrently --raw --kill-others --success command-k6 --names api,k6 \"node --env-file=tests/perf/api.env apps/api/src/index.ts\" \"docker run --rm --network host -v ./tests/perf:/scripts:ro -e BASE_URL=http://localhost:3100 grafana/k6:2.3.0 run --quiet /scripts/api.ts\""
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.14.0",
@@ -72,6 +73,7 @@
     "@eslint/markdown": "^8.0.3",
     "@playwright/test": "^1.64.0",
     "@secretlint/quick-start": "^13.1.0",
+    "@types/k6": "^2.3.1",
     "@types/node": "^24.19.2",
     "@vitest/eslint-plugin": "^1.6.27",
     "archgate": "^0.59.0",

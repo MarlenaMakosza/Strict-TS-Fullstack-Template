@@ -76,20 +76,21 @@ Follow this order for every change in behavior:
 
 ## Which command to run
 
-| When                                          | Run                                                            |
-| --------------------------------------------- | -------------------------------------------------------------- |
-| After each edit (fast feedback)               | `npm test -w apps/api -- <test file>` and `npx eslint <files>` |
-| Before you say you are done                   | `npm run validate:full` and `npm run format:check`             |
-| Lint or formatting errors                     | `npm run autofix`, then fix what is left by hand               |
-| You changed logic in `apps/api/src/` or tests | `npm run test:mutation -- --force`                             |
-| You need coverage numbers                     | `npm run test:coverage`                                        |
-| User-visible behavior changed                 | `npm run test:e2e`                                             |
-| You changed `apps/api/src/db/schema.ts`       | `npm run db:generate`, then `npm run db:check`                 |
-| You changed code that uses the DB             | `npm run test:integration` (needs Docker)                      |
-| `cspell` reports a real project word          | Add the word to `.cspell/custom-words.txt`                     |
-| `knip` reports unused code or exports         | Remove the unused code. Do not add ignores                     |
-| `quality:crap` reports a function             | Add tests for it, or split it into simpler functions           |
-| `quality:duplication` finds a clone           | Extract the shared code into one function or module            |
+| When                                                            | Run                                                            |
+| --------------------------------------------------------------- | -------------------------------------------------------------- |
+| After each edit (fast feedback)                                 | `npm test -w apps/api -- <test file>` and `npx eslint <files>` |
+| Before you say you are done                                     | `npm run validate:full` and `npm run format:check`             |
+| Lint or formatting errors                                       | `npm run autofix`, then fix what is left by hand               |
+| You changed logic in `apps/api/src/` or tests                   | `npm run test:mutation -- --force`                             |
+| You need coverage numbers                                       | `npm run test:coverage`                                        |
+| User-visible behavior changed                                   | `npm run test:e2e`                                             |
+| The user asks about speed, or you changed a hot path of the API | `npm run test:perf` (needs Docker; not part of the gates)      |
+| You changed `apps/api/src/db/schema.ts`                         | `npm run db:generate`, then `npm run db:check`                 |
+| You changed code that uses the DB                               | `npm run test:integration` (needs Docker)                      |
+| `cspell` reports a real project word                            | Add the word to `.cspell/custom-words.txt`                     |
+| `knip` reports unused code or exports                           | Remove the unused code. Do not add ignores                     |
+| `quality:crap` reports a function                               | Add tests for it, or split it into simpler functions           |
+| `quality:duplication` finds a clone                             | Extract the shared code into one function or module            |
 
 ## Finding code
 

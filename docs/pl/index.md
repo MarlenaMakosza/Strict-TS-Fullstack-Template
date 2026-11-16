@@ -43,8 +43,7 @@ który przejdzie wszystkie ograniczenia. Inspiracją dla pracy z agentami był
 - **Testy na każdym poziomie.** Vitest do testów jednostkowych, z fast-check do testów
   property-based; testy integracyjne na prawdziwym PostgreSQL w Dockerze (Testcontainers);
   Playwright ze scenariuszami Gherkin (playwright-bdd) dla API i dla aplikacji webowej w
-  przeglądarce, ze sprawdzaniem dostępności przez axe; i Stryker do mutation
-  testing.
+  przeglądarce, ze sprawdzaniem dostępności przez axe; Stryker do mutation testing; i testy obciążeniowe API w k6, uruchamiane na żądanie.
 - **Metryki jakości.** Próg pokrycia testami, wynik CRAP dla każdej funkcji i wykrywanie
   skopiowanego kodu.
 - **Reguły architektury i dokumentacja.** ADR-y w `.archgate/adrs/`, sprawdzane przez Archgate, i
