@@ -21,6 +21,7 @@ export default defineConfig({
             items: [
               { text: 'Getting started', link: '/getting-started' },
               { text: 'Quality gates', link: '/quality-gates' },
+              { text: 'Behavior and unit tests', link: '/behavior-and-unit-tests' },
               { text: 'Scripts', link: '/scripts' },
               { text: 'Performance tests', link: '/performance-tests' },
               { text: 'Tools', link: '/tools' },
@@ -85,6 +86,7 @@ export default defineConfig({
             items: [
               { text: 'Pierwsze kroki', link: '/pl/getting-started' },
               { text: 'Bramki jakości', link: '/pl/quality-gates' },
+              { text: 'Testy zachowania i jednostkowe', link: '/pl/behavior-and-unit-tests' },
               { text: 'Skrypty', link: '/pl/scripts' },
               { text: 'Testy wydajności', link: '/pl/performance-tests' },
               { text: 'Narzędzia', link: '/pl/tools' },
