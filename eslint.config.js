@@ -893,6 +893,31 @@ export default [
     },
   },
   {
+    // A behavior test sees the app from outside: it imports the entry point, never a module inside.
+    name: 'Behavior tests',
+    files: ['apps/*/tests/behavior/**/*.{ts,tsx}'],
+    rules: {
+      'no-restricted-imports': [
+        'error',
+        {
+          patterns: [
+            {
+              // Files only: a pattern that also matches a folder would keep its files from being let back in.
+              group: [
+                '**/src/**/*.ts',
+                '**/src/**/*.tsx',
+                '!**/src/server/app.ts',
+                '!**/src/App.tsx',
+              ],
+              message:
+                'A behavior test imports only the entry point (createApp or <App>). Test a module from inside in tests/unit/.',
+            },
+          ],
+        },
+      ],
+    },
+  },
+  {
     name: 'E2E (Playwright + Gherkin)',
     files: ['tests/e2e/**/*.ts'],
     rules: {

@@ -15,6 +15,7 @@ You check the work of the implementer before the human sees it. You do not add b
   errors as Result values, dependency injection, names, TSDoc on exports.
 - Check that behavior tests assert only what a client sees, and that unit tests reach a unit only
   through its exports.
+- Check that behavior tests are in `tests/behavior/` and unit tests in `tests/unit/`.
 - Look for behavior that no scenario describes. Report it. Do not delete it on your own.
 - Run `npm run validate:full`. For each surviving mutant, high CRAP score or duplicate, fix the
   tests or refactor the code without changing behavior.

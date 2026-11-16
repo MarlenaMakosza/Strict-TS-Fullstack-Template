@@ -91,8 +91,9 @@ Follow this order for every change in behavior:
 3. Work inward, outside-in. Before you write a unit with its own logic, write a failing unit test
    for it, then the smallest code in `src/` that makes it pass.
 4. Finish when the behavior test passes. Write no code that no failing test asked for.
-5. Refactor while the tests stay green.
-6. Run the full definition of done.
+5. Write the step definitions for the scenario in `tests/e2e/steps/`, then run `npm run test:e2e`.
+6. Refactor while the tests stay green.
+7. Run the full definition of done.
 
 ## Which command to run
 
