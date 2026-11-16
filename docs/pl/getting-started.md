@@ -73,7 +73,7 @@ kod.
   `tests/e2e/features/http-api.feature` oraz `docs/edge-cases/greeting.md`. Zostaw `/api/health`,
   fixture serwera i kroki w `tests/e2e/steps/server.steps.ts`: pasują do każdego API.
 - Strona powitania w aplikacji webowej: `apps/web/src/App.tsx`, `apps/web/src/api/greeting.ts` i
-  ich testy w `apps/web/tests/unit/`, `tests/e2e/features/greeting-page.feature` oraz projekt UX
+  ich testy w `apps/web/tests/behavior/` i `apps/web/tests/unit/`, `tests/e2e/features/greeting-page.feature` oraz projekt UX
   `docs/ux/greeting.md`. Zostaw kroki w `tests/e2e/steps/page.steps.ts` (otwarcie aplikacji,
   wpisywanie, przyciski, klawiatura i sprawdzanie przez axe): pasują do każdej strony.
 - Inne pliki podają je jako wzorce stylu:
@@ -238,13 +238,15 @@ apps/api/             backend: API HTTP na Hono
   src/                kod aplikacji
     db/               schemat i klient Drizzle
     server/           aplikacja Hono i jej trasy
-  tests/unit/         testy jednostkowe Vitest
+  tests/behavior/     testy zachowania Vitest: aplikacja przez HTTP
+  tests/unit/         testy jednostkowe Vitest: jeden moduł od środka
   tests/integration/  testy Vitest na prawdziwej bazie (Testcontainers, wymaga Dockera)
   drizzle/            migracje bazy danych, generuje je npm run db:generate
   dev/db/             skrypty migracji i danych testowych
 apps/web/             frontend: React z Vite i Tailwind CSS
   src/                komponenty; src/api/ wywołuje backend
-  tests/unit/         testy Vitest i Testing Library
+  tests/behavior/     testy zachowania Vitest: strona w Testing Library
+  tests/unit/         testy jednostkowe Vitest: jeden moduł od środka
 packages/shared/      kod używany przez obie aplikacje, np. Result
 tests/e2e/features/   scenariusze Gherkin (specyfikacja)
 tests/e2e/steps/      step definitions i fixtures

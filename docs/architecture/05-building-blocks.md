@@ -10,7 +10,8 @@
 | Environment        | `apps/api/src/env.ts`                           | The only module that reads `process.env` (ARCH-001)                                        |
 | Logger             | `apps/api/src/logger.ts`                        | The pino logger: level, format, redaction (ARCH-002)                                       |
 | Database           | `apps/api/src/db/`, `apps/api/dev/db/`          | Drizzle schema and client; migrations and seeds                                            |
-| Unit tests         | `apps/api/tests/unit/`                          | Vitest tests of the public API                                                             |
+| Behavior tests     | `apps/api/tests/behavior/`                      | Vitest tests of the app from outside, through HTTP                                         |
+| Unit tests         | `apps/api/tests/unit/`                          | Vitest tests of one module from inside                                                     |
 | Integration tests  | `apps/api/tests/integration/`                   | Vitest tests against real services in containers (Testcontainers)                          |
 | Scenarios          | `tests/e2e/features/`, `tests/e2e/steps/`       | Gherkin specification and its step definitions                                             |
 | Quality scripts    | `dev/quality/`                                  | The CRAP gate                                                                              |

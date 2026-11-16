@@ -16,8 +16,9 @@ easy to review (see [Final report](#final-report)).
   `apps/api/src/server/` (ADR `ARCH-003`): add routes with `createRoute` and `app.openapi()`, so
   they are validated and appear in `/api/openapi.json`.
 - An npm workspaces monorepo (ADR `ARCH-004`): the backend in `apps/api/`, the React frontend in
-  `apps/web/` (ADR `ARCH-005`), shared code in `packages/shared/`. Each has its code in `src/` and
-  its unit tests in `tests/unit/` (in `packages/shared`: `tests/`); the backend also has
+  `apps/web/` (ADR `ARCH-005`), shared code in `packages/shared/`. Each has its code in `src/`,
+  its behavior tests in `tests/behavior/` and its unit tests in `tests/unit/` (in
+  `packages/shared`: only unit tests, in `tests/`); the backend also has
   integration tests against a real database in `apps/api/tests/integration/`. End-to-end
   scenarios are in `tests/e2e/features/`. Run scripts from the root.
 - The frontend calls the backend through `/api/…` only; Vite forwards those requests to it in
@@ -53,15 +54,17 @@ Never report a task as done without running these commands yourself.
 
 - **Behavior test**: tests the app from outside, as a client sees it: an HTTP request through
   `createApp().request()` in `apps/api`, a rendered page with Testing Library in `apps/web`. It
-  knows nothing of the code inside. `apps/api/tests/unit/server/app.test.ts` shows the style.
+  knows nothing of the code inside. `apps/api/tests/behavior/server/app.test.ts` and
+  `apps/web/tests/behavior/App.test.tsx` show the style.
 - **Unit test**: tests one unit (a function, a module, an adapter) from inside: every branch and
   edge case, with its dependencies replaced by fakes, and what it does with them. It goes through
   the exports of the unit, never through its private functions.
 - **Property test**: a unit test with fast-check, for a rule that holds for any input of a kind.
 - **Gherkin scenario**: the specification, run end to end by Playwright. The human owns it.
 
-Behavior, unit and property tests are Vitest tests in `tests/unit/`. Only Vitest tests count for
-coverage and mutation testing, so a Gherkin scenario never replaces them.
+Behavior tests go to `tests/behavior/`, unit and property tests to `tests/unit/`. All of them are
+Vitest tests. Only Vitest tests count for coverage and mutation testing, so a Gherkin scenario
+never replaces them.
 
 ## Final report
 

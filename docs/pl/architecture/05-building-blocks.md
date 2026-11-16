@@ -10,7 +10,8 @@
 | Środowisko          | `apps/api/src/env.ts`                           | Jedyny moduł, który czyta `process.env` (ARCH-001)                               |
 | Logger              | `apps/api/src/logger.ts`                        | Logger pino: poziom, format, ukrywanie sekretów (ARCH-002)                       |
 | Baza danych         | `apps/api/src/db/`, `apps/api/dev/db/`          | Schemat i klient Drizzle; migracje i dane testowe                                |
-| Testy jednostkowe   | `apps/api/tests/unit/`                          | Testy Vitest publicznego API                                                     |
+| Testy zachowania    | `apps/api/tests/behavior/`                      | Testy Vitest aplikacji od zewnątrz, przez HTTP                                   |
+| Testy jednostkowe   | `apps/api/tests/unit/`                          | Testy Vitest jednego modułu od środka                                            |
 | Testy integracyjne  | `apps/api/tests/integration/`                   | Testy Vitest na prawdziwych usługach w kontenerach (Testcontainers)              |
 | Scenariusze         | `tests/e2e/features/`, `tests/e2e/steps/`       | Specyfikacja Gherkin i jej step definitions                                      |
 | Skrypty jakości     | `dev/quality/`                                  | Bramka CRAP                                                                      |
